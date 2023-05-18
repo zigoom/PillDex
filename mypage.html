@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>                 
+        <meta charset="UTF-8">    
+        <meta name="fiveguys"  content="mypage">
+        <style>
+        	@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&display=swap');
+          /* font-family: 'Nanum Pen Script', cursive;
+             font-family: 'Noto Sans KR', sans-serif; */
+          #container {
+            width : 400px;
+            margin : 20px auto;
+            padding: 30px;
+            font-family: 'Nanum Pen Script', cursive;
+            font-family: 'Noto Sans KR', sans-serif;
+          }
+          input[type="text"], input[type="tel"], input[type="password"] {
+              font-size: 12pt;
+              width: 400px;
+              height: 40px;
+          }
+          input[type="email"] {
+            font-size: 12pt;
+              width: 185px;
+              height: 35px;
+          }
+          input[type="button"] {
+            background-color: #40C1FC;
+            color: #FFFFFF;
+            border:1px solid #40C1FC;
+            width: 80px;
+            height: 40px;
+            font-family: 'Nanum Pen Script', cursive;
+            font-family: 'Noto Sans KR', sans-serif;
+          }
+          ul {
+            list-style: none;
+          }
+          li {
+            font-weight: bold;
+            margin: 20px 0px;
+          }
+          #box{
+            display:flex;
+            justify-content: center;
+          }
+          .find-btn{
+            text-align: center;
+
+          }
+          .find-btn1{
+            display :inline-block;
+          }
+          
+          
+          
+        </style>
+        <title>PCWK_제목</title>
+        
+	</head>
+    <body>
+    <div style="width: 100%"; text-align:center;>
+    <div id="box">
+    <div style="display:inline-block;">
+      <h3>마이페이지</h3>
+        <form action="#" method="get">
+        
+        <fieldset style="border:0 solid black">
+         <div style="align-content: center;">
+          <label for="user_id"><b>아이디</b></label><br/>
+          <input type="text" id="user_id" name="user_id" min="6" maxlength="20" placeholder="ID">
+          </div>
+          <div>
+          <label for="pw"><b>비밀번호</b></label><br/>
+          <input type="password" id="pw" name="pw" min="8" maxlength="20">
+          </div>
+          <div>
+          <label for="pw_check"><b>비밀번호 확인</b></label><br/>
+          <input type="password" id="pw_check" name="pw_check" min="8" maxlength="20" placeholder="비밀번호 확인">
+          </div>
+          <div>
+          <label for="phone_number"><b>휴대폰번호</b></label><br/>
+          <input type="tel"  width= "700px" id="phone_number" name="phone_number" size="13" maxlength="13">
+          </div>
+          <div>
+          <label for="email"><b>이메일 주소</b></label><br/>
+          <input type="email" width="300px" id="email_front" name="email_front" placeholder="이메일 주소">
+          <label>@</label>
+          <input type="email" list="email_back" name="email_back" placeholder="ex)naver.com">
+          <datalist id="email_back">
+            <option value="naver.com"></option>
+            <option value="google.com"></option>
+            <option value="daum.net"></option>
+          </datalist>
+          </div>
+          <div>
+          <label for="address"><b>기본 주소</b></label><br/>
+          <input type="text" id="post_code" name="post_code" placeholder="우편번호를 검색하세요">
+          <button type="submit" id="post_code">우편번호검색</button>
+          <input type="text" id="address" name="address" placeholder="기본주소"><br/>
+          <input type="text" id="rest_address" name="rest_address" placeholder="나머지주소">
+          </div>
+          <div>
+          <label for="bookmark_address_list"><b>즐겨 찾기 주소지 목록</b></label><br/>
+          <input type="text" id="bookmark_address_list" name="bookmark_address_list">
+          <datalist id= "bookmark_address_list">
+            <option value = "서울특별시 양천구"></option>
+            <option value = "서울특별시 영등포구"></option>
+            <option value = "경기도 안양시"></option>
+          </datalist>
+          </div>
+          <div>
+          <label for="bookmark_med_list"><b>약품 즐겨 찾기 주소지 목록</b></label><br/>
+          <input type="text" id="bookmark_med_list" name="bookmark_med_list">
+          </div>
+         <div class="find-btn">
+           <button type="button" class="btn btn-navy navbar-btn find-btn1" onclick="location.href='/submit'">수정</button>
+           <button type="button" class="btn btn-grey navbar-btn find-btn1" onclick="location.href='/reset'">취소</button>
+         </div>
+        </fieldset>
+        </form>
+        </div>
+        </div>
+        </div>
+    </body>
+</html>
