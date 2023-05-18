@@ -1,0 +1,25 @@
+#detail_img_text_box {
+    height: 300px;
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+#detail_img_box {
+    background-color: #dadde2;
+    width: 48%;
+    height: 300px;
+}
+#detail_text_box {
+    background-color: #dadde2;
+    width: 48%;
+    height: 300px;
+}
+#detail_result_box {
+    margin: 30px;
+}
+#star {
+    float: right;
+    margin-right: 55px;
+    margin-top: 25px;
+    font-size: 70px;
+}

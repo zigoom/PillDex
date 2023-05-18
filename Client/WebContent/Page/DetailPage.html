@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="author" content="user" />
+        <link rel="stylesheet" href="../Css/detail.css" />
+        <title>PCWK_제목</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous"
+        />
+        <script src="https://kit.fontawesome.com/30356e696a.js" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <!--네비게이션 바-->
+        <nav class="py-2 bg-light border-bottom">
+            <div class="container d-flex flex-wrap">
+                <ul class="nav me-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark px-2 active" aria-current="page">
+                            <img src="../Images/Pill_32px.png" alt="Pill" /> &nbsp;
+                            <b>PillDex</b>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark px-2"><b>MAP</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark px-2"><b>로그인</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="detail_img_text_box">
+            <div id="detail_img_box">이미지</div>
+            <div id="detail_text_box">간이설명</div>
+        </div>
+        <div id="star_box">
+            <!--즐겨찾기 추가/삭제-->
+            <i id="star" class="hidden fa-regular fa-star fa-2xl"></i>
+        </div>
+        <!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
+        <div id="detail_result_box">
+            <h2>외형정보</h2>
+            <p>-성상 : 오각형의 분홍색 필름코팅정</p>
+            <br />
+            <h2>성분정보</h2>
+            <p>라니티딘염산염 84mg</p>
+            <br />
+            <h2>저장방법</h2>
+            <p>기밀용기, 실온(1-30ºC)보관</p>
+            <br />
+            <h2>효능효과</h2>
+            <p>위산과다, 속쓰림, 신트림</p>
+            <br />
+            <h2>용법용량</h2>
+            <p>16세 이상 1회 1정(75mg), 1일 2정(150mg)까지 복용할 수 있다.</p>
+            <br />
+            <h2>사용시 주의사항</h2>
+            <p>1.다음과 같은 사람은 이 약을 복용하지 말 것</p>
+            <h1>현 위치 결과물 내용들은 api 데이터로 바꿀것</h1>
+        </div>
+    </body>
+    <script src="../Js/app.js"></script>
+</html>
