@@ -18,11 +18,22 @@
               font-size: 12pt;
               width: 400px;
               height: 40px;
+              margin: 10px;
+              padding: 1px;
           }
           input[type="email"] {
             font-size: 12pt;
               width: 185px;
               height: 35px;
+              margin: 3px;
+              padding: 1px;
+          }
+          input[type="address"], input[type="bookmark_address_list"], input[type="bookmark_med_list"] {
+            font-size: 12pt;
+              width: 185px;
+              height: 35px;
+              margin: 10px;
+              padding: 1px;
           }
           input[type="button"] {
             background-color: #40C1FC;
@@ -32,6 +43,8 @@
             height: 40px;
             font-family: 'Nanum Pen Script', cursive;
             font-family: 'Noto Sans KR', sans-serif;
+            margin: 10px;
+            padding: 10px;
           }
           ul {
             list-style: none;
@@ -46,10 +59,18 @@
           }
           .find-btn{
             text-align: center;
+            margin: 10px;
+            padding: 10px;
 
           }
           .find-btn1{
             display :inline-block;
+            margin: 10px;
+            pedding: 10px;
+          }
+          box2{
+            display:flex;
+            justify-content: center;  
           }
           
           
@@ -61,15 +82,15 @@
     <body>
     <div style="width: 100%"; text-align:center;>
     <div id="box">
-    <div style="display:inline-block;">
+    <div  style="display:inline-block;">
       <h3>마이페이지</h3>
-        <form action="#" method="get">
+        <form id="box2" action="#" method="get">
         
         <fieldset style="border:0 solid black">
          <div style="align-content: center;">
           <label for="user_id"><b>아이디</b></label><br/>
           <input type="text" id="user_id" name="user_id" min="6" maxlength="20" placeholder="ID">
-          </div>
+         </div>
           <div>
           <label for="pw"><b>비밀번호</b></label><br/>
           <input type="password" id="pw" name="pw" min="8" maxlength="20">
@@ -85,15 +106,17 @@
           <div>
           <label for="email"><b>이메일 주소</b></label><br/>
           <input type="email" width="300px" id="email_front" name="email_front" placeholder="이메일 주소">
-          <label>@</label>
+          <label><b>@</b></label>
           <input type="email" list="email_back" name="email_back" placeholder="ex)naver.com">
           <datalist id="email_back">
             <option value="naver.com"></option>
             <option value="google.com"></option>
             <option value="daum.net"></option>
+            <option value="hanmail.net"></option>
+            <option value="직접 입력"></option>
           </datalist>
           </div>
-          <div>
+          <div style="width: 70%">
           <label for="address"><b>기본 주소</b></label><br/>
           <input type="text" id="post_code" name="post_code" placeholder="우편번호를 검색하세요">
           <button type="submit" id="post_code">우편번호검색</button>
@@ -101,17 +124,29 @@
           <input type="text" id="rest_address" name="rest_address" placeholder="나머지주소">
           </div>
           <div>
-          <label for="bookmark_address_list"><b>즐겨 찾기 주소지 목록</b></label><br/>
-          <input type="text" id="bookmark_address_list" name="bookmark_address_list">
-          <datalist id= "bookmark_address_list">
-            <option value = "서울특별시 양천구"></option>
-            <option value = "서울특별시 영등포구"></option>
-            <option value = "경기도 안양시"></option>
-          </datalist>
+           <label for="bookmark_address_list"><b>즐겨 찾기 주소지 목록</b></label><br />
+           <input type="text" list="bookmark_address_list" name="bookmark_address_list">
+           <datalist id="bookmark_address_list">
+             <option value="서울특별시 양천구"></option>
+             <option value="서울특별시 영등포구"></option>
+             <option value="경기도 안양시"></option>
+           </datalist>
           </div>
           <div>
           <label for="bookmark_med_list"><b>약품 즐겨 찾기 주소지 목록</b></label><br/>
-          <input type="text" id="bookmark_med_list" name="bookmark_med_list">
+          <input type="text" list="bookmark_med_list" name="bookmark_med_list">
+          <datalist id="bookmark_med_list">
+             <option value="박카스"></option>
+             <option value="비타500"></option>
+             <option value="텐텐"></option>
+             <option value="우루사"></option>
+             <option value="컨디션"></option>
+             <option value="여명"></option>
+             <option value="헛개수"></option>
+             <option value="타이레놀"></option>
+             <option value="집가고싶다"></option>
+             <option value="하기싫다"></option>
+           </datalist>
           </div>
          <div class="find-btn">
            <button type="button" class="btn btn-navy navbar-btn find-btn1" onclick="location.href='/submit'">수정</button>
