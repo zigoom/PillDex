@@ -78,6 +78,11 @@ public class apiTest {
 		String useMethodQesitm = itemNameObj.getString("useMethodQesitm");
 		String atpnQesitm = itemNameObj.getString("atpnQesitm");
 		String efcyQesitm = itemNameObj.getString("efcyQesitm");
+		try {
+			String itemImage = itemNameObj.getString("itemImage");
+		}catch (JSONException e) {
+			System.out.println("이미지가 없습니다.");
+		}
 		
 		System.out.println(itemName);
 		System.out.println(enptName);
