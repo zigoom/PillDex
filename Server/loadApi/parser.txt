@@ -1,0 +1,23 @@
+//		// JSON 파싱
+//		JSONObject jsonObject = new JSONObject(result);
+//		JSONObject jsonObjectBody = jsonObject.getJSONObject("body");
+//		JSONArray jsonObjectBodyItems = jsonObjectBody.getJSONArray("items");
+//		JSONObject itemNameObj = jsonObjectBodyItems.getJSONObject(0);
+//		String itemName = itemNameObj.getString("itemName");
+//		String enptName = itemNameObj.getString("entpName");
+//		String depositMethodQesitm = itemNameObj.getString("depositMethodQesitm");
+//		String useMethodQesitm = itemNameObj.getString("useMethodQesitm");
+//		String atpnQesitm = itemNameObj.getString("atpnQesitm");
+//		String efcyQesitm = itemNameObj.getString("efcyQesitm");
+//		try {
+//			String itemImage = itemNameObj.getString("itemImage");
+//		}catch (JSONException e) {
+//			System.out.println("이미지가 없습니다.");
+//		}
+//		
+//		System.out.println(itemName);
+//		System.out.println(enptName);
+//		System.out.println(depositMethodQesitm);
+//		System.out.println(useMethodQesitm);
+//		System.out.println(atpnQesitm);
+//		System.out.println(efcyQesitm);
