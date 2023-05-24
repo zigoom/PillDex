@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="author" content="hbi">
-  <link rel = "stylesheet" href = "Client/css/main-css/med.css">
-  <link rel = "stylesheet" href = "Client/css/main-css/arrow.css">
-  <link rel = "stylesheet" href = "Client/css/main-css/medtable.css">
+  <link rel = "stylesheet" href = "../css/main-css/med.css">
+  <link rel = "stylesheet" href = "../css/main-css/arrow.css">
+  <link rel = "stylesheet" href = "../css/main-css/medtable.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,13 +18,13 @@
 <body>
   <div id = "container">
    <div style="margin-top: 10px">
-    <a href = "#"><img src="/Client/img/main-png/icon.png" alt="로고" id="log"
+    <a href = "#"><img src="../img/main-png/icon.png" alt="로고" id="log"
     style="width: 30px; height: 20px; margin-bottom: 5px"></a>
     <label for="log" style="font-size: 20px; font-weight: 600; "><a href = #  style=" text-decoration: none; color: black; margin-top: 5px">PillDex</a></label>
       <a href="#" style="font-size: 20px; font-weight: 600; text-decoration: none; color: black; float: right; margin-right: 10px">맵</a>
       <a href="#" style="font-size: 20px; font-weight: 600; text-decoration: none; color: black; float: right; margin-right: 30px;">돋보기</a>
    </div>
-    <div style="display: table; width: 100%; height: 120px; background-image: url(/Client/img/main-png/BG.png); background-size: cover; background-position: center;">
+    <div style="display: table; width: 100%; height: 120px; background-image: url(../img/main-png/BG.png); background-size: cover; background-position: center;">
       <div style=" float: left; margin-top: 10px; height: 100px; width: 560px; background-color: black; margin-left: 10px ">
         <div>
          <table style="margin-left: 26px">
@@ -79,7 +79,7 @@
     <fieldset style="margin-left: 50px; margin-right: 50px; margin-top: 15px;
                       border: 1px solid black;">
        <div style="margin-top: 10px">
-          <img alt="" src="/Client/img/main-png/icon.png" 
+          <img alt="" src="../img/main-png/icon.png" 
                       style="width:20px; height : 15px; margin-left: 10px">
                       |의약품 정보 또는 약모양으로 찾아볼 수 있어요
       </div>
@@ -99,51 +99,51 @@
         <div id ="myDIV" style= "overflow:hidden; width: 710px; white-space: nowrap; margin:auto; margin-top: 20px ">
          <div class= "select" style="display: inline-flex;">
           <input type="radio" id="med_mod1" name="med_mod"  value="med_mod1">
-           <label for="med_mod1" style="background-image: url('/Client/img/main-png/모양/1.PNG'); 
+           <label for="med_mod1" style="background-image: url('../img/main-png/모양/1.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
             </label>
           <input type="radio" id="med_mod2" name="med_mod"  value="med_mod2">
-            <label for="med_mod2" style="background-image: url('/Client/img/main-png/모양/2.PNG'); 
+            <label for="med_mod2" style="background-image: url('../img/main-png/모양/2.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_mod3" name="med_mod"  value="med_mod3">
-            <label for="med_mod3" style="background-image: url('/Client/img/main-png/모양/3.PNG'); 
+            <label for="med_mod3" style="background-image: url('../img/main-png/모양/3.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
              
              <button onclick="prescroll()" id = "pre1"
                 style="width: 70px; height: 70px; display: inline-block; display: none; background-color: white; border-color: transparent;">
-                <img src= "/Client/img/main-png/pre_arrow.png" style="width: 70px; height: 70px;"></button>
+                <img src= "../img/main-png/pre_arrow.png" style="width: 70px; height: 70px;"></button>
                  
           <input type="radio" id="med_mod4" name="med_mod"  value="med_mod4">
-            <label for="med_mod4" style="background-image: url('/Client/img/main-png/모양/4.PNG'); 
+            <label for="med_mod4" style="background-image: url('../img/main-png/모양/4.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_mod5" name="med_mod"  value="med_mod5">
-            <label for="med_mod5" style="background-image: url('/Client/img/main-png/모양/5.PNG'); 
+            <label for="med_mod5" style="background-image: url('../img/main-png/모양/5.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_mod6" name="med_mod"  value="med_mod6">
-            <label for="med_mod6" style="background-image: url('/Client/img/main-png/모양/6.PNG'); 
+            <label for="med_mod6" style="background-image: url('../img/main-png/모양/6.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_mod7" name="med_mod"  value="med_mod7">
-            <label for="med_mod7" style="background-image: url('/Client/img/main-png/모양/7.PNG'); 
+            <label for="med_mod7" style="background-image: url('../img/main-png/모양/7.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label> 
           <input type="radio" id="med_mod8" name="med_mod"  value="med_mod8">
-            <label for="med_mod8" style="background-image: url('/Client/img/main-png/모양/8.PNG'); 
+            <label for="med_mod8" style="background-image: url('../img/main-png/모양/8.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_mod9" name="med_mod"  value="med_mod9">
-            <label for="med_mod9" style="background-image: url('/Client/img/main-png/모양/9.PNG'); 
+            <label for="med_mod9" style="background-image: url('../img/main-png/모양/9.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
             </label>
             
 
              <button onclick="newxtscroll();" id = "next1"
                   style="width: 70px; height: 70px; display: inline-block; background-color: white; border-color: transparent;">
-                  <img src= "/Client/img/main-png/next_arrow.png" style="width: 70px; height: 70px;"></button>
+                  <img src= "../img/main-png/next_arrow.png" style="width: 70px; height: 70px;"></button>
              
              <script>
               function newxtscroll() {
@@ -199,15 +199,15 @@
 
             
           <input type="radio" id="med_mod10" name="med_mod" value="med_mod10">
-            <label for="med_mod10" style="background-image: url('/Client/img/main-png/모양/10.PNG'); 
+            <label for="med_mod10" style="background-image: url('../img/main-png/모양/10.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
             </label> 
            <input type="radio" id="med_mod11" name="med_mod" value="med_mod11">
-            <label for="med_mod11" style="background-image: url('/Client/img/main-png/모양/11.PNG'); 
+            <label for="med_mod11" style="background-image: url('../img/main-png/모양/11.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label>
           <input type="radio" id="med_mod12" name="med_mod" value="med_mod12">
-            <label for="med_mod12" style="background-image: url('/Client/img/main-png/모양/12.PNG'); 
+            <label for="med_mod12" style="background-image: url('../img/main-png/모양/12.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label>                
           </div>
@@ -215,51 +215,51 @@
         <div id ="myDIV2" style=" overflow:hidden; width: 710px; white-space: nowrap; margin:auto; margin-top: 20px" >
         <div class = "select"  style="display: inline-flex;"> 
           <input type="radio" id="med_coclor1" name="med_coclor"  value="med_coclor1">
-            <label for="med_coclor1" style="background-image: url('/Client/img/main-png/색깔/4.PNG'); 
+            <label for="med_coclor1" style="background-image: url('../img/main-png/색깔/4.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_coclor2" name="med_coclor"  value="med_coclor2">
-            <label for="med_coclor2" style="background-image: url('/Client/img/main-png/색깔/2.PNG'); 
+            <label for="med_coclor2" style="background-image: url('../img/main-png/색깔/2.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_coclor3" name="med_coclor"  value="med_coclor3">
-            <label for="med_coclor3" style="background-image: url('/Client/img/main-png/색깔/3.PNG'); 
+            <label for="med_coclor3" style="background-image: url('../img/main-png/색깔/3.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
             </label>
           <input type="radio" id="med_coclor4" name="med_coclor"  value="med_coclor4">
-            <label for="med_coclor4" style="background-image: url('/Client/img/main-png/색깔/4.PNG'); 
+            <label for="med_coclor4" style="background-image: url('../img/main-png/색깔/4.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label> 
           <input type="radio" id="med_coclor5" name="med_coclor"  value="med_coclor5">
-            <label for="med_coclor5" style="background-image: url('/Client/img/main-png/색깔/5.PNG'); 
+            <label for="med_coclor5" style="background-image: url('../img/main-png/색깔/5.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_coclor6" name="med_coclor"  value="med_coclor6">
-            <label for="med_coclor6" style="background-image: url('/Client/img/main-png/색깔/6.PNG'); 
+            <label for="med_coclor6" style="background-image: url('../img/main-png/색깔/6.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_coclor7" name="med_coclor"  value="med_coclor7">
-            <label for="med_coclor7" style="background-image: url('/Client/img/main-png/색깔/7.PNG'); 
+            <label for="med_coclor7" style="background-image: url('../img/main-png/색깔/7.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
           <input type="radio" id="med_coclor8" name="med_coclor"  value="med_coclor8">
-            <label for="med_coclor8" style="background-image: url('/Client/img/main-png/색깔/8.PNG'); 
+            <label for="med_coclor8" style="background-image: url('../img/main-png/색깔/8.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
             
             <button onclick="prescroll2()" id = "pre2" 
                 style="width: 70px; height: 70px; display: inline-block; display: none;background-color: white; border-color: transparent;">
-               <img src= "/Client/img/main-png/pre_arrow.png" style="width: 70px; height: 70px;"></button> 
+               <img src= "../img/main-png/pre_arrow.png" style="width: 70px; height: 70px;"></button> 
              
           <input type="radio" id="med_coclor9" name="med_coclor"  value="med_coclor9">
-            <label for="med_coclor9" style="background-image: url('/Client/img/main-png/색깔/9.PNG'); 
+            <label for="med_coclor9" style="background-image: url('../img/main-png/색깔/9.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>
              
              
               <button onclick="newxtscroll2();" id = "next2"
                   style="width: 70px; height: 70px; display: inline-block; background-color: white; border-color: transparent; ">
-                   <img src= "/Client/img/main-png/next_arrow.png" style="width: 70px; height: 70px;"></button>
+                   <img src= "../img/main-png/next_arrow.png" style="width: 70px; height: 70px;"></button>
               <script>
               function newxtscroll2() {
             	  const element = document.getElementById("myDIV2");
@@ -315,35 +315,35 @@
 
              
           <input type="radio" id="med_coclor10" name="med_coclor" value=med_coclor10>
-            <label for="med_coclor10" style="background-image: url('/Client/img/main-png/색깔/10.PNG'); 
+            <label for="med_coclor10" style="background-image: url('../img/main-png/색깔/10.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
              </label>  
            <input type="radio" id="med_coclor11" name="med_coclor" value="med_coclor11">
-            <label for="med_coclor11" style="background-image: url('/Client/img/main-png/색깔/11.PNG'); 
+            <label for="med_coclor11" style="background-image: url('../img/main-png/색깔/11.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label>
           <input type="radio" id="med_coclor12" name="med_coclor" value="med_coclor12">
-            <label for="med_coclor12" style="background-image: url('/Client/img/main-png/색깔/12.PNG'); 
+            <label for="med_coclor12" style="background-image: url('../img/main-png/색깔/12.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label>
           <input type="radio" id="med_coclor13" name="med_coclor" value="med_coclor13">
-            <label for="med_coclor13" style="background-image: url('/Client/img/main-png/색깔/13.PNG'); 
+            <label for="med_coclor13" style="background-image: url('../img/main-png/색깔/13.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label> 
           <input type="radio" id="med_coclor14" name="med_coclor" value="med_coclor14">
-            <label for="med_coclor14" style="background-image: url('/Client/img/main-png/색깔/14.PNG'); 
+            <label for="med_coclor14" style="background-image: url('../img/main-png/색깔/14.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label>
           <input type="radio" id="med_coclor15" name="med_coclor" value="med_coclor15">
-            <label for="med_coclor15" style="background-image: url('/Client/img/main-png/색깔/15.PNG'); 
+            <label for="med_coclor15" style="background-image: url('../img/main-png/색깔/15.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label> 
            <input type="radio" id="med_coclor16" name="med_coclor" value="med_coclor16">
-            <label for="med_coclor16" style="background-image: url('/Client/img/main-png/색깔/16.PNG'); 
+            <label for="med_coclor16" style="background-image: url('../img/main-png/색깔/16.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label> 
            <input type="radio" id="med_coclor17" name="med_coclor" value="med_coclor17">
-            <label for="med_coclor17" style="background-image: url('/Client/img/main-png/색깔/17.png'); 
+            <label for="med_coclor17" style="background-image: url('../img/main-png/색깔/17.png'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">            
             </label> 
           </div>            
@@ -351,42 +351,42 @@
          
         <div class = "select" style="display:flex; overflow:hidden;margin-left:44px; margin-top:20px; width: 710;"> 
           <input type="radio" id="med_texture1" name="med_texture"  value="med_texture1">
-            <label for="med_texture1" style="background-image: url('/Client/img/main-png/재질/1.PNG'); 
+            <label for="med_texture1" style="background-image: url('../img/main-png/재질/1.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
             </label>
           <input type="radio" id="med_texture2" name="med_texture"  value="med_texture2">
-            <label for="med_texture2" style="background-image: url('/Client/img/main-png/재질/2.jpg'); 
+            <label for="med_texture2" style="background-image: url('../img/main-png/재질/2.jpg'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
         </label>
           <input type="radio" id="med_texture3" name="med_texture"  value="med_texture3">
-            <label for="med_texture3" style="background-image: url('/Client/img/main-png/재질/3.jpg'); 
+            <label for="med_texture3" style="background-image: url('../img/main-png/재질/3.jpg'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
            </label>
           <input type="radio" id="med_texture4" name="med_texture"  value="med_texture4">
-            <label for="med_texture4" style="background-image: url('/Client/img/main-png/재질/4.jpg'); 
+            <label for="med_texture4" style="background-image: url('../img/main-png/재질/4.jpg'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
             </label><p>   
         </div>
           
         <div class = "select" style="display:flex; overflow:hidden; margin-left:44px; margin-top:20px; width: 710;">
           <input type="radio" id="med_line1" name="med_line"  value="med_line1">
-            <label for="med_line1" style="background-image: url('/Client/img/main-png/선/1.PNG'); 
+            <label for="med_line1" style="background-image: url('../img/main-png/선/1.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
             </label>
           <input type="radio" id="med_line2" name="med_line"  value="med_line2">
-            <label for="med_line2" style="background-image: url('/Client/img/main-png/선/2.PNG'); 
+            <label for="med_line2" style="background-image: url('../img/main-png/선/2.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
             </label>
           <input type="radio" id="med_line3" name="med_line"  value="med_line3">
-            <label for="med_line3" style="background-image: url('/Client/img/main-png/선/3.PNG'); 
+            <label for="med_line3" style="background-image: url('../img/main-png/선/3.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
             </label> 
           <input type="radio" id="med_line4" name="med_line"  value="med_line4">
-            <label for="med_line4" style="background-image: url('/Client/img/main-png/선/4.PNG'); 
+            <label for="med_line4" style="background-image: url('../img/main-png/선/4.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
            </label>
           <input type="radio" id="med_line5" name="med_line"  value="med_line5">
-            <label for="med_line5" style="background-image: url('/Client/img/main-png/선/5.PNG'); 
+            <label for="med_line5" style="background-image: url('../img/main-png/선/5.PNG'); 
             background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
             </label>  
         </div>   	      
@@ -403,7 +403,7 @@
 	    <div style= " margin-top: 50px; margin-left:20px; margin-right: 20px">
        
        <div style="width: 33%; border: 1px solid black; display: inline-block;"  > 
-       <a href="#" target='_blank'><img src  = "/Client/img/main-png/icon.png" 
+       <a href="#" target='_blank'><img src  = "../img/main-png/icon.png" 
                    style= "border:1px solid black; width:100%; height:150px;">  
        </a>
        <ul style="list-style: none; text-align: left; padding-left: 0; display: inline-block;">
@@ -415,7 +415,7 @@
        </div>
        
        <div style="width: 33%; border: 1px solid black; display: inline-block;"  > 
-       <a href="#" target='_blank'><img src  = "/Client/img/main-png/icon.png" 
+       <a href="#" target='_blank'><img src  = "../img/main-png/icon.png" 
                    style= "border:1px solid black; width:100%; height:150px;">  
        </a>
        <ul style="list-style: none; text-align: left; padding-left: 0;">
@@ -427,7 +427,7 @@
        </div>
        
         <div style="width: 33%; border: 1px solid black; display: inline-block;"  > 
-       <a href="#" target='_blank'><img src  = "/Client/img/main-png/icon.png" 
+       <a href="#" target='_blank'><img src  = "../img/main-png/icon.png" 
                    style= "border:1px solid black; width:100%; height:150px;">  
        </a>
        <ul style="list-style: none; text-align: left; padding-left: 0; display: inline-block;">
@@ -443,7 +443,7 @@
        <div style= " margin-top: 50px; margin-left:20px; margin-right: 20px">
        
        <div style="width: 33%; border: 1px solid black; display: inline-block;"  > 
-       <a href="#" target='_blank'><img src  = "/Client/img/main-png/icon.png" 
+       <a href="#" target='_blank'><img src  = "../img/main-png/icon.png" 
                    style= "border:1px solid black; width:100%; height:150px;">  
        </a>
        <ul style="list-style: none; text-align: left; padding-left: 0; display: inline-block;">
@@ -456,7 +456,7 @@
        
        
        <div style="width: 33%; border: 1px solid black; display: inline-block;"  > 
-       <a href="#" target='_blank'><img src  = "/Client/img/main-png/icon.png" 
+       <a href="#" target='_blank'><img src  = "../img/main-png/icon.png" 
                    style= "border:1px solid black; width:100%; height:150px;">  
        </a>
        <ul style="list-style: none; text-align: left; padding-left: 0;">
@@ -468,7 +468,7 @@
        </div>
        
         <div style="width: 33%; border: 1px solid black; display: inline-block;"  > 
-       <a href="#" target='_blank'><img src  = "/Client/img/main-png/icon.png" 
+       <a href="#" target='_blank'><img src  = "../img/main-png/icon.png" 
                    style= "border:1px solid black; width:100%; height:150px;">  
        </a>
        <ul style="list-style: none; text-align: left; padding-left: 0; display: inline-block;">
