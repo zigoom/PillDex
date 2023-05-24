@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class dbTest {
+public class DbTest {
 	public static void main(String[] args) {
 		// 데이터베이스 연결 정보
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
