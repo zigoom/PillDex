@@ -60,3 +60,41 @@ for (let i = 0; i < selectBoxColor.length; i++) {
     }
   });
 }
+
+let selectBoxFormulation = document.querySelectorAll(
+  ".select-box-formulation img"
+);
+for (let i = 0; i < selectBoxFormulation.length; i++) {
+  selectBoxFormulation[i].addEventListener("click", function () {
+    if (!selectBoxFormulation[i].classList.contains("clickable")) {
+      selectBoxFormulation[i].classList.add("clickable");
+      selectBox[2].classList.add("click-option");
+    } else {
+      selectBoxFormulation[i].classList.remove("clickable");
+      selectBox[2].classList.remove("click-option");
+    }
+    for (let j = 0; j < selectBoxFormulation.length; j++) {
+      if (j !== i) {
+        selectBoxFormulation[j].classList.remove("clickable");
+      }
+    }
+  });
+}
+
+let selectBoxLine = document.querySelectorAll(".select-box-line img");
+for (let i = 0; i < selectBoxLine.length; i++) {
+  selectBoxLine[i].addEventListener("click", function () {
+    if (!selectBoxLine[i].classList.contains("clickable")) {
+      selectBoxLine[i].classList.add("clickable");
+      selectBox[3].classList.add("click-option");
+    } else {
+      selectBoxLine[i].classList.remove("clickable");
+      selectBox[3].classList.remove("click-option");
+    }
+    for (let j = 0; j < selectBoxLine.length; j++) {
+      if (j !== i) {
+        selectBoxLine[j].classList.remove("clickable");
+      }
+    }
+  });
+}
