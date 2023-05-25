@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Parser {
+public class ParserName {
 	public void parseData(String filePath) {
 		BufferedReader br = null;
 		try {
@@ -21,10 +21,29 @@ public class Parser {
 				JSONArray jsonObjectBodyItems = jsonObjectBody.getJSONArray("items");
 				for (int i = 0; i < jsonObjectBodyItems.length(); i++) {
 					JSONObject itemNameObj = jsonObjectBodyItems.getJSONObject(i);
-					String itemName = itemNameObj.getString("itemName");
-					String enptName = itemNameObj.getString("entpName");
+					try {
+						String itemName = itemNameObj.getString("itemName");
+						String enptName = itemNameObj.getString("entpName");
+						String efcyQesitm = itemNameObj.getString("efcyQesitm");
+						String useMethodQesitm = itemNameObj.getString("useMethodQesitm");
+						String atpnQesitm = itemNameObj.getString("atpnQesitm");
+						String depositMethodQesitm = itemNameObj.getString("depositMethodQesitm");
+						String itemImage = itemNameObj.optString("itemImage","이미지가 없습니다");
+						System.out.println(itemName);
+						System.out.println(enptName);
+						System.out.println(efcyQesitm);
+						System.out.println(useMethodQesitm);
+						System.out.println(atpnQesitm);
+						System.out.println(depositMethodQesitm);
+						System.out.println(itemImage);
+						
 
-					System.out.println(itemName);
+						System.out.println("------------------------");
+
+					} catch (JSONException e) {
+						e.printStackTrace();
+					} 
+
 				}
 			}
 		} catch (FileNotFoundException e) {

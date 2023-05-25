@@ -88,7 +88,6 @@ body {
 }
 
 .detail-view-box div {
-  background-color: white;
   margin: 5px;
   width: 33.33%; /* 각 이미지의 가로 크기를 1/3로 설정 */
   display: flex;
@@ -131,8 +130,11 @@ body {
 }
 .card {
   background-color: white;
-  width: 40%;
+  width: 45%;
   border: 1px solid black;
   height: 350px;
   margin: 15px 15px;
+}
+.click-option {
+  background-color: #c4dfdf;
 }

@@ -67,3 +67,6 @@ box2 {
 h3 {
   font-family: "Nanum Pen Script", cursive, "Noto Sans KR", sans-serif;
 }
+.select-box-shape {
+  border: 5px solid black;
+}
