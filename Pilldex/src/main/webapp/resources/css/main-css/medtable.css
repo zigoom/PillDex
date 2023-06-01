@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+  .select {
+    padding: 0px 15px;
+    }
+	.select input[type=radio]{
+	    display: none;
+	 }
+	.select input[type=radio]+label{
+	    cursor: pointer;
+	    height: 70px;
+	    width: 70px;
+	    border: 2px solid #fff;
+	    font-weight:bold;
+	    font-size:13px;
+	    
+	 }
+	.select input[type=radio]+label{
+	    background-color: #fff;
+	    color: #333;
+	 }
+	.select input[type=radio]:checked+label{
+	    background-color: #fff;
+	    color: #008000;
+	    border-color: #008000;
+	 }
