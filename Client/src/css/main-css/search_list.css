@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
 .search_list{
-	width: 30%;
+  width: 310px;
 	height:350px; 
-	border: 1px solid black; 
-	display: inline-block; 
+	border: 1px solid black;  
 	margin-top: 10px;
 	border-radius:10px 10px 10px 10px;
 	font-size: 20px;
@@ -17,4 +16,14 @@
 	height:200px;
   text-align: top;
   border-radius:10px 10px 10px 10px;
-}
+ } 
+  
+.search_list_table{
+	  border-spacing: 10px;
+	  width: 1000px;
+	  margin: auto;
+	  margin-top:30px;
+	  border-spacing: 10px;
+	  text-align: center;
+ } 
+
