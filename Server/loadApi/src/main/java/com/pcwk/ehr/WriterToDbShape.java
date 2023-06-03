@@ -27,7 +27,7 @@ public class WriterToDbShape {
             connection = DriverManager.getConnection(jdbcUrl, username, password);
 
             // SQL 쿼리 작성
-            String sql = "INSERT INTO DATASHAPE (ITEM_NAME, DRUG_SHAPE, COLOR_CLASS, CHART, LINE_FRONT, LINE_BACK) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO DATASHAPE (ITEM_NAME, DRUG_SHAPE, COLOR_CLASS, CHART, LINE_FRONT, LINE_BACK, PRINT_FRONT, PRINT_BACK) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(sql);
 
             // 데이터 가져오기
@@ -55,6 +55,8 @@ public class WriterToDbShape {
                         String drugChart = itemObj.getString("CHART");
                         String lineFront = itemObj.optString("LINE_FRONT", "null");
                         String lineBack = itemObj.optString("LINE_BACK", "null");
+                        String printFront = itemObj.optString("PRINT_FRONT", "null");
+                        String printBack = itemObj.optString("PRINT_BACK", "null");
 
                         // preparedStatement에 값 설정
                         preparedStatement.setString(1, itemName);
@@ -63,6 +65,8 @@ public class WriterToDbShape {
                         preparedStatement.setString(4, drugChart);
                         preparedStatement.setString(5, lineFront);
                         preparedStatement.setString(6, lineBack);
+                        preparedStatement.setString(7, printFront);
+                        preparedStatement.setString(8, printBack);
 
                         // SQL 실행
                         preparedStatement.executeUpdate();
