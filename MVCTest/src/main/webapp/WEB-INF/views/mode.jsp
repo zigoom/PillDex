@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.pcwk.ehr.ParserDataToDb" %>
+
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -23,6 +25,7 @@
       src="https://kit.fontawesome.com/30356e696a.js"
       crossorigin="anonymous"
     ></script>
+    
   </head>
   <body>
     <!--네비게이션 바-->
@@ -35,7 +38,7 @@
               class="nav-link link-dark px-2 active"
               aria-current="page"
             >
-              <img src="../img/Pill_32px.png" alt="Pill" />
+              <img src="${path}/resources/img/Pill_32px.png" alt="Pill" />
               &nbsp;
               <b>PillDex</b>
             </a>
@@ -60,7 +63,11 @@
         </ul>
       </div>
     </nav>
-    <img src="../img/main_img.png" alt="메인이미지" width="100%" />
+    <img
+      src="${path}/resources/img/main_img.png"
+      alt="메인이미지"
+      width="100%"
+    />
     <div id="search_list_box">
       <!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->
       <ul>
@@ -96,182 +103,236 @@
           검색 하기
         </button>
       </div>
+    <form method="GET" id="main-form">
       <div id="shape_search_box">
         <h2>약 모양으로 검색</h2>
-        <img src="../img/med_char.png" />
+        <img src="${path}/resources/img/med_char.png" />
         <div style="display: flex; align-items: end">
           <div id="med_char_input">
-            <div class="select-box">
+            <div class="select-box shape">
               <i class="fa-solid fa-solid fa-shapes fa-2xl"></i>
               <p>모양</p>
             </div>
-            <div class="select-box">
+            <div class="select-box color">
               <i class="fa-solid fa-droplet fa-2xl"></i>
               <p>색상</p>
             </div>
-            <div class="select-box">
+            <div class="select-box chart">
               <i class="fa-solid fa-capsules fa-2xl"></i>
               <p>제형</p>
             </div>
-            <div class="select-box">
+            <div class="select-box line">
               <i class="fa-solid fa-light fa-tablets fa-2xl"></i>
               <p>분할선</p>
             </div>
           </div>
           <div class="detail-view-box hidden">
             <div class="select-box-shape">
-              <img src="../img/circle.png" />
+              <img src="${path}/resources/img/circle.png" data-value="원형" />
               <h3>원형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/eclipse.png" />
+              <img src="${path}/resources/img/eclipse.png"  data-value="타원형"/>
               <h3>타원형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/rectangle.png" />
+              <img src="${path}/resources/img/rectangle.png"  data-value="장방형"/>
               <h3>장방형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/semiCircle.png" />
+              <img src="${path}/resources/img/semiCircle.png"  data-value="반원형"/>
               <h3>반원형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/triangle.png" />
+              <img src="${path}/resources/img/triangle.png"  data-value="삼각형"/>
               <h3>삼각형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/square.png" />
+              <img src="${path}/resources/img/square.png"  data-value="사각형"/>
               <h3>사각형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/rhombus.png" />
+              <img src="${path}/resources/img/rhombus.png"  data-value="마름모"/>
               <h3>마름모</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/pentagon.png" />
+              <img src="${path}/resources/img/pentagon.png"  data-value="오각형"/>
               <h3>오각형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/hexagon.png" />
+              <img src="${path}/resources/img/hexagon.png" data-value="육각형" />
               <h3>육각형</h3>
             </div>
             <div class="select-box-shape">
-              <img src="../img/octagon.png" />
+              <img src="${path}/resources/img/octagon.png"  data-value="팔각형"/>
               <h3>팔각형</h3>
             </div>
           </div>
           <div class="detail-view-box hidden">
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/1.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/1.png" data-value="전체"
+              />
               <h1>전체</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/2.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/2.png " data-value="하양"
+              />
               <h1>하양</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/3.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/3.png " data-value="노랑"
+              />
               <h1>노랑</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/4.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/4.png " data-value="주황"
+              />
               <h1>주황</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/5.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/5.png " data-value="분홍"
+              />
               <h1>분홍</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/6.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/6.png " data-value="빨강"
+              />
               <h1>빨강</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/7.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/7.png " data-value="갈색"
+              />
               <h1>갈색</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/8.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/8.png " data-value="연두"
+              />
               <h1>연두</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/9.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/9.png " data-value="초록"
+              />
               <h1>초록</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/10.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/10.png " data-value="청록"
+              />
               <h1>청록</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/11.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/11.png " data-value="파랑"
+              />
               <h1>파랑</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/12.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/12.png " data-value="남색"
+              />
               <h1>남색</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/13.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/13.png " data-value="자주"
+              />
               <h1>자주</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/14.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/14.png " data-value="보라"
+              />
               <h1>보라</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/15.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/15.png " data-value="회색"
+              />
               <h1>회색</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/16.PNG" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/16.png " data-value="검정"
+              />
               <h1>검정</h1>
             </div>
             <div class="select-box-color">
-              <img src="../img/main-png/색깔/no-background/17.png" />
+              <img
+                src="${path}/resources/img/main-png/색깔/no-background/17.png " data-value="투명"
+              />
               <h1>투명</h1>
             </div>
           </div>
           <div class="detail-view-box hidden">
-            <div class="select-box-formulation">
-              <img src="../img/main-png/재질/no-background/1.png" />
+            <div class="select-box-chart">
+              <img
+                src="${path}/resources/img/main-png/재질/no-background/1.png" data-value="전체"
+              />
               <h3>전체</h3>
             </div>
-            <div class="select-box-formulation">
-              <img src="../img/main-png/재질/no-background/2.png" />
+            <div class="select-box-chart">
+              <img
+                src="${path}/resources/img/main-png/재질/no-background/2.png"  data-value="정제"
+              />
               <h3>정제류</h3>
             </div>
-            <div class="select-box-formulation">
-              <img src="../img/main-png/재질/no-background/3.png" />
+            <div class="select-box-chart">
+              <img
+                src="${path}/resources/img/main-png/재질/no-background/3.png" data-value="경질"
+              />
               <h3>경질캡슐</h3>
             </div>
-            <div class="select-box-formulation">
-              <img src="../img/main-png/재질/no-background/4.png" />
+            <div class="select-box-chart">
+              <img
+                src="${path}/resources/img/main-png/재질/no-background/4.png" data-value="연질"
+              />
               <h3>연질캡슐</h3>
             </div>
           </div>
           <div class="detail-view-box hidden">
             <div class="select-box-line">
-              <img src="../img/main-png/선/no-background/1.png" />
+              <img
+                src="${path}/resources/img/main-png/선/no-background/1.png" data-value="전체"
+              />
               <h3>전체</h3>
             </div>
             <div class="select-box-line">
-              <img src="../img/main-png/선/no-background/2.png" />
+              <img
+                src="${path}/resources/img/main-png/선/no-background/2.png" data-value="없음"
+              />
               <h3>없음</h3>
             </div>
             <div class="select-box-line">
-              <img src="../img/main-png/선/no-background/3.png" />
+              <img
+                src="${path}/resources/img/main-png/선/no-background/3.png" data-value="-"
+              />
               <h3>-형</h3>
             </div>
             <div class="select-box-line">
-              <img src="../img/main-png/선/no-background/4.png" />
+              <img
+                src="${path}/resources/img/main-png/선/no-background/4.png" data-value="+"
+              />
               <h3>+형</h3>
             </div>
             <div class="select-box-line">
-              <img src="../img/main-png/선/no-background/5.PNG" />
+              <img
+                src="${path}/resources/img/main-png/선/no-background/5.png" data-value="기타"
+              />
               <h3>기타</h3>
             </div>
           </div>
         </div>
       </div>
+      <input type="submit" id="submit-button">
     </form>
     <form method="get" action="detailpage.html">
       <div id="result_box">
@@ -338,6 +399,7 @@
         </span>
       </div>
     </footer>
+    
   </body>
   <script src="${path}/resources/js/mode-page.js"></script>
 </html>
