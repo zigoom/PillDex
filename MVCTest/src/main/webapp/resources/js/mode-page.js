@@ -90,12 +90,13 @@ for (let i = 0; i < selectBoxLine.length; i++) {
 
 let submitButton = document.querySelector("#submit-button");
 
-submitButton.addEventListener("click", function() {
+submitButton.addEventListener("click", function(e) {
+	e.preventDefault();
+	
 	console.log("Shape:", selectedShape);
 	console.log("Color:", selectedColor);
 	console.log("Chart:", selectedChart);
 	console.log("Line:", selectedLine);
-
 });
 
 function resetClickable(elements, selectedIndex) {

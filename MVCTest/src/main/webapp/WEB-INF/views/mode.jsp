@@ -103,6 +103,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           검색 하기
         </button>
       </div>
+      </form>
     <form method="GET" id="main-form">
       <div id="shape_search_box">
         <h2>약 모양으로 검색</h2>
