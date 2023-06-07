@@ -20,8 +20,24 @@
 		<ojdbc8.version>18.3.0.0</ojdbc8.version> <!-- ojdbc8의 버전 정보를 정의함. -->
 		<commons-dbcp.version>1.4</commons-dbcp.version> 
         <junit.version>4.13.1</junit.version> <!-- junit의 버전 정보를 정의함. -->
+                
+        <org.mybatis-version>3.5.11</org.mybatis-version>  <!-- mybatis 사용 --> 
+        <mybatis-spring-version>2.0.6</mybatis-spring-version>
 	</properties>
-	<dependencies>
+	<dependencies>	   
+        <!-- mybatis-spring -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring-version}</version>
+        </dependency>        
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${org.mybatis-version}</version>
+        </dependency>
+	
 		<!-- ojdbc8 -->
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
