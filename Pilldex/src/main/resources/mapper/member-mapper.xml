@@ -8,6 +8,7 @@
             resultType="com.fiveguys.pilldex.domain.UserVO" >
         SELECT *
         FROM member
-        WHERE id= #{id} AND pw= #{pw}
+        WHERE id = #{id} 
+        AND pw = #{pw}
     </select>
 </mapper>

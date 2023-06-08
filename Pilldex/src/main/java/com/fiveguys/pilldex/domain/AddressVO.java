@@ -2,24 +2,24 @@ package com.fiveguys.pilldex.domain;
 
 //VO(Value Object)
 public class AddressVO {
-	private int addressNo;		// 약 즐겨찾기 번호
-	private int userNo;			// 회원번호
+	private int no;				// 약 즐겨찾기 번호(addressNo)
+	private int mNo;			// 회원번호(userNo)
 	private int postNum;		// 우편번호
 	private String nAddr;		// 신주소
 	private String oAddr;		// 구주소
-	private String restAddr;	// 상세주소
+	private String restAddr;	// 상세주소(restAddr)
 	private char del;			// 주소삭제여부
-	public int getAddressNo() {
-		return addressNo;
+	public int getNo() {
+		return no;
 	}
-	public void setAddressNo(int addressNo) {
-		this.addressNo = addressNo;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public int getUserNo() {
-		return userNo;
+	public int getmNo() {
+		return mNo;
 	}
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 	public int getPostNum() {
 		return postNum;
@@ -53,7 +53,7 @@ public class AddressVO {
 	}
 	@Override
 	public String toString() {
-		return "AddressVO [addressNo=" + addressNo + ", userNo=" + userNo + ", postNum=" + postNum + ", nAddr=" + nAddr
-				+ ", oAddr=" + oAddr + ", restAddr=" + restAddr + ", del=" + del + "]";
+		return "AddressVO [no=" + no + ", mNo=" + mNo + ", postNum=" + postNum + ", nAddr=" + nAddr + ", oAddr=" + oAddr
+				+ ", restAddr=" + restAddr + ", del=" + del + "]";
 	}	
 }

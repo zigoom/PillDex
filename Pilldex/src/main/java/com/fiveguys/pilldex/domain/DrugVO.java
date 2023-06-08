@@ -2,35 +2,34 @@ package com.fiveguys.pilldex.domain;
 
 //VO(Value Object)
 public class DrugVO {
-	private int drugNo;		// 약 즐겨찾기 번호
-	private int userNo;		// 회원번호
-	private int medNum;		// 약품 번호
-	private String name;	// 약품 이름
-	private char del;		// 약품삭제여부 
-	
-	public int getDrugNo() {
-		return drugNo;
+	private int no;		// 약 즐겨찾기 번호(drugNo)
+	private int mNo;	// 회원번호(userNo)
+	private int medNo;	// 약품 번호
+	private String nm;	// 약품 이름(medName)
+	private char del;	// 약품삭제여부 
+	public int getNo() {
+		return no;
 	}
-	public void setDrugNo(int drugNo) {
-		this.drugNo = drugNo;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public int getUserNo() {
-		return userNo;
+	public int getmNo() {
+		return mNo;
 	}
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
-	public int getMedNum() {
-		return medNum;
+	public int getMedNo() {
+		return medNo;
 	}
-	public void setMedNum(int medNum) {
-		this.medNum = medNum;
+	public void setMedNo(int medNo) {
+		this.medNo = medNo;
 	}
-	public String getName() {
-		return name;
+	public String getNm() {
+		return nm;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNm(String nm) {
+		this.nm = nm;
 	}
 	public char getDel() {
 		return del;
@@ -40,7 +39,6 @@ public class DrugVO {
 	}
 	@Override
 	public String toString() {
-		return "DrugVO [drugNo=" + drugNo + ", userNo=" + userNo + ", medNum=" + medNum + ", name=" + name + ", del="
-				+ del + "]";
+		return "DrugVO [no=" + no + ", mNo=" + mNo + ", medNo=" + medNo + ", nm=" + nm + ", del=" + del + "]";
 	}	
 }

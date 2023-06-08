@@ -32,7 +32,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login(@ModelAttribute("user") UserVO vo) {
+	public String loginPageStart(@ModelAttribute("user") UserVO vo) {
 		System.out.println("로그인 화면으로 이동...");
 		return "login";
 	}
