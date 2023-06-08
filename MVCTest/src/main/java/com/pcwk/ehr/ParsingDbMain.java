@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ParsingDbMain {
     public static void main(String[] args) throws SQLException {
-        String shape = "";
-        String color = "자주";
+        String shape = "원형";
+        String color = "노랑";
         String chart = "";
         String front = "";
         String back = "";

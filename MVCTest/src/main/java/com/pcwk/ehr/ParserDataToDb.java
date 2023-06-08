@@ -12,7 +12,6 @@ public class ParserDataToDb {
 	public List<String> parseDataFromDb(String shape, String color, String chart, String frontLine, String backLine,
 			String printFB) throws SQLException {
 		List<String> matchDataList = new ArrayList<>();
-
 		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 		String username = "scott";
 		String password = "pcwk";
