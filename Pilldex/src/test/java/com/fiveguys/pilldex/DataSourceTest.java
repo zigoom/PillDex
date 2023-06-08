@@ -13,8 +13,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fiveguys.pilldex.user.UserService;
-import com.fiveguys.pilldex.user.UserVO;
+import com.fiveguys.pilldex.domain.UserVO;
+import com.fiveguys.pilldex.service.UserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // 스프링 테스트 컨텍스 프레임워크의 JUnit 확장 기능
@@ -36,8 +36,8 @@ public class DataSourceTest {
 
 		// 3. 로그인 기능 테스트
 		UserVO vo = new UserVO();
-		vo.setUserId("test");
-		vo.setPasswd("test123");
+		vo.setId("test");
+		vo.setPw("test123");
 
 		UserVO user = userService.getUser(vo);
 		if (user != null) {
