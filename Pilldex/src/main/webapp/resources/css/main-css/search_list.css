@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.search_list{
+	width:30%; 
+	height:350px; 
+	border: 1px solid black;  
+	margin-top: 10px;
+	margin-right:10px;
+	border-radius:10px 10px 10px 10px;
+	font-size: 20px;
+}
+
+
+.search_list_img{
+	border:1px solid black; 
+	width:280px; 
+	height:200px;
+  text-align: top;
+  border-radius:10px 10px 10px 10px;
+ } 
+  
+.search_list_table{
+	  border-spacing: 10px;
+	  width: 1000px;
+	  text-align:center;
+	  margin : auto;
+	  margin-top:30px;
+	  border-spacing: 10px;
+	  text-align: center;
+	  
+ } 
+

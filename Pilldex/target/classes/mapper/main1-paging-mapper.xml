@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.main1-paging-mapper">
+    <select id="list"
+        resultType="com.fiveguys.pilldex.domain.PillVO">
+        SELECT item_name,drug_shape,color_class1,chart
+        FROM PILL_TABLE
+    </select>
+	<select id="pilldoSelectOne"
+        resultType="com.fiveguys.pilldex.domain.PillVO">
+        SELECT item_name,drug_shape,color_class1,chart
+        FROM PILL_TABLE
+        WHERE item_name = #{item_name}
+	</select>
+
+
+</mapper>
