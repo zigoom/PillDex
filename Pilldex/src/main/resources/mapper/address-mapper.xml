@@ -3,9 +3,20 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fiveguys.pilldex.address">
-    <select id="selectAddressList"  parameterType="String"  resultType="AddressVO" >
+    
+    <resultMap id="AddressMap" type="AddressVO">
+        <result column="no"   property="no"       />
+        <result column="m_No"      property="mNo"         />
+        <result column="post_Num"    property="postNum"       />
+        <result column="n_Addr"  property="nAddr"     />
+        <result column="o_Addr"     property="oAddr"        />
+        <result column="rest_Addr" property="restAddr"    />
+        <result column="del"     property="del"        />
+    </resultMap>
+    
+    <select id="selectAddressList"  parameterType="String"  resultMap="AddressMap" >
         SELECT *
         FROM book_addr
-        WHERE m_no = #{id} 
+        WHERE m_no = #{userNo} 
     </select>
 </mapper>

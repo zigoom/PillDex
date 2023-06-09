@@ -3,9 +3,26 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fiveguys.pilldex.user">
-    <select id="doSelectOne"
-            parameterType="UserVO" 
-            resultType="UserVO" >
+
+    <resultMap id="UserMap" type="UserVO">
+        <result column="no"         property="no"       />
+        <result column="grade"      property="grade"    />
+        <result column="name"       property="name"     />
+        <result column="id"         property="id"       />
+        <result column="pw"         property="pw"       />
+        <result column="tel"        property="tel"      />
+        <result column="birth"      property="birth"    />
+        <result column="sex"        property="sex"      />
+        <result column="post_num"   property="postNum"  />
+        <result column="n_addr"     property="nAddr"    />
+        <result column="o_addr"     property="oAddr"    />
+        <result column="rest_addr"  property="restAddr" />
+        <result column="email"      property="email"    /> 
+        <result column="reg_dt"     property="regDt"    />
+        <result column="del"        property="del"      />
+    </resultMap>
+    
+    <select id="doSelectOne" parameterType="UserVO"  resultMap="UserMap" >
         SELECT *
         FROM member
         WHERE id = #{id} 

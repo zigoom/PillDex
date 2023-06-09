@@ -27,6 +27,13 @@ public class AddressDaoImpl implements AddressDao {
 		System.out.println("---------------------");
 		outList = this.sqlSessionTemplate.selectList(statement,userNo);
 				
+
+		System.out.println("!!!!!!!");
+		for(AddressVO vo : outList) {
+			System.out.println(vo.toString());
+		}
+		System.out.println("!!!!!!!");
+		
 		return outList;
 	}
 }

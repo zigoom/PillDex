@@ -14,12 +14,9 @@ import com.fiveguys.pilldex.user.dao.UserDaoImpl;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDAO;
-
-	public void setUserDAO(UserDaoImpl userDAO) {
-		this.userDAO = userDAO;
-	}
-
-	public UserVO getUser(UserVO vo) throws SQLException {
+	
+	@Override
+	public UserVO selectUser(UserVO vo) throws SQLException {
 		return userDAO.doSelectOne(vo);
 	}
 }

@@ -33,7 +33,7 @@ public class MapController {
 	@Autowired
 	AddressService addressService;
 	
-	@RequestMapping(value = "/Map.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/map.do", method = RequestMethod.GET)
 	public String map(HttpSession session, Model model) {
 	    String name = (String) session.getAttribute("UserNo");
 	    
@@ -43,12 +43,12 @@ public class MapController {
 	    	System.out.println("!!!!!!!!!! - "+name);
 	    }
 	    
-		return "map_page";
+		return "map";
 	}
 	/**
 	 * 즐겨찾기 누를때 버튼 이벤트
 	 */
-	@RequestMapping(value = "/Map.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/map.do", method = RequestMethod.POST)
 	public String addBookmarkButtonEvent(String userNo,Model model, HttpSession session) throws SQLException {
 		List<AddressVO> outVO = addressService.getAddressList(userNo);
 		//Integer flag, 
@@ -61,6 +61,6 @@ public class MapController {
 //			
 //		}		
 		
-		return "map_page";
+		return "map";
 	}
 }

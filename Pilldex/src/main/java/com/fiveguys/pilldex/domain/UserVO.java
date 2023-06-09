@@ -11,14 +11,23 @@ public class UserVO {
 	private String birth;	// 생년월일
 	private char sex;		// 성별
 	
-	private int post_num; 	// 우편번호
-	private String n_addr;	// 신주소 
-	private String o_addr;	// 구주소
-	private String rest_addr;// 상세 주소
+	private int postNum; 	// 우편번호
+	private String nAddr;	// 신주소 
+	private String oAddr;	// 구주소
+	private String restAddr;// 상세 주소
 	
 	private String email;	// 이메일 
-	private String reg_dt;	// 가입일 
+	private String regDt;	// 가입일 
 	private char del;		// 회원탈퇴 여부 
+	
+	public UserVO() {	}
+	
+	public UserVO(String id, String pw) {
+		super();
+		this.id = id;
+		this.pw = pw;
+	}
+	
 	public int getNo() {
 		return no;
 	}
@@ -67,29 +76,29 @@ public class UserVO {
 	public void setSex(char sex) {
 		this.sex = sex;
 	}
-	public int getPost_num() {
-		return post_num;
+	public int getPostNum() {
+		return postNum;
 	}
-	public void setPost_num(int post_num) {
-		this.post_num = post_num;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
-	public String getN_addr() {
-		return n_addr;
+	public String getnAddr() {
+		return nAddr;
 	}
-	public void setN_addr(String n_addr) {
-		this.n_addr = n_addr;
+	public void setnAddr(String nAddr) {
+		this.nAddr = nAddr;
 	}
-	public String getO_addr() {
-		return o_addr;
+	public String getoAddr() {
+		return oAddr;
 	}
-	public void setO_addr(String o_addr) {
-		this.o_addr = o_addr;
+	public void setoAddr(String oAddr) {
+		this.oAddr = oAddr;
 	}
-	public String getRest_addr() {
-		return rest_addr;
+	public String getRestAddr() {
+		return restAddr;
 	}
-	public void setRest_addr(String rest_addr) {
-		this.rest_addr = rest_addr;
+	public void setRestAddr(String restAddr) {
+		this.restAddr = restAddr;
 	}
 	public String getEmail() {
 		return email;
@@ -97,11 +106,11 @@ public class UserVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getReg_dt() {
-		return reg_dt;
+	public String getRegDt() {
+		return regDt;
 	}
-	public void setReg_dt(String reg_dt) {
-		this.reg_dt = reg_dt;
+	public void setRegDt(String regDt) {
+		this.regDt = regDt;
 	}
 	public char getDel() {
 		return del;
@@ -112,8 +121,7 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [no=" + no + ", grade=" + grade + ", name=" + name + ", id=" + id + ", pw=" + pw + ", tel=" + tel
-				+ ", birth=" + birth + ", sex=" + sex + ", post_num=" + post_num + ", n_addr=" + n_addr + ", o_addr="
-				+ o_addr + ", rest_addr=" + rest_addr + ", email=" + email + ", reg_dt=" + reg_dt + ", del=" + del
-				+ "]";
-	}
+				+ ", birth=" + birth + ", sex=" + sex + ", post_num=" + postNum + ", nAddr=" + nAddr + ", oAddr="
+				+ oAddr + ", restAddr=" + restAddr + ", email=" + email + ", regDt=" + regDt + ", del=" + del + "]";
+	}	
 }

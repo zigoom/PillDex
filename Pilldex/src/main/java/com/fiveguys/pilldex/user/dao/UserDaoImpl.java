@@ -30,6 +30,8 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("---------------------");
 		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,inVO);		
 				
+		System.out.println(outVO.toString());
+		
 		return outVO;
 	}
 

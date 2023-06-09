@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -140,8 +139,10 @@
 			</div>
 			<!---------- 버튼 영역  ---------->
 			<div class="row m-1">
-				<!-- 마진을 3을 준다. -->
-				<button name="category" id="HP8" class="btn btn-primary col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4 m-2" type="button">주소 즐겨찾기</button>
+                <c:set var="userNo" value="${UserNo}"/>
+                <c:if test="${userNo ne null }"> <!-- 유저 정보가 없을경우 즐겨찾기 버튼이 없다. --> 
+				    <button name="category" id="HP8" class="btn btn-primary col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4 m-2" type="button">주소 즐겨찾기</button>
+                </c:if>				
 				<div class="col" style="text-align: left; margin-left: 10px;">
 					<div class="form-check form-check-inline" style="padding-top: 15px;">
 						<input onchange="onClick_Radio(this)" data-order="2" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="HP8">
@@ -165,10 +166,6 @@
 				<tbody id="table_body"> </tbody>
 			</table> <!-- 주소목록 영역 종료 -->			
 			<div id="pagination"></div>
-			
-			<form action="send2" method="POST" style="display: none">
-                <input name="변수명" value = "값">
-            </form>
 		</div> <!---------- container 영역 종료 ---------->		
 	</main>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

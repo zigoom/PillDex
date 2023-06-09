@@ -23,8 +23,16 @@
                 
         <org.mybatis-version>3.5.11</org.mybatis-version>  <!-- mybatis 사용 --> 
         <mybatis-spring-version>2.0.6</mybatis-spring-version>
+        <log4jdbc-version>1.16</log4jdbc-version>
 	</properties>
-	<dependencies>	   
+	
+	<dependencies>	 
+        <!-- SQL 로그출력 -->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+        <version>${log4jdbc-version}</version>
+        </dependency>
         <!-- mybatis-spring -->
         <dependency>
             <groupId>org.mybatis</groupId>

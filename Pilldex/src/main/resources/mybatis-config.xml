@@ -2,7 +2,10 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
-  <configuration>    
+  <configuration>     
+    <settings>
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
     <typeAliases>
         <typeAlias type="com.fiveguys.pilldex.domain.UserVO" alias="UserVO"/>
         <typeAlias type="com.fiveguys.pilldex.domain.DrugVO" alias="DrugVO"/>

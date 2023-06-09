@@ -50,14 +50,14 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String loginButtonEvent(UserVO vo, UserDaoImpl dao, Model model, HttpSession session ) throws SQLException {
-		UserVO outVO = userService.getUser(vo);
+		UserVO outVO = userService.selectUser(vo);
 				
 		if (outVO != null) {
 			//session.setAttribute("userNo", outVO.getNo());
 			System.out.println("회원정보 : "+outVO.toString());
-			session.setAttribute("UserNo", outVO.getNo());
+			session.setAttribute("UserNo", String.valueOf(outVO.getNo()));
 			model.addAttribute("userVO", outVO);
-			return "redirect:/Map.do";
+			return "redirect:/map.do";
 //			return "map_page";
 		} else {
 			System.out.println("회원 정보가 없습니다.");
@@ -66,6 +66,13 @@ public class LoginController {
 			model.addAttribute("userVO", outVO);
 			return "login";
 		}		
+	}
+	
+	/* 로그아웃시에 셰션 제거 호출  */
+	@RequestMapping(value = "/loginOut.do", method = RequestMethod.POST)
+	public String loginOutButtonEvent(HttpSession session) {
+		session.invalidate();
+		return "login";	
 	}
 	
 }
