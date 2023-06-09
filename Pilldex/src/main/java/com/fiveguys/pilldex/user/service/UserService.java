@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.service;
+package com.fiveguys.pilldex.user.service;
 
 import java.sql.SQLException;
 

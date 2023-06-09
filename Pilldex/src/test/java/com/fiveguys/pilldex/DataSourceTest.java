@@ -14,7 +14,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fiveguys.pilldex.domain.UserVO;
-import com.fiveguys.pilldex.service.UserService;
+import com.fiveguys.pilldex.user.service.UserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // 스프링 테스트 컨텍스 프레임워크의 JUnit 확장 기능

@@ -165,6 +165,10 @@
 				<tbody id="table_body"> </tbody>
 			</table> <!-- 주소목록 영역 종료 -->			
 			<div id="pagination"></div>
+			
+			<form action="send2" method="POST" style="display: none">
+                <input name="변수명" value = "값">
+            </form>
 		</div> <!---------- container 영역 종료 ---------->		
 	</main>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

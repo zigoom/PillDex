@@ -1,9 +1,11 @@
-package com.fiveguys.pilldex.controller;
+package com.fiveguys.pilldex.user.controller;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.fiveguys.pilldex.dao.UserDaoImpl;
 import com.fiveguys.pilldex.domain.UserVO;
-import com.fiveguys.pilldex.service.UserService;
+import com.fiveguys.pilldex.user.dao.UserDaoImpl;
+import com.fiveguys.pilldex.user.service.UserService;
 
 
 /**
@@ -47,14 +49,16 @@ public class LoginController {
 	 * @throws SQLException
 	 */
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String login2(UserVO vo, UserDaoImpl dao, Model model, SessionStatus session ) throws SQLException {
+	public String loginButtonEvent(UserVO vo, UserDaoImpl dao, Model model, HttpSession session ) throws SQLException {
 		UserVO outVO = userService.getUser(vo);
 				
 		if (outVO != null) {
 			//session.setAttribute("userNo", outVO.getNo());
 			System.out.println("회원정보 : "+outVO.toString());
+			session.setAttribute("UserNo", outVO.getNo());
 			model.addAttribute("userVO", outVO);
-			return "map_page";
+			return "redirect:/Map.do";
+//			return "map_page";
 		} else {
 			System.out.println("회원 정보가 없습니다.");
 			outVO = new UserVO();
