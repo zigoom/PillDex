@@ -39,6 +39,5 @@ public class UserTest {
 		UserVO inVO = new UserVO("Master","1234");
 		UserVO outVO = userService.selectUser(inVO);
 		
-		System.out.println(outVO.toString());
 	}
 }
