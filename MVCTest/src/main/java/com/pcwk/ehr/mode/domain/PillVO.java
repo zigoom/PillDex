@@ -1,50 +1,46 @@
 package com.pcwk.ehr.mode.domain;
 
 public class PillVO {
-	private String shape = "";
-    private String color = "";
-    private String chart = "";
-    private String line = "";
-    private String printFB = "";
-	private String itemName                ;
-	private String entpName                ;
-	private String efcyQesitm              ;
-	private String useMethodQesitm         ;
-	private String atpnQesitm              ;
-	private String depositMethodQesitm     ;
-	private String itemImage               ;
-	private String drugShape               ;
-	private String colorClass			   ;
-	public String getShape() {
-		return shape;
+	private String itemName;
+	private String entpName;
+	private String efcyQesitm;
+	private String useMethodQesitm;
+	private String atpnQesitm;
+	private String depositMethodQesitm;
+	private String itemImage;
+	private String drugShape;
+	private String colorClass;
+	private String lineFront;
+	private String lineBack;
+	private String printFront;
+	private String printBack;
+	private String chart;
+	public PillVO() {
+		super();
+		this.chart = chart;
+		this.itemName = itemName;
+		this.entpName = entpName;
+		this.efcyQesitm = efcyQesitm;
+		this.useMethodQesitm = useMethodQesitm;
+		this.atpnQesitm = atpnQesitm;
+		this.depositMethodQesitm = depositMethodQesitm;
+		this.itemImage = itemImage;
+		this.drugShape = drugShape;
+		this.colorClass = colorClass;
+		this.lineFront = lineFront;
+		this.lineBack = lineBack;
+		this.printFront = printFront;
+		this.printBack = printBack;
 	}
-	public void setShape(String shape) {
-		this.shape = shape;
-	}
-	public String getColor() {
-		return color;
-	}
-	public void setColor(String color) {
-		this.color = color;
-	}
+	
 	public String getChart() {
 		return chart;
 	}
+
 	public void setChart(String chart) {
 		this.chart = chart;
 	}
-	public String getLine() {
-		return line;
-	}
-	public void setLine(String line) {
-		this.line = line;
-	}
-	public String getPrintFB() {
-		return printFB;
-	}
-	public void setPrintFB(String printFB) {
-		this.printFB = printFB;
-	}
+
 	public String getItemName() {
 		return itemName;
 	}
@@ -99,19 +95,41 @@ public class PillVO {
 	public void setColorClass(String colorClass) {
 		this.colorClass = colorClass;
 	}
-	@Override
-	public String toString() {
-		return "PillVO [shape=" + shape + ", color=" + color + ", chart=" + chart + ", line=" + line + ", printFB="
-				+ printFB + ", itemName=" + itemName + ", entpName=" + entpName + ", efcyQesitm=" + efcyQesitm
-				+ ", useMethodQesitm=" + useMethodQesitm + ", atpnQesitm=" + atpnQesitm + ", depositMethodQesitm="
-				+ depositMethodQesitm + ", itemImage=" + itemImage + ", drugShape=" + drugShape + ", colorClass="
-				+ colorClass + "]";
+	public String getLineFront() {
+		return lineFront;
+	}
+	public void setLineFront(String lineFront) {
+		this.lineFront = lineFront;
+	}
+	public String getLineBack() {
+		return lineBack;
+	}
+	public void setLineBack(String lineBack) {
+		this.lineBack = lineBack;
+	}
+	public String getPrintFront() {
+		return printFront;
+	}
+	public void setPrintFront(String printFront) {
+		this.printFront = printFront;
+	}
+	public String getPrintBack() {
+		return printBack;
+	}
+	public void setPrintBack(String printBack) {
+		this.printBack = printBack;
 	}
 
+	@Override
+	public String toString() {
+		return "PillVO [itemName=" + itemName + ", entpName=" + entpName + ", efcyQesitm=" + efcyQesitm
+				+ ", useMethodQesitm=" + useMethodQesitm + ", atpnQesitm=" + atpnQesitm + ", depositMethodQesitm="
+				+ depositMethodQesitm + ", itemImage=" + itemImage + ", drugShape=" + drugShape + ", colorClass="
+				+ colorClass + ", lineFront=" + lineFront + ", lineBack=" + lineBack + ", printFront=" + printFront
+				+ ", printBack=" + printBack + ", chart=" + chart + "]";
+	}
 	
+
 	
-	
-	
-	
-	
+
 }

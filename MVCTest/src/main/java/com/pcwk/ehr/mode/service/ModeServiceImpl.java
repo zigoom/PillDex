@@ -11,39 +11,14 @@ import java.util.List;
 
 @Service
 public class ModeServiceImpl implements ModeService {
+	@Autowired
+	private ModeDao modeDao;
 
-    private final ModeDao modeDao;
 
-    @Autowired
-    public ModeServiceImpl(ModeDao modeDao) {
-        this.modeDao = modeDao;
-    }
+	@Override
+	public List<PillVO> parseDataFromDb(PillVO vo) throws SQLException {
+		
+		return modeDao.parseDataFromDb(vo);
+	}
 
-    @Override
-    public List<PillVO> getDataFromDb(String shape, String color, String chart, String line, String printFB) throws SQLException {
-        PillVO pillVO = new PillVO();
-        pillVO.setShape(shape);
-        pillVO.setColor(color);
-        pillVO.setChart(chart);
-        pillVO.setLine(line);
-        pillVO.setPrintFB(printFB);
-
-        if (pillVO.getShape() == null || pillVO.getShape().isEmpty() || pillVO.getShape().equals("전체")) {
-            pillVO.setShape("");
-        }
-        if (pillVO.getColor() == null || pillVO.getColor().isEmpty() || pillVO.getColor().equals("전체")) {
-            pillVO.setColor("");
-        }
-        if (pillVO.getChart() == null || pillVO.getChart().isEmpty() || pillVO.getChart().equals("전체")) {
-            pillVO.setChart("");
-        }
-        if (pillVO.getLine() == null || pillVO.getLine().isEmpty() || pillVO.getLine().equals("전체")) {
-            pillVO.setLine("");
-        }
-        if (pillVO.getPrintFB() == null || pillVO.getPrintFB().isEmpty() || pillVO.getPrintFB().equals("전체")) {
-            pillVO.setPrintFB("");
-        }
-
-        return modeDao.parseDataFromDb(pillVO);
-    }
 }

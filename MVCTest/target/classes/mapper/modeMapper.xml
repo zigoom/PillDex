@@ -2,35 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pcwk.ehr.mode.dao.ModeMapper">
-	<select id="searchPills" resultType="com.pcwk.ehr.mode.domain.PillVO">
-    SELECT *
-    FROM DATANAME
-    WHERE item_name IN (
-        SELECT item_name
-        FROM datashape
-        WHERE 
-        <if test="shape != null and shape != ''">
-            drug_shape = #{shape}
-        </if>
-        <if test="color != null and color != ''">
-            <if test="shape != null and shape != ''">AND </if>
-            color_class = #{color}
-        </if>
-        <if test="chart != null and chart != ''">
-            <if test="shape != null and shape != '' or color != null and color != ''">AND </if>
-            chart LIKE '%' || #{chart} || '%'
-        </if>
-        <if test="line != null and line != ''">
-            <if test="shape != null and shape != '' or color != null and color != '' or chart != null and chart != ''">AND </if>
-            (front_line = #{line} OR back_line = #{line})
-        </if>
-    )
-</select>
-
-
-
-
+<mapper namespace="com.pcwk.ehr.mode">
 	<resultMap type="PillVO" id="PillMap">
 		<result column="item_name" property="itemName" />
 		<result column="entp_name" property="entpName" />
@@ -42,6 +14,30 @@
 		<result column="item_image" property="itemImage" />
 		<result column="drug_shape" property="drugShape" />
 		<result column="color_class" property="colorClass" />
-		<result column="chart" property="chart" />
+		<result column="line_front" property="lineFront" />
+		<result column="line_back" property="lineBack" />
+		<result column="print_front" property="printFront" />
+		<result column="print_back" property="printBack" />
 	</resultMap>
+
+	<select id="searchPills"
+		resultType="com.pcwk.ehr.mode.domain.PillVO">
+		SELECT *
+		FROM DATANAME
+		WHERE item_name IN (
+		SELECT item_name
+		FROM DATASHAPE
+		WHERE drug_shape = #{drugShape}
+		AND
+		color_class = #{colorClass}
+		AND
+		chart LIKE '%' ||  #{chart} || '%'
+		AND
+		(line_front = #{lineFront} OR line_back = #{lineBack})
+		AND
+		(print_front LIKE '%' ||  #{printFront} || '%'' OR print_back LIKE '%' ||  #{printBack} || '%' )
+		);
+	</select>
+
+
 </mapper>

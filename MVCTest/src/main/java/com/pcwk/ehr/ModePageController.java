@@ -10,35 +10,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import java.sql.SQLException;
 import java.util.List;
 
 @Controller
 public class ModePageController {
 
-    private final ModeService modeService;
+	@Autowired
+	ModeService modeService;
 
-    @Autowired
-    public ModePageController(ModeService modeService) {
-        this.modeService = modeService;
-    }
+	@Autowired
+	public ModePageController(ModeService modeService) {
+		this.modeService = modeService;
+	}
 
-    @RequestMapping(value = "/mode.do", method = RequestMethod.GET)
-    public String modePage(Model model) {
-        return "mode";
-    }
+	@RequestMapping(value = "/mode.do", method = RequestMethod.GET)
+	public String modePage(Model model) {
+		return "mode";
+	}
 
-    @RequestMapping(value = "/apiload.do", method = RequestMethod.POST)
-    public String apiLoad(Model model, @RequestParam("shape") String shape,
-                          @RequestParam("color") String color, @RequestParam("chart") String chart,
-                          @RequestParam("line") String line, @RequestParam("printFB") String printFB) throws SQLException {
-        
-        List<PillVO> searchData = modeService.getDataFromDb(shape, color, chart, line, printFB);
+	@RequestMapping(value = "/apiload.do", method = RequestMethod.GET)
+	public String apiLoadGet(Model model) {
+		return "mode";
+	}
 
-        model.addAttribute("searchData", searchData);
-        return "mode";
-    }
-
-
+	@RequestMapping(value = "/apiload.do", method = RequestMethod.POST)
+	public String apiLoad(PillVO vo, Model model) throws SQLException {
+		
+		List<PillVO> outVO = modeService.parseDataFromDb(vo);
+		model.addAttribute("modeVO",outVO);
+		
+		
+		return "mode";
+	}
 
 }
