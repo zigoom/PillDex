@@ -27,12 +27,14 @@ public class AddressDaoImpl implements AddressDao {
 		System.out.println("---------------------");
 		outList = this.sqlSessionTemplate.selectList(statement,userNo);
 				
-
-		System.out.println("!!!!!!!");
-		for(AddressVO vo : outList) {
-			System.out.println(vo.toString());
+		if(outList!=null) {
+			for(AddressVO vo : outList) {
+				System.out.println(vo.toString());
+			}
+		}else {
+			System.out.println("쿼리 결과가 없습니다.");
 		}
-		System.out.println("!!!!!!!");
+		
 		
 		return outList;
 	}

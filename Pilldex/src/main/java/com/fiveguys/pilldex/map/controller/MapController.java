@@ -37,11 +37,11 @@ public class MapController {
 	public String map(HttpSession session, Model model) {
 	    String name = (String) session.getAttribute("UserNo");
 	    
-	    if(""==name || null==name) {
-	    	System.out.println("!!!!!!!!!! - 비어있음");
-	    }else {
-	    	System.out.println("!!!!!!!!!! - "+name);
-	    }
+//	    if(""==name || null==name) {
+//	    	System.out.println("!!!!!!!!!! - 비어있음");
+//	    }else {
+//	    	System.out.println("!!!!!!!!!! - "+name);
+//	    }
 	    
 		return "map";
 	}

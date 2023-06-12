@@ -29,9 +29,12 @@ public class UserDaoImpl implements UserDao {
 		System.out.println("- statement "+ statement);
 		System.out.println("---------------------");
 		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,inVO);		
-				
-		System.out.println(outVO.toString());
 		
+		if(outVO!=null) {			
+			System.out.println(outVO.toString());
+		}else {
+			System.out.println("쿼리 결과가 없습니다.");
+		}
 		return outVO;
 	}
 
