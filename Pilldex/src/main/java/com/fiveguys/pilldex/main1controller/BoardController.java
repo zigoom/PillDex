@@ -13,7 +13,7 @@ import com.fiveguys.pilldex.domain.PillVO;
 import com.fiveguys.pilldex.main1.service.Main1BoardService;
 
 @Controller
-@RequestMapping("/board/*") 
+@RequestMapping("/main1board/")
 public class BoardController  {
 	
 	@Inject

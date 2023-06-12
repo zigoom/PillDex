@@ -13,7 +13,7 @@ import com.fiveguys.pilldex.domain.PillVO;
 public class MainBoardDaoImpl implements Main1BoardDao {
 	@Inject
 	private SqlSessionTemplate sqlSessionTemplate;
-	private static String namespace = "com.fiveguys.pilldex.domain.PillVO";
+	private static String namespace = "mapper.main1-paging-mapper";
 	@Override
 	public List<PillVO> list() throws Exception {
 		// TODO Auto-generated method stub
