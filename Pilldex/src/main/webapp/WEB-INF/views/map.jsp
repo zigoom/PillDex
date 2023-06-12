@@ -89,12 +89,18 @@
 					</a>
 					</li>
 				</ul>
-				<ul class="nav" style="">
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a href="#" class="nav-link link-dark px-2"><b>로그인</b></a></li>
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+				<ul class="nav" style="">				
+                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
+                    
+				    <c:set var="userNo" value="${UserNo}"/>
+                    <c:if test="${userNo ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+                    </c:if>
+                    <c:if test="${userNo eq null }"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="login.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+                    </c:if> 
 				</ul>
 			</div>
 		</nav>
@@ -139,9 +145,8 @@
 			</div>
 			<!---------- 버튼 영역  ---------->
 			<div class="row m-1">
-                <c:set var="userNo" value="${UserNo}"/>
                 <c:if test="${userNo ne null }"> <!-- 유저 정보가 없을경우 즐겨찾기 버튼이 없다. --> 
-				    <button name="category" id="HP8" class="btn btn-primary col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4 m-2" type="button">주소 즐겨찾기</button>
+				    <button onclick="AddressList()" name="category" id="HP8" class="btn btn-primary col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4 m-2" type="button">주소 즐겨찾기</button>
                 </c:if>				
 				<div class="col" style="text-align: left; margin-left: 10px;">
 					<div class="form-check form-check-inline" style="padding-top: 15px;">
@@ -178,6 +183,37 @@
 			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
 		</div>
 	</footer>
+	
+    <!-- 회원 즐겨찾기 추소 리스츠 호출 -->
+    <script>
+	function AddressList() {
+	    var obj = {"mNo": "${userNo}"};//,"name": "Master", "birth": "19931009"};
+        alert("AddressList() 호출");
+	    $.ajax({
+	        url: '/pilldex/test.do',
+	        type: "post",
+	        data: JSON.stringify(obj),
+	        dataType: "json",
+	        contentType: "application/json; charset=utf-8;",
+	        success: function(data) {
+	        	$(data).each(function(){
+	                alert(this.no + " " 
+                            + this.mNo + " " 
+                            + this.postNum + " " 
+                            + this.nAddr + " " 
+                            + this.oAddr + " " 
+                            + this.restAddr + " " 
+                            + this.del + " " 
+	                		);
+	            });    
+	        },
+	        error: function(errorThrown) {
+	            alert("request error!");
+	        }
+	    });
+	}
+	</script>
+	<script src="resources/js/jquery-latest.min.js"></script>
 
 	<!-- 카카오 지도 API -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d02a38310f79c975c4c8ce6efeda966d&libraries=services"></script>

@@ -5,13 +5,13 @@
 <mapper namespace="com.fiveguys.pilldex.address">
     
     <resultMap id="AddressMap" type="AddressVO">
-        <result column="no"   property="no"       />
-        <result column="m_No"      property="mNo"         />
-        <result column="post_Num"    property="postNum"       />
-        <result column="n_Addr"  property="nAddr"     />
-        <result column="o_Addr"     property="oAddr"        />
-        <result column="rest_Addr" property="restAddr"    />
-        <result column="del"     property="del"        />
+        <result column="no"         property="no"       />
+        <result column="m_no"       property="mNo"      />
+        <result column="post_num"   property="postNum"  />
+        <result column="n_addr"     property="nAddr"    />
+        <result column="o_addr"     property="oAddr"    />
+        <result column="rest_addr"  property="restAddr" />
+        <result column="del"        property="del"      />
     </resultMap>
     
     <select id="selectAddressList"  parameterType="String"  resultMap="AddressMap" >
