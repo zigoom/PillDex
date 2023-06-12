@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -479,28 +479,44 @@
 			</form>
 		</fieldset>
 	</div>
-            <div class="search_list_table">
-				<c:forEach  var="list" items = "${list}">
-					<button class="search_list" onclick="window.open('#')">
-						<img class="search_list_img" src="npg/icon.png">
-						<ul
-							style="list-style: none; text-align: left; padding-left: 0; margin-top: 10px">
-							<li>약품이름:<span>${list.item_name}</span></li>
-							<li>외영정보:<span>${list.drug_shape}</span></li>
-							<li>성분정보:<span>${list.color_class1}</span></li>
-							<li>저장방법:<span>${list.chart}</span></li>
-						</ul>
-					</button>
-				</c:forEach>
-               </div>
-	
-	<div class="container" style="text-align: center;">
-		<nav aria-label="Page navigation">
-			<ul class="pagination" id="pagination"></ul>
-		</nav>
+	<div class="search_list_table">
+		<c:forEach var="list" items="${list}">
+			<button class="search_list" onclick="window.open('#')">
+				<img class="search_list_img" src="npg/icon.png">
+				<ul
+					style="list-style: none; text-align: left; padding-left: 0; margin-top: 10px">
+					<li>약품이름:<span>${list.item_name}</span></li>
+					<li>외영정보:<span>${list.drug_shape}</span></li>
+					<li>성분정보:<span>${list.color_class1}</span></li>
+					<li>저장방법:<span>${list.chart}</span></li>
+				</ul>
+			</button>
+		</c:forEach>
 	</div>
+    <div style="margin:auto; width: 300px; text-align: center;">
+	<c:if test="${page.prev}">
+		<span>[ <a href="/pilldex/main1board/listPage.do?num=${page.startPageNum - 1}">이전</a>]</span>
+	</c:if>
 
+	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+		<span> 
+			<c:if test="${select != num}">
+				<a href="/pilldex/main1board/listPage.do?num=${num}">${num}</a>
+			</c:if> 
+	
+			<c:if test="${select == num}">
+				<b>${num}</b>
+			</c:if>
+
+		</span>
+	</c:forEach>
+
+	<c:if test="${page.next}">
+		<span>[ <a href="/pilldex/main1board/listPage.do?num=${page.endPageNum + 1}">다음</a> ]</span>
+	</c:if>
+	</div>
 </body>
+
 <footer
 	class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 	<div class="col-md-4 d-flex align-items-center">
