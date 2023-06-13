@@ -90,17 +90,17 @@
 					</li>
 				</ul>
 				<ul class="nav" style="">				
-                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
                     
-				    <c:set var="userNo" value="${UserNo}"/>
-                    <c:if test="${userNo ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
-                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
-                    </c:if>
-                    <c:if test="${userNo eq null }"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
-                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="login.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
-                    </c:if> 
+				  <c:set var="userNo" value="${UserNo}"/>
+          <c:if test="${userNo ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+          </c:if>
+          <c:if test="${userNo eq null }"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="login.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+          </c:if> 
 				</ul>
 			</div>
 		</nav>
@@ -145,9 +145,9 @@
 			</div>
 			<!---------- 버튼 영역  ---------->
 			<div class="row m-1">
-                <c:if test="${userNo ne null }"> <!-- 유저 정보가 없을경우 즐겨찾기 버튼이 없다. --> 
-				    <button onclick="AddressList()" name="category" id="HP8" class="btn btn-primary col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4 m-2" type="button">주소 즐겨찾기</button>
-                </c:if>				
+        <c:if test="${userNo ne null }"> <!-- 유저 정보가 없을경우 즐겨찾기 버튼이 없다. --> 
+				  <button onclick="AddressList()" name="category" id="HP8" class="btn btn-primary col-xl-2 col-lg-3 col-md-3 col-sm-4 col-4 m-2" type="button">주소 즐겨찾기</button>
+        </c:if>				
 				<div class="col" style="text-align: left; margin-left: 10px;">
 					<div class="form-check form-check-inline" style="padding-top: 15px;">
 						<input onchange="onClick_Radio(this)" data-order="2" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="HP8">
@@ -159,18 +159,35 @@
 					</div>
 				</div>
 			</div>
-			<table class="table m-1"> <!-- 주소목록 영역 -->				
-				<thead class="table-light">
-					<tr>
-						<th scope="col"></th>
-						<th scope="col">이름</th>
-						<th scope="col">주소</th>
-						<th scope="col">전화번호</th>
-					</tr>
-				</thead>
-				<tbody id="table_body"> </tbody>
-			</table> <!-- 주소목록 영역 종료 -->			
-			<div id="pagination"></div>
+			<c:if test="${userNo ne null }"> <!-- 유저 정보가 없을경우 즐겨찾기 목록이 없다. --> 
+			<div id="addressTable">  <!-- style="display: none;">  --><!-- 주소 즐겨찾기 리스트 -->
+        <table class="table m-1"> <!-- 주소목록 영역 -->              
+          <thead class="table-light">
+            <tr>
+              <th scope="col">우편번호</th>
+              <th scope="col">신주소</th>
+              <th scope="col">구주소</th>
+              <th scope="col">상세주소</th>
+            </tr>
+          </thead>
+          <tbody id="table_body2"> </tbody>
+        </table> <!-- 주소목록 영역 종료 -->        
+      </div><br>
+			</c:if>
+			<div id="searchTable"> <!-- 지도 검색 결과 리스트 -->
+			  <table class="table m-1"> <!-- 주소목록 영역 -->              
+          <thead class="table-light">
+	          <tr>
+	            <th scope="col"></th>
+	            <th scope="col">이름</th>
+	            <th scope="col" style="text-align:left;">주소</th>
+	            <th scope="col" style="text-align:left;">전화번호</th>
+	          </tr>
+          </thead>
+          <tbody id="table_body"> </tbody>
+        </table> <!-- 주소목록 영역 종료 -->            
+        <div id="pagination"></div> <!-- 주소 넘버링 영역 -->
+			</div>      
 		</div> <!---------- container 영역 종료 ---------->		
 	</main>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -183,12 +200,27 @@
 			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
 		</div>
 	</footer>
-	
-    <!-- 회원 즐겨찾기 추소 리스츠 호출 -->
-    <script>
+  
+  <script>
+  /* 회원 즐겨찾기 추소 리스츠 호출 */
 	function AddressList() {
-	    var obj = {"mNo": "${userNo}"};//,"name": "Master", "birth": "19931009"};
-        alert("AddressList() 호출");
+	  /* const searchTable = document.getElementById('searchTable');   */
+	  /* const addressTable = document.getElementById('addressTable'); */
+	  //var myJsonObject;
+	  
+	  var radio01 = document.getElementById('inlineRadio1');  
+	  var radio02 = document.getElementById('inlineRadio2');
+	  radio01.checked = false;
+	  radio02.checked = false;
+	  
+	  var paginationEl = document.getElementById('pagination');
+	  // 기존에 추가된 페이지번호를 삭제합니다
+    while (paginationEl.hasChildNodes()) {
+    	  paginationEl.removeChild(paginationEl.lastChild);
+    }
+	  
+	  var obj = {"mNo": "${userNo}"};              //session에 있는 회원 정보를 가져간다.
+	  	    
 	    $.ajax({
 	        url: '/pilldex/test.do',
 	        type: "post",
@@ -196,21 +228,64 @@
 	        dataType: "json",
 	        contentType: "application/json; charset=utf-8;",
 	        success: function(data) {
-	        	$(data).each(function(){
-	                alert(this.no + " " 
-                            + this.mNo + " " 
-                            + this.postNum + " " 
-                            + this.nAddr + " " 
-                            + this.oAddr + " " 
-                            + this.restAddr + " " 
-                            + this.del + " " 
-	                		);
-	            });    
+	        	//let test = JSON.parse(data);
+	        	/* $(data).each(function(){
+	                alert(this.no + " " + this.mNo + " " + this.postNum + " " + this.nAddr + " " 
+                            + this.oAddr + " " + this.restAddr + " " + this.del + " " );
+	            }); */     
+
+	          var listEl = document.getElementById('table_body');
+	          var listE2 = document.getElementById('table_body2'); //리스트를 추가하는 위치
+	          var fragment = document.createDocumentFragment();
+	          
+	          removeAllChildNods(listEl); // 검색 결과 목록에 추가된 항목들을 제거합니다
+	          removeAllChildNods(listE2); // 검색 결과 목록에 추가된 항목들을 제거합니다
+	          removeMarker();              // 지도에 표시되고 있는 마커를 제거합니다
+	          placeOverlay.setMap(null); // 커스텀 오버레이를 숨깁니다 
+	          
+	        	for(i=0;i < data.length;i++){
+	        		  var itemE2 = addressListItem(data[i]);
+	        		  console.log('out ='+ i + ' = ' + data[i].nAddr);
+
+	        		  fragment.appendChild(itemE2);
+	        	};
+
+	          listE2.appendChild(fragment);
 	        },
 	        error: function(errorThrown) {
 	            alert("request error!");
 	        }
-	    });
+	    });    
+	}
+	/* 회원 즐겨찾기 주소 리스트 만들고, 클릭시 찾기 */
+  function addressListItem(addressVO) {
+
+	    
+	  var el = document.createElement('tr');
+	  var itemStr = '<td class="info" style="vertical-align:middle;">'+ '<h5 style="margin:0px;">'+ addressVO.postNum + '</h5></td>';
+	  itemStr += '<td class="info" style="text-align:left;"><span>'+addressVO.nAddr+'</span></td>';
+	  itemStr += '<td class="info">  <span class="tel">'+ addressVO.oAddr + '</span></td>';
+	  itemStr += '<td class="info">  <span class="tel">'+ addressVO.restAddr + '</span></td>';
+	  
+	  el.innerHTML = itemStr;
+	  el.className = 'item';
+
+	  el.onclick = function () {
+		  var radio01 = document.getElementById('inlineRadio1');  
+		  var radio02 = document.getElementById('inlineRadio2');
+		  radio01.checked = false;
+		  radio02.checked = false;
+		  
+	    document.getElementById('keyword').value = addressVO.oAddr;
+	    searchPlaces(1);
+	  };
+	  
+	  return el;
+  }
+  function addressSearch(serchVal) {
+	  document.getElementById('keyword').value = serchVal;
+    //var keyword = document.getElementById('keyword').value;
+    searchPlaces(1);
 	}
 	</script>
 	<script src="resources/js/jquery-latest.min.js"></script>
@@ -366,27 +441,6 @@
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
 				bounds.extend(placePosition);
-
-		        // 마커와 검색결과 항목에 mouseover 했을때
-		        // 해당 장소에 인포윈도우에 장소명을 표시합니다
-		        // mouseout 했을 때는 인포윈도우를 닫습니다
-		        /* (function(marker, title) {
-		            kakao.maps.event.addListener(marker, 'mouseover', function() {
-		                displayInfowindow(marker, title);
-		            });
-
-		            kakao.maps.event.addListener(marker, 'mouseout', function() {
-		                infowindow.close();
-		            });
-
-		            itemEl.onmouseover =  function () {
-		                displayInfowindow(marker, title);
-		            };
-
-		            itemEl.onmouseout =  function () {
-		                infowindow.close();
-		            };
-		        })(marker, places[i].place_name); */
 		        (function(marker, place) {
 		              kakao.maps.event.addListener(marker, 'click', function() {
 		                  displayPlaceInfo(place);
@@ -614,11 +668,15 @@
 
 		/* 라디오버튼 누를시에 호출 함수 */
 		function onClick_Radio(radio) {
-			var id = radio.value, className = radio.className;
+			var id = radio.value;
+			var className = radio.className;
 
 			placeOverlay.setMap(null);
 
-			if (className === 'on') {
+			currCategory = id;
+	    changeCategoryClass(this);
+	    searchPlaces(2);
+			/* if (className === 'on') {
 				currCategory = '';
 				changeCategoryClass();
 				removeMarker();
@@ -626,7 +684,7 @@
 				currCategory = id;
 				changeCategoryClass(this);
 				searchPlaces(2);
-			}
+			} */
 		}
 	</script>
 </body>
