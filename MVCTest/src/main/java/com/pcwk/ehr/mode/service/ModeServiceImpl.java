@@ -13,6 +13,10 @@ import java.util.List;
 public class ModeServiceImpl implements ModeService {
 	@Autowired
 	private ModeDao modeDao;
+	
+	public ModeServiceImpl(ModeDao modeDao) {
+		this.modeDao = modeDao;
+	}
 
 
 	@Override

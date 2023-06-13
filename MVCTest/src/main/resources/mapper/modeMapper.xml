@@ -21,23 +21,31 @@
 	</resultMap>
 
 	<select id="searchPills"
-		resultType="com.pcwk.ehr.mode.domain.PillVO">
+		parameterType="com.pcwk.ehr.mode.domain.PillVO"
+		resultType="com.pcwk.ehr.mode.domain.PillVO"
+		resultMap="PillMap">
 		SELECT *
 		FROM DATANAME
 		WHERE item_name IN (
 		SELECT item_name
 		FROM DATASHAPE
-		WHERE drug_shape = #{drugShape}
+		WHERE
+		drug_shape = #{drugShape}
 		AND
-		color_class = #{colorClass}
+		color_class =
+		#{colorClass}
 		AND
-		chart LIKE '%' ||  #{chart} || '%'
+		chart LIKE '%' || #{chart} || '%'
 		AND
-		(line_front = #{lineFront} OR line_back = #{lineBack})
+		(line_front =
+		#{lineFront} OR line_back = #{lineBack})
 		AND
-		(print_front LIKE '%' ||  #{printFront} || '%'' OR print_back LIKE '%' ||  #{printBack} || '%' )
-		);
+		(print_front LIKE '%' ||
+		#{printFront} || '%' OR print_back LIKE '%' ||
+		#{printBack} || '%')
+		)
 	</select>
+
 
 
 </mapper>

@@ -15,24 +15,28 @@ public class PillVO {
 	private String printFront;
 	private String printBack;
 	private String chart;
+
 	public PillVO() {
+
 		super();
-		this.chart = chart;
-		this.itemName = itemName;
-		this.entpName = entpName;
-		this.efcyQesitm = efcyQesitm;
-		this.useMethodQesitm = useMethodQesitm;
-		this.atpnQesitm = atpnQesitm;
-		this.depositMethodQesitm = depositMethodQesitm;
-		this.itemImage = itemImage;
-		this.drugShape = drugShape;
-		this.colorClass = colorClass;
-		this.lineFront = lineFront;
-		this.lineBack = lineBack;
-		this.printFront = printFront;
-		this.printBack = printBack;
+		this.chart = null;
+		this.itemName = null;
+		this.entpName = null;
+		this.efcyQesitm = null;
+		this.useMethodQesitm = null;
+		this.atpnQesitm = null;
+		this.depositMethodQesitm = null;
+		this.itemImage = null;
+		this.drugShape = null;
+		this.colorClass = null;
+		this.lineFront = null;
+		this.lineBack = null;
+		this.printFront = null;
+		this.printBack = null;
 	}
+
 	
+
 	public String getChart() {
 		return chart;
 	}
@@ -44,78 +48,103 @@ public class PillVO {
 	public String getItemName() {
 		return itemName;
 	}
+
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
+
 	public String getEntpName() {
 		return entpName;
 	}
+
 	public void setEntpName(String entpName) {
 		this.entpName = entpName;
 	}
+
 	public String getEfcyQesitm() {
 		return efcyQesitm;
 	}
+
 	public void setEfcyQesitm(String efcyQesitm) {
 		this.efcyQesitm = efcyQesitm;
 	}
+
 	public String getUseMethodQesitm() {
 		return useMethodQesitm;
 	}
+
 	public void setUseMethodQesitm(String useMethodQesitm) {
 		this.useMethodQesitm = useMethodQesitm;
 	}
+
 	public String getAtpnQesitm() {
 		return atpnQesitm;
 	}
+
 	public void setAtpnQesitm(String atpnQesitm) {
 		this.atpnQesitm = atpnQesitm;
 	}
+
 	public String getDepositMethodQesitm() {
 		return depositMethodQesitm;
 	}
+
 	public void setDepositMethodQesitm(String depositMethodQesitm) {
 		this.depositMethodQesitm = depositMethodQesitm;
 	}
+
 	public String getItemImage() {
 		return itemImage;
 	}
+
 	public void setItemImage(String itemImage) {
 		this.itemImage = itemImage;
 	}
+
 	public String getDrugShape() {
 		return drugShape;
 	}
+
 	public void setDrugShape(String drugShape) {
 		this.drugShape = drugShape;
 	}
+
 	public String getColorClass() {
 		return colorClass;
 	}
+
 	public void setColorClass(String colorClass) {
 		this.colorClass = colorClass;
 	}
+
 	public String getLineFront() {
 		return lineFront;
 	}
+
 	public void setLineFront(String lineFront) {
 		this.lineFront = lineFront;
 	}
+
 	public String getLineBack() {
 		return lineBack;
 	}
+
 	public void setLineBack(String lineBack) {
 		this.lineBack = lineBack;
 	}
+
 	public String getPrintFront() {
 		return printFront;
 	}
+
 	public void setPrintFront(String printFront) {
 		this.printFront = printFront;
 	}
+
 	public String getPrintBack() {
 		return printBack;
 	}
+
 	public void setPrintBack(String printBack) {
 		this.printBack = printBack;
 	}
@@ -128,8 +157,4 @@ public class PillVO {
 				+ colorClass + ", lineFront=" + lineFront + ", lineBack=" + lineBack + ", printFront=" + printFront
 				+ ", printBack=" + printBack + ", chart=" + chart + "]";
 	}
-	
-
-	
-
 }
