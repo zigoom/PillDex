@@ -19,15 +19,14 @@ public class Main1BoardServiceImpl implements Main1BoardService {
 	public List<PillVO> list() throws Exception {
 		return main1BoardDao.list();
 	}
+	
 	@Override
 	public int count() throws Exception {
 		return main1BoardDao.count();
 	}
+	
 	@Override
 	public List<PillVO> listPage(int displayPost, int postNum) throws Exception {
-		return main1BoardDao.listPage(displayPost, postNum);
+	 return main1BoardDao.listPage(displayPost, postNum);
 	}
-
-	
-
 }

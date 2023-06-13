@@ -479,7 +479,6 @@
 			</form>
 		</fieldset>
 	</div>
-  <div>
 	<div class="search_list_table">
 		<c:forEach var="list" items="${list}">
 			<button class="search_list" onclick="window.open('#')">
@@ -494,30 +493,8 @@
 			</button>
 		</c:forEach>
 	</div>
-   <div style="text-align: center; margin: auto;">
-	 <c:if test="${page.prev}">
-		 <span>[ <a href="/pilldex/main1board/listPage.do?num=${page.startPageNum - 1}">이전</a> ]</span>
-		</c:if>
-		
-		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
-		 <span>
-		 
-		  <c:if test="${select != num}">
-		   <a href="/pilldex/main1board/listPage.do?num=${num}">${num}</a>
-		  </c:if>    
-		  
-		  <c:if test="${select == num}">
-		   <b>${num}</b>
-		  </c:if>
-		    
-		 </span>
-		</c:forEach>
-		
-		<c:if test="${page.next}">
-		 <span>[ <a href="/pilldex/main1board/listPage.do?num=${page.endPageNum + 1}">다음</a> ]</span>
-		</c:if>
+    
 	</div>
-    </div>
 </body>
 
 <footer
@@ -531,6 +508,19 @@
 			FiveGuys 4 Team </span>
 	</div>
 </footer>
+<script type="text/javascript">
+	$(function() {
+		window.pagObj = $('#pagination').twbsPagination({
+			totalPages : 5,
+			visiblePages : 6,
+			onPageClick : function(event, page) {
+				console.info(page + ' (from options)');
+			}
+		}).on('page', function(event, page) {
+			console.info(page + ' (from event listening)');
+		});
+	});
+</script>
 
 <script>
 	window.onload = function() {

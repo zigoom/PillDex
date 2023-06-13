@@ -30,31 +30,33 @@ public class BoardController  {
 		model.addAttribute("list",list);
 	}
 	
+	
 	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
-		main1page page =new main1page();
-	
+		
+	main1page page = new main1page();
 	page.setNum(num);
 	page.setCount(service.count());  
 
 	List<PillVO> list = null; 
 	list = service.listPage(page.getDisplayPost(), page.getPostNum());
-	
-	model.addAttribute("list", list);  
-	
+
+	model.addAttribute("list", list);   
 	/*
 	model.addAttribute("pageNum", page.getPageNum());
 
 	model.addAttribute("startPageNum", page.getStartPageNum());
 	model.addAttribute("endPageNum", page.getEndPageNum());
 	 
-	model.addAttribute("prev", page.getPrev());
+	 model.addAttribute("prev", page.getPrev());
 	model.addAttribute("next", page.getNext());  
-	 */
-	
+	*/
 	model.addAttribute("page", page);
 	model.addAttribute("select", num);
-	
-
 	}
+	
 }
+
+
+	
+	

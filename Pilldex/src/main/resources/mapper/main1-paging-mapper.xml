@@ -13,16 +13,15 @@
 	</select>
 	
        <!-- 게시물 목록 + 페이징 -->
-	<select id="listPage" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
+     <select id="listPage" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
        SELECT item_name,drug_shape,color_class1,chart
-	      FROM (
-	        SELECT ROW_NUMBER() OVER (ORDER BY item_name) NUM
-	             , A.*
-	          FROM PILL_TABLE A
-	         ORDER BY item_name
-	        ) 
-	 WHERE NUM BETWEEN #{displayPost} AND #{postNum}
-	</select>
-<!-- // #{displayPost}, #{postNum}- -->
+          FROM(
+              <![CDATA[   SELECT ROWNUM AS RNUM, A.*
+                    FROM (PILL_TABLE) A
+                 WHERE ROWNUM <= #{postNum}+ #{displayPost} ]]> 
+              )
+         WHERE RNUM > #{displayPost}    
+    </select>   
+
 
 </mapper>

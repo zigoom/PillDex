@@ -18,23 +18,23 @@ public class MainBoardDaoImpl implements Main1BoardDao {
 	
 	@Override
 	public List<PillVO> list() throws Exception {
-		return sqlSessionTemplate.selectList(namespace + ".list");
+		return sqlSessionTemplate.selectList(namespace +".list");
 	}
 	
+	//게시물 총 갯수
 	@Override
 	public int count() throws Exception {
-		return sqlSessionTemplate.selectOne(namespace + ".count");
+		return sqlSessionTemplate.selectOne(namespace +".count");
 	}
 	
 	@Override
 	public List<PillVO> listPage(int displayPost, int postNum) throws Exception {
 
-		 HashMap<String, Integer> data = new HashMap<String, Integer>();
-		  
-		 data.put("displayPost", displayPost);
-		 data.put("postNum", postNum);
-				 
-		return sqlSessionTemplate.selectList(namespace + ".listPage", data);
+	 HashMap<String,Integer> data = new HashMap<String,Integer>();
+	  
+	 data.put("displayPost", displayPost);
+	 data.put("postNum", postNum);
+	  
+	 return sqlSessionTemplate.selectList(namespace + ".listPage", data);
 	}
-
 }

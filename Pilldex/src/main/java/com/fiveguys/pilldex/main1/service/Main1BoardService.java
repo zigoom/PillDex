@@ -13,4 +13,5 @@ public interface Main1BoardService {
 	public int count() throws Exception;
 	
 	public List<PillVO> listPage(int displayPost, int postNum) throws Exception;
+	
 }
