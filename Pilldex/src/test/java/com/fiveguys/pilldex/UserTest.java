@@ -34,10 +34,31 @@ public class UserTest {
 	UserService userService;
 		
 	
+//	@Test
+//	public void selectOneUser() throws SQLException {
+//		UserVO inVO = new UserVO("Master","1234");
+//		UserVO outVO = userService.selectUser(inVO);		
+//	}
 	@Test
-	public void selectOneUser() throws SQLException {
-		UserVO inVO = new UserVO("Master","1234");
-		UserVO outVO = userService.selectUser(inVO);
+	public void insertOneUser() throws SQLException {
+		UserVO inVO = new UserVO();
+		inVO.setGrade(10);
+		inVO.setName("관리자3");
+		inVO.setId("Master3");
+		inVO.setPw("123123");
+		inVO.setTel("010-1234-5678");
+		inVO.setBirth("19931009");
+		inVO.setSex('1');
+		inVO.setPostNum(12345);
+		inVO.setnAddr("옛주소 영역 입니다");
+		inVO.setoAddr("도로 주소 영역 입니다");
+		inVO.setRestAddr("상세 주소 영역 입니다");
+		inVO.setEmail("test@gmail.com");
+		inVO.setDel('0');
 		
+		int result = userService.doSignUp(inVO);
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ result "+ result);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
 	}
 }

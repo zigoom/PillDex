@@ -16,7 +16,18 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDAO;
 	
 	@Override
-	public UserVO selectUser(UserVO vo) throws SQLException {
-		return userDAO.doSelectOne(vo);
+	public UserVO selectUser(UserVO user) throws SQLException {
+		return userDAO.selectOne(user);
+	}
+
+	@Override
+	public int doSignUp(UserVO user) throws SQLException {
+		return userDAO.addUser(user);
+	}
+
+	@Override
+	public int doFindID(UserVO user) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

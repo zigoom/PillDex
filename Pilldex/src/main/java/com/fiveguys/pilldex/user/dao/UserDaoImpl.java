@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,16 +20,24 @@ import com.fiveguys.pilldex.domain.UserVO;
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
 	final String NAMESPACE ="com.fiveguys.pilldex.user";
+	final String DOT ="."; 
+	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate; 
 	
+	private final static Logger LOG = LogManager.getLogger(UserDaoImpl.class);
+	
+	// default 생성
+	public UserDaoImpl() {	}
+	
+	
 	@Override
-	public UserVO doSelectOne(UserVO inVO) throws SQLException {
+	public UserVO selectOne(UserVO inVO) throws SQLException {
 
 		String statement = this.NAMESPACE+".doSelectOne";
-		System.out.println("---------------------");
-		System.out.println("- statement "+ statement);
-		System.out.println("---------------------");
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
 		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,inVO);		
 		
 		if(outVO!=null) {			
@@ -37,6 +47,47 @@ public class UserDaoImpl implements UserDao {
 		}
 		return outVO;
 	}
+
+
+	@Override
+	public int idCheck(UserVO user) throws SQLException {
+		int flag =0;
+		String statement = this.NAMESPACE+DOT+"idCheck";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 1. statement "+ statement);
+		LOG.debug("│ 2. param=\n"+ user.toString());
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.selectOne(statement,user);		
+		
+		return flag;
+	}
+
+	@Override
+	public int passCheck(UserVO user) throws SQLException {
+		int flag =0;
+		String statement = this.NAMESPACE+DOT+"passCheck";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 1. statement "+ statement);
+		LOG.debug("│ 2. param=\n"+ user.toString());
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.selectOne(statement,user);	
+		
+		return flag;
+	}
+
+
+	@Override
+	public int addUser(UserVO user) throws SQLException {
+		int flag =0;
+		String statement = this.NAMESPACE+DOT+"insertOne";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 1. statement "+ statement);
+		LOG.debug("│ 2. param=\n"+ user.toString());
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.insert(statement,user);	
+		
+		return flag;
+	}	
 
 
 }
