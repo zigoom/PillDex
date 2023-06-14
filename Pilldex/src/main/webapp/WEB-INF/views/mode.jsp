@@ -65,17 +65,17 @@
 	<div id="med_search_box">
 		<h1 id="med_search">의약품 검색</h1>
 	</div>
-	<form id="serach_form" action="#" method="get">
+	<form id="serach_form" action="apiloadToName.do" method="post">
 		<div id="search_box_containor">
 			<!--검색창-->
-			<input name="search" id="search_area" type="text"
-				placeholder="약 이름으로 검색" />
+			<input name="itemName" id="search_area" type="text"
+				placeholder="약 이름으로 검색" value="" />
 			<button id="search_button"
 				class="btn btn-primary col-md-2 col-sm-3 col-4" type="submit">
 				검색 하기</button>
 		</div>
 	</form>
-	<form method="post" id="main-form" action="/ehr/apiload.do">
+	<form method="post" id="main-form" action="apiload.do">
 		<div id="shape_search_box">
 			<h2>약 모양으로 검색</h2>
 			<img src="${path}/resources/img/med_char.png" />
@@ -300,7 +300,7 @@
 				<div class="card-box">
 					<c:forEach var="pill" items="${modeVO}">
 						<div class="card-t">
-							<img src="${pill.itemImage}" class="card-img-top" alt="...">
+							<img src="${pill.itemImage}" class="card-img-top" alt="이미지가 없습니다.">
 							<div class="card-body">
 								<h5 class="card-title">${pill.itemName}</h5>
 								<p class="card-text">${pill.efcyQesitm}</p>

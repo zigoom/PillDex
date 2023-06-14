@@ -1,4 +1,4 @@
-package com.pcwk.ehr;
+package com.pcwk.ehr.mode.controller;
 
 import com.pcwk.ehr.mode.domain.PillVO;
 import com.pcwk.ehr.mode.service.ModeService;
