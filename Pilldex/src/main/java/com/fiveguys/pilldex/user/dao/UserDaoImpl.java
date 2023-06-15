@@ -115,8 +115,40 @@ public class UserDaoImpl implements UserDao {
 
 
 	@Override
-	public int searchIdCnt(UserVO user) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int searchIdCheck(UserVO user) throws SQLException {
+		int flag =0;			
+		String statement = this.NAMESPACE+DOT+"searchIdCheck";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.selectOne(statement,user);	
+		
+		return flag;
+	}
+
+
+	@Override
+	public int searchPwCheck(UserVO user) throws SQLException {
+		int flag =0;			
+		String statement = this.NAMESPACE+DOT+"searchPwCheck";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.selectOne(statement,user);	
+		
+		return flag;
+	}
+
+
+	@Override
+	public int updatePw(UserVO user) throws SQLException {
+		int flag =0;			
+		String statement = this.NAMESPACE+DOT+"updatePw";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.update(statement,user);	
+		
+		return flag;
 	}
 }

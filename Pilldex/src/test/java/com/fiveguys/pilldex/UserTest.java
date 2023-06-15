@@ -47,6 +47,7 @@ public class UserTest {
 	
 	/* 아이디 중복 확인 테스트 입니다. */
 	@Test
+	@Ignore
 	public void idCheck() throws SQLException {
 		UserVO inVO = new UserVO();
 		inVO.setId("Master");
@@ -60,30 +61,32 @@ public class UserTest {
 	@Test
 	@Ignore
 	public void searchId() throws SQLException {
-		UserVO inVO = new UserVO();
-		inVO.setName("관리자3");
-		inVO.setEmail("test@gmail.com");
-		UserVO outVO = userService.doSearchId(inVO); 	//**** 회원 로그인 서비스 호출 ****//
+		UserVO user = new UserVO();
+		user.setName("관리자3");
+		user.setEmail("test@gmail.com");
+		UserVO outVO = userService.doSearchId(user); 	//**** 회원 로그인 서비스 호출 ****//
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ 아이디 찾기  (아이디  : "+ outVO.getId()); // 찾고자 하는 ID
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 	}
 	
 
-	/* 비밀번호  찾기 */
-//	public void searchId() throws SQLException {
-//		UserVO user = new UserVO();
-//		user.setName("관리자3");
-//		user.setEmail("test@gmail.com");
-//		UserVO outVO = userService.doSearchId(user); 	//**** 회원 로그인 서비스 호출 ****//
-//		LOG.debug("┌────────────────────────────────────────────────────────┐");
-//		LOG.debug("│ 아이디 찾기 여부 (아이디  : "+ outVO.getId()); //10: id 없음, 20: 비밀번호 오류, 30: 로그인 성공 
-//		LOG.debug("└────────────────────────────────────────────────────────┘");
-//	}
+	/* 비밀번호  찾기(1234로 비밀번호 수정) */
+	@Test
+	@Ignore
+	public void searchPw() throws SQLException {
+		UserVO user = new UserVO();
+		user.setName("관리자3");
+		user.setId("Master3");
+		user.setEmail("test@gmail.com");
+		int result = userService.doSearchPw(user); 	//**** 회원 로그인 서비스 호출 ****//
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 비밀번호 수정 여부   : "+ result); 	//1: 비밀번호 123123으로 수정, 0: 수정 실패
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+	}
 	
 
 	/* 회원 로그인 테스트 입니다. */
-
 	@Test
 	@Ignore
 	public void login() throws SQLException{
@@ -127,9 +130,9 @@ public class UserTest {
 		LOG.debug("│ 회원 단건 삭제  : "+ result); 	// 1: 삭제, 2: 삭제 안됨
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 		
-		result = userService.doSignUp(user);		//**** 회원 추가 서비스 호출 ****//
+		int result2 = userService.doSignUp(user);		//**** 회원 추가 서비스 호출 ****//
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ 회원 추가 : "+ result);		// 1: 추가, 0: 추가 안됨
+		LOG.debug("│ 회원 추가 : "+ result2);		// 1: 추가, 0: 추가 안됨
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 	}
 }

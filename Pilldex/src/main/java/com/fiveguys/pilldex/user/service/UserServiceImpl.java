@@ -33,9 +33,8 @@ public class UserServiceImpl implements UserService {
 		LOG.debug("│ doSignUp()                                             │");
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 		
-		int resert = this.doIdDuplCheck(user);
-			
-		if(1==resert) { 	//이미 동일한 아이디가 있습니다
+		int flag = this.doIdDuplCheck(user); // 아이디 중복 확인			
+		if(1==flag) { 	// 이미 동일한 아이디가 있습니다
 			return 0;
 		}else {   			// 중복된 아이디가 없습니다
 			return userDao.addUser(user); // 회원가입 진행
@@ -88,29 +87,26 @@ public class UserServiceImpl implements UserService {
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ doSearchId()                                           │");
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-				
-		return this.userDao.searchId(user);
+		UserVO outVO = new UserVO();
+		outVO.setNo(-1);
+		int flag =0;
+		flag = this.userDao.searchIdCheck(user);
+		if(1==flag) {
+			outVO = this.userDao.searchId(user); 
+		} else {
+			outVO.setNo(-1);	// 해당 아이디가 없음
+		}
+		return outVO;
 	}
 	
-//	public int doSearchId(UserVO user) throws SQLException {
-//		int checkStatus = 0; 		//10(id 없음)/20(비밀번호 수정 오류),30(비밀번호 수정 성공) 
-//		int status = this.userDao.searchId(user);
-//		if(1==status) {
-//			user.setPw("123123"); 	// passUpdate to "123123"
-//			status = userDao.passCheck(user);
-//			if(1==status) {
-//				checkStatus = 30; 	//비밀번호 수정 성공 
-//			}else {
-//				checkStatus = 20; 	//비밀번호 수정 오류
-//			}
-//		} else {
-//			checkStatus = 10; 		//해당 name + email 로  id없음
-//		}
-//
-//		LOG.debug("┌────────────────────────────────────────────────────────┐");
-//		LOG.debug("│ checkStatus : "+ checkStatus);
-//		LOG.debug("└────────────────────────────────────────────────────────┘");
-//		
-//		return checkStatus;
-//	}
+	@Override
+	public int doSearchPw(UserVO user) throws SQLException {
+		int checkStatus = 0; 		//10(id 없음)/20(비밀번호 수정 오류),30(비밀번호 수정 성공) 
+		int status = this.userDao.searchPwCheck(user);
+		if(1==status) {
+			user.setPw("123123"); 	// passUpdate to "123123"
+			status = userDao.passCheck(user);
+		} 
+		return status;
+	}
 }

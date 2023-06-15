@@ -5,15 +5,15 @@ import java.sql.SQLException;
 import com.fiveguys.pilldex.domain.UserVO;
 
 public interface UserDao {
-	public UserVO selectOne(UserVO inVO) throws SQLException;
-		
+	
 	/**
-	 * 아이디 여부  체크
-	 * @param user
-	 * @return 해당 id
+	 * id를 사용하여 회원정보 출력
+	 * @param inVO
+	 * @return
 	 * @throws SQLException
 	 */
-	public int searchIdCnt(UserVO user) throws SQLException;
+	public UserVO selectOne(UserVO inVO) throws SQLException;
+	
 	/**
 	 * 아이디 여부  체크
 	 * @param user
@@ -21,6 +21,31 @@ public interface UserDao {
 	 * @throws SQLException
 	 */
 	public UserVO searchId(UserVO user) throws SQLException;
+	
+	/**
+	 * 아이디 존재 여부  체크
+	 * @param user
+	 * @return 해당 id
+	 * @throws SQLException
+	 */
+	public int searchIdCheck(UserVO user) throws SQLException;
+	
+	/**
+	 * 패스워드 존재 여부  체크
+	 * @param user
+	 * @return 해당 id
+	 * @throws SQLException
+	 */
+	public int searchPwCheck(UserVO user) throws SQLException;
+	
+	/**
+	 * 비밀번호 변경
+	 * @param user
+	 * @return 1: id 존재 , 0: id 없음 
+	 * @throws SQLException
+	 */
+	public int updatePw(UserVO user) throws SQLException;
+	
 	/**
 	 * 비밀번호 체크
 	 * @param user
@@ -28,6 +53,7 @@ public interface UserDao {
 	 * @throws SQLException
 	 */
 	public int passCheck(UserVO user) throws SQLException;
+	
 	/**
 	 * 아이디 체크
 	 * @param user
