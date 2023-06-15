@@ -32,7 +32,14 @@ public class UserServiceImpl implements UserService {
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ doSignUp()                                             │");
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		return userDao.addUser(user);
+		
+		int resert = this.doIdDuplCheck(user);
+			
+		if(1==resert) { 	//이미 동일한 아이디가 있습니다
+			return 0;
+		}else {   			// 중복된 아이디가 없습니다
+			return userDao.addUser(user); // 회원가입 진행
+		}		
 	}
 
 	@Override
@@ -81,7 +88,7 @@ public class UserServiceImpl implements UserService {
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ doSearchId()                                           │");
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		
+				
 		return this.userDao.searchId(user);
 	}
 	

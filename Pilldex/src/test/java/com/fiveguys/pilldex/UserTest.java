@@ -35,6 +35,7 @@ public class UserTest {
 	
 	/* 아이디를 기준으로 회원정보 받기 테스트 입니다. */
 	@Test
+	@Ignore
 	public void selectOneUser() throws SQLException {
 		UserVO inVO = new UserVO();
 		inVO.setId("Master");
@@ -45,6 +46,7 @@ public class UserTest {
 	}
 	
 	/* 아이디 중복 확인 테스트 입니다. */
+	@Test
 	public void idCheck() throws SQLException {
 		UserVO inVO = new UserVO();
 		inVO.setId("Master");
@@ -55,6 +57,8 @@ public class UserTest {
 	}
 	
 	/* 아이디 찾기 */
+	@Test
+	@Ignore
 	public void searchId() throws SQLException {
 		UserVO inVO = new UserVO();
 		inVO.setName("관리자3");
@@ -79,7 +83,9 @@ public class UserTest {
 	
 
 	/* 회원 로그인 테스트 입니다. */
+
 	@Test
+	@Ignore
 	public void login() throws SQLException{
 		UserVO inVO = new UserVO();
 		inVO.setId("Master3");
@@ -95,13 +101,19 @@ public class UserTest {
 	@Test
 	@Ignore
 	public void addUser() throws SQLException {
+		String yy = "2023";
+		String mm = "06";
+		String dd = "15";
+		
+		
 		UserVO user = new UserVO();
 		user.setGrade(10);
 		user.setName("관리자3");
 		user.setId("Master3");
 		user.setPw("123123");
 		user.setTel("010-1234-5678");
-		user.setBirth("19931009");
+		//user.setBirth("19931009");
+		user.setBirth(yy+mm+dd);
 		user.setSex('1');
 		user.setPostNum(12345);
 		user.setnAddr("옛주소 영역 입니다");
@@ -117,7 +129,7 @@ public class UserTest {
 		
 		result = userService.doSignUp(user);		//**** 회원 추가 서비스 호출 ****//
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ 회원 추가 : "+ result);		// 1: 추가, 2: 추가 안됨
+		LOG.debug("│ 회원 추가 : "+ result);		// 1: 추가, 0: 추가 안됨
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 	}
 }

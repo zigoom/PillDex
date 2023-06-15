@@ -118,7 +118,5 @@ public class UserDaoImpl implements UserDao {
 	public int searchIdCnt(UserVO user) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
-	}	
-
-
+	}
 }
