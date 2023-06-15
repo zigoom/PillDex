@@ -15,7 +15,7 @@ public class AddressDaoImpl implements AddressDao {
 	final String NAMESPACE ="com.fiveguys.pilldex.address";
 	String DOT = ".";
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate; 
+	private SqlSessionTemplate sqlSessionTemplate; 
 	
 	@Override
 	public List<AddressVO> doSelectAddressList(String userNo) throws SQLException {

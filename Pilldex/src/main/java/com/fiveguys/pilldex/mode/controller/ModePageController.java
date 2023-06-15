@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.modecontroller;
+package com.fiveguys.pilldex.mode.controller;
 
 import com.fiveguys.pilldex.domain.PillVO;
 import com.fiveguys.pilldex.mode.service.ModeService;
@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class ModePageController {
 
-    private final ModeService modeService;
+    private ModeService modeService;
 
     @Autowired
     public ModePageController(ModeService modeService) {
@@ -44,5 +44,11 @@ public class ModePageController {
     	List<PillVO> outVO = modeService.parseDataFromDbToName(vo);
     	model.addAttribute("modeVO", outVO);
     	return "mode";
+    }
+    @RequestMapping(value = "/apiloadToNameDetail.do" ,method = RequestMethod.POST)
+    public String apiLoadToNameDetaiil(PillVO vo, Model model) throws SQLException{
+    	List<PillVO> outVO = modeService.parseDataFromDbToName(vo);
+    	model.addAttribute("modeVO", outVO);
+    	return "detail";
     }
 }

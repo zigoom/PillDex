@@ -294,23 +294,30 @@
 		</div>
 		<p>${shape}</p>
 		<input type="submit" id="submit-btn" />
-
-		<form method="get" action="detailpage.html" class="card-box">
-			<div class="card-box-main">
-				<div class="card-box">
-					<c:forEach var="pill" items="${modeVO}">
-						<div class="card-t">
-							<img src="${pill.itemImage}" class="card-img-top" alt="이미지가 없습니다.">
-							<div class="card-body">
-								<h5 class="card-title">${pill.itemName}</h5>
-								<p class="card-text">${pill.efcyQesitm}</p>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-		</form>
 	</form>
+
+
+	<div class="card-box-main">
+	<div class="card-box">
+		<c:forEach var="pill" items="${modeVO}">
+			<div class="card-form">
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="card-t">
+						<img src="${pill.itemImage}" class="card-img-top" alt="이미지가 없습니다.">
+						<div class="card-body">
+							<input name="itemName" value="${pill.itemName}" class="hidden input-itemName" />
+							<h5 class="card-title">${pill.itemName}</h5>
+							<p class="card-text">${pill.efcyQesitm}</p>
+						</div>
+					</div>
+					<input type="submit" id="card-submit" class="btn btn-primary">
+				</form>
+			</div>
+		</c:forEach>
+	</div>
+</div>
+
+
 	<footer
 		class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
@@ -321,8 +328,10 @@
                     </svg>
 			</a> <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023
 				FiveGuys 4 Team </span> <a
-				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank"><span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span></a>
-			<a href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank"><span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span></a>
+				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057"
+				target="blank"><span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span></a> <a
+				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639"
+				target="blank"><span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span></a>
 
 		</div>
 	</footer>

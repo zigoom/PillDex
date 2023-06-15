@@ -138,32 +138,34 @@
 .hidden {
 	display: none;
 }
-
-.card-box {
+.click-option {
+	background-color: #c4dfdf;
+}
+.card-box-main {
 	display: flex;
-	margin: 15px;
-	flex-wrap: wrap;
 	justify-content: center;
 }
 
-.card-t {
-	margin: 15px;
-	width: 45%;
+.card-box {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 90%;
+}
+
+.card-form {
+	width: 48%;
+	margin-bottom: 15px;
 }
 
 .card {
 	background-color: white;
 	border: 1px solid black;
 	height: 350px;
-	margin: 15px 15px;
-	background-color: white;
+	margin: 15px 0;
 }
 
 .card-body p {
 	word-break: break-all;
 	word-wrap: break-word;
-}
-
-.click-option {
-	background-color: #c4dfdf;
 }
