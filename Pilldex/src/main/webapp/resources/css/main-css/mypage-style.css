@@ -1,20 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&display=swap");
-/* font-family: 'Nanum Pen Script', cursive;
-            font-family: 'Noto Sans KR', sans-serif; */
-#main_box {
-	font-family: 'Nanum Pen Script', cursive;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-input[type="text"],
-input[type="tel"],
-input[type="password"] {
+@import
+  url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&display=swap")
+  ;
+/* font-family: 'Nanum Pen Script', cursive; font-family: 'Noto Sans KR', sans-serif; */
+input[type="tel"], input[type="password"] {
   font-size: 12pt;
   width: 400px;
   height: 40px;
   margin: 10px;
   padding: 1px;
 }
+.input-text{
+  font-size: 12pt;
+  width: 400px;
+  height: 40px;
+  margin: 10px;
+  padding: 1px;
+}
+#user_id {
+  width: 300px;
+  height: 40px;
+  margin: 10px;
+  padding: 1px;
+}
+
 input[type="email"] {
   font-size: 12pt;
   width: 185px;
@@ -22,19 +30,20 @@ input[type="email"] {
   margin: 3px;
   padding: 1px;
 }
-input[type="address"],
-input[type="bookmark_address_list"],
-input[type="bookmark_med_list"] {
+
+input[type="address"], input[type="bookmark_address_list"], input[type="bookmark_med_list"]
+  {
   font-size: 12pt;
   width: 185px;
   height: 35px;
   margin: 10px;
   padding: 1px;
 }
+
 input[type="button"] {
-  background-color: rgb(128, 255, 255);
-  color: #ffffff255255255;
-  border: 1px solid rgb(128, 255, 255);
+  background-color: #40c1fc;
+  color: #ffffff;
+  border: 1px solid #40c1fc;
   width: 80px;
   height: 40px;
   font-family: "Nanum Pen Script", cursive;
@@ -42,40 +51,42 @@ input[type="button"] {
   margin: 10px;
   padding: 10px;
 }
+
 ul {
   list-style: none;
 }
+
 li {
   font-weight: bold;
   margin: 20px 0px;
 }
+
 #box {
   display: flex;
   justify-content: center;
 }
+
 .find-btn {
   text-align: center;
-  border: 0;
   margin: 10px;
   padding: 10px;
-  position: absolute;
-  top:50%;
-  background-color:#0a0a23;
-  color: #fff;
-  border:none;
 }
+
 .find-btn1 {
   display: inline-block;
-  border: 0;
   margin: 10px;
 }
+
 box2 {
   display: flex;
   justify-content: center;
+  width: 70%
 }
+
 #main_box {
   text-align: center;
 }
+
 h3 {
   font-family: "Nanum Pen Script", cursive, "Noto Sans KR", sans-serif;
 }

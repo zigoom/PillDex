@@ -28,6 +28,13 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
+	
+
+	@RequestMapping(value = "/mypa.do", method = RequestMethod.GET)
+	public String mypageStart(UserVO vo) {
+		return "mypa";
+	}
+	
 	/**
 	 * 로그인 화면에 처음 접근할때 호출 하는 함수
 	 * @param vo
