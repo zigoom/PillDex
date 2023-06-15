@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -19,46 +20,104 @@ import com.fiveguys.pilldex.user.service.UserService;
 
 
 
-@RunWith(SpringJUnit4ClassRunner.class) //스프링 테스트 컨텍스 프레임워크의 JUnit 확장 기능 지정
+@RunWith(SpringJUnit4ClassRunner.class) 
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml",
-		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"}) //테스트 컨텍스트가 자동으로 만들어줄 applicationContext.xml 위치
-@FixMethodOrder(MethodSorters.NAME_ASCENDING) //Test 메소드를 오름차순으로 정렬한 순서대로 실행
-
+									"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) 
 public class UserTest {
 	final Logger LOG = LogManager.getLogger(getClass());
 	
 	@Autowired
-	ApplicationContext context; //테스트 오브젝트가 만들어지고 나면 스프링 테스트 컨택스트에 의해 자동으로 값이 주입됩니다.(아래 내용을 xml파일에서 가져온다.)
-	// context = new GenericXmlApplicationContext("applicationContext.xml");
+	ApplicationContext context;
 	@Autowired
 	UserService userService;
 		
 	
-//	@Test
-//	public void selectOneUser() throws SQLException {
-//		UserVO inVO = new UserVO("Master","1234");
-//		UserVO outVO = userService.selectUser(inVO);		
-//	}
+	/* 아이디를 기준으로 회원정보 받기 테스트 입니다. */
 	@Test
-	public void insertOneUser() throws SQLException {
+	public void selectOneUser() throws SQLException {
 		UserVO inVO = new UserVO();
-		inVO.setGrade(10);
+		inVO.setId("Master");
+		UserVO outVO = userService.selectUser(inVO);
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ "+inVO.getId()+"회원의 정보  : \n"+ outVO.toString()); 	// 회원 정보
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+	}
+	
+	/* 아이디 중복 확인 테스트 입니다. */
+	public void idCheck() throws SQLException {
+		UserVO inVO = new UserVO();
+		inVO.setId("Master");
+		int result = userService.doIdDuplCheck(inVO); 	//**** 회원 로그인 서비스 호출 ****//
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 아이디 중복 여부  : "+ result); //0: id 없음, 2: 이미 있는 id
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+	}
+	
+	/* 아이디 찾기 */
+	public void searchId() throws SQLException {
+		UserVO inVO = new UserVO();
 		inVO.setName("관리자3");
+		inVO.setEmail("test@gmail.com");
+		UserVO outVO = userService.doSearchId(inVO); 	//**** 회원 로그인 서비스 호출 ****//
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 아이디 찾기  (아이디  : "+ outVO.getId()); // 찾고자 하는 ID
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+	}
+	
+
+	/* 비밀번호  찾기 */
+//	public void searchId() throws SQLException {
+//		UserVO user = new UserVO();
+//		user.setName("관리자3");
+//		user.setEmail("test@gmail.com");
+//		UserVO outVO = userService.doSearchId(user); 	//**** 회원 로그인 서비스 호출 ****//
+//		LOG.debug("┌────────────────────────────────────────────────────────┐");
+//		LOG.debug("│ 아이디 찾기 여부 (아이디  : "+ outVO.getId()); //10: id 없음, 20: 비밀번호 오류, 30: 로그인 성공 
+//		LOG.debug("└────────────────────────────────────────────────────────┘");
+//	}
+	
+
+	/* 회원 로그인 테스트 입니다. */
+	@Test
+	public void login() throws SQLException{
+		UserVO inVO = new UserVO();
 		inVO.setId("Master3");
 		inVO.setPw("123123");
-		inVO.setTel("010-1234-5678");
-		inVO.setBirth("19931009");
-		inVO.setSex('1');
-		inVO.setPostNum(12345);
-		inVO.setnAddr("옛주소 영역 입니다");
-		inVO.setoAddr("도로 주소 영역 입니다");
-		inVO.setRestAddr("상세 주소 영역 입니다");
-		inVO.setEmail("test@gmail.com");
-		inVO.setDel('0');
-		
-		int result = userService.doSignUp(inVO);
+		int result = userService.doLogin(inVO); 	//**** 회원 로그인 서비스 호출 ****//
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ result "+ result);
+		LOG.debug("│ 로그인 여부  : "+ result); //10: id 없음, 20: 비밀번호 오류, 30: 로그인 성공 
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+	}
+	
+	
+	/* 회원 삭제/추가 테스트 입니다. */
+	@Test
+	@Ignore
+	public void addUser() throws SQLException {
+		UserVO user = new UserVO();
+		user.setGrade(10);
+		user.setName("관리자3");
+		user.setId("Master3");
+		user.setPw("123123");
+		user.setTel("010-1234-5678");
+		user.setBirth("19931009");
+		user.setSex('1');
+		user.setPostNum(12345);
+		user.setnAddr("옛주소 영역 입니다");
+		user.setoAddr("도로 주소 영역 입니다");
+		user.setRestAddr("상세 주소 영역 입니다");
+		user.setEmail("test@gmail.com");
+		user.setDel('0');
+
+		int result = userService.deleteOne(user); 	//**** 회원 삭제 서비스 호출 ****//
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 회원 단건 삭제  : "+ result); 	// 1: 삭제, 2: 삭제 안됨
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		
+		result = userService.doSignUp(user);		//**** 회원 추가 서비스 호출 ****//
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 회원 추가 : "+ result);		// 1: 추가, 2: 추가 안됨
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 	}
 }

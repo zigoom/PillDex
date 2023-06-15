@@ -33,8 +33,7 @@ public class UserDaoImpl implements UserDao {
 	
 	@Override
 	public UserVO selectOne(UserVO inVO) throws SQLException {
-
-		String statement = this.NAMESPACE+".doSelectOne";
+		String statement = this.NAMESPACE+".selectOne";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ statement "+ statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
@@ -87,6 +86,38 @@ public class UserDaoImpl implements UserDao {
 		flag = this.sqlSessionTemplate.insert(statement,user);	
 		
 		return flag;
+	}
+
+
+	@Override
+	public int deleteOne(UserVO user) throws SQLException {
+		int flag =0;			
+		String statement = this.NAMESPACE+DOT+"deleteOne";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.delete(statement,user);		
+		
+		return flag;
+	}
+
+
+	@Override
+	public UserVO searchId(UserVO user) throws SQLException {
+		String statement = this.NAMESPACE+DOT+"searchId";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,user);		
+		
+		return outVO;
+	}
+
+
+	@Override
+	public int searchIdCnt(UserVO user) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
 	}	
 
 
