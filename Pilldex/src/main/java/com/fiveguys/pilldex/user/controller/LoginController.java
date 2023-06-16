@@ -28,13 +28,6 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
-	
-
-	@RequestMapping(value = "/mypa.do", method = RequestMethod.GET)
-	public String mypageStart(UserVO vo) {
-		return "mypa";
-	}
-	
 	/**
 	 * 로그인 화면에 처음 접근할때 호출 하는 함수
 	 * @param vo
@@ -65,7 +58,6 @@ public class LoginController {
 			session.setAttribute("UserNo", String.valueOf(outVO.getNo()));
 			model.addAttribute("userVO", outVO);
 			return "redirect:/map.do";
-//			return "map_page";
 		} else {
 			System.out.println("회원 정보가 없습니다.");
 			outVO = new UserVO();
@@ -80,6 +72,12 @@ public class LoginController {
 	public String loginOutButtonEvent(HttpSession session) {
 		session.invalidate();
 		return "login";	
+	}
+
+	@RequestMapping(value = "/findId.do", method = RequestMethod.GET)
+	public String findIdPwPageStart() {
+		System.out.println("아이디/비밀번호 찾기 화면으로 이동...");
+		return "findIdAndPw";
 	}
 	
 }
