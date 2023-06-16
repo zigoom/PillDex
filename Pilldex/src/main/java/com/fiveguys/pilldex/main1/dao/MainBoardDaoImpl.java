@@ -37,4 +37,41 @@ public class MainBoardDaoImpl implements Main1BoardDao {
 	  
 	 return sqlSessionTemplate.selectList(namespace + ".listPage", data);
 	}
+
+	@Override
+	public List<PillVO> listPageSearchBox(int displayPost, int postNum, String keyword,
+			String keyword_print, String keyword_shape,
+			String keyword_color, String keyword_chart, String keyword_line) throws Exception {
+		 HashMap<String, Object> data = new HashMap<String, Object>();
+		  
+		  data.put("displayPost", displayPost);
+		  data.put("postNum", postNum);
+		  data.put("keyword", keyword);
+		  data.put("keyword_print",keyword_print);
+		  data.put("keyword_shape",keyword_shape);
+		  data.put("keyword_color",keyword_color);
+		  data.put("keyword_chart",keyword_chart);
+		  data.put("keyword_line ",keyword_line );
+		return sqlSessionTemplate.selectList(namespace + ".listPageSearchBox", data);
+	}
+
+	@Override
+	public int searchCountBox(String keyword, String keyword_print, String keyword_shape,
+			String keyword_color,
+			String keyword_chart, String keyword_line) throws Exception {
+		 	HashMap<String, Object> data = new HashMap<String, Object>();
+		 	data.put("keyword", keyword);
+		 	data.put("keyword_print",keyword_print);
+		  data.put("keyword_shape",keyword_shape);
+		  data.put("keyword_color",keyword_color);
+		  data.put("keyword_chart",keyword_chart);
+		  data.put("keyword_line ",keyword_line );
+		
+		  return sqlSessionTemplate.selectOne(namespace + ".searchCountBox", data);
+	}
+
+	
+		 	
+		 
+	
 }

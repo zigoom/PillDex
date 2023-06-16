@@ -193,6 +193,31 @@
 							<img src="../resources/img/main-png/pre_arrow.png"
 								style="width: 70px; height: 70px;">
 						</button>
+						<script>
+						    function prescroll() {
+						        const element = document.getElementById("myDIV");
+						        element.scrollLeft = -1000
+						
+						        const btn1 = document.getElementById('next1');
+						
+						        // btn1 숨기기 (display: none)
+						        if (next1.style.display !== 'none') {
+						            next1.style.display = 'none';
+						        }
+						        // btn` 보이기 (display: block)
+						        else {
+						            next1.style.display = 'inline-block';
+						        }
+						
+						        if (pre1.style.display !== 'none') {
+						            pre1.style.display = 'none';
+						        }
+						        // btn` 보이기 (display: block)
+						        else {
+						            pre1.style.display = 'inline-block';
+						        }
+						    }
+						</script>
 
 						<input type="radio" id="med_mod4" name="med_mod" value="med_mod4">
 						<label for="med_mod4"
@@ -220,6 +245,32 @@
 							<img src="../resources/img/main-png/next_arrow.png"
 								style="width: 70px; height: 70px;">
 						</button>
+						<script>
+						    function newxtscroll() {
+						        const element = document.getElementById("myDIV");
+						        element.scrollLeft += 1000
+						
+						        const btn1 = document.getElementById('next1');
+						
+						        // btn1 숨기기 (display: none)
+						        if (next1.style.display !== 'none') {
+						            next1.style.display = 'none';
+						        }
+						        // btn` 보이기 (display: block)
+						        else {
+						            next1.style.display = 'inline-block';
+						        }
+						
+						        if (pre1.style.display !== 'none') {
+						            pre1.style.display = 'none';
+						        }
+						        // btn` 보이기 (display: block)
+						        else {
+						            pre1.style.display = 'inline-block';
+						        }
+						
+						    }
+						</script>
 
 
 
@@ -309,7 +360,31 @@
 							<img src="../resources/img/main-png/pre_arrow.png"
 								style="width: 70px; height: 70px;">
 						</button>
-
+							<script>
+							    function prescroll2() {
+							        const element = document.getElementById("myDIV2");
+							        element.scrollLeft = -1000
+							
+							        const btn1 = document.getElementById('next2');
+							
+							        // btn1 숨기기 (display: none)
+							        if (next2.style.display !== 'none') {
+							            next2.style.display = 'none';
+							        }
+							        // btn` 보이기 (display: block)
+							        else {
+							            next2.style.display = 'inline-block';
+							        }
+							
+							        if (pre2.style.display !== 'none') {
+							            pre2.style.display = 'none';
+							        }
+							        // btn` 보이기 (display: block)
+							        else {
+							            pre2.style.display = 'inline-block';
+							        }
+							    }
+							</script>
 						<div>
 							<input type="radio" id="med_coclor9" name="med_coclor"
 								value="med_coclor9"> <label for="med_coclor9"
@@ -324,7 +399,32 @@
 							<img src="../resources/img/main-png/next_arrow.png"
 								style="width: 70px; height: 70px;">
 						</button>
-
+							<script>
+							    function newxtscroll2() {
+							        const element = document.getElementById("myDIV2");
+							        element.scrollLeft += 1000
+							
+							        const btn1 = document.getElementById('next2');
+							
+							        // btn1 숨기기 (display: none)
+							        if (next2.style.display !== 'none') {
+							            next2.style.display = 'none';
+							        }
+							        // btn` 보이기 (display: block)
+							        else {
+							            next2.style.display = 'inline-block';
+							        }
+							
+							        if (pre2.style.display !== 'none') {
+							            pre2.style.display = 'none';
+							        }
+							        // btn` 보이기 (display: block)
+							        else {
+							            pre2.style.display = 'inline-block';
+							        }
+							
+							    }
+							</script>
 
 
 						<div>
@@ -487,8 +587,8 @@
 					style="list-style: none; text-align: left; padding-left: 0; margin-top: 10px">
 					<li>약품이름:<span>${list.item_name}</span></li>
 					<li>외영정보:<span>${list.drug_shape}</span></li>
-					<li>성분정보:<span>${list.color_class1}</span></li>
-					<li>저장방법:<span>${list.chart}</span></li>
+					<li>성분정보:<span>${list.color_class}</span></li>
+					<li>저장방법:<span>${list.deposit_method_qesitm}</span></li>
 				</ul>
 			</button>
 		</c:forEach>
@@ -575,109 +675,6 @@
 
 		document.loginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
 
-	}
-</script>
-
-<script>
-	function newxtscroll() {
-		const element = document.getElementById("myDIV");
-		element.scrollLeft += 1000
-
-		const btn1 = document.getElementById('next1');
-
-		// btn1 숨기기 (display: none)
-		if (next1.style.display !== 'none') {
-			next1.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			next1.style.display = 'inline-block';
-		}
-
-		if (pre1.style.display !== 'none') {
-			pre1.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			pre1.style.display = 'inline-block';
-		}
-
-	}
-</script>
-<script>
-	function prescroll() {
-		const element = document.getElementById("myDIV");
-		element.scrollLeft = -1000
-
-		const btn1 = document.getElementById('next1');
-
-		// btn1 숨기기 (display: none)
-		if (next1.style.display !== 'none') {
-			next1.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			next1.style.display = 'inline-block';
-		}
-
-		if (pre1.style.display !== 'none') {
-			pre1.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			pre1.style.display = 'inline-block';
-		}
-	}
-</script>
-<script>
-	function newxtscroll2() {
-		const element = document.getElementById("myDIV2");
-		element.scrollLeft += 1000
-
-		const btn1 = document.getElementById('next2');
-
-		// btn1 숨기기 (display: none)
-		if (next2.style.display !== 'none') {
-			next2.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			next2.style.display = 'inline-block';
-		}
-
-		if (pre2.style.display !== 'none') {
-			pre2.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			pre2.style.display = 'inline-block';
-		}
-
-	}
-</script>
-<script>
-	function prescroll2() {
-		const element = document.getElementById("myDIV2");
-		element.scrollLeft = -1000
-
-		const btn1 = document.getElementById('next2');
-
-		// btn1 숨기기 (display: none)
-		if (next2.style.display !== 'none') {
-			next2.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			next2.style.display = 'inline-block';
-		}
-
-		if (pre2.style.display !== 'none') {
-			pre2.style.display = 'none';
-		}
-		// btn` 보이기 (display: block)
-		else {
-			pre2.style.display = 'inline-block';
-		}
 	}
 </script>
 </html>

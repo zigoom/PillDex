@@ -29,4 +29,36 @@ public class Main1BoardServiceImpl implements Main1BoardService {
 	public List<PillVO> listPage(int displayPost, int postNum) throws Exception {
 	 return main1BoardDao.listPage(displayPost, postNum);
 	}
+
+	@Override
+	public List<PillVO> listPageSearchBox(int displayPost, int postNum,String keyword, String keyword_print, String keyword_shape,
+			String keyword_color, String keyword_chart, String keyword_line) throws Exception {
+		
+		return main1BoardDao.listPageSearchBox(displayPost, postNum,
+												keyword,
+												keyword_print,
+												keyword_shape,
+												keyword_color,
+												keyword_chart,
+												keyword_line 
+								);
+	}
+
+	@Override
+	public int searchCountBox(String keyword, String keyword_print,String keyword_shape, String keyword_color,
+			String keyword_chart, String keyword_line) throws Exception {
+		
+		return main1BoardDao.searchCountBox(
+				keyword,
+				keyword_print,
+				keyword_shape,
+				keyword_color,
+				keyword_chart,
+				keyword_line);
+	}
+
+
+
+	
+	
 }

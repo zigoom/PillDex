@@ -3,25 +3,131 @@
 <mapper namespace="mapper.main1-paging-mapper">
     <select id="list"
         resultType="com.fiveguys.pilldex.domain.PillVO">
-        SELECT item_name,drug_shape,color_class1,chart
-        FROM PILL_TABLE
+			SELECT item_name,
+					entp_name,
+					efcy_qesitm,
+					use_method_qesitm,
+					atpn_qesitm,
+					deposit_method_qesitm,
+					item_image
+		        FROM DATANAME  
+		            WHERE (item_name) IN(
+		                       SELECt item_name 
+		                         FROM DATASHAPE  
+		 
+		                      )
+		                 ORDER BY item_name 
     </select>
 		
 	<select id="count" resultType="int">
-	   SELECT COUNT(item_name) 
-	   FROM PILL_TABLE
+	  SELECT COUNT(*)
+        FROM DATANAME  
+            WHERE (item_name) IN(
+                       SELECt item_name 
+                         FROM DATASHAPE  
+ 
+                      )
+                 ORDER BY item_name 
 	</select>
 	
        <!-- 게시물 목록 + 페이징 -->
      <select id="listPage" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
-       SELECT item_name,drug_shape,color_class1,chart
-          FROM(
-              <![CDATA[   SELECT ROWNUM AS RNUM, A.*
-                    FROM (PILL_TABLE) A
-                 WHERE ROWNUM <= #{postNum}+ #{displayPost} ]]> 
-              )
-         WHERE RNUM > #{displayPost}    
-    </select>   
+      SELECT item_name,
+				entp_name,
+				efcy_qesitm,
+				use_method_qesitm,
+				atpn_qesitm,
+				deposit_method_qesitm,
+				item_image
+	    FROM(
+	       SELECT A.*,ROWNUM
+	            FROM DATANAME  A
+	                WHERE (item_name) IN(
+	                           SELECt item_name 
+	                             FROM DATASHAPE  
+	                      )
+	              <![CDATA[  AND ROWNUM <= #{postNum}+ #{displayPost} ]]>
+	                 ) 
+	             <![CDATA[       WHERE ROWNUM <= #{displayPost}  ]]>
+	          
+	                 ORDER BY ROWNUM 
+    </select> 
+             
+    <!-- 페이징 + 검색 -->
+     <select id="listPageSearchBox" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
+        SELECT item_name,
+				entp_name,
+				efcy_qesitm,
+				use_method_qesitm,
+				atpn_qesitm,
+				deposit_method_qesitm,
+				item_image
+            FROM DATANAME 
+            WHERE (item_name,ROWNUM) IN(
+                       SELECT  item_name,ROWNUM 
+                         FROM DATASHAPE 
+                         <![CDATA[    WHERE ROWNUM <= #{postNum}+ #{displayPost} ]]>
+                               <if test='keyword != null '>
+                                AND item_name LIKE '%'||#{keyword}||'%' 
+                               </if> 
+                            
+                               <if test='keyword_print != null '>
+			                    AND print_front LIKE '%'||#{keyword_print}||'%'
+			                    OR print_back LIKE '%'||#{keyword_print}||'%'
+			                   </if>   
+			                   <if test='keyword_shape != null '>
+			                    AND drug_shape LIKE '%'||#{keyword_shape}||'%'
+			                   </if>  
+			                   <if test='keyword_color != null '>
+			                    AND color_class LIKE '%'||#{keyword_color}||'%'
+			                   </if> 
+			                   
+			                   <if test = 'tkeyword_chart != null '>
+			                    AND chart LIKE '%'||#{keyword_chart}||'%'
+			                   </if>  
+			                   
+			                   <if test='keyword_line != null '>
+			                    AND line_front LIKE '%'||#{keyword_line}||'%'
+			                    OR  line_back LIKE  '%'||#{keyword_line}||'%'
+			                   </if> 
+                      )
+                      
+                 AND ROWNUM> #{displayPost}  
+                 ORDER BY item_name 
+      </select>
+     
+      <select id="searchCountBox" parameterType="hashMap" resultType="int">
+          SELECT COUNT(*)
+            FROM DATANAME 
+            WHERE item_name IN(
+                       SELECT item_name
+                         FROM DATASHAPE 
+                         WHERE 1=1
+                               <if test='keyword != null '>
+                                AND print_front LIKE '%'||#{keyword}||'%' 
+                               </if> 
+                            
+                               <if test='keyword_print != null '>
+                                AND print_front LIKE '%'||#{keyword_print}||'%'
+                                OR print_back LIKE '%'||#{keyword_print}||'%'
+                               </if>   
+                               <if test='keyword_shape != null '>
+                                AND drug_shape LIKE '%'||#{keyword_shape}||'%'
+                               </if>  
+                               <if test='keyword_color != null '>
+                                AND color_class LIKE '%'||#{keyword_color}||'%'
+                               </if> 
+                               <if test='keyword_chart != null '>
+                                AND chart LIKE '%'||#{keyword_chart}||'%'
+                               </if>  
+                               
+                               <if test='keyword_line != null '>
+                                AND line_front LIKE '%'||#{keyword_line}||'%'
+                                OR  line_back LIKE  '%'||#{keyword_line}||'%'
+                               </if> 
+                      )
+                      
+               
 
-
+     </select>
 </mapper>

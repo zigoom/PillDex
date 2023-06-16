@@ -42,17 +42,59 @@ public class BoardController  {
 	list = service.listPage(page.getDisplayPost(), page.getPostNum());
 
 	model.addAttribute("list", list);   
-	/*
-	model.addAttribute("pageNum", page.getPageNum());
-
-	model.addAttribute("startPageNum", page.getStartPageNum());
-	model.addAttribute("endPageNum", page.getEndPageNum());
-	 
-	 model.addAttribute("prev", page.getPrev());
-	model.addAttribute("next", page.getNext());  
-	*/
 	model.addAttribute("page", page);
 	model.addAttribute("select", num);
+	}
+	
+	
+	@RequestMapping(value = "/listPageSearchBox.do", method = RequestMethod.GET)
+	public void getListPageSearchBox //(@RequestParam("num") int num)
+			(Model model, 
+			@RequestParam(value = "num") int num,
+			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword,
+			@RequestParam(value = "keyword_print",required = false, defaultValue = "") String keyword_print,
+			@RequestParam(value = "keyword_shape",required = false, defaultValue = "") String keyword_shape,
+			@RequestParam(value = "keyword_color",required = false, defaultValue = "") String keyword_color,
+			@RequestParam(value = "keyword_chart",required = false, defaultValue = "") String keyword_chart,
+			@RequestParam(value = "keyword_line",required = false, defaultValue = "") String keyword_line
+			) 
+					throws Exception {
+		
+	main1page page = new main1page();
+	
+	page.setNum(num);
+	
+	page.setCount(service.searchCountBox(
+			keyword,
+			keyword_print,
+			keyword_shape,
+			keyword_color,
+			keyword_chart,
+			keyword_line)); 
+	
+	page.setKeyword(keyword);
+	page.setKeyword_print(keyword_print);
+	page.setKeyword_shape(keyword_shape);
+	page.setKeyword_color(keyword_color);
+	page.setKeyword_chart(keyword_chart);
+	page.setKeyword_line (keyword_line );
+
+	
+	List<PillVO> list = null;
+	list = service.listPageSearchBox(page.getDisplayPost(), page.getPostNum(), 
+	keyword,
+	keyword_print,
+	keyword_shape,
+	keyword_color,
+	keyword_chart,
+	keyword_line);
+	
+	model.addAttribute("list", list);   
+
+	model.addAttribute("page", page);
+	model.addAttribute("select", num);
+
+
 	}
 	
 }

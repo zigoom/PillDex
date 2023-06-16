@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="author" content="hbi">
+
 <link rel="stylesheet" href="../resources/css/main-css/search_list.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -66,7 +67,7 @@
 			</nav>
 		</header>
 	</div>
-	<div id="container">
+	<div  class="container">
 		<div
 			style="display: table; width: 100%; height: 120px; background-image: url(../resources/img/main-png/BG.png); background-size: cover; background-position: center;">
 			<div
@@ -143,7 +144,7 @@
 			</div>
 		</div>
 		<fieldset
-			style="margin-left: 50px; margin-right: 50px; margin-top: 15px; border: 1px solid black;">
+			style="width: 800px; margin:auto; margin-top:15px; border: 1px solid black;">
 			<div style="margin-top: 10px">
 				<img alt="" src="../resources/img/main-png/icon.png"
 					style="width: 20px; height: 15px; margin-left: 10px"> |의약품 정보
@@ -154,36 +155,60 @@
 					style="height: 50px; border: 1px solid white; border-bottom-color: black">
 					<div style="margin-top: 15px; display: flex;">
 
-						&nbsp;&nbsp; 약 정보로 검색 &nbsp;&nbsp; <input class=search_into
-							type="text" placeholder="약 이름 또는 성분 등으로 검색해 보세요." id=n_search
-							style="width: 600px;"> <input type="submit" value="검색하기">
-					</div>
-					<script>
-						function search_into() {
+						&nbsp;&nbsp; 약 정보로 검색 &nbsp;&nbsp; 
+						<input class=search_into
+							type="text"  name = "keyword" value="${page.keyword}"
+							placeholder="약 이름 또는 성분 등으로 검색해 보세요." 
+							style="width: 600px;"> 
+						<button type="submit" id="pill_Nsearch">검색하기</button>
+						
+						<script type="text/javascript">
+						document.getElementById("pill_Nsearch").onclick = function () {
 
-						}
-					</script>
+						  let keyword =  document.getElementsByName("keyword")[0].value;
+						  let keyword_print = document.getElementsByName("keyword_print")[0].value;
+						  let keyword_shape = document.querySelector('input[name="med_mod"]:checked')[0].value;
+						  let keyword_color = document.querySelector('input[name="med_color"]:checked')[0].value;
+						  let keyword_chart = document.querySelector('input[name="med_texture"]:checked')[0].value;
+						  let keyword_line =  document.querySelector('input[name="med_line"]:checked')[0].value;
+						  
+						  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" + 
+						      "&keyword=" + keyword;+
+						      "$keyword_print=" + keyword_print;+
+						      "&keyword_shape=" + keyword_shape;+
+						      "&keyword_color=" + keyword_color;+
+						      "&keyword_chart=" + keyword_chart;+
+						      "&keyword_line =" + keyword_line; };
+						</script>
+                        
+						
+					</div>
+					
+					
+					
 
 				</div>
-
+            </form>
+            <form name="search_pill_mod_form" onsubmit="return false;">
 				<div style="margin-top: 15px">
-					&nbsp;약 모양으로 검색&nbsp;<input type="text"
+					&nbsp;약 모양으로 검색&nbsp;<input type="text" name = "keword_print" value = "${page.keyword_print}"
 						placeholder="식별문자(약의 앞면이나 뒷면의 문자)로 검색해 보세요." style="width: 600px;">
 				</div>
-			</form>
-
-			<form name="search_pill_mod_form" onsubmit="return false;"
-				method="post">
+				
 				<div id="myDIV"
 					style="overflow: hidden; width: 710px; white-space: nowrap; margin: auto; margin-top: 20px">
 					<div class="select" style="display: inline-flex;">
-						<input type="radio" id="med_mod1" name="med_mod" value="med_mod1">
+						<input type="radio" id="med_mod1" name="med_mod" value=" " checked="checked">
 						<label for="med_mod1"
 							style="background-image: url('../resources/img/main-png/모양/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod2" name="med_mod" value="med_mod2">
+						</label> 
+						
+						<input type="radio" id="med_mod2" name="med_mod" value="원형">
 						<label for="med_mod2"
 							style="background-image: url('../resources/img/main-png/모양/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod3" name="med_mod" value="med_mod3">
+						</label> 
+						
+						<input type="radio" id="med_mod3" name="med_mod" value="타원형">
 						<label for="med_mod3"
 							style="background-image: url('../resources/img/main-png/모양/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
@@ -194,22 +219,27 @@
 								style="width: 70px; height: 70px;">
 						</button>
 
-						<input type="radio" id="med_mod4" name="med_mod" value="med_mod4">
+						<input type="radio" id="med_mod4" name="med_mod" value="반원형">
 						<label for="med_mod4"
 							style="background-image: url('../resources/img/main-png/모양/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod5" name="med_mod" value="med_mod5">
+						</label> 
+						<input type="radio" id="med_mod5" name="med_mod" value="장방형">
 						<label for="med_mod5"
 							style="background-image: url('../resources/img/main-png/모양/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod6" name="med_mod" value="med_mod6">
+						</label> 
+						<input type="radio" id="med_mod6" name="med_mod" value="삼각형">
 						<label for="med_mod6"
 							style="background-image: url('../resources/img/main-png/모양/6.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod7" name="med_mod" value="med_mod7">
+						</label> 
+						<input type="radio" id="med_mod7" name="med_mod" value="사각형">
 						<label for="med_mod7"
 							style="background-image: url('../resources/img/main-png/모양/7.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod8" name="med_mod" value="med_mod8">
+						</label> 
+						<input type="radio" id="med_mod8" name="med_mod" value="마름모형">
 						<label for="med_mod8"
 							style="background-image: url('../resources/img/main-png/모양/8.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
-						</label> <input type="radio" id="med_mod9" name="med_mod" value="med_mod9">
+						</label> 
+						<input type="radio" id="med_mod9" name="med_mod" value="오각형">
 						<label for="med_mod9"
 							style="background-image: url('../resources/img/main-png/모양/9.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
@@ -225,13 +255,13 @@
 
 
 						<input type="radio" id="med_mod10" name="med_mod"
-							value="med_mod10"> <label for="med_mod10"
+							value="육각형"> <label for="med_mod10"
 							style="background-image: url('../resources/img/main-png/모양/10.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> <input type="radio" id="med_mod11" name="med_mod"
-							value="med_mod11"> <label for="med_mod11"
+							value="팔각형"> <label for="med_mod11"
 							style="background-image: url('../resources/img/main-png/모양/11.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> <input type="radio" id="med_mod12" name="med_mod"
-							value="med_mod12"> <label for="med_mod12"
+							value="기타"> <label for="med_mod12"
 							style="background-image: url('../resources/img/main-png/모양/12.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
 					</div>
@@ -241,8 +271,8 @@
 					style="overflow: hidden; width: 710px; white-space: nowrap; margin: auto; margin-top: 20px">
 					<div class="select" style="display: inline-flex;">
 						<div>
-							<input type="radio" id="med_coclor1" name="med_coclor"
-								value="med_coclor1"> <label for="med_coclor1"
+							<input type="radio" id="med_coclor1" name="med_coclor" checked="checked"
+								value=""> <label for="med_coclor1"
 								style="background-image: url('../resources/img/main-png/색깔/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">색상</p>
@@ -250,15 +280,15 @@
 
 						<div>
 							<input type="radio" id="med_coclor2" name="med_coclor"
-								value="med_coclor2"> <label for="med_coclor2"
+								value="하양"> <label for="med_coclor2"
 								style="background-image: url('../resources/img/main-png/색깔/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
-							<p style="text-align: center; font-weight: 800">하얀</p>
+							<p style="text-align: center; font-weight: 800">하양</p>
 						</div>
 
 						<div>
 							<input type="radio" id="med_coclor3" name="med_coclor"
-								value="med_coclor3"> <label for="med_coclor3"
+								value="노랑"> <label for="med_coclor3"
 								style="background-image: url('../resources/img/main-png/색깔/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">노랑</p>
@@ -266,7 +296,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor4" name="med_coclor"
-								value="med_coclor4"> <label for="med_coclor4"
+								value="주황"> <label for="med_coclor4"
 								style="background-image: url('../resources/img/main-png/색깔/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">주황</p>
@@ -274,7 +304,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor5" name="med_coclor"
-								value="med_coclor5"> <label for="med_coclor5"
+								value="분홍"> <label for="med_coclor5"
 								style="background-image: url('../resources/img/main-png/색깔/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">분홍</p>
@@ -282,7 +312,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor6" name="med_coclor"
-								value="med_coclor6"> <label for="med_coclor6"
+								value="빨강"> <label for="med_coclor6"
 								style="background-image: url('../resources/img/main-png/색깔/6.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">빨강</p>
@@ -290,7 +320,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor7" name="med_coclor"
-								value="med_coclor7"> <label for="med_coclor7"
+								value="갈색"> <label for="med_coclor7"
 								style="background-image: url('../resources/img/main-png/색깔/7.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">갈색</p>
@@ -298,7 +328,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor8" name="med_coclor"
-								value="med_coclor8"> <label for="med_coclor8"
+								value="연두"> <label for="med_coclor8"
 								style="background-image: url('../resources/img/main-png/색깔/8.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">연두</p>
@@ -312,7 +342,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor9" name="med_coclor"
-								value="med_coclor9"> <label for="med_coclor9"
+								value="초록"> <label for="med_coclor9"
 								style="background-image: url('../resources/img/main-png/색깔/9.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">초록</p>
@@ -329,7 +359,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor10" name="med_coclor"
-								value=med_coclor10> <label for="med_coclor10"
+								value=청록> <label for="med_coclor10"
 								style="background-image: url('../resources/img/main-png/색깔/10.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">청록</p>
@@ -337,7 +367,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor11" name="med_coclor"
-								value="med_coclor11"> <label for="med_coclor11"
+								value="파랑"> <label for="med_coclor11"
 								style="background-image: url('../resources/img/main-png/색깔/11.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">파랑</p>
@@ -345,7 +375,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor12" name="med_coclor"
-								value="med_coclor12"> <label for="med_coclor12"
+								value="남색"> <label for="med_coclor12"
 								style="background-image: url('../resources/img/main-png/색깔/12.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">남색</p>
@@ -353,7 +383,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor13" name="med_coclor"
-								value="med_coclor13"> <label for="med_coclor13"
+								value="자주"> <label for="med_coclor13"
 								style="background-image: url('../resources/img/main-png/색깔/13.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">자주</p>
@@ -361,7 +391,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor14" name="med_coclor"
-								value="med_coclor14"> <label for="med_coclor14"
+								value="보라"> <label for="med_coclor14"
 								style="background-image: url('../resources/img/main-png/색깔/14.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">보라</p>
@@ -369,7 +399,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor15" name="med_coclor"
-								value="med_coclor15"> <label for="med_coclor15"
+								value="회색"> <label for="med_coclor15"
 								style="background-image: url('../resources/img/main-png/색깔/15.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">회색</p>
@@ -377,7 +407,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor16" name="med_coclor"
-								value="med_coclor16"> <label for="med_coclor16"
+								value="검정"> <label for="med_coclor16"
 								style="background-image: url('../resources/img/main-png/색깔/16.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">검정</p>
@@ -385,7 +415,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor17" name="med_coclor"
-								value="med_coclor17"> <label for="med_coclor17"
+								value="투명"> <label for="med_coclor17"
 								style="background-image: url('../resources/img/main-png/색깔/17.png'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">투명</p>
@@ -398,8 +428,8 @@
 				<div class="select"
 					style="display: flex; overflow: hidden; margin-left: 44px; margin-top: 20px; width: 710;">
 					<div>
-						<input type="radio" id="med_texture1" name="med_texture"
-							value="med_texture1"> <label for="med_texture1"
+						<input type="radio" id="med_texture1" name="med_texture" checked="checked"
+							value=""> <label for="med_texture1"
 							style="background-image: url('../resources/img/main-png/재질/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
 						<p style="text-align: center; font-weight: 800">제질</p>
@@ -407,7 +437,7 @@
 
 					<div>
 						<input type="radio" id="med_texture2" name="med_texture"
-							value="med_texture2"> <label for="med_texture2"
+							value="정제"> <label for="med_texture2"
 							style="background-image: url('../resources/img/main-png/재질/2.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
 						<p style="text-align: center; font-weight: 800">정제류</p>
@@ -415,7 +445,7 @@
 
 					<div>
 						<input type="radio" id="med_texture3" name="med_texture"
-							value="med_texture3"> <label for="med_texture3"
+							value="경질"> <label for="med_texture3"
 							style="background-image: url('../resources/img/main-png/재질/3.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
 						<p style="text-align: center; font-weight: 800">경질캡슐</p>
@@ -423,7 +453,7 @@
 
 					<div>
 						<input type="radio" id="med_texture4" name="med_texture"
-							value="med_texture4"> <label for="med_texture4"
+							value="연질"> <label for="med_texture4"
 							style="background-image: url('../resources/img/main-png/재질/4.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
 						<p style="text-align: center; font-weight: 800">연질캡슐</p>
@@ -434,29 +464,29 @@
 					style="display: flex; overflow: hidden; margin-left: 44px; margin-top: 20px; width: 710;">
 
 					<div>
-						<input type="radio" id="med_line1" name="med_line"
-							value="med_line1"> <label for="med_line1"
+						<input type="radio" id="med_line1" name="med_line" checked="checked"
+							value=""> <label for="med_line1"
 							style="background-image: url('../resources/img/main-png/선/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
 						<p style="text-align: center; font-weight: 800">분할선</p>
 					</div>
 					<div>
 						<input type="radio" id="med_line2" name="med_line"
-							value="med_line2"> <label for="med_line2"
+							value="없음"> <label for="med_line2"
 							style="background-image: url('../resources/img/main-png/선/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
 						<p style="text-align: center; font-weight: 800">없음</p>
 					</div>
 					<div>
 						<input type="radio" id="med_line3" name="med_line"
-							value="med_line3"> <label for="med_line3"
+							value="-"> <label for="med_line3"
 							style="background-image: url('../resources/img/main-png/선/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
 						<p style="text-align: center; font-weight: 800">(-)형</p>
 					</div>
 					<div>
 						<input type="radio" id="med_line4" name="med_line"
-							value="med_line4"> <label for="med_line4"
+							value="+"> <label for="med_line4"
 							style="background-image: url('../resources/img/main-png/선/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
 						<p style="text-align: center; font-weight: 800">(+)형</p>
@@ -464,7 +494,7 @@
 
 					<div>
 						<input type="radio" id="med_line5" name="med_line"
-							value="med_line5"> <label for="med_line5"
+							value="기타"> <label for="med_line5"
 							style="background-image: url('../resources/img/main-png/선/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
 						<p style="text-align: center; font-weight: 800">기타</p>
@@ -473,37 +503,58 @@
 
 				<div
 					style="text-align: center; margin-bottom: 30px; margin-top: 10px;">
-					<input type="submit" value="검색하기"> <input type="reset"
-						value="취소하기">
+					<button type="button" id = "pill_search_Box">검색하기</button> 
+					<script type="text/javascript">
+                    document.getElementById("pill_search_Box").onclick = function () {
+                       
+                    let keyword = document.getElementsByName("keyword")[0].value;
+                    let keyword_print = document.getElementsByName("keyword_print")[0].value;
+                    let keyword_shape = document.querySelector('input[type=radio][name="med_mod"]:checked').value;
+                    let keyword_color = document.querySelector('input[type=radio][name="med_coclor"]:checked').value;
+                    let keyword_chart = document.querySelector('input[type=radio][name="med_texture"]:checked').value;
+                    let keyword_line =  document.querySelector('input[type=radio][name="med_line"]:checked').value;
+                  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
+                  +"&keyword=" + keyword;
+                  +"&keyword_print=" + keyword_print;
+                  +"&keyword_shape=" + keyword_shape;
+                  +"&keyword_color=" + keyword_color;
+                  +"&keyword_chart=" + keyword_chart;
+                  +"&keyword_line=" + keyword_line;};</script>
+					
+					<input type="reset"
+						value="취소하기">	
 				</div>
+				
 			</form>
 		</fieldset>
 	</div>
   <div>
 	<div class="search_list_table">
-		<c:forEach var="list" items="${list}">
+		<c:forEach var="list" items="${pillVO}">
 			<button class="search_list" onclick="window.open('#')">
-				<img class="search_list_img" src="npg/icon.png">
-				<ul
-					style="list-style: none; text-align: left; padding-left: 0; margin-top: 10px">
-					<li>약품이름:<span>${list.item_name}</span></li>
-					<li>외영정보:<span>${list.drug_shape}</span></li>
-					<li>성분정보:<span>${list.color_class}</span></li>
-					<li>저장방법:<span>${list.deposit_method_qesitm}</span></li>
-				</ul>
+				<img class="search_list_img" src="${list.item_image}">
+				<ul style="list-style: none; 
+					 text-align: left; padding-left: 0; margin-top: 10px; height: 100%">
+					<li>약품이름:<span class="textlist">${list.item_name}</span></li>
+					<li>약품 제약사:<span class="textlist">${list.entp_name}</span></li>
+					<li>사용용도:<span class="textlist">${list.efcy_qesitm}</span></li>
+					<li>복용법:<span class="textlist">${list.use_method_qesitm}</span></li
+					><li>주의사항:<span class="textlist">${list.atpn_qesitm}</span></li>
+					<li>보관방법:<span class="textlist">${list.deposit_method_qesitm}</span></li>
+				</ul>			
 			</button>
 		</c:forEach>
 	</div>
    <div style="text-align: center; margin: auto;">
 	 <c:if test="${page.prev}">
-		 <span>[ <a href="/pilldex/main1board/listPage.do?num=${page.startPageNum - 1}">이전</a> ]</span>
+		 <span>[ <a href="/pilldex/main1board/listPageSearchBox.do?num=${page.startPageNum - 1}${page.searchTypeKeywordBox}">이전</a> ]</span>
 		</c:if>
 		
 		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 		 <span>
 		 
 		  <c:if test="${select != num}">
-		   <a href="/pilldex/main1board/listPage.do?num=${num}">${num}</a>
+		   <a href="/pilldex/main1board/listPageSearchBox.do?num=${num}${page.searchTypeKeywordBox}">${num}</a>
 		  </c:if>    
 		  
 		  <c:if test="${select == num}">
@@ -514,7 +565,7 @@
 		</c:forEach>
 		
 		<c:if test="${page.next}">
-		 <span>[ <a href="/pilldex/main1board/listPage.do?num=${page.endPageNum + 1}">다음</a> ]</span>
+		 <span>[ <a href="/pilldex/main1board/listPageSearchBox.do?num=${page.endPageNum + 1}${page.searchTypeKeywordBox}">다음</a> ]</span>
 		</c:if>
 	</div>
     </div>

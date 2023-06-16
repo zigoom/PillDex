@@ -66,7 +66,7 @@
 			</nav>
 		</header>
 	</div>
-	<div id="container">
+	<div  class="container">
 		<div
 			style="display: table; width: 100%; height: 120px; background-image: url(../resources/img/main-png/BG.png); background-size: cover; background-position: center;">
 			<div
@@ -143,7 +143,7 @@
 			</div>
 		</div>
 		<fieldset
-			style="margin-left: 50px; margin-right: 50px; margin-top: 15px; border: 1px solid black;">
+			style="width: 800px; margin:auto; margin-top:15px; border: 1px solid black;">
 			<div style="margin-top: 10px">
 				<img alt="" src="../resources/img/main-png/icon.png"
 					style="width: 20px; height: 15px; margin-left: 10px"> |의약품 정보
@@ -154,15 +154,24 @@
 					style="height: 50px; border: 1px solid white; border-bottom-color: black">
 					<div style="margin-top: 15px; display: flex;">
 
-						&nbsp;&nbsp; 약 정보로 검색 &nbsp;&nbsp; <input class=search_into
-							type="text" placeholder="약 이름 또는 성분 등으로 검색해 보세요." id=n_search
-							style="width: 600px;"> <input type="submit" value="검색하기">
+						&nbsp;&nbsp; 약 정보로 검색 &nbsp;&nbsp; 
+						<input class=search_into
+							type="text"  name = "keyword" value="${page.keyword}"
+							placeholder="약 이름 또는 성분 등으로 검색해 보세요." 
+							style="width: 600px;"> 
+						<button type="button" id="pill_Nsearch">검색하기</button>
 					</div>
+					
 					<script>
-						function search_into() {
+						 document.getElementById("pill_Nsearch").onclick = function () {
 
-						}
+						  let keyword =  document.getElementsByName("keyword")[0].value;
+
+						  console.log(keyword)
+						  location.href = "/pilldex/main1board/listPageSearch.do?num=1" + "&keyword=" + keyword;
+						 };
 					</script>
+					
 
 				</div>
 
@@ -487,8 +496,8 @@
 				<ul
 					style="list-style: none; text-align: left; padding-left: 0; margin-top: 10px">
 					<li>약품이름:<span>${list.item_name}</span></li>
-					<li>외영정보:<span>${list.drug_shape}</span></li>
-					<li>성분정보:<span>${list.color_class}</span></li>
+					<li>외형정보:<span>${list.drug_shape}</span></li>
+					<li>색깔정보:<span>${list.color_class}</span></li>
 					<li>저장방법:<span>${list.deposit_method_qesitm}</span></li>
 				</ul>
 			</button>
@@ -496,14 +505,14 @@
 	</div>
    <div style="text-align: center; margin: auto;">
 	 <c:if test="${page.prev}">
-		 <span>[ <a href="/pilldex/main1board/listPage.do?num=${page.startPageNum - 1}">이전</a> ]</span>
+		 <span>[ <a href="/pilldex/main1board/listPageSearch.do?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a> ]</span>
 		</c:if>
 		
 		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 		 <span>
 		 
 		  <c:if test="${select != num}">
-		   <a href="/pilldex/main1board/listPage.do?num=${num}">${num}</a>
+		   <a href="/pilldex/main1board/listPageSearch.do?num=${num}${page.searchTypeKeyword}">${num}</a>
 		  </c:if>    
 		  
 		  <c:if test="${select == num}">
@@ -514,7 +523,7 @@
 		</c:forEach>
 		
 		<c:if test="${page.next}">
-		 <span>[ <a href="/pilldex/main1board/listPage.do?num=${page.endPageNum + 1}">다음</a> ]</span>
+		 <span>[ <a href="/pilldex/main1board/listPageSearch.do?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
 		</c:if>
 	</div>
     </div>
