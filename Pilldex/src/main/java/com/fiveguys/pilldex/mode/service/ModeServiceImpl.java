@@ -31,4 +31,10 @@ public class ModeServiceImpl implements ModeService {
 		return modeDao.parseDataFromDbToName(vo);
 	}
 
+
+	@Override
+	public List<PillVO> parseDataFromDbToShape(PillVO vo) throws SQLException {
+		return modeDao.parseDataFromDbToShape(vo);
+	}
+
 }

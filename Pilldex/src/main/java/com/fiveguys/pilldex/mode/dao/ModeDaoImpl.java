@@ -40,5 +40,14 @@ public class ModeDaoImpl implements ModeDao {
 	    return outVO;
 	}
 
+	@Override
+	public List<PillVO> parseDataFromDbToShape(PillVO inVO) throws SQLException {
+		String statement = NAMESPACE + ".searchPillsToShape";
+	    System.out.println(inVO.toString());
+	    List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
+	    System.out.println("outVO: " + outVO.toString());
+	    return outVO;
+	}
+
 
 }

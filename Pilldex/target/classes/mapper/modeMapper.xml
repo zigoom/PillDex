@@ -25,6 +25,12 @@
 		FROM DATANAME
 		WHERE item_name LIKE '%' || #{itemName} || '%'
 	</select>
+	
+	<select id="searchPillsToShape" parameterType="com.fiveguys.pilldex.domain.PillVO" resultMap="PillMap">
+		SELECT chart
+		FROM DATASHAPE
+		WHERE item_name = #{itemName}
+	</select>
 
 	<select id="searchPills"
 		parameterType="com.fiveguys.pilldex.domain.PillVO" resultMap="PillMap">
