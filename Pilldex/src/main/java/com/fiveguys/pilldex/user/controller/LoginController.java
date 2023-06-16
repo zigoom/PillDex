@@ -7,6 +7,8 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ import com.fiveguys.pilldex.user.service.UserService;
  */
 @Controller
 public class LoginController {	
+	final Logger LOG = LoggerFactory.getLogger(LoginController.class);
+	
 	@Autowired
 	UserService userService;
 	
@@ -76,7 +80,25 @@ public class LoginController {
 
 	@RequestMapping(value = "/findId.do", method = RequestMethod.GET)
 	public String findIdPwPageStart() {
-		System.out.println("아이디/비밀번호 찾기 화면으로 이동...");
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ findIdPwPageStart()                                    │");
+		System.out.println("│ 아이디/비밀번호 찾기 화면으로 이동...                                 │");
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		
+		return "findIdAndPw";
+	}
+	
+	
+	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
+	public String findId(UserVO user, HttpSession httpSession) {
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ findId()                  			                 │");
+		System.out.println("│ 아이디찾기 기능  				                                 │");
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		
+		
+		
+		
 		return "findIdAndPw";
 	}
 	
