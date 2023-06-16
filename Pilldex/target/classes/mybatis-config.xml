@@ -5,8 +5,10 @@
   <configuration>     
     <settings>
         <setting name="logImpl" value="LOG4J2"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
     <typeAliases>
+         
         <typeAlias type="com.fiveguys.pilldex.domain.UserVO" alias="UserVO"/>
         <typeAlias type="com.fiveguys.pilldex.domain.DrugVO" alias="DrugVO"/>
         <typeAlias type="com.fiveguys.pilldex.domain.AddressVO" alias="AddressVO"/>
