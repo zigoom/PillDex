@@ -24,9 +24,18 @@
         <org.mybatis-version>3.5.11</org.mybatis-version>  <!-- mybatis 사용 --> 
         <mybatis-spring-version>2.0.6</mybatis-spring-version>
         <log4jdbc-version>1.16</log4jdbc-version>
+        <gson.version>2.10.1</gson.version>
 	</properties>
 	
 	<dependencies>	 
+	
+	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        
         <!-- json 파일을 보내기 위해서 사용 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
