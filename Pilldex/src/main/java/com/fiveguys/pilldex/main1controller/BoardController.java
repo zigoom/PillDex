@@ -31,24 +31,8 @@ public class BoardController  {
 	}
 	
 	
-	@RequestMapping(value = "/listPage.do", method = RequestMethod.GET)
-	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
-		
-	main1page page = new main1page();
-	page.setNum(num);
-	page.setCount(service.count());  
-
-	List<PillVO> list = null; 
-	list = service.listPage(page.getDisplayPost(), page.getPostNum());
-
-	model.addAttribute("list", list);   
-	model.addAttribute("page", page);
-	model.addAttribute("select", num);
-	}
-	
-	
 	@RequestMapping(value = "/listPageSearchBox.do", method = RequestMethod.GET)
-	public void getListPageSearchBox //(@RequestParam("num") int num)
+	public void getListPageSearchBox 
 			(Model model, 
 			@RequestParam(value = "num") int num,
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword,
@@ -81,7 +65,8 @@ public class BoardController  {
 
 	
 	List<PillVO> list = null;
-	list = service.listPageSearchBox(page.getDisplayPost(), page.getPostNum(), 
+	list = service.listPageSearchBox(
+	page.getDisplayPost(), page.getPostNum(), 
 	keyword,
 	keyword_print,
 	keyword_shape,
@@ -90,7 +75,6 @@ public class BoardController  {
 	keyword_line);
 	
 	model.addAttribute("list", list);   
-
 	model.addAttribute("page", page);
 	model.addAttribute("select", num);
 
