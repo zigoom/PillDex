@@ -54,13 +54,14 @@
 			</ul>
 		</div>
 	</nav>
-	<c:forEach var="pill" items="${modeVO}">
+	${pill}
 		<div id="detail_img_text_box">
 			<div id="detail_img_box">
-				<img id="itemImage" alt="이미지가 없습니다" src="${pill.itemImage}">
+				<img id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
 			</div>
 			<div id="detail_img_box">
-				<h3>${pill.efcyQesitm}</h3>
+				<h4>${modeVO.itemName}</h4>
+				<h4>${modeVO.entpName}</h4>
 			</div>
 		</div>
 		<div id="star_box">
@@ -70,25 +71,21 @@
 		<!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
 		<div id="detail_result_box">
 			<h2>외형정보</h2>
-			<p>-성상 : 오각형의 분홍색 필름코팅정</p>
-			<br />
-			<h2>성분정보</h2>
-			<p>라니티딘염산염 84mg</p>
+			<input type="hidden" name="itemName" value="${modeVO.itemName}" id="itemName">
+			<p>${modeVO.chart}</p>
 			<br />
 			<h2>저장방법</h2>
-			<p>기밀용기, 실온(1-30ºC)보관</p>
+			<p>${modeVO.depositMethodQesitm}</p>
 			<br />
 			<h2>효능효과</h2>
-			<p>위산과다, 속쓰림, 신트림</p>
+			<p>${modeVO.efcyQesitm}</p>
 			<br />
 			<h2>용법용량</h2>
-			<p>16세 이상 1회 1정(75mg), 1일 2정(150mg)까지 복용할 수 있다.</p>
+			<p>${modeVO.useMethodQesitm}</p>
 			<br />
 			<h2>사용시 주의사항</h2>
-			<p>1.다음과 같은 사람은 이 약을 복용하지 말 것</p>
-			<h1>현 위치 결과물 내용들은 api 데이터로 바꿀것</h1>
+			<p>${modeVO.atpnQesitm}</p>
 		</div>
-	</c:forEach>
 	<footer
 		class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
@@ -102,7 +99,24 @@
 		</div>
 	</footer>
 	<script>
-
+	/* $(document).ready(function() {
+		$.ajax({
+			type: "POST",
+			url: "/pilldex/apiloadToShape.do",
+			async: true,
+			dataType: "html",
+			data: {
+				"itemName": $("#itemName").val()
+			},
+			success: function(data) {
+				console.log("Success data: " + data);
+				
+			},
+			error: function(data) {
+				console.log("Error: " + data);
+			}
+		});
+	}); */
 </script>
 </body>
 </html>

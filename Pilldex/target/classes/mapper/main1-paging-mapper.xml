@@ -48,9 +48,9 @@
 	                      )
 	              <![CDATA[  AND ROWNUM <= #{postNum}+ #{displayPost} ]]>
 	                 ) 
-	             <![CDATA[       WHERE ROWNUM <= #{displayPost}  ]]>
+	             <![CDATA[       WHERE ROWNUM >= #{displayPost}  ]]>
 	          
-	                 ORDER BY ROWNUM 
+	                 ORDER BY item_name
     </select> 
              
     <!-- 페이징 + 검색 -->
@@ -67,26 +67,26 @@
                        SELECT  item_name,ROWNUM 
                          FROM DATASHAPE 
                          <![CDATA[    WHERE ROWNUM <= #{postNum}+ #{displayPost} ]]>
-                               <if test='keyword != null '>
+                               <if test='keyword != "" '>
                                 AND item_name LIKE '%'||#{keyword}||'%' 
                                </if> 
                             
-                               <if test='keyword_print != null '>
+                               <if test='keyword_print != "" '>
 			                    AND print_front LIKE '%'||#{keyword_print}||'%'
 			                    OR print_back LIKE '%'||#{keyword_print}||'%'
 			                   </if>   
-			                   <if test='keyword_shape != null '>
+			                   <if test='keyword_shape != "" '>
 			                    AND drug_shape LIKE '%'||#{keyword_shape}||'%'
 			                   </if>  
-			                   <if test='keyword_color != null '>
+			                   <if test='keyword_color != "" '>
 			                    AND color_class LIKE '%'||#{keyword_color}||'%'
 			                   </if> 
 			                   
-			                   <if test = 'tkeyword_chart != null '>
+			                   <if test = 'tkeyword_chart != "" '>
 			                    AND chart LIKE '%'||#{keyword_chart}||'%'
 			                   </if>  
 			                   
-			                   <if test='keyword_line != null '>
+			                   <if test='keyword_line != "" '>
 			                    AND line_front LIKE '%'||#{keyword_line}||'%'
 			                    OR  line_back LIKE  '%'||#{keyword_line}||'%'
 			                   </if> 
@@ -103,25 +103,25 @@
                        SELECT item_name
                          FROM DATASHAPE 
                          WHERE 1=1
-                               <if test='keyword != null '>
+                               <if test='keyword != "" '>
                                 AND print_front LIKE '%'||#{keyword}||'%' 
                                </if> 
                             
-                               <if test='keyword_print != null '>
+                               <if test='keyword_print != "" '>
                                 AND print_front LIKE '%'||#{keyword_print}||'%'
                                 OR print_back LIKE '%'||#{keyword_print}||'%'
                                </if>   
-                               <if test='keyword_shape != null '>
+                               <if test='keyword_shape != "" '>
                                 AND drug_shape LIKE '%'||#{keyword_shape}||'%'
                                </if>  
-                               <if test='keyword_color != null '>
+                               <if test='keyword_color != "" '>
                                 AND color_class LIKE '%'||#{keyword_color}||'%'
                                </if> 
-                               <if test='keyword_chart != null '>
+                               <if test='keyword_chart != "" '>
                                 AND chart LIKE '%'||#{keyword_chart}||'%'
                                </if>  
                                
-                               <if test='keyword_line != null '>
+                               <if test='keyword_line != "" '>
                                 AND line_front LIKE '%'||#{keyword_line}||'%'
                                 OR  line_back LIKE  '%'||#{keyword_line}||'%'
                                </if> 

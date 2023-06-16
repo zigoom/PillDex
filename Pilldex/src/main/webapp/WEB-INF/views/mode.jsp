@@ -298,24 +298,26 @@
 
 
 	<div class="card-box-main">
-	<div class="card-box">
-		<c:forEach var="pill" items="${modeVO}">
-			<div class="card-form">
-				<form method="post" action="/pilldex/apiloadToNameDetail.do">
-					<div class="card-t">
-						<img src="${pill.itemImage}" class="card-img-top" alt="이미지가 없습니다.">
-						<div class="card-body">
-							<input name="itemName" value="${pill.itemName}" class="hidden input-itemName" />
-							<h5 class="card-title">${pill.itemName}</h5>
-							<p class="card-text">${pill.efcyQesitm}</p>
+		<div class="card-box">
+			<c:forEach var="pill" items="${modeVO}">
+				<div class="card-form">
+					<form method="post" action="/pilldex/apiloadToNameDetail.do">
+						<div class="card-t">
+							<img src="${pill.itemImage}" class="card-img-top"
+								alt="이미지가 없습니다.">
+							<div class="card-body">
+								<input name="itemName" value="${pill.itemName}"
+									class="hidden input-itemName" />
+								<h5 class="card-title">${pill.itemName}</h5>
+								<p class="card-text">${pill.efcyQesitm}</p>
+							</div>
 						</div>
-					</div>
-					<input type="submit" id="card-submit" class="btn btn-primary">
-				</form>
-			</div>
-		</c:forEach>
+						<input type="submit" id="card-submit" class="btn btn-primary">
+					</form>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-</div>
 
 
 	<footer

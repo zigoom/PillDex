@@ -48,7 +48,14 @@ public class ModePageController {
     @RequestMapping(value = "/apiloadToNameDetail.do" ,method = RequestMethod.POST)
     public String apiLoadToNameDetaiil(PillVO vo, Model model) throws SQLException{
     	List<PillVO> outVO = modeService.parseDataFromDbToName(vo);
-    	model.addAttribute("modeVO", outVO);
+    	PillVO pillVO = outVO.get(0);
+
+    	List<PillVO> outVO2 = modeService.parseDataFromDbToShape(vo);
+    	PillVO pillVO2 = outVO2.get(0);
+    	
+    	pillVO.setChart(pillVO2.getChart());
+    	model.addAttribute("modeVO", pillVO);
+    		
     	return "detail";
     }
 }

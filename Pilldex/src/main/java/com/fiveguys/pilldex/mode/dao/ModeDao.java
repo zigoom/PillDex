@@ -9,4 +9,6 @@ public interface ModeDao {
     List<PillVO> parseDataFromDb(PillVO inVO) throws SQLException;
 
 	List<PillVO> parseDataFromDbToName(PillVO inVO) throws SQLException;
+	
+	List<PillVO> parseDataFromDbToShape(PillVO inVO) throws SQLException;
 }

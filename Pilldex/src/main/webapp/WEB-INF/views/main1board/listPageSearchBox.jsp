@@ -67,7 +67,7 @@
 			</nav>
 		</header>
 	</div>
-	<div  class="container">
+	<div  class="container" style="width: 1140px">
 		<div
 			style="display: table; width: 100%; height: 120px; background-image: url(../resources/img/main-png/BG.png); background-size: cover; background-position: center;">
 			<div
@@ -160,17 +160,17 @@
 							type="text"  name = "keyword" value="${page.keyword}"
 							placeholder="약 이름 또는 성분 등으로 검색해 보세요." 
 							style="width: 600px;"> 
-						<button type="submit" id="pill_Nsearch">검색하기</button>
+						<button type="button" id="pill_Nsearch">검색하기</button>
 						
 						<script type="text/javascript">
 						document.getElementById("pill_Nsearch").onclick = function () {
 
-						  let keyword =  document.getElementsByName("keyword")[0].value;
-						  let keyword_print = document.getElementsByName("keyword_print")[0].value;
-						  let keyword_shape = document.querySelector('input[name="med_mod"]:checked')[0].value;
-						  let keyword_color = document.querySelector('input[name="med_color"]:checked')[0].value;
-						  let keyword_chart = document.querySelector('input[name="med_texture"]:checked')[0].value;
-						  let keyword_line =  document.querySelector('input[name="med_line"]:checked')[0].value;
+						  var keyword =  document.getElementsByName("keyword")[0].value;
+						  var keyword_print = " ";
+						  var keyword_shape = " ";
+						  var keyword_color = " ";
+						  var keyword_chart = " ";
+						  var keyword_line =  " ";
 						  
 						  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" + 
 						      "&keyword=" + keyword;+
