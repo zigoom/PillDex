@@ -78,7 +78,7 @@
 	<form method="post" id="main-form" action="apiload.do">
 		<div id="shape_search_box">
 			<h2>약 모양으로 검색</h2>
-			<img src="${path}/resources/img/med_char.png" />
+			<img src="${path}/resources/img/tylenol.jpg" />
 			<div style="display: flex; align-items: end">
 				<div id="med_char_input">
 					<div class="select-box shape">
@@ -101,16 +101,17 @@
 						<i class="fa-solid fa-light fa-tablets fa-2xl"></i> <input
 							type="text" class="selected-data-input hidden" name="lineFront"
 							value="" />
-						<p>분할선</p>
+						<h3>분할선</h3>
 						<input type="text" class="selected-data-input hidden"
 							name="lineBack" value="" /> <input type="text"
 							class="selected-data-input hidden" name="printFront" value="" />
 						<input type="text" class="selected-data-input hidden"
 							name="printBack" value="" />
 					</div>
-					<input type="text" class="selected-data-input" name="printFB"
-						value="" />
-					<p>식별자</p>
+					<input type="text" class="selected-data-input form-control"
+						id="formGroupExampleInput" placeholder="식별자" name="printFB"
+						value="" /> <input type="submit" id="submit-btn"
+						class="btn btn-primary" />
 				</div>
 				<div class="detail-view-box hidden">
 					<div class="select-box-shape">
@@ -293,7 +294,7 @@
 			</div>
 		</div>
 		<p>${shape}</p>
-		<input type="submit" id="submit-btn" />
+
 	</form>
 
 
@@ -312,7 +313,8 @@
 								<p class="card-text">${pill.efcyQesitm}</p>
 							</div>
 						</div>
-						<input type="submit" id="card-submit" class="btn btn-primary">
+						<input value="상세보기" style="width: 50%;" type="submit"
+							id="card-submit" class="btn btn-primary">
 					</form>
 				</div>
 			</c:forEach>
@@ -329,12 +331,12 @@
                         <use xlink:href="#bootstrap" />
                     </svg>
 			</a> <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023
-				FiveGuys 4 Team </span> <a
+				FiveGuys 4 Team </span> <a class="copyright"
 				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057"
 				target="blank"><span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span></a> <a
+				class="copyright"
 				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639"
 				target="blank"><span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span></a>
-
 		</div>
 	</footer>
 </body>

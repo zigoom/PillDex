@@ -1,5 +1,4 @@
-<%@page
-	import="com.fiveguys.pilldex.detail.controller.DetailPageController"%>
+<%@page import="com.fiveguys.pilldex.mode.controller.ModePageController"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -55,37 +54,38 @@
 		</div>
 	</nav>
 	${pill}
-		<div id="detail_img_text_box">
-			<div id="detail_img_box">
-				<img id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
-			</div>
-			<div id="detail_img_box">
-				<h4>${modeVO.itemName}</h4>
-				<h4>${modeVO.entpName}</h4>
-			</div>
+	<div id="detail_img_text_box">
+		<div id="detail_img_box">
+			<img id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
 		</div>
-		<div id="star_box">
-			<!--즐겨찾기 추가/삭제-->
-			<i id="star" class="hidden fa-regular fa-star fa-2xl"></i>
+		<div id="detail_img_box">
+			<h4>${modeVO.itemName}</h4>
+			<h4>${modeVO.entpName}</h4>
 		</div>
-		<!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
-		<div id="detail_result_box">
-			<h2>외형정보</h2>
-			<input type="hidden" name="itemName" value="${modeVO.itemName}" id="itemName">
-			<p>${modeVO.chart}</p>
-			<br />
-			<h2>저장방법</h2>
-			<p>${modeVO.depositMethodQesitm}</p>
-			<br />
-			<h2>효능효과</h2>
-			<p>${modeVO.efcyQesitm}</p>
-			<br />
-			<h2>용법용량</h2>
-			<p>${modeVO.useMethodQesitm}</p>
-			<br />
-			<h2>사용시 주의사항</h2>
-			<p>${modeVO.atpnQesitm}</p>
-		</div>
+	</div>
+	<div id="star_box">
+		<!--즐겨찾기 추가/삭제-->
+		<i id="star" class="hidden fa-regular fa-star fa-2xl"></i>
+	</div>
+	<!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
+	<div id="detail_result_box">
+		<h2>외형정보</h2>
+		<input type="hidden" name="itemName" value="${modeVO.itemName}"
+			id="itemName">
+		<p>${modeVO.chart}</p>
+		<br />
+		<h2>저장방법</h2>
+		<p>${modeVO.depositMethodQesitm}</p>
+		<br />
+		<h2>효능효과</h2>
+		<p>${modeVO.efcyQesitm}</p>
+		<br />
+		<h2>용법용량</h2>
+		<p>${modeVO.useMethodQesitm}</p>
+		<br />
+		<h2>사용시 주의사항</h2>
+		<p>${modeVO.atpnQesitm}</p>
+	</div>
 	<footer
 		class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
@@ -95,28 +95,16 @@
             <use xlink:href="#bootstrap" />
           </svg>
 			</a> <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023
-				FiveGuys 4 Team </span>
+				FiveGuys 4 Team </span> <a class="copyright"
+				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057"
+				target="blank"><span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span></a> <a
+				class="copyright"
+				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639"
+				target="blank"><span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span></a>
 		</div>
 	</footer>
 	<script>
-	/* $(document).ready(function() {
-		$.ajax({
-			type: "POST",
-			url: "/pilldex/apiloadToShape.do",
-			async: true,
-			dataType: "html",
-			data: {
-				"itemName": $("#itemName").val()
-			},
-			success: function(data) {
-				console.log("Success data: " + data);
-				
-			},
-			error: function(data) {
-				console.log("Error: " + data);
-			}
-		});
-	}); */
-</script>
+		
+	</script>
 </body>
 </html>
