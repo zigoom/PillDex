@@ -53,12 +53,14 @@
 			<li>
 				<div id="search_list">
 					<img id="search_list_img" src="#" alt="이미지" />
-				</div> 타이레놀
+				</div>
+				<p class="search_list_name"></p>
 			</li>
 			<li>
 				<div id="search_list">
 					<img id="search_list_img" src="#" alt="이미지" />
-				</div> 타이레놀
+				</div>
+				<p class="search_list_name">타이레놀</p>
 			</li>
 		</ul>
 	</div>
@@ -78,7 +80,10 @@
 	<form method="post" id="main-form" action="apiload.do">
 		<div id="shape_search_box">
 			<h2>약 모양으로 검색</h2>
-			<img src="${path}/resources/img/tylenol.jpg" />
+			<div id="shape-search-box-img">
+				<img src="${path}/resources/img/tylenol.jpg" id="printImg" />
+				<h4>이 약의 경우 식별자에 TYLENOL 또는 500을 입력해주세요.</h4>
+			</div>
 			<div style="display: flex; align-items: end">
 				<div id="med_char_input">
 					<div class="select-box shape">
@@ -309,12 +314,12 @@
 							<div class="card-body">
 								<input name="itemName" value="${pill.itemName}"
 									class="hidden input-itemName" />
-								<h5 class="card-title">${pill.itemName}</h5>
+								<h5 id="card-title" class="card-title">${pill.itemName}</h5>
 								<p class="card-text">${pill.efcyQesitm}</p>
 							</div>
 						</div>
 						<input value="상세보기" style="width: 50%;" type="submit"
-							id="card-submit" class="btn btn-primary">
+							id="${pill.itemName}" class="btn btn-primary card-submit">
 					</form>
 				</div>
 			</c:forEach>
@@ -456,5 +461,32 @@
 			selectedDataInput[6].value = "";
 		}
 	})
+	for (let i = 0; i < document.querySelectorAll(".card-submit").length; i++) {
+		document.querySelectorAll(".card-submit")[i].addEventListener("click",
+				function(e) {
+					const storageItemName = "item" + i;
+					const existingItems = JSON.parse(localStorage
+							.getItem("items"))
+							|| [];
+
+					if (!existingItems.includes(e.target.id)) {
+						existingItems.push(e.target.id);
+						if (existingItems.length > 10) {
+							existingItems.shift();
+						}
+						localStorage.setItem("items", JSON
+								.stringify(existingItems));
+					}
+				});
+	}
+	const existingItems = JSON.parse(localStorage.getItem("items")) || [];
+	const searchListNames = document.querySelectorAll(".search_list_name");
+
+	for (let i = 0; i < existingItems.length && i < searchListNames.length; i++) {
+		const storageItem = existingItems[i];
+		if (searchListNames[i]) {
+			searchListNames[i].innerHTML = storageItem;
+		}
+	}
 </script>
 </html>
