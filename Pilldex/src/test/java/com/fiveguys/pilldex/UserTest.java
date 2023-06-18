@@ -64,10 +64,18 @@ public class UserTest {
 		UserVO user = new UserVO();
 		user.setName("관리자3");
 		user.setEmail("test@gmail.com");
-		UserVO outVO = userService.doSearchId(user); 	//**** 회원 로그인 서비스 호출 ****//
-		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ 아이디 찾기  (아이디  : "+ outVO.getId()); // 찾고자 하는 ID
-		LOG.debug("└────────────────────────────────────────────────────────┘");
+		
+		String result = "-1";
+		result = userService.doSearchId(user); 	//**** 회원 로그인 서비스 호출 ****//
+		if("-1".equals(result)) { 		// (10 : id 오류)
+			LOG.debug("┌────────────────────────────────────────────────────────┐");
+			LOG.debug("│ 아이디 찾기  : 이름, 이메일을 다시 확인 바람"); 
+			LOG.debug("└────────────────────────────────────────────────────────┘");
+		}else {		
+			LOG.debug("┌────────────────────────────────────────────────────────┐");
+			LOG.debug("│ 아이디 찾기  (아이디  : "+ result); // 찾고자 하는 ID
+			LOG.debug("└────────────────────────────────────────────────────────┘");
+		}
 	}
 	
 

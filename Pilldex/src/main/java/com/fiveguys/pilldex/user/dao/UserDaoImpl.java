@@ -129,7 +129,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int searchPwCheck(UserVO user) throws SQLException {
-		int flag =0;			
+		int flag =0;	
 		String statement = this.NAMESPACE+DOT+"searchPwCheck";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ statement "+ statement);
@@ -142,7 +142,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int updatePw(UserVO user) throws SQLException {
-		int flag =0;			
+		int flag =0;		
 		String statement = this.NAMESPACE+DOT+"updatePw";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ statement "+ statement);

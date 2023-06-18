@@ -15,11 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.fiveguys.pilldex.cmn.MessageVO;
 import com.fiveguys.pilldex.domain.UserVO;
 import com.fiveguys.pilldex.user.dao.UserDaoImpl;
 import com.fiveguys.pilldex.user.service.UserService;
+import com.google.gson.Gson;
 
 
 /**
@@ -52,27 +55,61 @@ public class LoginController {
 	 * @return
 	 * @throws SQLException
 	 */
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String loginButtonEvent(UserVO vo, UserDaoImpl dao, Model model, HttpSession session ) throws SQLException {
-		UserVO outVO = userService.selectUser(vo);
-				
-		if (outVO != null) {
-			//session.setAttribute("userNo", outVO.getNo());
-			System.out.println("회원정보 : "+outVO.toString());
-			session.setAttribute("UserNo", String.valueOf(outVO.getNo()));
-			model.addAttribute("userVO", outVO);
-			return "redirect:/map.do";
-		} else {
-			System.out.println("회원 정보가 없습니다.");
-			outVO = new UserVO();
-			outVO.setNo(-1);	// 회원 정보가 없을경우 
-			model.addAttribute("userVO", outVO);
-			return "login";
-		}		
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody 		//해당 내용이 화면이 아닌 데이터만 던진자고 알려주는 것임
+	public String loginButtonEvent(UserVO user, Model model, HttpSession httpSession ) throws SQLException {		
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ doLogin()                                              │");
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		String jsonString = "";		
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ user : "+user);
+		MessageVO message = new MessageVO();
+		
+		// (1 : id 미입력)
+		if(null == user.getId() || "".equals(user.getId())) {
+			message.setMsgId("1");
+			message.setMsgContents("아이디를 입력 하세요.");
+			return new Gson().toJson(message);		
+		}
+		// (2 : pass 미입력)
+		if(null == user.getPw() || "".equals(user.getPw())) {
+			message.setMsgId("2");
+			message.setMsgContents("비밀번호를 입력 하세요.");
+			return new Gson().toJson(message);		
+		}
+		
+		int status = this.userService.doLogin(user);		
+		if(10==status) { 		// (10 : id 오류)
+			message.setMsgId("10");
+			message.setMsgContents("아이디를 확인 하세요.");
+		}else if(20==status) { 	// (20 : pass 오류)
+			message.setMsgId("20");
+			message.setMsgContents("비밀번호를 확인  하세요.");
+		}else if(30==status) {					// (30 : 성공)
+			message.setMsgId("30");
+			message.setMsgContents(user.getId()+"가 로그인 되었습니다.");
+			
+			//----------------------------------------------------------
+			//- 사용자 정보 조회 : session처리
+			//----------------------------------------------------------
+			UserVO userInfo = userService.selectUser(user);
+			if(null!=userInfo) {
+				httpSession.setAttribute("user", userInfo);
+			}
+		}else {
+			message.setMsgId("99");
+			message.setMsgContents("알수 없는 오류");			
+		}
+		jsonString = new Gson().toJson(message);
+		
+		LOG.debug("│ jsonString : "+jsonString);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		return jsonString;		
 	}
 	
 	/* 로그아웃시에 셰션 제거 호출  */
-	@RequestMapping(value = "/loginOut.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginOut.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public String loginOutButtonEvent(HttpSession session) {
 		session.invalidate();
 		return "login";	
@@ -88,18 +125,74 @@ public class LoginController {
 		return "findIdAndPw";
 	}
 	
-	
-	@RequestMapping(value = "/findId.do", method = RequestMethod.POST)
-	public String findId(UserVO user, HttpSession httpSession) {
+	/**
+	 * 아이디 찾기 기능
+	 * @param user
+	 * @param httpSession
+	 * @return
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/findId.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody 		
+	public String findId(UserVO user, HttpSession httpSession) throws SQLException {
 		System.out.println("┌────────────────────────────────────────────────────────┐");
 		System.out.println("│ findId()                  			                 │");
 		System.out.println("│ 아이디찾기 기능  				                                 │");
 		System.out.println("└────────────────────────────────────────────────────────┘");
+		String jsonString = "";	
+		MessageVO message = new MessageVO();
 		
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+
+		String result = "-1";
+		result = this.userService.doSearchId(user);		
+		if("-1".equals(result)) { 		// (10 : id 오류)
+			message.setMsgId("10");
+			message.setMsgContents("이름과 이메일을 확인해 주세요.");
+		}else {					
+			message.setMsgId("30");
+			message.setMsgContents("아이디는 " +result+" 입니다.");
+		}
+		jsonString = new Gson().toJson(message);		
+		System.out.println("│ jsonString : "+jsonString);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		return jsonString;	
+	}
+	/**
+	 * 패스워드 찾기 기능
+	 * @param user
+	 * @param httpSession
+	 * @return
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/findPw.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody 	
+	public String findPw(UserVO user, HttpSession httpSession) throws SQLException {
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ findId()                  			                 │");
+		System.out.println("│ 아이디찾기 기능  				                                 │");
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		String jsonString = "";	
+		MessageVO message = new MessageVO();
 		
-		
-		
-		return "findIdAndPw";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+
+		int result = -1;
+		result = this.userService.doSearchPw(user);		
+		if(-1 ==result) { 		
+			message.setMsgId("10");
+			message.setMsgContents("아이디, 이름, 이메일를 확인해 주세요.");
+		}else if(1 ==result){					// (30 : 성공)
+			message.setMsgId("30");
+			message.setMsgContents("비밀번호는 '123123'으로 초기화 되었습니다.");
+		}else {	
+			message.setMsgId("99");
+			message.setMsgContents("알수 없는 오류");		
+		}
+		jsonString = new Gson().toJson(message);		
+		System.out.println("│ jsonString : "+jsonString);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		return jsonString;	
 	}
 	
 }

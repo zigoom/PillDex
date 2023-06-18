@@ -43,6 +43,13 @@
 	  AND pw = #{pw}
 	</select>
 	
+  <!-- 이름 + 이메일로  아이디 존재 여부 검색 -->
+  <select id="searchIdCheck" parameterType="UserVO" resultType="int">
+    SELECT COUNT(*) cnt
+    FROM member
+    WHERE name = #{name}
+    AND email  = #{email}
+  </select>    
 	<!-- 이름 + 이메일로  아이디 검색 -->
 	<select id="searchId" parameterType="UserVO" resultMap="UserMap">
 	  SELECT id
@@ -51,14 +58,6 @@
 	  AND email  = #{email}
 	</select>
 	
-	<!-- 이름 + 이메일로  아이디 검색 -->
-	<select id="searchIdCheck" parameterType="UserVO" resultType="int">
-	  SELECT COUNT(*) cnt
-	  FROM member
-	  WHERE name = #{name}
-	  AND email  = #{email}
-	</select>
-		
 	<!-- 이름 + 이메일로  + 아이디  계정 여부 검색 -->
 	<select id="searchPwCheck" parameterType="UserVO" resultType="int">
 	  SELECT COUNT(*) cnt
@@ -67,6 +66,14 @@
 	  AND email  = #{email}
 	  AND id 	 = #{id}
 	</select>
+  <!-- 사용자 비밀번호 변경 -->
+  <update id="updatePw" parameterType="UserVO">
+    UPDATE member         
+    SET  pw = #{pw}   
+    WHERE name = #{name}
+    AND email  = #{email}
+    AND id   = #{id}
+  </update>
 	
 	<!-- 회원가입  -->
 	<insert id="insertOne" parameterType="UserVO" >
@@ -104,13 +111,6 @@
         #{del}
      )      
   </insert>
-  <!-- 사용자 비밀번호 변경 -->
-  <update id="updatePw" parameterType="UserVO">
-    UPDATE member         
-    SET  passwd = #{passwd}   
-    WHERE name 	= #{name}
-	  AND email = #{email}
-  </update>
   
   
   <!-- 유저 삭제 -->
