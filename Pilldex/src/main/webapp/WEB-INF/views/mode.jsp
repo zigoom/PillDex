@@ -21,6 +21,7 @@
 <script src="https://kit.fontawesome.com/30356e696a.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${path}/resources/css/mode-style.css" />
+<script src="${path}/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
 	<!--네비게이션 바-->
@@ -51,17 +52,66 @@
 		<!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->
 		<ul>
 			<li>
-				<div id="search_list">
-					<img id="search_list_img" src="#" alt="이미지" />
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
 				</div>
-				<p class="search_list_name"></p>
 			</li>
 			<li>
-				<div id="search_list">
-					<img id="search_list_img" src="#" alt="이미지" />
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
 				</div>
-				<p class="search_list_name">타이레놀</p>
 			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+			<li>
+				<div class="search_list hidden">
+					<img class="search_list_img" src="#" alt="이미지" />
+					<p class="search_list_name"></p>
+				</div>
+			</li>
+
 		</ul>
 	</div>
 	<div id="med_search_box">
@@ -319,7 +369,8 @@
 							</div>
 						</div>
 						<input value="상세보기" style="width: 50%;" type="submit"
-							id="${pill.itemName}" class="btn btn-primary card-submit">
+							id="${pill.itemName}" class="btn btn-primary card-submit"
+							data-image="${pill.itemImage}">
 					</form>
 				</div>
 			</c:forEach>
@@ -461,31 +512,51 @@
 			selectedDataInput[6].value = "";
 		}
 	})
+
 	for (let i = 0; i < document.querySelectorAll(".card-submit").length; i++) {
 		document.querySelectorAll(".card-submit")[i].addEventListener("click",
 				function(e) {
-					const storageItemName = "item" + i;
 					const existingItems = JSON.parse(localStorage
 							.getItem("items"))
 							|| [];
+					const existingImages = JSON.parse(localStorage
+							.getItem("images"))
+							|| [];
+					const dataImage = this.getAttribute('data-image');
 
 					if (!existingItems.includes(e.target.id)) {
 						existingItems.push(e.target.id);
+						existingImages.push(dataImage);
+
 						if (existingItems.length > 10) {
 							existingItems.shift();
+							existingImages.shift();
 						}
+
 						localStorage.setItem("items", JSON
 								.stringify(existingItems));
+						localStorage.setItem("images", JSON
+								.stringify(existingImages));
 					}
 				});
 	}
+
 	const existingItems = JSON.parse(localStorage.getItem("items")) || [];
+	const existingImages = JSON.parse(localStorage.getItem("images")) || [];
 	const searchListNames = document.querySelectorAll(".search_list_name");
+	const searchListImages = document.querySelectorAll(".search_list_img");
+	const searchList = document.querySelectorAll(".search_list");
 
 	for (let i = 0; i < existingItems.length && i < searchListNames.length; i++) {
 		const storageItem = existingItems[i];
 		if (searchListNames[i]) {
 			searchListNames[i].innerHTML = storageItem;
+			searchList[i].classList.remove("hidden");
+		}
+
+		const storageImage = existingImages[i];
+		if (searchListImages[i]) {
+			searchListImages[i].setAttribute('src', storageImage);
 		}
 	}
 </script>

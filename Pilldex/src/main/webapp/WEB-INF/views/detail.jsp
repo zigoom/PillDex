@@ -53,7 +53,6 @@
 			</ul>
 		</div>
 	</nav>
-	${pill}
 	<div id="detail_img_text_box">
 		<div id="detail_img_box">
 			<img id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
