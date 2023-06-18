@@ -52,67 +52,128 @@
 		<!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->
 		<ul>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div class="search_list hidden">
-					<img class="search_list_img" src="#" alt="이미지" />
-					<p class="search_list_name"></p>
-				</div>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 
 		</ul>
+
 	</div>
 	<div id="med_search_box">
 		<h1 id="med_search">의약품 검색</h1>
@@ -163,10 +224,9 @@
 						<input type="text" class="selected-data-input hidden"
 							name="printBack" value="" />
 					</div>
-					<input type="text" class="selected-data-input form-control"
-						id="formGroupExampleInput" placeholder="식별자" name="printFB"
-						value="" /> <input type="submit" id="submit-btn"
-						class="btn btn-primary" />
+					<input type="text" class="selected-data-input printFB"
+						placeholder="식별자" name="printFB" value="" /> <input type="submit"
+						id="submit-btn" class="btn btn-primary" />
 				</div>
 				<div class="detail-view-box hidden">
 					<div class="select-box-shape">
@@ -402,6 +462,15 @@
 	let detailViewBox = document.querySelectorAll('.detail-view-box');
 	let selectedDataInput = document.querySelectorAll('.selected-data-input');
 
+	const existingItems = JSON.parse(localStorage.getItem("items")) || [];
+	const existingImages = JSON.parse(localStorage.getItem("images")) || [];
+	const searchListNames = document.querySelectorAll(".search_list_name");
+	const searchListImages = document.querySelectorAll(".search_list_img");
+	const searchList = document.querySelectorAll(".search_list");
+	const recentSearch = document.querySelectorAll(".recent-search");
+	const removeBtn = document.querySelectorAll(".remove-btn");
+	const printFB = document.querySelector(".printFB");
+
 	for (let i = 0; i < selectBox.length; i++) {
 		selectBox[i].addEventListener('click', function(e) {
 			if (!selectBox[i].classList.contains('clickable')) {
@@ -505,6 +574,7 @@
 
 	selectedDataInput[7].addEventListener("keyup", function() {
 		if (selectedDataInput[7].value != "") {
+			printFB.value = printFB.value.toUpperCase();
 			selectedDataInput[5].value = selectedDataInput[7].value;
 			selectedDataInput[6].value = selectedDataInput[7].value;
 		} else {
@@ -541,16 +611,11 @@
 				});
 	}
 
-	const existingItems = JSON.parse(localStorage.getItem("items")) || [];
-	const existingImages = JSON.parse(localStorage.getItem("images")) || [];
-	const searchListNames = document.querySelectorAll(".search_list_name");
-	const searchListImages = document.querySelectorAll(".search_list_img");
-	const searchList = document.querySelectorAll(".search_list");
-
 	for (let i = 0; i < existingItems.length && i < searchListNames.length; i++) {
 		const storageItem = existingItems[i];
 		if (searchListNames[i]) {
 			searchListNames[i].innerHTML = storageItem;
+			recentSearch[i].value = storageItem;
 			searchList[i].classList.remove("hidden");
 		}
 
@@ -558,6 +623,21 @@
 		if (searchListImages[i]) {
 			searchListImages[i].setAttribute('src', storageImage);
 		}
+	}
+	for (let i = 0; i < existingItems.length; i++) {
+		removeBtn[i].addEventListener("click", function(e) {
+			e.preventDefault();
+			let items = JSON.parse(localStorage.getItem("items"));
+			let images = JSON.parse(localStorage.getItem("images"));
+
+			items.splice(i, 1);
+			images.splice(i, 1);
+
+			localStorage.setItem("items", JSON.stringify(items));
+			localStorage.setItem("images", JSON.stringify(images));
+
+			location.reload();
+		});
 	}
 </script>
 </html>
