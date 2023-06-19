@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.map.service;
+package com.fiveguys.pilldex.Address.service;
 
 import java.sql.SQLException;
 import java.util.List;

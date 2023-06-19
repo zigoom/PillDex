@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.map.service;
+package com.fiveguys.pilldex.Address.service;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fiveguys.pilldex.Address.dao.AddressDao;
 import com.fiveguys.pilldex.domain.AddressVO;
-import com.fiveguys.pilldex.map.dao.AddressDao;
 
 
 @Service("addressService")

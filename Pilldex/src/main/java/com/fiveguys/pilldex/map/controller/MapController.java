@@ -1,25 +1,20 @@
 package com.fiveguys.pilldex.map.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fiveguys.pilldex.Address.service.AddressService;
 import com.fiveguys.pilldex.domain.AddressVO;
-import com.fiveguys.pilldex.domain.UserVO;
-import com.fiveguys.pilldex.map.service.AddressService;
 import com.fiveguys.pilldex.user.service.UserService;
 
 /**
@@ -45,8 +40,7 @@ public class MapController {
 			for(AddressVO vo : outVO) {
 				vo.toString();
 			}
-		}
-		
+		}		
         return outVO;
     }
 	

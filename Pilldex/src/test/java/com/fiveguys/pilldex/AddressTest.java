@@ -14,8 +14,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fiveguys.pilldex.Address.dao.AddressDao;
 import com.fiveguys.pilldex.domain.AddressVO;
-import com.fiveguys.pilldex.map.dao.AddressDao;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) //스프링 테스트 컨텍스 프레임워크의 JUnit 확장 기능 지정

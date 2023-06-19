@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.map.dao;
+package com.fiveguys.pilldex.Address.dao;
 
 import java.sql.SQLException;
 import java.util.List;
