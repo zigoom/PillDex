@@ -46,7 +46,7 @@ public interface UserService {
 	 * @return 1: 있음, 0: 없음
 	 * @throws SQLException
 	 */
-	public UserVO doSearchId(UserVO user) throws SQLException;
+	public String doSearchId(UserVO user) throws SQLException;
 	
 	/**
 	 * 비밀번호 여부 확인 pw 수정
