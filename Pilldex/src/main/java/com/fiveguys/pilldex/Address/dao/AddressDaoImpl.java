@@ -22,9 +22,9 @@ public class AddressDaoImpl implements AddressDao {
 		List<AddressVO> outList = new ArrayList<>();	
 
 		String statement = this.NAMESPACE+DOT+"selectAddressList";
-		System.out.println("---------------------");
-		System.out.println("- statement "+ statement);
-		System.out.println("---------------------");
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement "+ statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
 		outList = this.sqlSessionTemplate.selectList(statement,userNo);
 				
 		if(outList!=null) {
@@ -35,7 +35,40 @@ public class AddressDaoImpl implements AddressDao {
 			System.out.println("쿼리 결과가 없습니다.");
 		}
 		
-		
 		return outList;
+	}
+
+	@Override
+	public int getAddressCnt(String userNo) throws SQLException {
+		int cnd =0;
+		String statement = this.NAMESPACE+DOT+"addressCheckCnt";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement "+ statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		cnd = this.sqlSessionTemplate.selectOne(statement,userNo);
+				
+		return cnd;
+	}
+
+	@Override
+	public int addAddress(AddressVO vo) throws SQLException {
+		int flag =0;
+		String statement = this.NAMESPACE+DOT+"insertOne";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement "+ statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.insert(statement,vo);
+		return flag;
+	}
+
+	@Override
+	public int deleteAddress(AddressVO vo) throws SQLException {
+		int flag =0;
+		String statement = this.NAMESPACE+DOT+"deleteOne";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement "+ statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.insert(statement,vo);
+		return flag;
 	}
 }
