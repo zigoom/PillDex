@@ -96,7 +96,7 @@ public class main1page {
 		 prev = startPageNum == 1 ? false : true;
 		 next = endPageNum * postNum >= count ? false : true;
 		 
-		 displayPost = (num - 1) * postNum;
+		 displayPost = ((num - 1) * postNum)+1;
 		 
 		}
 
