@@ -15,7 +15,8 @@ public interface Main1BoardService {
 	public List<PillVO2> listPage(int displayPost, int postNum) throws Exception;
 	
 	
-	public List<PillVO2> listPageSearchBox(int displayPost, int postNum, 
+	public List<PillVO2> listPageSearchBox(
+			int displayPost, int postNum, 
 			String keyword,
 			String keyword_print,
 			String keyword_shape,

@@ -17,6 +17,7 @@ public class PillVO2 {
 	private String item_image               ;
 	
 	
+	
 	public String getItem_name() {
 		return item_name;
 	}
@@ -101,5 +102,15 @@ public class PillVO2 {
 	public void setItem_image(String item_image) {
 		this.item_image = item_image;
 	}
+	
+	@Override
+	public String toString() {
+		return "PillVO2 [item_name=" + item_name + ", drug_shape=" + drug_shape + ", color_class=" + color_class
+				+ ", chart=" + chart + ", line_front=" + line_front + ", line_back=" + line_back + ", print_front="
+				+ print_front + ", print_back=" + print_back + ", entp_name=" + entp_name + ", efcy_qesitm="
+				+ efcy_qesitm + ", use_method_qesitm=" + use_method_qesitm + ", atpn_qesitm=" + atpn_qesitm
+				+ ", deposit_method_qesitm=" + deposit_method_qesitm + ", item_image=" + item_image + "]";
+	}
+	
 											
 }

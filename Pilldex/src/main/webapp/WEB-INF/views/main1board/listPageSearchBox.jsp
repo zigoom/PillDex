@@ -158,7 +158,7 @@
 
 						&nbsp;&nbsp; 약 정보로 검색 &nbsp;&nbsp; 
 						<input class=search_into
-							type="text"  name = "keyword" value="${page.keyword}"
+							type="text"  name = "keyword"  value="${page.keyword}"
 							placeholder="약 이름 또는 성분 등으로 검색해 보세요." 
 							style="width: 600px;"> 
 						<button type="button" id="pill_Nsearch">검색하기</button>
@@ -166,12 +166,12 @@
 						<script type="text/javascript">
 						document.getElementById("pill_Nsearch").onclick = function () {
 
-						  var keyword =  document.getElementsByName("keyword")[0].value;
-						  var keyword_print = ""[1];
-						  var keyword_shape = ""[2];
-						  var keyword_color = ""[3];
-						  var keyword_chart = ""[4];
-						  var keyword_line =  ""[5];
+						  let keyword = document.getElementsByName("keyword")[0].value;
+						  let keyword_print = ""[1];
+						  let keyword_shape = ""[2];
+						  let keyword_color = ""[3];
+						  let keyword_chart = ""[4];
+						  let keyword_line =  ""[5];
 						  
 						  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" + 
 						      "&keyword=" + keyword;+
@@ -179,7 +179,8 @@
 						      "&keyword_shape=" + keyword_shape;+
 						      "&keyword_color=" + keyword_color;+
 						      "&keyword_chart=" + keyword_chart;+
-						      "&keyword_line =" + keyword_line; };
+						      "&keyword_line =" + keyword_line;
+						      };
 						</script>
                         
 						
@@ -192,6 +193,8 @@
             </form>
             <form name="search_pill_mod_form" onsubmit="return false;">
 			<div>
+				
+                    
 				<div style="margin-top: 15px">
 					&nbsp;약 모양으로 검색&nbsp;<input type="text" name = "keword_print" value = "${page.keyword_print}"
 						placeholder="식별문자(약의 앞면이나 뒷면의 문자)로 검색해 보세요." style="width: 600px;">
@@ -199,7 +202,7 @@
 				
 				<div id="myDIV"
 					style="overflow: hidden; width: 710px; white-space: nowrap; margin: auto; margin-top: 20px">
-					<div class="select" style="display: inline-flex;">
+					<div class="select" style="display: inline-flex;"  id = "mod_box">
 						<input type="radio" id="med_mod1" name="med_mod" value="" checked="checked">
 						<label for="med_mod1"
 							style="background-image: url('../resources/img/main-png/모양/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
@@ -429,101 +432,82 @@
 
 				<div class="select"
 					style="display: flex; overflow: hidden; margin-left: 44px; margin-top: 20px; width: 710;">
-					<div>
+				
 						<input type="radio" id="med_texture1" name="med_texture" checked="checked"
 							value=""> <label for="med_texture1"
 							style="background-image: url('../resources/img/main-png/재질/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800">제질</p>
-					</div>
+						<p style="text-align: center; font-weight: 800"></p>
+					
 
-					<div>
+					
 						<input type="radio" id="med_texture2" name="med_texture"
 							value="정제"> <label for="med_texture2"
 							style="background-image: url('../resources/img/main-png/재질/2.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800">정제류</p>
-					</div>
+						<p style="text-align: center; font-weight: 800"></p>
+				
 
-					<div>
 						<input type="radio" id="med_texture3" name="med_texture"
 							value="경질"> <label for="med_texture3"
 							style="background-image: url('../resources/img/main-png/재질/3.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800">경질캡슐</p>
-					</div>
+						<p style="text-align: center; font-weight: 800"></p>
+				
 
-					<div>
+				
 						<input type="radio" id="med_texture4" name="med_texture"
 							value="연질"> <label for="med_texture4"
 							style="background-image: url('../resources/img/main-png/재질/4.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800">연질캡슐</p>
-					</div>
+						<p style="text-align: center; font-weight: 800"></p>
+					   
+					
 				</div>
 
 				<div class="select"
 					style="display: flex; overflow: hidden; margin-left: 44px; margin-top: 20px; width: 710;">
 
-					<div>
+					
 						<input type="radio" id="med_line1" name="med_line" checked="checked"
 							value=""> <label for="med_line1"
 							style="background-image: url('../resources/img/main-png/선/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800">분할선</p>
-					</div>
-					<div>
+						<p style="text-align: center; font-weight: 800"></p>
+				
 						<input type="radio" id="med_line2" name="med_line"
 							value="없음"> <label for="med_line2"
 							style="background-image: url('../resources/img/main-png/선/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800">없음</p>
-					</div>
-					<div>
+						<p style="text-align: center; font-weight: 800"></p>
+					
 						<input type="radio" id="med_line3" name="med_line"
 							value="-"> <label for="med_line3"
 							style="background-image: url('../resources/img/main-png/선/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800">(-)형</p>
-					</div>
-					<div>
+						<p style="text-align: center; font-weight: 800"></p>
+					
 						<input type="radio" id="med_line4" name="med_line"
 							value="+"> <label for="med_line4"
 							style="background-image: url('../resources/img/main-png/선/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800">(+)형</p>
-					</div>
+						<p style="text-align: center; font-weight: 800"></p>
+					
 
-					<div>
+					
 						<input type="radio" id="med_line5" name="med_line"
 							value="기타"> <label for="med_line5"
 							style="background-image: url('../resources/img/main-png/선/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800">기타</p>
-					</div>
+						<p style="text-align: center; font-weight: 800"></p>
+					
+					
 				</div>
 
 				
 					
 					<button type="button" id = "pill_search_Box">검색하기</button> 
-					 <script type="text/javascript">
-	                    document.getElementById("pill_search_Box").onclick = function () {
-	                       
-	                    let keyword = ""
-	                    let keyword_print = document.getElementsByName("keyword_print")[0].value;
-	                    let keyword_shape = document.querySelector('input[type=radio][name="med_mod"]:checked')[1].value;
-	                    let keyword_color = document.querySelector('input[type=radio][name="med_coclor"]:checked')[2].value;
-	                    let keyword_chart = document.querySelector('input[type=radio][name="med_texture"]:checked')[3].value;
-	                    let keyword_line =  document.querySelector('input[type=radio][name="med_line"]:checked')[4].value;
-	                  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
-	                  +"&keyword=" + keyword;
-	                  +"&keyword_print=" + keyword_print;
-	                  +"&keyword_shape=" + keyword_shape;
-	                  +"&keyword_color=" + keyword_color;
-	                  +"&keyword_chart=" + keyword_chart;
-	                  +"&keyword_line=" + keyword_line;};
-	                </script>
-					
+					 
 					<input type="reset"
 						value="취소하기">	
 				</div>
@@ -532,18 +516,18 @@
 		</fieldset>
 	</div>
   <div>
-	<div class="search_list_table">
-		<c:forEach var="list" items="list">
-			<button class="search_list" onclick="window.open('#')">
+	<div class="search_list_table" style="text-overflow: ellipsis;">
+		<c:forEach var="list" items="${list}">
+			<button class="search_list" onclick="window.open('#')" style="overflow-y: scroll;">
 				<img class="search_list_img" src="${list.item_image}">
 				<ul style="list-style: none; 
 					 text-align: left; padding-left: 0; margin-top: 10px; height: 100%">
-					<li>약품이름:<span class="textlist">${list.item_name}</span></li>
-					<li>약품 제약사:<span class="textlist">${list.entp_name}</span></li>
-					<li>사용용도:<span class="textlist">${list.efcy_qesitm}</span></li>
-					<li>복용법:<span class="textlist">${list.use_method_qesitm}</span></li
-					><li>주의사항:<span class="textlist">${list.atpn_qesitm}</span></li>
-					<li>보관방법:<span class="textlist">${list.deposit_method_qesitm}</span></li>
+					<li>약품이름:<span>${list.item_name}</span></li>
+					<li>약품 제약사:<span>${list.entp_name}</span></li>
+					<li>사용용도:<span>${list.efcy_qesitm}</span></li>
+					<li>복용법:<span>${list.use_method_qesitm}</span></li
+					><li>주의사항:<span>${list.atpn_qesitm}</span></li>
+					<li>보관방법:<span>${list.deposit_method_qesitm}</span></li>
 				</ul>			
 			</button>
 		</c:forEach>
@@ -744,4 +728,30 @@
 		}
 	}
 </script>
+
+
+
+<script type="text/javascript">
+                            document.getElementById("pill_search_Box").onclick = function () {
+                               
+                            let keyword = "";
+                            let keyword_print = document.getElementsByName("keyword_print").value;
+                            let keyword_shape = document.querySelector('input[name="med_mod"]:checked').value;
+                            console.log ("keyword_shape:"+keyword_shape);
+                            let keyword_color = document.querySelector('input[name="med_coclor"]:checked').value;
+                            console.log ("keyword_color:"+keyword_color);
+                            let keyword_chart = document.querySelector('input[name="med_texture"]:checked').value;
+                            console.log ("keyword_chart:"+keyword_chart);
+                            let keyword_line =  document.querySelector('input[name="med_line"]:checked').value;
+                            console.log ("keyword_line:"+keyword_line);
+                         
+                            location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
+                          +"&keyword=" + keyword;
+                          +"&keyword_print=" + keyword_print;
+                          +"&keyword_shape=" + keyword_shape;
+                          +"&keyword_color=" + keyword_color;
+                          +"&keyword_chart=" + keyword_chart;
+                          +"&keyword_line=" + keyword_line;
+                          };
+                        </script>
 </html>

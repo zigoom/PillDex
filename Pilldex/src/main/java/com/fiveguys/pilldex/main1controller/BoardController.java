@@ -21,16 +21,6 @@ public class BoardController  {
 	@Inject
 	Main1BoardService service;
 	
-	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-				
-		List<PillVO2> list = null;
-		list = service.list();
-				
-		model.addAttribute("list",list);
-	}
-	
-	
 	@RequestMapping(value = "/listPageSearchBox.do", method = RequestMethod.GET)
 	public void getListPageSearchBox 
 			(Model model, 
@@ -66,7 +56,8 @@ public class BoardController  {
 	
 	List<PillVO2> list = null;
 	list = service.listPageSearchBox(
-	page.getDisplayPost(), page.getPostNum(), 
+	page.getDisplayPost(), 
+	page.getPostNum(), 
 	keyword,
 	keyword_print,
 	keyword_shape,

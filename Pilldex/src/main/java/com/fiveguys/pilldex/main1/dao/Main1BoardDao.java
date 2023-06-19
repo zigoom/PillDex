@@ -15,7 +15,8 @@ public interface Main1BoardDao {
 	
 	 
 	 public List<PillVO2> listPageSearchBox(
-			   int displayPost, int postNum,
+			   int displayPost, 
+			   int postNum,
 			   String   keyword,
 			   String 	keyword_print,
 			   String 	keyword_shape,
@@ -29,7 +30,7 @@ public interface Main1BoardDao {
 	 public int searchCountBox(
 			 String   	keyword,
 			 String 	keyword_print,
-			   String 	keyword_shape,
+			 String 	keyword_shape,
 			   String 	keyword_color,
 			   String 	keyword_chart,
 			   String 	keyword_line) throws Exception;

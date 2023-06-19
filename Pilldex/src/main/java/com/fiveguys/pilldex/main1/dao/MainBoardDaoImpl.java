@@ -62,6 +62,9 @@ public class MainBoardDaoImpl implements Main1BoardDao {
 			String keyword_color,
 			String keyword_chart, String keyword_line) throws Exception {
 		 	HashMap<String, Object> data = new HashMap<String, Object>();
+		 	
+		 	System.out.println("keyword:"+keyword);
+		 	
 		 	data.put("keyword", keyword);
 		 	data.put("keyword_print",keyword_print);
 		  data.put("keyword_shape",keyword_shape);

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.main1-paging-mapper">
-    <select id="list"
-        resultType="com.fiveguys.pilldex.domain.PillVO">
+    <select id="list" resultType="com.fiveguys.pilldex.domain.PillVO2">
 			SELECT item_name,
                     entp_name,
                     efcy_qesitm,
@@ -37,7 +36,7 @@
 	</select>
 	
        <!-- 게시물 목록 + 페이징 -->
-     <select id="listPage" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
+     <select id="listPage" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO2">
       SELECT        item_name,
                     entp_name,
                     efcy_qesitm,
@@ -59,7 +58,7 @@
     </select> 
              
     <!-- 페이징 + 검색 -->
-     <select id="listPageSearchBox" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
+     <select id="listPageSearchBox" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO2">
       SELECT        item_name,
                     entp_name,
                     efcy_qesitm,
@@ -77,29 +76,32 @@
                        FROM DATASHAPE
                        WHERE 1=1
                        
-                        <if test="keyword != ''">
+                        <if test="keyword !=null and keyword !=''">
                          AND item_name LIKE '%'||#{keyword}||'%' 
                         </if> 
                         
-                        <if test="keyword_print != ''">
+                        <if test="keyword_print !=null and keyword_print !=''">
                          AND print_front LIKE '%'||#{keyword_print}||'%'
                          OR print_back LIKE '%'||#{keyword_print}||'%'
-                        </if>   
-                        <if test="keyword_shape != ''">
-                         AND drug_shape LIKE '%'||#{keyword_shape}||'%'
-                        </if>  
-                        <if test="keyword_color != ''">
+                        </if>
+                           
+                        <if test="keyword_shape !=null and keyword_shape !=''">
+                         AND drug_shape LIKE #{keyword_shape}||'%'
+                        </if>
+                          
+                        <if test="keyword_color !=null and keyword_color !=''">
                          AND color_class LIKE '%'||#{keyword_color}||'%'
                         </if> 
                         
-                        <if test = "keyword_chart != ''">
+                        <if test = "keyword_chart !=null and keyword_chart !=''">
                          AND chart LIKE '%'||#{keyword_chart}||'%'
                         </if>  
                         
-                        <if test="keyword_line != ''">
+                        <if test="keyword_line !=null and keyword_line !=''">
                          AND line_front LIKE '%'||#{keyword_line}||'%'
                          OR  line_back LIKE  '%'||#{keyword_line}||'%'
                         </if>      
+                        
                        
                        ))B
                        
@@ -120,29 +122,32 @@
                        FROM DATASHAPE
                         WHERE 1=1
                        
-                        <if test="keyword != ''">
+                        <if test="keyword !=null and keyword !=''">
                          AND item_name LIKE '%'||#{keyword}||'%' 
                         </if> 
                         
-                        <if test="keyword_print != ''">
+                        <if test="keyword_print !=null and keyword_print !=''">
                          AND print_front LIKE '%'||#{keyword_print}||'%'
                          OR print_back LIKE '%'||#{keyword_print}||'%'
-                        </if>   
-                        <if test="keyword_shape != ''">
+                        </if>
+                           
+                        <if test="keyword_shape !=null and keyword_shape !=''">
                          AND drug_shape LIKE '%'||#{keyword_shape}||'%'
-                        </if>  
-                        <if test="keyword_color != ''">
+                        </if>
+                          
+                        <if test="keyword_color !=null and keyword_color !=''">
                          AND color_class LIKE '%'||#{keyword_color}||'%'
                         </if> 
                         
-                        <if test = "keyword_chart != ''">
+                        <if test = "keyword_chart !=null and keyword_chart !=''">
                          AND chart LIKE '%'||#{keyword_chart}||'%'
                         </if>  
                         
-                        <if test="keyword_line != ''">
+                        <if test="keyword_line !=null and keyword_line !=''">
                          AND line_front LIKE '%'||#{keyword_line}||'%'
                          OR  line_back LIKE  '%'||#{keyword_line}||'%'
                         </if>      
+                        
                         
                         ))B
                          
