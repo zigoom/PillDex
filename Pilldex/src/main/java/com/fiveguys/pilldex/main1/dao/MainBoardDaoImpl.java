@@ -8,7 +8,8 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.fiveguys.pilldex.domain.PillVO;
+
+import com.fiveguys.pilldex.domain.PillVO2;
 
 @Repository
 public class MainBoardDaoImpl implements Main1BoardDao {
@@ -17,7 +18,7 @@ public class MainBoardDaoImpl implements Main1BoardDao {
 	private static String namespace = "mapper.main1-paging-mapper";
 	
 	@Override
-	public List<PillVO> list() throws Exception {
+	public List<PillVO2> list() throws Exception {
 		return sqlSessionTemplate.selectList(namespace +".list");
 	}
 	
@@ -28,7 +29,7 @@ public class MainBoardDaoImpl implements Main1BoardDao {
 	}
 	
 	@Override
-	public List<PillVO> listPage(int displayPost, int postNum) throws Exception {
+	public List<PillVO2> listPage(int displayPost, int postNum) throws Exception {
 
 	 HashMap<String,Integer> data = new HashMap<String,Integer>();
 	  
@@ -39,7 +40,7 @@ public class MainBoardDaoImpl implements Main1BoardDao {
 	}
 
 	@Override
-	public List<PillVO> listPageSearchBox(
+	public List<PillVO2> listPageSearchBox(
 			int displayPost, int postNum, String keyword,
 			String keyword_print, String keyword_shape,
 			String keyword_color, String keyword_chart, String keyword_line) throws Exception {

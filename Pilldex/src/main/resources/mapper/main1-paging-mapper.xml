@@ -4,35 +4,47 @@
     <select id="list"
         resultType="com.fiveguys.pilldex.domain.PillVO">
 			SELECT item_name,
-					entp_name,
-					efcy_qesitm,
-					use_method_qesitm,
-					atpn_qesitm,
-					deposit_method_qesitm,
-					item_image
-		        FROM DATANAME  
-		            WHERE (item_name) IN(
-		                       SELECt item_name 
-		                         FROM DATASHAPE  
-		 
-		                      )
-		                 ORDER BY item_name 
+                    entp_name,
+                    efcy_qesitm,
+                    use_method_qesitm,
+                    atpn_qesitm,
+                    deposit_method_qesitm,
+                    item_image
+      FROM(
+          SELECT B.* 
+          FROM( 
+                SELECT ROWNUM, A.* 
+                FROM DATANAME  A
+                WHERE (item_name) IN(
+                       SELECT  item_name 
+                       FROM DATASHAPE     
+                         ))B
+                       )ORDER BY item_name
     </select>
 		
 	<select id="count" resultType="int">
-	  SELECT COUNT(*)
-        FROM DATANAME  
-            WHERE (item_name) IN(
-                       SELECt item_name 
-                         FROM DATASHAPE  
- 
-                      )
-                 ORDER BY item_name 
+	  SELECT COUNT(item_name)
+      FROM(
+          SELECT B.* 
+          FROM( 
+                SELECT ROWNUM, A.* 
+                FROM DATANAME  A
+                WHERE (item_name) IN(
+                       SELECT  item_name 
+                       FROM DATASHAPE     
+                         ))B
+                       )ORDER BY item_name
 	</select>
 	
        <!-- 게시물 목록 + 페이징 -->
      <select id="listPage" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
-      SELECT *
+      SELECT        item_name,
+                    entp_name,
+                    efcy_qesitm,
+                    use_method_qesitm,
+                    atpn_qesitm,
+                    deposit_method_qesitm,
+                    item_image
       FROM(
 	      SELECT B.* 
 		  FROM( 
@@ -42,13 +54,19 @@
 		               SELECT  item_name 
 		               FROM DATASHAPE      
 		               ))B 
-		               WHERE END BETWEEN #{displayPost} AND (#{postNum}+ #{displayPost})-1
-		               ORDER BY item_name) 
+		               WHERE END BETWEEN #{displayPost} AND #{postNum}+ #{displayPost}-1
+		               )ORDER BY item_name
     </select> 
              
     <!-- 페이징 + 검색 -->
      <select id="listPageSearchBox" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO">
-      SELECT *
+      SELECT        item_name,
+                    entp_name,
+                    efcy_qesitm,
+                    use_method_qesitm,
+                    atpn_qesitm,
+                    deposit_method_qesitm,
+                    item_image
       FROM(
           SELECT B.* 
           FROM( 
@@ -58,75 +76,76 @@
                        SELECT  item_name 
                        FROM DATASHAPE
                        WHERE 1=1
-                       <if test='keyword != "" '>
-						 AND item_name LIKE '%'||#{keyword}||'%' 
-						</if> 
-						
-						<if test='keyword_print != "" '>
-						 AND print_front LIKE '%'||#{keyword_print}||'%'
-						 OR print_back LIKE '%'||#{keyword_print}||'%'
-						</if>   
-						<if test='keyword_shape != "" '>
-						 AND drug_shape LIKE '%'||#{keyword_shape}||'%'
-						</if>  
-						<if test='keyword_color != "" '>
-						 AND color_class LIKE '%'||#{keyword_color}||'%'
-						</if> 
-						
-						<if test = 'tkeyword_chart != "" '>
-						 AND chart LIKE '%'||#{keyword_chart}||'%'
-						</if>  
-						
-						<if test='keyword_line != "" '>
-						 AND line_front LIKE '%'||#{keyword_line}||'%'
-						 OR  line_back LIKE  '%'||#{keyword_line}||'%'
-						</if> 
-                              
-                       ))B 
-                       WHERE END BETWEEN #{displayPost} AND (#{postNum}+ #{displayPost})-1
-                       ORDER BY item_name) 
-      </select>
-     
-      <select id="searchCountBox" parameterType="hashMap" resultType="int">
-      SELECT *
-      FROM(
-          SELECT B.* 
-          FROM( 
-                SELECT ROWNUM "END", A.* 
-                FROM DATANAME  A
-                WHERE (item_name) IN(
-                       SELECT  item_name 
-                       FROM DATASHAPE
-                       WHERE 1=1
-                       <if test='keyword != "" '>
+                       
+                        <if test="keyword != ''">
                          AND item_name LIKE '%'||#{keyword}||'%' 
                         </if> 
                         
-                        <if test='keyword_print != "" '>
+                        <if test="keyword_print != ''">
                          AND print_front LIKE '%'||#{keyword_print}||'%'
                          OR print_back LIKE '%'||#{keyword_print}||'%'
                         </if>   
-                        <if test='keyword_shape != "" '>
+                        <if test="keyword_shape != ''">
                          AND drug_shape LIKE '%'||#{keyword_shape}||'%'
                         </if>  
-                        <if test='keyword_color != "" '>
+                        <if test="keyword_color != ''">
                          AND color_class LIKE '%'||#{keyword_color}||'%'
                         </if> 
                         
-                        <if test = 'tkeyword_chart != "" '>
+                        <if test = "keyword_chart != ''">
                          AND chart LIKE '%'||#{keyword_chart}||'%'
                         </if>  
                         
-                        <if test='keyword_line != "" '>
+                        <if test="keyword_line != ''">
                          AND line_front LIKE '%'||#{keyword_line}||'%'
                          OR  line_back LIKE  '%'||#{keyword_line}||'%'
-                        </if> 
-                              
+                        </if>      
+                       
                        ))B
-                       ORDER BY item_name)
-                      )
-                      
-               
-
+                       
+                          
+                       WHERE END BETWEEN #{displayPost} AND #{postNum}+ #{displayPost}-1
+                       )ORDER BY item_name
+      </select>
+     
+      <select id="searchCountBox" parameterType="hashMap" resultType="int">
+      SELECT COUNT(item_name)
+      FROM(
+          SELECT B.* 
+          FROM( 
+                SELECT ROWNUM, A.* 
+                FROM DATANAME  A
+                WHERE (item_name) IN(
+                       SELECT  item_name 
+                       FROM DATASHAPE
+                        WHERE 1=1
+                       
+                        <if test="keyword != ''">
+                         AND item_name LIKE '%'||#{keyword}||'%' 
+                        </if> 
+                        
+                        <if test="keyword_print != ''">
+                         AND print_front LIKE '%'||#{keyword_print}||'%'
+                         OR print_back LIKE '%'||#{keyword_print}||'%'
+                        </if>   
+                        <if test="keyword_shape != ''">
+                         AND drug_shape LIKE '%'||#{keyword_shape}||'%'
+                        </if>  
+                        <if test="keyword_color != ''">
+                         AND color_class LIKE '%'||#{keyword_color}||'%'
+                        </if> 
+                        
+                        <if test = "keyword_chart != ''">
+                         AND chart LIKE '%'||#{keyword_chart}||'%'
+                        </if>  
+                        
+                        <if test="keyword_line != ''">
+                         AND line_front LIKE '%'||#{keyword_line}||'%'
+                         OR  line_back LIKE  '%'||#{keyword_line}||'%'
+                        </if>      
+                        
+                        ))B
+                         
+                       )ORDER BY item_name
      </select>
 </mapper>

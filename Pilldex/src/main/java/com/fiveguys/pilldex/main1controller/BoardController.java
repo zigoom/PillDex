@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fiveguys.pilldex.domain.PillVO;
+import com.fiveguys.pilldex.domain.PillVO2;
 import com.fiveguys.pilldex.domain.main1page;
 import com.fiveguys.pilldex.main1.service.Main1BoardService;
 
@@ -24,7 +24,7 @@ public class BoardController  {
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public void getList(Model model) throws Exception {
 				
-		List<PillVO> list = null;
+		List<PillVO2> list = null;
 		list = service.list();
 				
 		model.addAttribute("list",list);
@@ -64,7 +64,7 @@ public class BoardController  {
 	page.setKeyword_line (keyword_line );
 
 	
-	List<PillVO> list = null;
+	List<PillVO2> list = null;
 	list = service.listPageSearchBox(
 	page.getDisplayPost(), page.getPostNum(), 
 	keyword,

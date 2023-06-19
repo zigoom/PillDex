@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+               
 <meta charset="UTF-8">
 <meta name="author" content="hbi">
 
@@ -166,15 +167,15 @@
 						document.getElementById("pill_Nsearch").onclick = function () {
 
 						  var keyword =  document.getElementsByName("keyword")[0].value;
-						  var keyword_print = " ";
-						  var keyword_shape = " ";
-						  var keyword_color = " ";
-						  var keyword_chart = " ";
-						  var keyword_line =  " ";
+						  var keyword_print = ""[1];
+						  var keyword_shape = ""[2];
+						  var keyword_color = ""[3];
+						  var keyword_chart = ""[4];
+						  var keyword_line =  ""[5];
 						  
 						  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" + 
 						      "&keyword=" + keyword;+
-						      "$keyword_print=" + keyword_print;+
+						      "&keyword_print=" + keyword_print;+
 						      "&keyword_shape=" + keyword_shape;+
 						      "&keyword_color=" + keyword_color;+
 						      "&keyword_chart=" + keyword_chart;+
@@ -190,6 +191,7 @@
 				</div>
             </form>
             <form name="search_pill_mod_form" onsubmit="return false;">
+			<div>
 				<div style="margin-top: 15px">
 					&nbsp;약 모양으로 검색&nbsp;<input type="text" name = "keword_print" value = "${page.keyword_print}"
 						placeholder="식별문자(약의 앞면이나 뒷면의 문자)로 검색해 보세요." style="width: 600px;">
@@ -198,7 +200,7 @@
 				<div id="myDIV"
 					style="overflow: hidden; width: 710px; white-space: nowrap; margin: auto; margin-top: 20px">
 					<div class="select" style="display: inline-flex;">
-						<input type="radio" id="med_mod1" name="med_mod" value=" " checked="checked">
+						<input type="radio" id="med_mod1" name="med_mod" value="" checked="checked">
 						<label for="med_mod1"
 							style="background-image: url('../resources/img/main-png/모양/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
@@ -501,25 +503,26 @@
 					</div>
 				</div>
 
-				<div
-					style="text-align: center; margin-bottom: 30px; margin-top: 10px;">
+				
+					
 					<button type="button" id = "pill_search_Box">검색하기</button> 
-					<script type="text/javascript">
-                    document.getElementById("pill_search_Box").onclick = function () {
-                       
-                    let keyword = document.getElementsByName("keyword")[0].value;
-                    let keyword_print = document.getElementsByName("keyword_print")[0].value;
-                    let keyword_shape = document.querySelector('input[type=radio][name="med_mod"]:checked').value;
-                    let keyword_color = document.querySelector('input[type=radio][name="med_coclor"]:checked').value;
-                    let keyword_chart = document.querySelector('input[type=radio][name="med_texture"]:checked').value;
-                    let keyword_line =  document.querySelector('input[type=radio][name="med_line"]:checked').value;
-                  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
-                  +"&keyword=" + keyword;
-                  +"&keyword_print=" + keyword_print;
-                  +"&keyword_shape=" + keyword_shape;
-                  +"&keyword_color=" + keyword_color;
-                  +"&keyword_chart=" + keyword_chart;
-                  +"&keyword_line=" + keyword_line;};</script>
+					 <script type="text/javascript">
+	                    document.getElementById("pill_search_Box").onclick = function () {
+	                       
+	                    let keyword = ""
+	                    let keyword_print = document.getElementsByName("keyword_print")[0].value;
+	                    let keyword_shape = document.querySelector('input[type=radio][name="med_mod"]:checked')[1].value;
+	                    let keyword_color = document.querySelector('input[type=radio][name="med_coclor"]:checked')[2].value;
+	                    let keyword_chart = document.querySelector('input[type=radio][name="med_texture"]:checked')[3].value;
+	                    let keyword_line =  document.querySelector('input[type=radio][name="med_line"]:checked')[4].value;
+	                  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
+	                  +"&keyword=" + keyword;
+	                  +"&keyword_print=" + keyword_print;
+	                  +"&keyword_shape=" + keyword_shape;
+	                  +"&keyword_color=" + keyword_color;
+	                  +"&keyword_chart=" + keyword_chart;
+	                  +"&keyword_line=" + keyword_line;};
+	                </script>
 					
 					<input type="reset"
 						value="취소하기">	
@@ -530,7 +533,7 @@
 	</div>
   <div>
 	<div class="search_list_table">
-		<c:forEach var="list" items="${pillVO}">
+		<c:forEach var="list" items="list">
 			<button class="search_list" onclick="window.open('#')">
 				<img class="search_list_img" src="${list.item_image}">
 				<ul style="list-style: none; 
