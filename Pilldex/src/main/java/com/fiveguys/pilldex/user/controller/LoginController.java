@@ -54,7 +54,60 @@ public class LoginController {
     @ResponseBody         //해당 내용이 화면이 아닌 데이터만 던진자고 알려주는 것임
     public String loginButtonEvent(UserVO user, Model model, HttpSession httpSession ) throws SQLException {        
         LOG.debug("┌────────────────────────────────────────────────────────┐");
-        LOG.debug("│ doLogin()                                              │");
+        System.out.println("│ loginButtonEvent()                                     │");
+        LOG.debug("└────────────────────────────────────────────────────────┘");
+        String jsonString = "";        
+        LOG.debug("┌────────────────────────────────────────────────────────┐");
+        LOG.debug("│ user : "+user);
+        MessageVO message = new MessageVO();
+        
+        // (1 : id 미입력)
+        if(null == user.getId() || "".equals(user.getId())) {
+            message.setMsgId("1");
+            message.setMsgContents("아이디를 입력 하세요.");
+            return new Gson().toJson(message);        
+        }
+        // (2 : pass 미입력)
+        if(null == user.getPw() || "".equals(user.getPw())) {
+            message.setMsgId("2");
+            message.setMsgContents("비밀번호를 입력 하세요.");
+            return new Gson().toJson(message);        
+        }
+        
+        int status = this.userService.doLogin(user);        
+        if(10==status) {         // (10 : id 오류)
+            message.setMsgId("10");
+            message.setMsgContents("아이디를 확인 하세요.");
+        }else if(20==status) {     // (20 : pass 오류)
+            message.setMsgId("20");
+            message.setMsgContents("비밀번호를 확인  하세요.");
+        }else if(30==status) {                    // (30 : 성공)
+            message.setMsgId("30");
+            message.setMsgContents(user.getId()+"가 로그인 되었습니다.");
+            
+            //----------------------------------------------------------
+            //- 사용자 정보 조회 : session처리
+            //----------------------------------------------------------
+            UserVO userInfo = userService.selectUser(user);
+            if(null!=userInfo) {
+                httpSession.setAttribute("user", userInfo);
+            }
+        }else {
+            message.setMsgId("99");
+            message.setMsgContents("알수 없는 오류");            
+        }
+        jsonString = new Gson().toJson(message);
+        
+        LOG.debug("│ jsonString : "+jsonString);
+        LOG.debug("└────────────────────────────────────────────────────────┘");
+        return jsonString;        		
+	}
+    
+    @RequestMapping(value = "/modeLogin.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody         //해당 내용이 화면이 아닌 데이터만 던진자고 알려주는 것임
+    public String loginButtonEventMode(UserVO user, Model model, HttpSession httpSession ) throws SQLException {        
+        LOG.debug("┌────────────────────────────────────────────────────────┐");
+        System.out.println("│ loginButtonEventMode()                                 │");
         LOG.debug("└────────────────────────────────────────────────────────┘");
         String jsonString = "";        
         LOG.debug("┌────────────────────────────────────────────────────────┐");

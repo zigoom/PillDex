@@ -11,56 +11,242 @@
 
 <title>PillDex 돋보기모드</title>
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous" />
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"></script>
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/30356e696a.js"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${path}/resources/css/mode-style.css" />
+<script src="${path}/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
 	<!--네비게이션 바-->
 	<nav class="py-2 bg-light border-bottom">
-		<div class="container d-flex flex-wrap">
-			<ul class="nav me-auto">
-				<li class="nav-item"><a href="#"
-					class="nav-link link-dark px-2 active" aria-current="page"> <img
-						src="${path}/resources/img/Pill_32px.png" alt="Pill" /> &nbsp; <b>PillDex</b>
-				</a></li>
-			</ul>
-			<ul class="nav">
-				<li class="nav-item"><a href="#"
-					class="nav-link link-dark px-2"><b>일반모드</b></a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link link-dark px-2"><b>MAP</b></a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link link-dark px-2"><b>로그인</b></a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-				<li class="nav-item"><a href="#"
-					class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
-			</ul>
+			<div class="container d-flex flex-wrap">
+				<ul class="nav me-auto">
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
+						<a href="#" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
+					</a>
+					</li>
+				</ul>
+				<ul class="nav" style="">				
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
+                    
+				  <%-- <c:set var="user" value="${User}"/> --%>
+          <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+          </c:if>
+          <c:if test="${user eq null }"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="login.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+          </c:if> 
+				</ul>
+			</div>
+		</nav>
+	<div id="login-containor">
+		<div
+			style="width: 260px; float: right; background-color: #FFFFFF; margin-right: 10px; margin-top: 10px; margin-bottom: 20px; height: 100px; background-size: cover">
+			<div style="margin-left: 10px; margin-bottom: 15px;">
+				<form>
+					<input type="checkbox" name="idsave" value="saveOk"> <label
+						for="checkId">아이디 저장</label><br> <input type="text" name="id"
+						id="id" placeholder="아이디"> <input type="password"
+						name="pw" id="pw" placeholder="패스워드"> 
+						<input type="button" value="로그인" id="doLogin" style="height: 50px;">
+						<a href="#" style="text-decoration-line: none;">회원가입</a>
+					<button type="button" data-bs-toggle="modal"
+						data-bs-target="#staticBackdrop">ID/PW 찾기</button>
+				</form>
+			</div>
+
+
+			<!-- Modal -->
+			<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+				data-bs-keyboard="false" tabindex="-1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="staticBackdropLabel">ID/PW찾기</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form action="#" method="post">
+								<div class="find-box">
+									<h3>아이디찾기</h3>
+									<br>
+									<p>이름</p>
+									<input type="text" class="form-control" name="find-id-name"
+										id="find-id-name">
+									<p>휴대폰번호</p>
+									<input type="text" class="form-control" name="find-id-phoneNum"
+										id="find-id-phoneNum"> <input type="submit"
+										class="btn btn-primary find-btn">
+									<p>찾은ID(불러올것)</p>
+								</div>
+							</form>
+							<form action="#" method="post">
+								<div class="find-box">
+									<h3>비밀번호찾기</h3>
+									<p>아이디</p>
+									<input type="text" class="form-control" name="find-pw-id"
+										id="find-pw-id"> <br>
+									<p>이름</p>
+									<input type="text" class="form-control" name="find-pw-name"
+										id="find-pw-name">
+									<p>휴대폰번호</p>
+									<input type="text" class="form-control" name="find-pw-phoneNum"
+										id="find-pw-phoneNum"> <input type="submit"
+										class="btn btn-primary find-btn">
+									<p>찾은PW(불러올것)</p>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Understood</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
-	</nav>
+	</div>
 	<img src="${path}/resources/img/main_img.png" alt="메인이미지" width="100%" />
 	<div id="search_list_box">
 		<!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->
 		<ul>
 			<li>
-				<div id="search_list">
-					<img id="search_list_img" src="#" alt="이미지" />
-				</div> 타이레놀
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
 			<li>
-				<div id="search_list">
-					<img id="search_list_img" src="#" alt="이미지" />
-				</div> 타이레놀
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
 			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+			<li>
+				<form method="post" action="/pilldex/apiloadToNameDetail.do">
+					<div class="search_list hidden">
+						<img class="search_list_img" src="#" alt="이미지" />
+						<p class="search_list_name"></p>
+						<input type="hidden" name="itemName" class="recent-search"
+							value=""> <input type="submit" class="btn btn-primary"
+							value="보기">
+						<button class="remove-btn btn btn-primary">제거</button>
+					</div>
+				</form>
+			</li>
+
 		</ul>
+
 	</div>
 	<div id="med_search_box">
 		<h1 id="med_search">의약품 검색</h1>
@@ -78,7 +264,10 @@
 	<form method="post" id="main-form" action="apiload.do">
 		<div id="shape_search_box">
 			<h2>약 모양으로 검색</h2>
-			<img src="${path}/resources/img/med_char.png" />
+			<div id="shape-search-box-img">
+				<img src="${path}/resources/img/tylenol.jpg" id="printImg" />
+				<h4>이 약의 경우 식별자에 TYLENOL 또는 500을 입력해주세요.</h4>
+			</div>
 			<div style="display: flex; align-items: end">
 				<div id="med_char_input">
 					<div class="select-box shape">
@@ -101,16 +290,16 @@
 						<i class="fa-solid fa-light fa-tablets fa-2xl"></i> <input
 							type="text" class="selected-data-input hidden" name="lineFront"
 							value="" />
-						<p>분할선</p>
+						<h3>분할선</h3>
 						<input type="text" class="selected-data-input hidden"
 							name="lineBack" value="" /> <input type="text"
 							class="selected-data-input hidden" name="printFront" value="" />
 						<input type="text" class="selected-data-input hidden"
 							name="printBack" value="" />
 					</div>
-					<input type="text" class="selected-data-input" name="printFB"
-						value="" />
-					<p>식별자</p>
+					<input type="text" class="selected-data-input printFB"
+						placeholder="식별자" name="printFB" value="" /> <input type="submit"
+						id="submit-btn" class="btn btn-primary" />
 				</div>
 				<div class="detail-view-box hidden">
 					<div class="select-box-shape">
@@ -293,7 +482,7 @@
 			</div>
 		</div>
 		<p>${shape}</p>
-		<input type="submit" id="submit-btn" />
+
 	</form>
 
 
@@ -308,11 +497,13 @@
 							<div class="card-body">
 								<input name="itemName" value="${pill.itemName}"
 									class="hidden input-itemName" />
-								<h5 class="card-title">${pill.itemName}</h5>
+								<h5 id="card-title" class="card-title">${pill.itemName}</h5>
 								<p class="card-text">${pill.efcyQesitm}</p>
 							</div>
 						</div>
-						<input type="submit" id="card-submit" class="btn btn-primary">
+						<input value="상세보기" style="width: 50%;" type="submit"
+							id="${pill.itemName}" class="btn btn-primary card-submit"
+							data-image="${pill.itemImage}">
 					</form>
 				</div>
 			</c:forEach>
@@ -329,130 +520,77 @@
                         <use xlink:href="#bootstrap" />
                     </svg>
 			</a> <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023
-				FiveGuys 4 Team </span> <a
+				FiveGuys 4 Team </span> <a class="copyright"
 				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057"
 				target="blank"><span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span></a> <a
+				class="copyright"
 				href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639"
 				target="blank"><span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span></a>
-
 		</div>
 	</footer>
 </body>
 
+<script src="${path}/resources/js/mode-page.js">
+	
+</script>
 <script>
-	let selectBox = document.querySelectorAll('.select-box');
-	let detailViewBox = document.querySelectorAll('.detail-view-box');
-	let selectedDataInput = document.querySelectorAll('.selected-data-input');
+	//jquery 이벤트 감지 (#은 id를 감지한는것이다.)
+	$("#doLogin").on("click", function() {
+		console.log("doLogin");
 
-	for (let i = 0; i < selectBox.length; i++) {
-		selectBox[i].addEventListener('click', function(e) {
-			if (!selectBox[i].classList.contains('clickable')) {
-				selectBox[i].classList.add('clickable');
-				detailViewBox[i].classList.remove('hidden');
-			} else {
-				selectBox[i].classList.remove('clickable');
-				detailViewBox[i].classList.add('hidden');
-			}
+		if (confirm('로그인 하시겠습니까?') == false)
+			return;
+		console.log("userId : " + $("#id").val());
+		console.log("passwd : " + $("#pw").val());
 
-			for (let j = 0; j < selectBox.length; j++) {
-				if (j !== i) {
-					selectBox[j].classList.remove('clickable');
-					detailViewBox[j].classList.add('hidden');
+		if ("" == $("#id").val() || 0 == $("#id").val().length) {
+			alert("아이디를 입력하세요"); // javascript 메시지 다이얼 로그
+			$("#id").focus(); // jquery로 포커스를 이동시킨다.
+			return;
+		}
+		if ("" == $("#pd").val() || 0 == $("#pw").val().length) {
+			alert("비밀번호를 입력하세요"); // javascript 메시지 다이얼 로그
+			$("#pw").focus();
+			return;
+		}
+
+		$.ajax({
+			type : "POST",
+			url : "${path}/modeLogin.do",
+			/* asyn:"true", */
+			dataType : "html",
+			data : {
+				id : $("#id").val(),
+				pw : $("#pw").val()
+			},
+			success : function(data) {// 통신 성공
+				// console.log("success data:"+data);
+				// JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를
+				// 생성합니다.
+				let paredJSON = JSON.parse(data);
+				console.log("paredJSON.msgId:" + paredJSON.msgId);
+
+				if ("1" == paredJSON.msgId || "10" == paredJSON.msgId) {
+					alert(paredJSON.msgContents); // javascript 메시지 다이얼 로그
+					$("#userId").focus(); // jquery로 포커스를 이동시킨다.
+					return;
 				}
+				if ("2" == paredJSON.msgId || "20" == paredJSON.msgId) {
+					alert(paredJSON.msgContents);
+					$("#passwd").focus();
+					return;
+				}
+				if ("30" == paredJSON.msgId) {// 로그인 성공
+					alert(paredJSON.msgContents);
+
+					// javascript 내장객체 : url
+					window.location.href = "${path}/mode.do";
+				}
+			},
+			error : function(data) {// 실패시 처리
+				console.log("error:" + data);
 			}
 		});
-	}
-
-	let selectBoxShape = document.querySelectorAll('.select-box-shape img');
-	let selectedShape = null;
-
-	for (let i = 0; i < selectBoxShape.length; i++) {
-		selectBoxShape[i].addEventListener('click', function() {
-			if (!selectBoxShape[i].classList.contains('clickable')) {
-				selectBoxShape[i].classList.add('clickable');
-				selectBox[0].classList.add('click-option');
-			} else {
-				selectBoxShape[i].classList.remove('clickable');
-				selectBox[0].classList.remove('click-option');
-			}
-			selectedShape = selectBoxShape[i].getAttribute('data-value');
-			selectedDataInput[0].value = selectedShape;
-
-			resetClickable(selectBoxShape, i);
-		});
-	}
-
-	let selectBoxColor = document.querySelectorAll('.select-box-color img');
-	let selectedColor = null;
-
-	for (let i = 0; i < selectBoxColor.length; i++) {
-		selectBoxColor[i].addEventListener('click', function() {
-			if (!selectBoxColor[i].classList.contains('clickable')) {
-				selectBoxColor[i].classList.add('clickable');
-				selectBox[1].classList.add('click-option');
-			} else {
-				selectBoxColor[i].classList.remove('clickable');
-				selectBox[1].classList.remove('click-option');
-			}
-			selectedColor = selectBoxColor[i].getAttribute('data-value');
-			selectedDataInput[1].value = selectedColor;
-			resetClickable(selectBoxColor, i);
-		});
-	}
-
-	let selectBoxChart = document.querySelectorAll('.select-box-chart img');
-	let selectedChart = null;
-
-	for (let i = 0; i < selectBoxChart.length; i++) {
-		selectBoxChart[i].addEventListener('click', function() {
-			if (!selectBoxChart[i].classList.contains('clickable')) {
-				selectBoxChart[i].classList.add('clickable');
-				selectBox[2].classList.add('click-option');
-			} else {
-				selectBoxChart[i].classList.remove('clickable');
-				selectBox[2].classList.remove('click-option');
-			}
-			selectedChart = selectBoxChart[i].getAttribute('data-value');
-			selectedDataInput[2].value = selectedChart;
-			resetClickable(selectBoxChart, i);
-		});
-	}
-
-	let selectBoxLine = document.querySelectorAll('.select-box-line img');
-	let selectedLine = null;
-
-	for (let i = 0; i < selectBoxLine.length; i++) {
-		selectBoxLine[i].addEventListener('click', function() {
-			if (!selectBoxLine[i].classList.contains('clickable')) {
-				selectBoxLine[i].classList.add('clickable');
-				selectBox[3].classList.add('click-option');
-			} else {
-				selectBoxLine[i].classList.remove('clickable');
-				selectBox[3].classList.remove('click-option');
-			}
-			selectedLine = selectBoxLine[i].getAttribute('data-value');
-			selectedDataInput[3].value = selectedLine;
-			selectedDataInput[4].value = selectedLine;
-			resetClickable(selectBoxLine, i);
-		});
-	}
-
-	function resetClickable(elements, selectedIndex) {
-		for (let j = 0; j < elements.length; j++) {
-			if (j !== selectedIndex) {
-				elements[j].classList.remove('clickable');
-			}
-		}
-	}
-
-	selectedDataInput[7].addEventListener("keyup", function() {
-		if (selectedDataInput[7].value != "") {
-			selectedDataInput[5].value = selectedDataInput[7].value;
-			selectedDataInput[6].value = selectedDataInput[7].value;
-		} else {
-			selectedDataInput[5].value = "";
-			selectedDataInput[6].value = "";
-		}
-	})
+	});
 </script>
 </html>
