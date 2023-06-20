@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="CP" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
   <head>                 
@@ -18,7 +20,7 @@
                 <li>
                   <label>아이디</label><br/>
                   <input type="text" name="id" id="id" placeholder="아이디 입력(영어, 숫자포함 6~20자)">
-                  <input type="button" id="idCheck" value="중복확인">
+                  <input type="button" id="idDulpCheck" value="중복확인">
                 </li>
                 <li>
                   <label>비밀번호</label><br/>
@@ -314,8 +316,49 @@
           location.href="MainForm.do";
       } */
       
-      $(document).ready(function){  //모든 화면이 다 로딩이 되면 실행하는 영역
-    	    
+      $(document).ready(function(){  //모든 화면이 다 로딩이 되면 실행하는 영역
+    	    console.log("document ready");
+      
+  	    //jquery 이벤트 감지 (#은 id를 감지한는것이다.)
+  	    $("#idDulpCheck").on("click",function(){
+  	    	console.log("idDulpCheck ready");
+  	    	
+  	    	$.ajax({
+                type: "POST",
+              url:"${CP}/idDulpCheck.do",
+                /* asyn:"true", */
+                dataType:"html",
+                data:{
+                    id: $("#id").val()
+                },
+                success:function(data){//통신 성공
+                    //console.log("success data:"+data);
+                    // JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성합니다.
+                    let paredJSON = JSON.parse(data);
+                    console.log("paredJSON.msgId:"+paredJSON.msgId);
+                    
+                    if("" == $("#id".val() || 0 == $("#id").val().length) {
+                      alert("ID는 반드시 입력해야 합니다");
+                      $("#id").val() = "";
+                      $("#id").focus();
+                      return;
+                    }
+                    
+                    if("10"==paredJSON.msgId){
+                      alert(paredJSON.msgContents);  // javascript 메시지 다이얼 로그                  
+                    }
+                    if("20"==paredJSON.msgId){//로그인 성공
+                      alert(paredJSON.msgContents);
+                      return;
+                    }
+                  },
+                  error:function(data){//실패시 처리
+                    console.log("error:"+data);
+                  }
+            }); //  $.ajax End --------------------------
+  	    	
+  	    	
+  	    });  // #idDulpCheck end
     	  
     	  
       });   //모든 화면이 다 로딩이 되면 실행하는 영역

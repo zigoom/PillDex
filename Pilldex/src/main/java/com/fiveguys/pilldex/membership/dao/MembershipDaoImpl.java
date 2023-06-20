@@ -12,7 +12,7 @@ import com.fiveguys.pilldex.domain.UserVO;
 @Repository
 public class MembershipDaoImpl implements MembershipDao {
 	
-	final String NAMESPACE = "com.fiveguys.pilldex.membership";
+	final String NAMESPACE = "com.fiveguys.pilldex.user";
 	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;	// DB를 연결하는 객체!
@@ -30,8 +30,8 @@ public class MembershipDaoImpl implements MembershipDao {
 		String statement = this.NAMESPACE+".idCheck";
 		System.out.println("============================================");
 		System.out.println("1. statement : \n"+statement);
-		System.out.println("============================================");
 		System.out.println("2. param : \n"+user.toString());
+		System.out.println("============================================");
 		
 		flag = sqlSessionTemplate.selectOne(statement, user);	// id하나를 조회하는 것이므로 selectOne
 		System.out.println("3. flag : "+flag);

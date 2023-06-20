@@ -1,5 +1,7 @@
 package com.fiveguys.pilldex.membership.service;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,26 @@ public class MembershipServiceImpl implements MembershipService {
 		}
 		
 		return regNum;
+	}
+
+	@Override
+	public int doIdDuplCheck(UserVO user) throws SQLException {
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ doIdDuplCheck()                                        │");
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		
+		int result = 0;
+		int flag = 0;
+		
+		flag = this.membershipDao.idCheck(user);
+		System.out.println("############# -"+flag);
+		
+		if(1 == flag) {
+			result = -1;
+		} else if (0 == flag) {
+			result = 1;
+		}
+		return result;
 	}
 		
 }
