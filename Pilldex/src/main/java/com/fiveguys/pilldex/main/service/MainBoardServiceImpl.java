@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.main1.service;
+package com.fiveguys.pilldex.main.service;
 
 import java.util.List;
 

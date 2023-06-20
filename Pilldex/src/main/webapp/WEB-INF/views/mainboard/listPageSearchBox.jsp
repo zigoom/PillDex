@@ -160,26 +160,34 @@
 						<input class=search_into
 							type="text"  name = "keyword"  value="${page.keyword}"
 							placeholder="약 이름 또는 성분 등으로 검색해 보세요." 
-							style="width: 600px;"> 
+							style="width: 600px;"/> 
 						<button type="button" id="pill_Nsearch">검색하기</button>
 						
 						<script type="text/javascript">
 						document.getElementById("pill_Nsearch").onclick = function () {
 
 						  let keyword = document.getElementsByName("keyword")[0].value;
-						  let keyword_print = ""[1];
-						  let keyword_shape = ""[2];
-						  let keyword_color = ""[3];
-						  let keyword_chart = ""[4];
-						  let keyword_line =  ""[5];
+                          let keyword_print = document.getElementsByName("keyword_print")[0].value;
+                          
+                          let keyword_shape = document.querySelector('input[name="med_mod"]:checked').value;
+                          
+                         
+                          let keyword_color = document.querySelector('input[name="med_coclor"]:checked').value;
+                          
+                         
+                          let keyword_chart = document.querySelector('input[name="med_texture"]:checked').value;
+                          
+                         
+                          let keyword_line =  document.querySelector('input[name="med_line"]:checked').value;
 						  
-						  location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" + 
-						      "&keyword=" + keyword;+
-						      "&keyword_print=" + keyword_print;+
-						      "&keyword_shape=" + keyword_shape;+
-						      "&keyword_color=" + keyword_color;+
-						      "&keyword_chart=" + keyword_chart;+
-						      "&keyword_line =" + keyword_line;
+						  location.href = "/pilldex/mainboard/listPageSearchBox.do?num=1" + 
+						      "&keyword=" + keyword;
+							  +"&keyword_print=" + keyword_print
+	                          +"&keyword_shape=" + keyword_shape
+	                          +"&keyword_color=" + keyword_color
+	                          +"&keyword_chart=" + keyword_chart
+	                          +"&keyword_line=" + keyword_line;
+						   
 						      };
 						</script>
                         
@@ -196,24 +204,27 @@
 				
                     
 				<div style="margin-top: 15px">
-					&nbsp;약 모양으로 검색&nbsp;<input type="text" name = "keword_print" value = "${page.keyword_print}"
+					&nbsp;약 모양으로 검색&nbsp;<input type="text" name = "keyword_print" value = "${page.keyword_print}"
 						placeholder="식별문자(약의 앞면이나 뒷면의 문자)로 검색해 보세요." style="width: 600px;">
 				</div>
 				
 				<div id="myDIV"
 					style="overflow: hidden; width: 710px; white-space: nowrap; margin: auto; margin-top: 20px">
 					<div class="select" style="display: inline-flex;"  id = "mod_box">
-						<input type="radio" id="med_mod1" name="med_mod" value="" checked="checked">
+						<input type="radio" id="med_mod1" name="med_mod" value="" checked="checked"
+						  <c:if test="${page.keyword_shape eq ''}">checked</c:if> >
 						<label for="med_mod1"
 							style="background-image: url('../resources/img/main-png/모양/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
 						
-						<input type="radio" id="med_mod2" name="med_mod" value="원형">
+						<input type="radio" id="med_mod2" name="med_mod" value="원형"
+						 <c:if test="${page.keyword_shape eq '원형'}">checked</c:if> >
 						<label for="med_mod2"
 							style="background-image: url('../resources/img/main-png/모양/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
 						
-						<input type="radio" id="med_mod3" name="med_mod" value="타원형">
+						<input type="radio" id="med_mod3" name="med_mod" value="타원형"
+						<c:if test="${page.keyword_shape eq '타원형'}">checked</c:if> >
 						<label for="med_mod3"
 							style="background-image: url('../resources/img/main-png/모양/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
@@ -224,27 +235,33 @@
 								style="width: 70px; height: 70px;">
 						</button>
 
-						<input type="radio" id="med_mod4" name="med_mod" value="반원형">
+						<input type="radio" id="med_mod4" name="med_mod" value="반원형"
+						<c:if test="${page.keyword_shape eq '반원형'}">checked</c:if> >
 						<label for="med_mod4"
 							style="background-image: url('../resources/img/main-png/모양/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
-						<input type="radio" id="med_mod5" name="med_mod" value="장방형">
+						<input type="radio" id="med_mod5" name="med_mod" value="장방형"
+						<c:if test="${page.keyword_shape eq '장방형'}">checked</c:if> >
 						<label for="med_mod5"
 							style="background-image: url('../resources/img/main-png/모양/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
-						<input type="radio" id="med_mod6" name="med_mod" value="삼각형">
+						<input type="radio" id="med_mod6" name="med_mod" value="삼각형"
+						<c:if test="${page.keyword_shape eq '삼각형'}">checked</c:if> >
 						<label for="med_mod6"
 							style="background-image: url('../resources/img/main-png/모양/6.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
-						<input type="radio" id="med_mod7" name="med_mod" value="사각형">
+						<input type="radio" id="med_mod7" name="med_mod" value="사각형"
+						<c:if test="${page.keyword_shape eq '사각형'}">checked</c:if> >
 						<label for="med_mod7"
 							style="background-image: url('../resources/img/main-png/모양/7.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
-						<input type="radio" id="med_mod8" name="med_mod" value="마름모형">
+						<input type="radio" id="med_mod8" name="med_mod" value="마름모형"
+						<c:if test="${page.keyword_shape eq '마름모형'}">checked</c:if> >
 						<label for="med_mod8"
 							style="background-image: url('../resources/img/main-png/모양/8.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> 
-						<input type="radio" id="med_mod9" name="med_mod" value="오각형">
+						<input type="radio" id="med_mod9" name="med_mod" value="오각형"
+						<c:if test="${page.keyword_shape eq '오각형'}">checked</c:if> >
 						<label for="med_mod9"
 							style="background-image: url('../resources/img/main-png/모양/9.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
@@ -260,13 +277,13 @@
 
 
 						<input type="radio" id="med_mod10" name="med_mod"
-							value="육각형"> <label for="med_mod10"
+							value="육각형" <c:if test="${page.keyword_shape eq '육각형'}">checked</c:if> > <label for="med_mod10"
 							style="background-image: url('../resources/img/main-png/모양/10.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> <input type="radio" id="med_mod11" name="med_mod"
-							value="팔각형"> <label for="med_mod11"
+							value="팔각형" <c:if test="${page.keyword_shape eq '팔각형'}">checked</c:if> > <label for="med_mod11"
 							style="background-image: url('../resources/img/main-png/모양/11.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label> <input type="radio" id="med_mod12" name="med_mod"
-							value="기타"> <label for="med_mod12"
+							value="기타" <c:if test="${page.keyword_shape eq '기타'}">checked</c:if> > <label for="med_mod12"
 							style="background-image: url('../resources/img/main-png/모양/12.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
 					</div>
@@ -277,7 +294,7 @@
 					<div class="select" style="display: inline-flex;">
 						<div>
 							<input type="radio" id="med_coclor1" name="med_coclor" checked="checked"
-								value=""> <label for="med_coclor1"
+								value="" <c:if test="${page.keyword_color eq ''}">checked</c:if> > <label for="med_coclor1"
 								style="background-image: url('../resources/img/main-png/색깔/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">색상</p>
@@ -285,7 +302,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor2" name="med_coclor"
-								value="하양"> <label for="med_coclor2"
+								value="하양" <c:if test="${page.keyword_color eq '하양'}">checked</c:if> > <label for="med_coclor2"
 								style="background-image: url('../resources/img/main-png/색깔/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">하양</p>
@@ -293,7 +310,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor3" name="med_coclor"
-								value="노랑"> <label for="med_coclor3"
+								value="노랑" <c:if test="${page.keyword_color eq '노랑'}">checked</c:if> > <label for="med_coclor3"
 								style="background-image: url('../resources/img/main-png/색깔/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">노랑</p>
@@ -301,7 +318,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor4" name="med_coclor"
-								value="주황"> <label for="med_coclor4"
+								value="주황" <c:if test="${page.keyword_color eq '주황'}"></c:if> > <label for="med_coclor4"
 								style="background-image: url('../resources/img/main-png/색깔/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">주황</p>
@@ -309,7 +326,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor5" name="med_coclor"
-								value="분홍"> <label for="med_coclor5"
+								value="분홍" <c:if test="${page.keyword_color eq '분홍'}">checked</c:if> > <label for="med_coclor5"
 								style="background-image: url('../resources/img/main-png/색깔/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">분홍</p>
@@ -317,7 +334,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor6" name="med_coclor"
-								value="빨강"> <label for="med_coclor6"
+								value="빨강" <c:if test="${page.keyword_color eq '빨강'}">checked</c:if> > <label for="med_coclor6"
 								style="background-image: url('../resources/img/main-png/색깔/6.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">빨강</p>
@@ -325,7 +342,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor7" name="med_coclor"
-								value="갈색"> <label for="med_coclor7"
+								value="갈색" <c:if test="${page.keyword_color eq '갈색'}">checked</c:if> > <label for="med_coclor7"
 								style="background-image: url('../resources/img/main-png/색깔/7.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">갈색</p>
@@ -333,7 +350,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor8" name="med_coclor"
-								value="연두"> <label for="med_coclor8"
+								value="연두" <c:if test="${page.keyword_color eq '연두'}">checked</c:if> > <label for="med_coclor8"
 								style="background-image: url('../resources/img/main-png/색깔/8.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">연두</p>
@@ -347,7 +364,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor9" name="med_coclor"
-								value="초록"> <label for="med_coclor9"
+								value="초록" <c:if test="${page.keyword_color eq '초록'}">checked</c:if> > <label for="med_coclor9"
 								style="background-image: url('../resources/img/main-png/색깔/9.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">초록</p>
@@ -364,7 +381,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor10" name="med_coclor"
-								value=청록> <label for="med_coclor10"
+								value=청록 <c:if test="${page.keyword_color eq '청록'}">checked</c:if> > <label for="med_coclor10"
 								style="background-image: url('../resources/img/main-png/색깔/10.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">청록</p>
@@ -372,7 +389,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor11" name="med_coclor"
-								value="파랑"> <label for="med_coclor11"
+								value="파랑" <c:if test="${page.keyword_color eq '파랑'}">checked</c:if> > <label for="med_coclor11"
 								style="background-image: url('../resources/img/main-png/색깔/11.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">파랑</p>
@@ -380,7 +397,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor12" name="med_coclor"
-								value="남색"> <label for="med_coclor12"
+								value="남색" <c:if test="${page.keyword_color eq '남색'}"></c:if> > <label for="med_coclor12"
 								style="background-image: url('../resources/img/main-png/색깔/12.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">남색</p>
@@ -388,7 +405,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor13" name="med_coclor"
-								value="자주"> <label for="med_coclor13"
+								value="자주" <c:if test="${page.keyword_color eq '자주'}">checked</c:if> > <label for="med_coclor13"
 								style="background-image: url('../resources/img/main-png/색깔/13.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">자주</p>
@@ -396,7 +413,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor14" name="med_coclor"
-								value="보라"> <label for="med_coclor14"
+								value="보라" <c:if test="${page.keyword_color eq '보라'}"></c:if> > <label for="med_coclor14"
 								style="background-image: url('../resources/img/main-png/색깔/14.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">보라</p>
@@ -404,7 +421,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor15" name="med_coclor"
-								value="회색"> <label for="med_coclor15"
+								value="회색" <c:if test="${page.keyword_color eq '회색'}">checked</c:if> > <label for="med_coclor15"
 								style="background-image: url('../resources/img/main-png/색깔/15.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">회색</p>
@@ -412,7 +429,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor16" name="med_coclor"
-								value="검정"> <label for="med_coclor16"
+								value="검정" <c:if test="${page.keyword_color eq '검정'}">checked</c:if> > <label for="med_coclor16"
 								style="background-image: url('../resources/img/main-png/색깔/16.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">검정</p>
@@ -420,7 +437,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor17" name="med_coclor"
-								value="투명"> <label for="med_coclor17"
+								value="투명" <c:if test="${page.keyword_color eq '투명'}">checked</c:if> > <label for="med_coclor17"
 								style="background-image: url('../resources/img/main-png/색깔/17.png'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">투명</p>
@@ -433,83 +450,87 @@
 				<div class="select"
 					style="display: flex; overflow: hidden; margin-left: 44px; margin-top: 20px; width: 710;">
 				
+				    <div>
 						<input type="radio" id="med_texture1" name="med_texture" checked="checked"
-							value=""> <label for="med_texture1"
+							value="" <c:if test="${page.keyword_chart eq ''}">checked</c:if> > <label for="med_texture1"
 							style="background-image: url('../resources/img/main-png/재질/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-					
+						<p style="text-align: center; font-weight: 800">전체</p>
+					</div>
 
-					
-						<input type="radio" id="med_texture2" name="med_texture"
-							value="정제"> <label for="med_texture2"
+					<div>
+						<input type="radio" id="med_texture2" name="med_texture" 
+							value="정제" <c:if test="${page.keyword_chart eq '정제'}">checked</c:if> > <label for="med_texture2"
 							style="background-image: url('../resources/img/main-png/재질/2.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-				
-
+						<p style="text-align: center; font-weight: 800">정제형</p>
+				    </div>
+                    
+                    <div>
 						<input type="radio" id="med_texture3" name="med_texture"
-							value="경질"> <label for="med_texture3"
+							value="경질" <c:if test="${page.keyword_chart eq '경질'}"></c:if> > <label for="med_texture3"
 							style="background-image: url('../resources/img/main-png/재질/3.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-				
-
-				
+						<p style="text-align: center; font-weight: 800"경질형></p>
+				   </div>
+    
+				    <div>
 						<input type="radio" id="med_texture4" name="med_texture"
-							value="연질"> <label for="med_texture4"
+							value="연질" <c:if test="${page.keyword_chart eq '연질'}">checked</c:if> > <label for="med_texture4"
 							style="background-image: url('../resources/img/main-png/재질/4.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-					   
-					
-				</div>
+						<p style="text-align: center; font-weight: 800">연질형</p>
+					</div>  
+				</div>	
+				
 
 				<div class="select"
 					style="display: flex; overflow: hidden; margin-left: 44px; margin-top: 20px; width: 710;">
 
-					
-						<input type="radio" id="med_line1" name="med_line" checked="checked"
-							value=""> <label for="med_line1"
+					<div>
+						<input type="radio" id="med_line1" name="med_line"  checked="checked"
+							value="" <c:if test="${page.keyword_chart eq ''}">checked</c:if> > <label for="med_line1"
 							style="background-image: url('../resources/img/main-png/선/1.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-				
+						<p style="text-align: center; font-weight: 800">전체</p>
+				    </div>
+				    
+				    <div>
 						<input type="radio" id="med_line2" name="med_line"
-							value="없음"> <label for="med_line2"
+							value="없음" <c:if test="${page.keyword_chart eq null}">checked</c:if> > <label for="med_line2"
 							style="background-image: url('../resources/img/main-png/선/2.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
+						<p style="text-align: center; font-weight: 800">없음</p>
+					</div>
 					
+					<div>
 						<input type="radio" id="med_line3" name="med_line"
-							value="-"> <label for="med_line3"
+							value="-" <c:if test="${page.keyword_chart eq '-'}">checked</c:if> > <label for="med_line3"
 							style="background-image: url('../resources/img/main-png/선/3.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
+						<p style="text-align: center; font-weight: 800">(-)형</p>
+					</div>
 					
+					<div>
 						<input type="radio" id="med_line4" name="med_line"
-							value="+"> <label for="med_line4"
+							value="+" <c:if test="${page.keyword_chart eq '+'}">checked</c:if> > <label for="med_line4"
 							style="background-image: url('../resources/img/main-png/선/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-					
+						<p style="text-align: center; font-weight: 800">(+)형</p>
+					</div>
 
-					
-						<input type="radio" id="med_line5" name="med_line"
-							value="기타"> <label for="med_line5"
+					<div>
+						<input type="radio" id="med_line5" name="med_line" 
+							value="기타" <c:if test="${page.keyword_chart eq '기타'}">checked</c:if> > <label for="med_line5"
 							style="background-image: url('../resources/img/main-png/선/5.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px;">
 						</label>
-						<p style="text-align: center; font-weight: 800"></p>
-					
-					
+						<p style="text-align: center; font-weight: 800">기타</p>
+					</div>
 				</div>
-
-				
-					
-					<button type="button" id = "pill_search_Box">검색하기</button> 
-					 
-					<input type="reset"
-						value="취소하기">	
+				    <div style="text-align: center;">
+						<button type="button" id = "pill_search_Box">검색하기</button> 
+						<input type="reset" value="취소하기">
+			         </div>	
 				</div>
 				
 			</form>
@@ -534,14 +555,14 @@
 	</div>
    <div style="text-align: center; margin: auto;">
 	 <c:if test="${page.prev}">
-		 <span>[ <a href="/pilldex/main1board/listPageSearchBox.do?num=${page.startPageNum - 1}${page.searchTypeKeywordBox}">이전</a> ]</span>
+		 <span>[<a href="/pilldex/mainboard/listPageSearchBox.do?num=${page.startPageNum - 1}&keyword=${page.keyword}&keyword_print=${page.keyword_print}&keyword_shape=${page.keyword_shape}&keyword_color=${page.keyword_color}&keyword_chart=${page.keyword_chart}&keyword_line=${page.keyword_line}">이전</a>]</span>
 		</c:if>
 		
 		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 		 <span>
 		 
 		  <c:if test="${select != num}">
-		   <a href="/pilldex/main1board/listPageSearchBox.do?num=${num}${page.searchTypeKeywordBox}">${num}</a>
+		   <a href="/pilldex/mainboard/listPageSearchBox.do?num=${num}&keyword=${page.keyword}&keyword_print=${page.keyword_print}&keyword_shape=${page.keyword_shape}&keyword_color=${page.keyword_color}&keyword_chart=${page.keyword_chart}&keyword_line=${page.keyword_line}">${num}</a>
 		  </c:if>    
 		  
 		  <c:if test="${select == num}">
@@ -552,7 +573,7 @@
 		</c:forEach>
 		
 		<c:if test="${page.next}">
-		 <span>[ <a href="/pilldex/main1board/listPageSearchBox.do?num=${page.endPageNum + 1}${page.searchTypeKeywordBox}">다음</a> ]</span>
+		 <span>[<a href="/pilldex/mainboard/listPageSearchBox.do?num=${page.endPageNum + 1}&keyword=${page.keyword}&keyword_print=${page.keyword_print}&keyword_shape=${page.keyword_shape}&keyword_color=${page.keyword_color}&keyword_chart=${page.keyword_chart}&keyword_line=${page.keyword_line}">다음</a>]</span>
 		</c:if>
 	</div>
     </div>
@@ -570,61 +591,6 @@
 	</div>
 </footer>
 
-<script>
-	window.onload = function() {
-
-		if (getCookie("id")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
-			document.loginForm.userid.value = getCookie("id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
-			document.loginForm.idsave.checked = true; // 체크는 체크됨으로
-		}
-
-	}
-
-	function setCookie(name, value, expiredays) //쿠키 저장함수
-	{
-		var todayDate = new Date();
-		todayDate.setDate(todayDate.getDate() + expiredays);
-		document.cookie = name + "=" + escape(value) + "; path=/; expires="
-				+ todayDate.toGMTString() + ";"
-	}
-
-	function getCookie(Name) { // 쿠키 불러오는 함수
-		var search = Name + "=";
-		if (document.cookie.length > 0) { // if there are any cookies
-			offset = document.cookie.indexOf(search);
-			if (offset != -1) { // if cookie exists
-				offset += search.length; // set index of beginning of value
-				end = document.cookie.indexOf(";", offset); // set index of end of cookie value
-				if (end == -1)
-					end = document.cookie.length;
-				return unescape(document.cookie.substring(offset, end));
-			}
-		}
-	}
-
-	function sendit() {
-		var frm = document.loginForm;
-		if (!frm.userid.value) { //아이디를 입력하지 않으면.
-			alert("아이디를 입력 해주세요!");
-			frm.userid.focus();
-			return;
-		}
-		if (!frm.pwd.value) { //패스워드를 입력하지 않으면.
-			alert("패스워드를 입력 해주세요!");
-			frm.pwd.focus();
-			return;
-		}
-
-		if (document.loginForm.idsave.checked == true) { // 아이디 저장을 체크 하였을때
-			setCookie("id", document.loginForm.userid.value, 7); //쿠키이름을 id로 아이디입력필드값을 7일동안 저장
-		} else { // 아이디 저장을 체크 하지 않았을때
-			setCookie("id", document.loginForm.userid.value, 0); //날짜를 0으로 저장하여 쿠키삭제
-		}
-
-		document.loginForm.submit(); //유효성 검사가 통과되면 서버로 전송.
-
-	}
-</script>
 
 <script>
 	function newxtscroll() {
@@ -735,18 +701,23 @@
                             document.getElementById("pill_search_Box").onclick = function () {
                                
                             let keyword = "";
-                            let keyword_print = document.getElementsByName("keyword_print").value;
+                            let keyword_print = document.getElementsByName("keyword_print")[0].value;
+                            
                             let keyword_shape = document.querySelector('input[name="med_mod"]:checked').value;
-                            console.log ("keyword_shape:"+keyword_shape);
+                            
+                           
                             let keyword_color = document.querySelector('input[name="med_coclor"]:checked').value;
-                            console.log ("keyword_color:"+keyword_color);
+                            
+                           
                             let keyword_chart = document.querySelector('input[name="med_texture"]:checked').value;
-                            console.log ("keyword_chart:"+keyword_chart);
+                            
+                           
                             let keyword_line =  document.querySelector('input[name="med_line"]:checked').value;
+                            
                             console.log ("keyword_line:"+keyword_line);
                          
-                            location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
-                          +"&keyword=" + keyword
+                            location.href = "/pilldex/mainboard/listPageSearchBox.do?num=1" 
+                          +"&keyword=" 
                           +"&keyword_print=" + keyword_print
                           +"&keyword_shape=" + keyword_shape
                           +"&keyword_color=" + keyword_color
