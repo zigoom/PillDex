@@ -107,6 +107,31 @@ public class UserTest {
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 	}
 	
+
+	/* 회원 정보 수정 테스트 입니다. */
+	@Test
+	public void changeInfo() throws SQLException{
+
+		UserVO inVO = new UserVO();
+		inVO.setId("Master");
+		UserVO outVO = userService.selectUser(inVO);
+		
+		UserVO inVO2 = outVO;
+		inVO2.setPw("123123");
+		inVO2.setTel("010-1111-2222");
+		inVO2.setPostNum(12345);
+		inVO2.setnAddr("옛날 주소 영역 입니다");
+		inVO2.setoAddr("도로 주소 영역 입니다");
+		inVO2.setRestAddr("상세 주소 영역 입니다");
+		inVO2.setEmail("test@gmail.com");
+		LOG.debug("│ inVO2  : "+ inVO2.toString()); 
+		
+		int result = userService.doChangeInfo(inVO2); 	//**** 회원 정보 수정 서비스 호출 ****//
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ 로그인 여부  : "+ result); //1: 수정 성공, -1: 수정 실패
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+	}
+	
 	
 	/* 회원 삭제/추가 테스트 입니다. */
 	@Test
@@ -115,7 +140,6 @@ public class UserTest {
 		String yy = "2023";
 		String mm = "06";
 		String dd = "15";
-		
 		
 		UserVO user = new UserVO();
 		user.setGrade(10);

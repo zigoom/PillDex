@@ -73,16 +73,6 @@
     AND del = '0'
 	</select>
 	
-	<!-- 사용자 비밀번호 변경 -->
-  <update id="updatePw" parameterType="UserVO">
-    UPDATE member         
-    SET  pw = #{pw}   
-    WHERE name = #{name}
-    AND email  = #{email}
-    AND id   = #{id}
-    AND del = '0'
-  </update>
-	
 	<!-- 회원가입  -->
 	<insert id="insertOne" parameterType="UserVO" >
     INSERT INTO member (
@@ -119,19 +109,42 @@
         #{del}
      )      
   </insert>  
+    
+  <!-- 사용자 비밀번호 변경 -->
+  <update id="updatePw" parameterType="UserVO">
+    UPDATE member         
+    SET  pw = #{pw}   
+    
+    WHERE name = #{name}
+    AND email  = #{email}
+    AND id   = #{id}
+    AND del = '0'
+  </update>
   
-  <!-- 유저 삭제 -->
-  <delete id="deleteOne" parameterType="UserVO">
-    DELETE FROM member
-    WHERE id = #{id}
-  </delete>
+  <!-- 사용자 정보 변경 -->
+  <update id="updateUser" parameterType="UserVO">
+    UPDATE member         
+    SET pw      = #{pw},  
+        tel     = #{tel},
+        post_num  = #{postNum}, 
+        n_addr  = #{nAddr}, 
+        o_addr  = #{oAddr}, 
+        rest_addr = #{restAddr},
+        email   = #{email}
+    WHERE no = #{no}
+  </update>
   
   <!-- 주소 즐겨찾기 delete:1로  update-->
   <update id="updateDel" parameterType="int">
     UPDATE member
     SET del = '1'
     WHERE no = #{no}
-  </update>
-    
+  </update> 
+  
+  <!-- 유저 삭제 -->
+  <delete id="deleteOne" parameterType="UserVO">
+    DELETE FROM member
+    WHERE id = #{id}
+  </delete>
 </mapper>
 

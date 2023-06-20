@@ -77,4 +77,12 @@ public interface UserDao {
 	 * @throws SQLException
 	 */
 	public int deleteOne(UserVO user) throws SQLException;
+	
+	/**
+	 * 회원정보 변경
+	 * @param user
+	 * @return 1: 성공 , 0: 실패 
+	 * @throws SQLException
+	 */
+	public int updateUser(UserVO user) throws SQLException;
 }
