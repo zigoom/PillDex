@@ -167,10 +167,26 @@
 						document.getElementById("pill_Nsearch").onclick = function () {
 
 						  let keyword = document.getElementsByName("keyword")[0].value;
-						
+                          let keyword_print = document.getElementsByName("keyword_print")[0].value;
+                          
+                          let keyword_shape = document.querySelector('input[name="med_mod"]:checked').value;
+                          
+                         
+                          let keyword_color = document.querySelector('input[name="med_coclor"]:checked').value;
+                          
+                         
+                          let keyword_chart = document.querySelector('input[name="med_texture"]:checked').value;
+                          
+                         
+                          let keyword_line =  document.querySelector('input[name="med_line"]:checked').value;
 						  
 						  location.href = "/pilldex/mainboard/listPageSearchBox.do?num=1" + 
 						      "&keyword=" + keyword;
+							  +"&keyword_print=" + keyword_print
+	                          +"&keyword_shape=" + keyword_shape
+	                          +"&keyword_color=" + keyword_color
+	                          +"&keyword_chart=" + keyword_chart
+	                          +"&keyword_line=" + keyword_line;
 						   
 						      };
 						</script>
@@ -511,8 +527,10 @@
 						<p style="text-align: center; font-weight: 800">기타</p>
 					</div>
 				</div>
-					<button type="button" id = "pill_search_Box">검색하기</button> 
-					<input type="reset" value="취소하기">	
+				    <div style="text-align: center;">
+						<button type="button" id = "pill_search_Box">검색하기</button> 
+						<input type="reset" value="취소하기">
+			         </div>	
 				</div>
 				
 			</form>
@@ -537,14 +555,14 @@
 	</div>
    <div style="text-align: center; margin: auto;">
 	 <c:if test="${page.prev}">
-		 <span>[ <a href="/pilldex/mainboard/listPageSearchBox.do?num=${page.startPageNum - 1}${page.searchTypeKeywordBox}">이전</a> ]</span>
+		 <span>[<a href="/pilldex/mainboard/listPageSearchBox.do?num=${page.startPageNum - 1}&keyword=${page.keyword}&keyword_print=${page.keyword_print}&keyword_shape=${page.keyword_shape}&keyword_color=${page.keyword_color}&keyword_chart=${page.keyword_chart}&keyword_line=${page.keyword_line}">이전</a>]</span>
 		</c:if>
 		
 		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 		 <span>
 		 
 		  <c:if test="${select != num}">
-		   <a href="/pilldex/mainboard/listPageSearchBox.do?num=${num}${page.searchTypeKeywordBox}">${num}</a>
+		   <a href="/pilldex/mainboard/listPageSearchBox.do?num=${num}&keyword=${page.keyword}&keyword_print=${page.keyword_print}&keyword_shape=${page.keyword_shape}&keyword_color=${page.keyword_color}&keyword_chart=${page.keyword_chart}&keyword_line=${page.keyword_line}">${num}</a>
 		  </c:if>    
 		  
 		  <c:if test="${select == num}">
@@ -555,7 +573,7 @@
 		</c:forEach>
 		
 		<c:if test="${page.next}">
-		 <span>[ <a href="/pilldex/mainboard/listPageSearchBox.do?num=${page.endPageNum + 1}${page.searchTypeKeywordBox}">다음</a> ]</span>
+		 <span>[<a href="/pilldex/mainboard/listPageSearchBox.do?num=${page.endPageNum + 1}&keyword=${page.keyword}&keyword_print=${page.keyword_print}&keyword_shape=${page.keyword_shape}&keyword_color=${page.keyword_color}&keyword_chart=${page.keyword_chart}&keyword_line=${page.keyword_line}">다음</a>]</span>
 		</c:if>
 	</div>
     </div>
