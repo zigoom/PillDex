@@ -52,13 +52,12 @@ public class MembershipServiceImpl implements MembershipService {
 		int flag = 0;
 		
 		flag = this.membershipDao.idCheck(user);
-		System.out.println("############# -"+flag);
 		
 		if(1 == flag) {
-			result = -1;
+			result = 10;
 		} else if (0 == flag) {
-			result = 1;
-		}
+			result = 20;
+		} 
 		return result;
 	}
 		

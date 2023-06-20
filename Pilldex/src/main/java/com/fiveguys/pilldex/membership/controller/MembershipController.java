@@ -43,13 +43,13 @@ public class MembershipController {
         int result = 0;
         result = this.membershipService.doIdDuplCheck(user);
         
-        if(-1 == result) {
+        if(10 == result) {
         	message.setMsgId("10");
         	message.setMsgContents("해당 ID는 사용할 수 없습니다");
-        } else if(1 == result) {
+        } else if(20 == result) {
         	message.setMsgId("20");
         	message.setMsgContents("사용할 수 있는 ID입니다");
-        }
+        } 
         
        jsonString = new Gson().toJson(message);
        System.out.println("│ jsonString : "+jsonString);

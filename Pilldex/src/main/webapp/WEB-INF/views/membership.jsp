@@ -136,7 +136,7 @@
     <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
     <script>
         const btn = document.querySelector("#btn");
-        btn.addEventListener("click",() => {
+        btn.addEventListener("click",()=>{
           new daum.Postcode({
                 oncomplete: function(data) {
                   let fullAddr = '';
@@ -201,7 +201,7 @@
           var name_str = document.getElementById('name').value;
           var hangul = /^[가-힣]+$/;
   
-          if(name_str.length < 3 || name_str.length > 20) {
+          if(name_str.length() < 3 || name_str.length() > 20) {
              window.alert('이름은 한글 3글자 이상, 20글자 이하만 가능합니다');
              document.getElementById('name').value='';
           } else if(name_str.search(/\s/) != -1) {
@@ -323,6 +323,18 @@
   	    $("#idDulpCheck").on("click",function(){
   	    	console.log("idDulpCheck ready");
   	    	
+  	    	 var id_str = document.getElementById('id').value;
+  	    	
+  	    	if(""==$('#id').val() || 0==$('#id').val().length){
+  	          alert("아이디를 입력하세요");  // javascript 메시지 다이얼 로그
+  	          $('#id').focus();          // jquery로 포커스를 이동시킨다.
+  	          return;
+  	      } else if(id_str.search(/\s/) != -1) {
+              alert('이름은 공백 없이 입력 가능합니다');
+              document.getElementById('name').value='';
+              return;
+  	      }
+  	    	
   	    	$.ajax({
                 type: "POST",
               url:"${CP}/idDulpCheck.do",
@@ -336,21 +348,19 @@
                     // JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성합니다.
                     let paredJSON = JSON.parse(data);
                     console.log("paredJSON.msgId:"+paredJSON.msgId);
+                                     
                     
-                    if("" == $("#id".val() || 0 == $("#id").val().length) {
-                      alert("ID는 반드시 입력해야 합니다");
-                      $("#id").val() = "";
+                    if("10" == paredJSON.msgId){
+                      alert(paredJSON.msgContents);  // javascript 메시지 다이얼 로그
                       $("#id").focus();
-                      return;
-                    }
+                    } 
                     
-                    if("10"==paredJSON.msgId){
-                      alert(paredJSON.msgContents);  // javascript 메시지 다이얼 로그                  
-                    }
-                    if("20"==paredJSON.msgId){//로그인 성공
+                    if("20" == paredJSON.msgId){//로그인 성공
                       alert(paredJSON.msgContents);
                       return;
                     }
+                    
+                   
                   },
                   error:function(data){//실패시 처리
                     console.log("error:"+data);

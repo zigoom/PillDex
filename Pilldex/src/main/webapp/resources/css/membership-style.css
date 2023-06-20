@@ -4,11 +4,11 @@
 /* font-family: 'Nanum Pen Script', cursive;
    font-family: 'Noto Sans KR', sans-serif; */
 
-					#container {
-					  width : 600px;
-					  margin : 20px auto;
-					  font-family: 'Nanum Pen Script', cursive;
-					  font-family: 'Noto Sans KR', sans-serif;
+		#container {
+		  width : 600px;
+		  margin : 20px auto;
+		  font-family: 'Nanum Pen Script', cursive;
+		  font-family: 'Noto Sans KR', sans-serif;
          }
          
          ul {
@@ -27,7 +27,7 @@
            height: 35px;
          }
          
-         #idCheck {
+         input[id="idDulpCheck"] {
            background-color: #40c1fc;
            color: #ffffff;
            border:1px solid #40c1fc;
