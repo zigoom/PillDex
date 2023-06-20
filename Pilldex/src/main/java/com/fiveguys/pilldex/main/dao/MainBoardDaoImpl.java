@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.main1.dao;
+package com.fiveguys.pilldex.main.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.fiveguys.pilldex.domain.PillVO2;
 
 @Repository
-public class MainBoardDaoImpl implements Main1BoardDao {
+public class MainBoardDaoImpl implements MainBoardDao {
 	@Inject
 	private SqlSessionTemplate sqlSessionTemplate ;
 	private static String namespace = "mapper.main1-paging-mapper";

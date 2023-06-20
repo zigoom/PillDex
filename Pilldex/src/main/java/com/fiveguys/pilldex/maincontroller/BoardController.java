@@ -1,4 +1,4 @@
-package com.fiveguys.pilldex.main1controller;
+package com.fiveguys.pilldex.maincontroller;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fiveguys.pilldex.domain.PillVO2;
 import com.fiveguys.pilldex.domain.main1page;
-import com.fiveguys.pilldex.main1.service.Main1BoardService;
+import com.fiveguys.pilldex.main1.service.MainBoardService;
 
 @Controller
-@RequestMapping(value = "/main1board/")	
+@RequestMapping(value = "/mainboard/")	
 public class BoardController  {
 
 	@Inject
-	Main1BoardService service;
+	MainBoardService service;
 	
 	@RequestMapping(value = "/listPageSearchBox.do", method = RequestMethod.GET)
 	public void getListPageSearchBox 

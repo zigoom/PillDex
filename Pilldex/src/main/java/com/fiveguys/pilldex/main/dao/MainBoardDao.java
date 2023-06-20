@@ -1,10 +1,10 @@
-package com.fiveguys.pilldex.main1.dao;
+package com.fiveguys.pilldex.main.dao;
 
 import java.util.List;
 
 import com.fiveguys.pilldex.domain.PillVO2;
 
-public interface Main1BoardDao {
+public interface MainBoardDao {
 	
 	 public List<PillVO2> list() throws Exception;
 	 

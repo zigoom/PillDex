@@ -746,11 +746,11 @@
                             console.log ("keyword_line:"+keyword_line);
                          
                             location.href = "/pilldex/main1board/listPageSearchBox.do?num=1" 
-                          +"&keyword=" + keyword;
-                          +"&keyword_print=" + keyword_print;
-                          +"&keyword_shape=" + keyword_shape;
-                          +"&keyword_color=" + keyword_color;
-                          +"&keyword_chart=" + keyword_chart;
+                          +"&keyword=" + keyword
+                          +"&keyword_print=" + keyword_print
+                          +"&keyword_shape=" + keyword_shape
+                          +"&keyword_color=" + keyword_color
+                          +"&keyword_chart=" + keyword_chart
                           +"&keyword_line=" + keyword_line;
                           };
                         </script>

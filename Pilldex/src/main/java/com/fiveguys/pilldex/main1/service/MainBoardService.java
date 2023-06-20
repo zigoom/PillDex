@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.fiveguys.pilldex.domain.PillVO2;
 
-public interface Main1BoardService {
+public interface MainBoardService {
 
 	//약품 리스팅
 	public List<PillVO2> list() throws Exception;
