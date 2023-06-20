@@ -2,5 +2,55 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fiveguys.pilldex.drug">
+<mapper namespace="com.fiveguys.pilldex.detail">
+
+	<resultMap id="DrugMap" type="DrugVO">
+		<result column="no" property="no" />
+		<result column="m_no" property="mNo" />
+		<result column="nm" property="nm" />
+		<result column="del" property="del" />
+	</resultMap>
+	<!-- 해당 사용자의 주소 즐겨찾기 목록 -->
+	<select id="selectDrugList" parameterType="String"
+		resultMap="DrugMap">
+		SELECT *
+		FROM book_drug
+		WHERE m_no = #{userNo}
+		AND del = '0'
+	</select>
+
+	<!-- 해당 사용자의 주소 즐겨찾기 갯수 -->
+	<select id="drugCheckCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM book_drug
+		WHERE m_no = #{userNo}
+		AND del = '0'
+	</select>
+
+	<!-- 주소 즐겨찾기 추가 -->
+	<delete id="insertOne" parameterType="DrugVO">
+		INSERT INTO book_drug (
+		no,
+		m_no,
+		nm,
+		del
+		) VALUES (
+		DRUG_NO.NEXTVAL,
+		#{mNo},
+		#{nm},
+		#{del}
+		)
+	</delete>
+
+	<!-- 주소 즐겨찾기 삭제 -->
+	<!-- <delete id="deleteOne" parameterType="UserVO"> DELETE FROM book_addr 
+		WHERE no = #{no} </delete> -->
+
+	<!-- 주소 즐겨찾기 delete:1로 update -->
+	<update id="updateDel" parameterType="UserVO">
+		UPDATE book_drug
+		SET del = '1'
+		WHERE no = #{no}
+	</update>
+
 </mapper>

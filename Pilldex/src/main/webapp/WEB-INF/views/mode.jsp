@@ -26,9 +26,9 @@
 			</ul>
 			<ul class="nav" style="">
 				<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
-						<b>돋보기</b>
+						<b>일반</b>
 					</a></li>
-				<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
+				<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
 						<b>MAP</b>
 					</a></li>
 
@@ -38,7 +38,7 @@
 					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
 							<b>마이페이지</b>
 						</a></li>
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
+					<li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
 							<b>로그아웃</b>
 						</a></li>
 				</c:if>
@@ -51,22 +51,23 @@
 			</ul>
 		</div>
 	</nav>
-	<div id="login-containor">
-		<div style="width: 260px; float: right; background-color: #FFFFFF; margin-right: 10px; margin-top: 10px; margin-bottom: 30px; height: 100px; background-size: cover">
-			<div style="margin-left: 10px; margin-bottom: 25px;">
-				<form>
-					<input type="checkbox" name="idsave" value="saveOk">
-					<label for="checkId">아이디 저장</label><br>
-					<input type="text" name="id" id="id" placeholder="아이디">
-					<input type="password" name="pw" id="pw" placeholder="패스워드" style="margin-bottom: 5px;">
-					<input type="button" value="로그인" id="doLogin" class="btn btn-primary">
-					<a href="#" style="text-decoration-line: none;">회원가입</a>
-					<a href="#" style="text-decoration-line: none;">ID/PW찾기</a>
-				</form>
+	<c:if test="${user eq null }">
+		<div id="login-containor">
+			<div style="width: 260px; float: right; background-color: #FFFFFF; margin-right: 10px; margin-top: 10px; margin-bottom: 30px; height: 100px; background-size: cover">
+				<div style="margin-left: 10px; margin-bottom: 25px;">
+					<form>
+						<input type="checkbox" name="idsave" value="saveOk">
+						<label for="checkId">아이디 저장</label><br>
+						<input type="text" name="id" id="id" placeholder="아이디">
+						<input type="password" name="pw" id="pw" placeholder="패스워드" style="margin-bottom: 5px;">
+						<input type="button" value="로그인" id="doLogin" class="btn btn-primary">
+						<a href="#" style="text-decoration-line: none;">회원가입</a>
+						<a href="${path}/findIdPw.do" style="text-decoration-line: none;">ID/PW찾기</a>
+					</form>
+				</div>
 			</div>
-
 		</div>
-	</div>
+	</c:if>
 	<img src="${path}/resources/img/main_img.png" alt="메인이미지" width="100%" />
 	<div id="search_list_box">
 		<!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->

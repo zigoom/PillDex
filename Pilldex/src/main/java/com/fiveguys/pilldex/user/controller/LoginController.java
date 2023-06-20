@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -162,6 +163,13 @@ public class LoginController {
 		session.invalidate();
 		return "login";	
 	}
+
+    @GetMapping("/logout.do")
+    public String logoutButtonEvent(HttpSession session) {
+		session.invalidate();
+		return "mode";	
+	}
+    
     
     /**
      * 아이디/비밀번호 찾기 화면
