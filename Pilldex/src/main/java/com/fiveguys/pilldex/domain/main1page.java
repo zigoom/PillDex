@@ -103,14 +103,14 @@ public class main1page {
 	
 	public String getSearchTypeKeywordBox() {
 		 
-		 if( 	 keyword.equals("") ||
-				 keyword_print.equals("") ||
-				 keyword_shape.equals("") ||
-				 keyword_color.equals("") ||
-				 keyword_chart.equals("") ||
-				 keyword_line .equals("")) {
+		 if(keyword.equals("") ||
+			keyword_print.equals("") ||
+			keyword_shape.equals("") ||
+			keyword_color.equals("") ||
+			keyword_chart.equals("") ||
+			keyword_line .equals("")) {
 		  return ""; 
-		 } else {
+		 }else{
 		  return   "&keyword=" + keyword
 				 + "&keyword_print=" + keyword_print
                  + "&keyword_shape=" + keyword_shape
@@ -119,6 +119,7 @@ public class main1page {
                  + "&keyword_line =" + keyword_line;
 		 	}	
 		}
+	
 		private String keyword; 	
 		private String keyword_print;
         private String keyword_shape;

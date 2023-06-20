@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fiveguys.pilldex.domain.PillVO2;
 import com.fiveguys.pilldex.domain.main1page;
-import com.fiveguys.pilldex.main1.service.MainBoardService;
+import com.fiveguys.pilldex.main.service.MainBoardService;
 
 @Controller
 @RequestMapping(value = "/mainboard/")	
@@ -22,7 +22,7 @@ public class BoardController  {
 	MainBoardService service;
 	
 	@RequestMapping(value = "/listPageSearchBox.do", method = RequestMethod.GET)
-	public void getListPageSearchBox 
+	public void getSearchTypeKeywordBox 
 			(Model model, 
 			@RequestParam(value = "num") int num,
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword,
