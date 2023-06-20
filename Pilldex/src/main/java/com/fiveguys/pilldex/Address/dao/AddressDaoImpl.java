@@ -39,7 +39,7 @@ public class AddressDaoImpl implements AddressDao {
 	}
 
 	@Override
-	public int getAddressCnt(String userNo) throws SQLException {
+	public int getAddressCnt(int userNo) throws SQLException {
 		int cnd =0;
 		String statement = this.NAMESPACE+DOT+"addressCheckCnt";
 		System.out.println("┌────────────────────────────────────────────────────────┐");
@@ -69,6 +69,17 @@ public class AddressDaoImpl implements AddressDao {
 		System.out.println("│ 1. statement "+ statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
 		flag = this.sqlSessionTemplate.insert(statement,vo);
+		return flag;
+	}
+
+	@Override
+	public int updateDelAddress(int no) throws SQLException {
+		int flag =0;
+		String statement = this.NAMESPACE+DOT+"updateDel";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement "+ statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		flag = this.sqlSessionTemplate.insert(statement,no);
 		return flag;
 	}
 }

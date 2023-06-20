@@ -28,4 +28,12 @@ public interface AddressService {
 	 * @throws SQLException
 	 */
 	public int deleteAddress(AddressVO vo) throws SQLException;
+	/**
+	 * 즐겨찾기 주소 Del=1 설정을 위한 update
+	 * @param vo
+	 * @return 1: 성공, 0: 실패
+	 * @throws SQLException
+	 */
+	public int updateDelAddress(int vo) throws SQLException;
+	
 }

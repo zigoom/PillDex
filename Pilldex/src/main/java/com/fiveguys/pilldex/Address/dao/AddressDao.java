@@ -19,7 +19,7 @@ public interface AddressDao {
 	 * @return 0 ~ 10
 	 * @throws SQLException
 	 */
-	public int getAddressCnt(String userNo) throws SQLException;
+	public int getAddressCnt(int userNo) throws SQLException;
 
 	/**
 	 * 즐겨찾기 주소 추가
@@ -36,5 +36,12 @@ public interface AddressDao {
 	 * @throws SQLException
 	 */
 	public int deleteAddress(AddressVO vo) throws SQLException;
+	/**
+	 * 즐겨찾기 주소 Del=1 설정을 위한 update
+	 * @param vo
+	 * @return 1: 성공, 0: 실패
+	 * @throws SQLException
+	 */
+	public int updateDelAddress(int vo) throws SQLException;
 
 }

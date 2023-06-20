@@ -27,7 +27,7 @@ public class AddressServiceImpl implements AddressService {
 		System.out.println("│ addAddress()                                           │");
 		System.out.println("└────────────────────────────────────────────────────────┘");
 		int flag = 11;
-		flag = addressDao.getAddressCnt(Integer.toString(vo.getNo()));
+		flag = addressDao.getAddressCnt(vo.getmNo());
 
 		if(flag>=10) { 
 			flag = -1;
@@ -45,6 +45,16 @@ public class AddressServiceImpl implements AddressService {
 		System.out.println("└────────────────────────────────────────────────────────┘");
 		int flag = 0;
 		flag = addressDao.deleteAddress(vo);
+		return flag;
+	}
+
+	@Override
+	public int updateDelAddress(int no) throws SQLException {
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ deleteAddress()                                        │");
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		int flag = 0;
+		flag = addressDao.updateDelAddress(no);
 		return flag;
 	}
 

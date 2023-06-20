@@ -26,6 +26,7 @@
 		SELECT *
 		FROM member
 		WHERE id = #{id} 
+    AND del = '0'
 	</select>
 	
 	<!-- 아이디 체크 -->
@@ -41,6 +42,7 @@
 	  FROM member
 	  WHERE id = #{id}
 	  AND pw = #{pw}
+    AND del = '0'
 	</select>
 	
   <!-- 이름 + 이메일로  아이디 존재 여부 검색 -->
@@ -49,6 +51,7 @@
     FROM member
     WHERE name = #{name}
     AND email  = #{email}
+    AND del = '0'
 	</select>    
 	
 	<!-- 이름 + 이메일로  아이디 검색 -->
@@ -57,6 +60,7 @@
 	  FROM member
 	  WHERE name = #{name}
 	  AND email  = #{email}
+    AND del = '0'
 	</select>
 		
 	<!-- 이름 + 이메일로  + 아이디  계정 여부 검색 -->
@@ -66,6 +70,7 @@
 	  WHERE name = #{name}
 	  AND email  = #{email}
 	  AND id 	 = #{id}
+    AND del = '0'
 	</select>
 	
 	<!-- 사용자 비밀번호 변경 -->
@@ -75,6 +80,7 @@
     WHERE name = #{name}
     AND email  = #{email}
     AND id   = #{id}
+    AND del = '0'
   </update>
 	
 	<!-- 회원가입  -->
@@ -119,6 +125,13 @@
     DELETE FROM member
     WHERE id = #{id}
   </delete>
+  
+  <!-- 주소 즐겨찾기 delete:1로  update-->
+  <update id="updateDel" parameterType="int">
+    UPDATE member
+    SET del = '1'
+    WHERE no = #{no}
+  </update>
     
 </mapper>
 

@@ -18,18 +18,20 @@
     SELECT *
     FROM book_addr
     WHERE m_no = #{userNo} 
+    AND del = '0'
   </select>
   
   <!-- 해당 사용자의 주소 즐겨찾기 갯수 -->
-  <select id="addressCheckCnt"  parameterType="String"  resultType="int" >
+  <select id="addressCheckCnt"  parameterType="int"  resultType="int" >
     SELECT COUNT(*) cnt
     FROM book_addr
     WHERE m_no = #{userNo} 
+    AND del = '0'
   </select>
   
   <!-- 주소 즐겨찾기 추가 -->
   <delete id="insertOne" parameterType="UserVO">
-    INSERT INTO member (
+    INSERT INTO book_addr (
         no,       
         m_no,    
         post_num,     
@@ -49,9 +51,16 @@
   </delete>
   
   <!-- 주소 즐겨찾기 삭제 -->
-  <delete id="deleteOne" parameterType="UserVO">
+  <!-- <delete id="deleteOne" parameterType="UserVO">
     DELETE FROM book_addr
     WHERE no = #{no}
-  </delete>
+  </delete> -->
+  
+  <!-- 주소 즐겨찾기 delete:1로  update-->
+  <update id="updateDel" parameterType="UserVO">
+    UPDATE book_addr
+    SET del = '1'
+    WHERE no = #{no}
+  </update>
     
 </mapper>
