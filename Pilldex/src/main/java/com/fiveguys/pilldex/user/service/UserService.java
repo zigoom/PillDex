@@ -16,6 +16,8 @@ public interface UserService {
 	 */
 	public UserVO selectUser(UserVO user) throws SQLException;
 	
+	public UserVO selectOneMypage(UserVO user) throws SQLException;
+	
 	/**
 	 * 로그인
 	 * @param user

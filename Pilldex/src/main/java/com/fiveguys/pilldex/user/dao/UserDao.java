@@ -14,6 +14,8 @@ public interface UserDao {
 	 */
 	public UserVO selectOne(UserVO inVO) throws SQLException;
 	
+	public UserVO  selectOneMypage(UserVO inVO) throws SQLException;
+	
 	/**
 	 * 아이디 여부  체크
 	 * @param user

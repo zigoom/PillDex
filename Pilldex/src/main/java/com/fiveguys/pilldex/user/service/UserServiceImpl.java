@@ -122,4 +122,12 @@ public class UserServiceImpl implements UserService {
         } 
         return checkStatus;
 	}
+	
+	@Override
+	public UserVO selectOneMypage(UserVO user) throws SQLException {
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ selectOneMypage()                                           │");
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		return userDao.selectOneMypage(user);
+	}
 }

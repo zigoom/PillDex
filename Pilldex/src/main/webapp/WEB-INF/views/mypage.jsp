@@ -7,10 +7,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="fiveguys" content="mypage" />
-    <link
-      rel="stylesheet"
-      href="${CP}/resources/css/main-css/mypage-style.css"
-    />
+    <link rel="stylesheet"  href="${CP}/resources/css/main-css/mypage-style.css" />
+  	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ 	<
 
     <title>PillDex 마이페이지</title>
   </head>
@@ -28,9 +29,11 @@
             min="6"
             maxlength="20"
             placeholder="아이디 입력(영어, 숫자포함 6~20자)"
+            readonly="readonly"
+            value="${user.id}"
           />
-          <input type="button" value="중복확인" id="input-btn" />
-          <input type="hidden" name="idDuplication" value="idUncheck" />
+         <!--  <input type="button" value="확인" id="input-btn" />
+          <input type="hidden" name="idDuplication" value="idUncheck"/>  -->
         </div>
         <script type="text/javascript">
           /*  var httpRequest = null;
@@ -115,6 +118,33 @@
         }     */
         </script>
 
+     
+
+        <br />
+        <label for="pw"><b>비밀번호</b></label
+        ><br />
+        <input
+          type="password"
+          id="pw"
+          name="pw"
+          min="8"
+          maxlength="20"
+          placeholder="(문자,숫자,특수문자[!,@,#,$,%,*])포함 8~20자"
+          value="${user.pw}"
+        />
+        <br />
+        <label for="pw_check"><b>비밀번호 확인</b></label
+        ><br />
+        <input
+          type="password"
+          id="pw_check"
+          name="pw_check"
+          min="8"
+          maxlength="20"
+          placeholder="비밀번호 재입력"
+          value="${user.pw}"
+        />
+        
         <br />
 
         <label for="user_name"><b>이름</b></label
@@ -127,29 +157,7 @@
           min="2"
           maxlength="5"
           placeholder="이름"
-        />
-
-        <br />
-        <label for="pw"><b>비밀번호</b></label
-        ><br />
-        <input
-          type="password"
-          id="pw"
-          name="pw"
-          min="8"
-          maxlength="20"
-          placeholder="(문자,숫자,특수문자[!,@,#,$,%,*])포함 8~20자"
-        />
-        <br />
-        <label for="pw_check"><b>비밀번호 확인</b></label
-        ><br />
-        <input
-          type="password"
-          id="pw_check"
-          name="pw_check"
-          min="8"
-          maxlength="20"
-          placeholder="비밀번호 재입력"
+          value="${user.name}"
         />
 
         <br />
@@ -162,31 +170,36 @@
           name="phone_number"
           size="13"
           maxlength="13"
+          value="${user.tel}"
         />
-        <br />
-        <label for="email"><b>이메일 주소</b></label
-        ><br />
-        <input
-          type="email"
-          width="300px"
-          id="email_front"
-          name="email_front"
-          placeholder="이메일 주소"
-        />
+        <br/>
+        <label for="email"><b>이메일 주소</b></label><br />
+        
+       <input type="text" width="300px" id="emailFront" name="emailFront" placeholder="이메일 주소" value=""  />
         <label><b>@</b></label>
-        <input
+        <input id="emailBack"
           type="email"
-          list="email_back"
-          name="email_back"
+          list="emailBack"
+          name="emailBack"
           placeholder="ex)naver.com"
+          value=""
+        />  
+        <input 
+          type="text"
+          id="emailTmp"
+          value="${user.email}"
         />
-        <datalist id="email_back">
+        
+        
+        <!-- <datalist id="email_back">
           <option value="naver.com"></option>
           <option value="google.com"></option>
           <option value="daum.net"></option>
           <option value="hanmail.net"></option>
           <option value="직접 입력"></option>
-        </datalist>
+        </datalist> -->
+        
+        
         <br />
         <label for="address"><b>기본 주소</b></label
         ><br />
@@ -270,8 +283,35 @@
 
         <br />
         <label for="bookmark_address_list"><b>즐겨 찾기 주소지 목록</b></label
-        ><br />
-        <input
+        ><br /> 
+        <script>
+		function radioButton(event) {
+			  document.getElementById('dropdown_button').textContent=event.value;
+			}
+		</script>
+		<div class="dropdown">
+		  <button id="dropdown_button" style="width:400px;" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+		       주소지 목록
+		  </button>
+		  <ul class="dropdown-menu " style="width:400px;">
+		    <li class="dropdown-item">
+			    <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="firstRadio" id="firstRadio" onclick='radioButton(this)'>
+			    <label class="form-check-label" for="firstRadio">First radio</label>
+			</li>
+			<li class="dropdown-item" style="width:400px;">
+			  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="secondRadio" id="secondRadio" onclick='radioButton(this)'>
+			  <label class="form-check-label" for="secondRadio">Second radio</label>
+			</li>
+			<li class="dropdown-item" style="width:400px;">
+			  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="thirdRadio" id="thirdRadio" onclick='radioButton(this)'>
+			  <label class="form-check-label" for="thirdRadio">Third radio</label>
+			</li>
+			
+		  </ul>
+		</div>
+        
+        
+      <!--  <input
           type="text"
           class="input-text"
           list="bookmark_address_list"
@@ -288,11 +328,36 @@
           <option value="지역8">지역8</option>
           <option value="지역9">지역9</option>
           <option value="지역10">지역10</option>
-        </datalist>
+        </datalist> --> 
+       
         <br />
-        <label for="bookmark_med_list"><b>약품 즐겨 찾기 주소지 목록</b></label
-        ><br />
-        <input
+       <label for="bookmark_med_list"><b>약품 즐겨 찾기 주소지 목록</b></label
+        ><br /> 
+        <script>
+		function radioButton(event) {
+			  document.getElementById('dropdown_button').textContent=event.value;
+			}
+		</script>
+		<div class="dropdown">
+		  <button id="dropdown_button" style="width:400px;" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+		      약품 목록
+		  </button>
+		  <ul class="dropdown-menu " style="width:400px;">
+		    <li class="dropdown-item">
+			    <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="firstRadio" id="firstRadio" onclick='radioButton(this)'>
+			    <label class="form-check-label" for="firstRadio">First radio</label>
+			</li>
+			<li class="dropdown-item" style="width:400px;">
+			  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="secondRadio" id="secondRadio" onclick='radioButton(this)'>
+			  <label class="form-check-label" for="secondRadio">Second radio</label>
+			</li>
+			<li class="dropdown-item" style="width:400px;">
+			  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="thirdRadio" id="thirdRadio" onclick='radioButton(this)'>
+			  <label class="form-check-label" for="thirdRadio">Third radio</label>
+			</li>
+		  </ul>
+		</div>
+      <!--   <input
           type="text"
           class="input-text"
           list="bookmark_med_list"
@@ -309,7 +374,7 @@
           <option value="약품8">약품8</option>
           <option value="약품9">약품9</option>
           <option value="약품10">약품10</option>
-        </datalist>
+        </datalist> -->
         <br />
         <input
           type="button"
@@ -327,29 +392,44 @@
       </form>
     </div>
   </body>
+  
+  
   <script>
-    let inputBtn = document.querySelector("#input-btn");
-    let userId = document.querySelector("#user_id");
-    inputBtn.addEventListener("click", function () {
-      if (userId.value == null || userId.value == "") {
-        alert("아이디를 입력하지 않았습니다.");
-        return;
-      }
-    });
-    // }
-    //  else if(userId < "0" || userId > "9" ) && (userId < "A" || userId > "Z" ) && (userId < "a" || id > "z" ){
-    //     alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
-    //     return false;
-    // } else {
-    //   var param = "id=" + id;
-    //   httpRequest = getXMLHttpRequest();
-    //   httpRequest.onreadystatechange = callback;
-    //   httpRequest.open("POST", "MemberIdCheckAction.do", true);
-    //   httpRequest.setRequestHeader(
-    //     "Content-Type",
-    //     "application/x-www-form-urlencoded"
-    //   );
-    //   httpRequest.send(param);
-    // }
+    //let inputBtn = document.querySelector("#input-btn");
+    //let userId = document.querySelector("#user_id");
+    //inputBtn.addEventListener("click", function () {
+    //if (userId.value == null || userId.value == "") {
+    //    alert("아이디를 입력하지 않았습니다.");
+    //    return;
+    //  }
+    // });
+    
+    
+    
+    const emailTmp = document.querySelector("#emailTmp");
+    
+    const parts = emailTmp.value.split("@");
+    
+    const emailFrontPart = parts[0];
+    const emailBackPart  = parts[1];
+    
+    const emailFront = document.querySelector("#emailFront");
+    //const emailBack  = document.quertSelector("#emailBack");
+    
+    emailFront.value = emailFrontPart;
+    //emailBack.value  = emailBackPart; 
+    
+	//emailFront[0].value= 
+
+	        var str = "${user.email}";
+	        //console.log(str);
+	        var word11 = str.substring(0, str.indexOf('@'));
+	        //console.log("#### - "+word1);
+	        $("#emailFront").val(word11);
+	        //document.getElementById('emailFront').value = word1;
+	        var word22 = str.substring(str.lastIndexOf('@') + 1) ;
+	        //console.log("#### - "+word3);
+	        //document.getElementById('emailBack').value= word2;
+		
   </script>
 </html>

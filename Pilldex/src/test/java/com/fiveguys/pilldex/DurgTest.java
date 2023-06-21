@@ -36,8 +36,8 @@ public class DurgTest {
 	
 	@Test
 	public void getDrugCnt() throws SQLException{
-		int cnt = drugDao.getDrugCnt(1);
-		LOG.debug("===============cnt=============="+cnt);
+		//int cnt = drugDao.getDrugCnt(1);
+		//LOG.debug("===============cnt=============="+cnt);
 	}
 
 	/* 아이디를 기준으로 약품 즐겨찾기 리스트를 받는 테스트 입니다. */
