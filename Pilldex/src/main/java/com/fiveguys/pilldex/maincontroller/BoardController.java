@@ -15,13 +15,12 @@ import com.fiveguys.pilldex.domain.main1page;
 import com.fiveguys.pilldex.main.service.MainBoardService;
 
 @Controller
-@RequestMapping(value = "/mainboard/")	
 public class BoardController  {
 
 	@Inject
 	MainBoardService service;
 	
-	@RequestMapping(value = "/listPageSearchBox.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public void getSearchTypeKeywordBox 
 			(Model model, 
 			@RequestParam(value = "num") int num,

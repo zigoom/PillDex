@@ -111,7 +111,7 @@ public class main1page {
 			keyword_line .equals("")) {
 		  return ""; 
 		 }else{
-		  return   "&keyword="+keyword
+		  return "&keyword="+keyword
 				 +"&keyword_print="+keyword_print
                  +"&keyword_shape="+keyword_shape
                  +"&keyword_color="+keyword_color
