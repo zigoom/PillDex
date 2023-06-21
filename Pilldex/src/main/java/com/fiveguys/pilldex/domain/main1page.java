@@ -126,8 +126,18 @@ public class main1page {
         private String keyword_color;
         private String keyword_chart;
         private String keyword_line;
-        
-		
+        private String pageid;
+
+		public String getPageid() {
+			return pageid;
+		}
+
+
+		public void setPageid(String pageid) {
+			this.pageid = pageid;
+		}
+
+
 		public void setKeyword(String keyword) {
 		 this.keyword = keyword;  
 		} 

@@ -20,10 +20,8 @@ public class BoardController  {
 	@Inject
 	MainBoardService service;
 	
-	
-	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public void getSearchTypeKeywordBox 
+	public void getSearchTypeKeywordBoxlogin 
 			(Model model, 
 			@RequestParam(value = "num",required = false, defaultValue = "1") int num,
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword,
@@ -31,8 +29,10 @@ public class BoardController  {
 			@RequestParam(value = "keyword_shape",required = false, defaultValue = "") String keyword_shape,
 			@RequestParam(value = "keyword_color",required = false, defaultValue = "") String keyword_color,
 			@RequestParam(value = "keyword_chart",required = false, defaultValue = "") String keyword_chart,
-			@RequestParam(value = "keyword_line",required = false, defaultValue = "") String keyword_line
-			) 
+			@RequestParam(value = "keyword_line",required = false, defaultValue = "") String keyword_line,
+			@RequestParam(value = "pageid",required = false, defaultValue = "") String pageid
+					) 
+					 
 					throws Exception {
 		
 	main1page page = new main1page();
@@ -53,7 +53,7 @@ public class BoardController  {
 	page.setKeyword_color(keyword_color);
 	page.setKeyword_chart(keyword_chart);
 	page.setKeyword_line (keyword_line );
-
+	page.setPageid(pageid);
 	
 	List<PillVO2> list = null;
 	list = service.listPageSearchBox(
@@ -72,6 +72,8 @@ public class BoardController  {
 
 
 	}
+	
+	
 	
 }
 

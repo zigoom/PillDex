@@ -1,74 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:set var="CP" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script type="text/javascript">
- history.replaceState({}, null, location.pathname); 
-</script>          
 <meta charset="UTF-8">
 <meta name="author" content="hbi">
-
-<link rel="stylesheet" href="resources/css/main-css/search_list.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
+<script src="${CP}/resources/js/jquery-3.7.0.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="resources/css/main-css/search_list.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+    crossorigin="anonymous">	
 <link rel="stylesheet" href="resources/css/main-css/med.css">
 <link rel="stylesheet" href="resources/css/main-css/arrow.css">
 <link rel="stylesheet" href="resources/css/main-css/medtable.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
-
-<style>
-</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript">
+ history.replaceState({}, null, location.pathname); 
+</script>          
 <title>Main</title>
 </head>
+
 <body>
 	<div>
-		<header>
-			<nav class="py-2 bg-light border-bottom">
-				<div class="container d-flex flex-wrap">
-					<ul class="nav me-auto">
-						<li class="nav-item"><a href="#"
-							class="nav-link link-dark px-2 active" aria-current="page"> <img
-								src="resources/img/main-png/icon2.png"
-								style="width: 32px; height: 32px" alt="Pill"> &nbsp; <b>PillDex</b>
-						</a></li>
-
-					</ul>
-					<ul class="nav">
-						<li class="nav-item"><a href="#"
-							class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-						<li class="nav-item"><a href="#"
-							class="nav-link link-dark px-2"><b>MAP</b></a></li>
-						<li class="nav-item"><a href="#"
-							class="nav-link link-dark px-2"><b>로그인</b></a></li>
-						<li class="nav-item"><a href="#"
-							class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-						<li class="nav-item"><a href="#"
-							class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
-					</ul>
-				</div>
-			</nav>
-		</header>
+	<header>
+	    <nav class="py-2 bg-light border-bottom">
+	      <div class="container d-flex flex-wrap">
+	        <ul class="nav me-auto">
+	          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
+	            <a id="logo" href="${path}/pilldex/main.do" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b> </a>
+	          </li>
+	        </ul>
+	        <ul class="nav" style="">
+	          <li id="doMode"class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/mode.do" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+	          <li id="doMap"class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/map.do" class="nav-link link-dark px-2"><b>MAP</b></a></li>
+	          <%-- <c:set var="user" value="${User}"/> --%>
+	          <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
+	            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
+	            <li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/logout.do" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+	          </c:if>
+	          <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
+	            <li id="doLogin" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/main.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+	          </c:if>
+	        </ul>
+	      </div>
+	    </nav>
+	    </header>
 	</div>
 	<div  class="container" style="width: 1140px">
 		<div
@@ -124,26 +114,48 @@
 					</table>
 				</div>
 			</div>
-			<div
-				style="width: 260px; float: right; background-color: #ffffff; margin-right: 10px; margin-top: 10px; height: 100px; background-size: cover">
-				<div style="margin-left: 10px">
-					<form action="login.do" method="post">
-						<input type="checkbox" name="idsave" value="saveOk"> <label
-							for="checkId">아이디 저장</label><br>
-						<table>
-							<tr>
-								<td><input type="text" name="userid" placeholder="아이디"></td>
-								<td rowspan="2"><button type="button"
-									style="height: 52px;">로그인</button></td>
-							</tr>
-							<tr>
-								<td><input type="password" name="pwd" placeholder="패스워드"></td>
-							</tr>
-						</table>
-					</form>
-					&nbsp;<a href="#" style="text-decoration-line: none;">회원가입</a>
-					&nbsp; <a href="#" style="text-decoration-line: none;">비번 찾기</a>
-				</div>
+			<div id = "login-form"
+				style="width: 260px; float: right; background-color: #ffffff; margin-right: 10px; margin-top: 10px; 
+				height: 100px; background-size: cove; padding-left: 10px">
+					
+			 <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 로그인박스. -->
+                <div style="padding-top: 24px;">
+                <table>
+	                  <tr>  
+	                      <td rowspan="2" style="height: 52px; width:124px; ">
+	                        <span>님 환영합니다</span>
+	                      </td>
+	                      <td>dㅏㄴ녕하세요</td>    
+	                  </tr>
+	                  <tr>
+	            
+	                      <td>안녕하세요</td>
+	                  </tr>
+                </table>
+                </div>
+             </c:if>
+              <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 박스. -->
+                <form method="post">
+                        <input type="checkbox" name="idS" value="saveOk"> <label
+                            for="checkId">아이디 저장</label><br>
+                        <table>
+                            <tr>
+                                <td><input type="text" name="id" id="id" placeholder="아이디"></td>
+                                <td rowspan="2"><input type="button" id="doLogin" value="로그인"
+                                    style="height: 52px;"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="password" name="pw" id="pw" placeholder="패스워드"></td>
+                            </tr>
+                        </table>
+                    </form>
+                    &nbsp;<a href="#" style="text-decoration-line: none;">회원가입</a>
+                    &nbsp; <a href="#" style="text-decoration-line: none;">비번 찾기</a>
+              </c:if>
+					
+					
+					
+					
 			</div>
 		</div>
 		<fieldset
@@ -473,7 +485,7 @@
 							value="경질" <c:if test="${page.keyword_chart eq '경질'}"></c:if> > <label for="med_texture3"
 							style="background-image: url('resources/img/main-png/재질/3.jpg'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 						</label>
-						<p style="text-align: center; font-weight: 800"경질형></p>
+						<p style="text-align: center; font-weight: 800">경질형</p>
 				   </div>
     
 				    <div>
@@ -592,6 +604,68 @@
 			FiveGuys 4 Team </span>
 	</div>
 </footer>
+<script> 
+  $(document).ready(function(){ //모든 화면이 다 로딩이 되면 실행하는 영역
+    console.log("$document.ready");
+  
+    //jquery 이벤트 감지 (#은 id를 감지한는것이다.)
+    $(document).on("click","#doLogin",function(){
+      console.log("doLogin");
+      
+      if(confirm('로그인 하시겠습니까?')==false) return;
+      console.log("userId : "+$("#id").val());
+      console.log("passwd : "+$("#pw").val());
+        
+      if(""==$("#id").val() || 0==$("#id").val().length){
+          alert("아이디를 입력하세요");  // javascript 메시지 다이얼 로그
+          $("#id").focus();          // jquery로 포커스를 이동시킨다.
+          return;
+      }
+      if(""==$("#pd").val() || 0==$("#pw").val().length){
+        alert("비밀번호를 입력하세요");  // javascript 메시지 다이얼 로그
+        $("#pw").focus();
+        return;
+      }
+      
+     $.ajax({
+            type: "POST",
+            url:"${CP}/login.do",
+            /* asyn:"true", */
+            dataType:"html",
+            data:{
+              id: $("#id").val(),
+              pw: $("#pw").val()
+            },
+            success:function(data){//통신 성공
+                //console.log("success data:"+data);
+                // JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성합니다.
+                let paredJSON = JSON.parse(data);
+                console.log("paredJSON.msgId:"+paredJSON.msgId);
+                
+                if("1"==paredJSON.msgId || "10"==paredJSON.msgId){
+                  alert(paredJSON.msgContents);  // javascript 메시지 다이얼 로그
+                  $("#userId").focus();          // jquery로 포커스를 이동시킨다.
+                  return;
+                }
+                if("2"==paredJSON.msgId || "20"==paredJSON.msgId){
+                  alert(paredJSON.msgContents);
+                  $("#passwd").focus();
+                  return;
+                }
+                if("30"==paredJSON.msgId){//로그인 성공
+                  alert(paredJSON.msgContents);
+                  
+                  //javascript 내장객체 : url
+                  window.location.href="${CP}/main.do";
+                }
+              },
+              error:function(data){//실패시 처리
+                console.log("error:"+data);
+              }
+          });
+    });    
+  });
+</script>
 
 
 <script>
@@ -747,4 +821,6 @@
 +"&keyword_line=" + keyword_line;
 };
 </script>
+
+
 </html>
