@@ -201,10 +201,6 @@
   <script>
   /* 회원 즐겨찾기 추소 리스츠 호출 */
 	function AddressList() {
-	  /* const searchTable = document.getElementById('searchTable');   */
-	  /* const addressTable = document.getElementById('addressTable'); */
-	  //var myJsonObject;
-	  
 	  var radio01 = document.getElementById('inlineRadio1');  
 	  var radio02 = document.getElementById('inlineRadio2');
 	  radio01.checked = false;
@@ -219,17 +215,12 @@
 	  var obj = {"mNo": "${user.no}"};              //session에 있는 회원 정보를 가져간다.
 	  	    
 	    $.ajax({
-	        url: '/pilldex/test.do',
+	        url: '/pilldex/map.do',
 	        type: "post",
 	        data: JSON.stringify(obj),
 	        dataType: "json",
 	        contentType: "application/json; charset=utf-8;",
 	        success: function(data) {
-	        	//let test = JSON.parse(data);
-	        	/* $(data).each(function(){
-	                alert(this.no + " " + this.mNo + " " + this.postNum + " " + this.nAddr + " " 
-                            + this.oAddr + " " + this.restAddr + " " + this.del + " " );
-	            }); */     
 
 	          var listEl = document.getElementById('table_body');
 	          var listE2 = document.getElementById('table_body2'); //리스트를 추가하는 위치
@@ -397,13 +388,6 @@
 
 				// 정상적으로 검색이 완료됐으면  검색 목록과 마커를 표출합니다
 				displayPlaces(data);
-
-				// 페이지 번호를 표출합니다
-				//displayPagination(pagination);
-
-				// 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
-				//displayPlaces2(data);
-
 			} else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 				// 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
 			} else if (status === kakao.maps.services.Status.ERROR) {
@@ -424,10 +408,6 @@
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
 			
-			// 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-			// 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-			/* var order = document.getElementById(currCategory).getAttribute('data-order'); */
-
 			for (var i = 0; i < places.length; i++) {
 
 				// 마커를 생성하고 지도에 표시합니다
@@ -673,15 +653,6 @@
 			currCategory = id;
 	    changeCategoryClass(this);
 	    searchPlaces(2);
-			/* if (className === 'on') {
-				currCategory = '';
-				changeCategoryClass();
-				removeMarker();
-			} else {
-				currCategory = id;
-				changeCategoryClass(this);
-				searchPlaces(2);
-			} */
 		}
 	</script>
 </body>
