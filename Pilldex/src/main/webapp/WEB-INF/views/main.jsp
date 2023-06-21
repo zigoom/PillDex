@@ -5,25 +5,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script>
-function doNotReload(){
-    if(    (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82))
-        || (event.keyCode == 116) )
-    {
-      event.keyCode = 0;
-      event.cancelBubble = true;
-      event.returnValue = false;
-    }
-}
-document.onkeydown = doNotReload;
-</script>
-
-<script>
-<body oncontextmenu="return false">
-</script>
-
 <script type="text/javascript">
- //history.replaceState({}, null, location.pathname); 
+ history.replaceState({}, null, location.pathname); 
 </script>          
 <meta charset="UTF-8">
 <meta name="author" content="hbi">
@@ -58,7 +41,7 @@ document.onkeydown = doNotReload;
 </style>
 <title>Main</title>
 </head>
-<body oncontextmenu="return false">
+<body>
 	<div>
 		<header>
 			<nav class="py-2 bg-light border-bottom">

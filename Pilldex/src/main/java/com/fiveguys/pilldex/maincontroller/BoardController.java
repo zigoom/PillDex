@@ -20,10 +20,12 @@ public class BoardController  {
 	@Inject
 	MainBoardService service;
 	
+	
+	
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public void getSearchTypeKeywordBox 
 			(Model model, 
-			@RequestParam(value = "num") int num,
+			@RequestParam(value = "num",required = false, defaultValue = "1") int num,
 			@RequestParam(value = "keyword",required = false, defaultValue = "") String keyword,
 			@RequestParam(value = "keyword_print",required = false, defaultValue = "") String keyword_print,
 			@RequestParam(value = "keyword_shape",required = false, defaultValue = "") String keyword_shape,
