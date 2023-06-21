@@ -20,14 +20,13 @@
            margin: 20px 0px;
          }  
          
-         input[id="id_form"], input[id="pw_form"], input[id="pw2_form"], input[id="name_form"], input[id="phone_num"]
-         ,input[id="address"], input[id="rest_address"] {
+         #id_form, #pw_form, #pw2_form, #name_form, #phone_num {
            font-size: 12pt;
            width: 400px;
            height: 35px;
          }
          
-         input[id="idDulpCheck"] {
+         #idDulpCheck {
            background-color: #40c1fc;
            color: #ffffff;
            border:1px solid #40c1fc;
@@ -43,29 +42,32 @@
            height: 35px;
          }
                         
-         input[id="birth_year"] {
+         #birth_year {
            font-size: 12pt;
            width: 125px;
            height: 35px;
          }
 
-         input[id="birth_month"], input[id="birth_day"] {
+         #birth_month, #birth_day {
            font-size: 12pt;
            width: 126px;
            height: 35px;
          }
          
-         input[id="post_code"] {
+         #post_code {
            font-size: 12pt;
            width: 180px;
            height: 35px;
          }
          
-         input[id="address"], input[id="rest_address"] {
+         #address, #rest_address {
+           font-size: 12pt;
+           width: 400px;
+           height: 35px;
            margin: 3px 0px 0px 0px;
          }
          
-         input[id="btn"] {
+         #btn {
            background-color: #fff;
            border: 0px solid black;
            text-decoration: underline;
