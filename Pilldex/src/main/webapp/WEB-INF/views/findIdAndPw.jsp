@@ -29,7 +29,7 @@
 	      
 	      $.ajax({
 	            type: "POST",
-              url:"${CP}/findId.do",
+              url:"${path}/findId.do",
 	            /* asyn:"true", */
 	            dataType:"html",
 	            data:{
@@ -80,7 +80,7 @@
             }
             $.ajax({
                   type: "POST",
-                  url:"${CP}/findPw.do",
+                  url:"${path}/findPw.do",
                   /* asyn:"true", */
                   dataType:"html",
                   data:{
@@ -101,7 +101,7 @@
                       if("30"==paredJSON.msgId){//로그인 성공
                         alert(paredJSON.msgContents);
                         
-                        window.location.href="${CP}/login.do";
+                        window.location.href="${path}/main.do";
                       }
                     },
                     error:function(data){//실패시 처리
