@@ -23,6 +23,8 @@ public interface DrugDao {
 	 */
 	public int getDrugCnt(int userNo) throws SQLException;
 
+	public int drugCheckNm(String nm) throws SQLException;
+	
 	/**
 	 * 즐겨찾기 주소 추가
 	 * 
@@ -48,6 +50,6 @@ public interface DrugDao {
 	 * @return 1: 성공, 0: 실패
 	 * @throws SQLException
 	 */
-	public int updateDelDrug(int vo) throws SQLException;
+	public int updateDelDrug(int userNo) throws SQLException;
 
 }

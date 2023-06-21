@@ -7,6 +7,8 @@ public class DrugVO {
 	private int medNo;	// 약품 번호
 	private String nm;	// 약품 이름(medName)
 	private char del;	// 약품삭제여부 
+	
+	
 	public int getNo() {
 		return no;
 	}

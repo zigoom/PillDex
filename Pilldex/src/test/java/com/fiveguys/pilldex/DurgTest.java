@@ -33,10 +33,16 @@ public class DurgTest {
 	// context = new GenericXmlApplicationContext("applicationContext.xml");
 	@Autowired
 	DrugService drugDao;
+	
+	@Test
+	public void getDrugCnt() throws SQLException{
+		int cnt = drugDao.getDrugCnt(1);
+		LOG.debug("===============cnt=============="+cnt);
+	}
 
 	/* 아이디를 기준으로 약품 즐겨찾기 리스트를 받는 테스트 입니다. */
 	@Test
-//	@Ignore
+	@Ignore
 	public void seleteListDrug() throws SQLException {
 		List<DrugVO> list = drugDao.getDrugList("1");
 

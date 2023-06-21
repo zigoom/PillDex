@@ -39,16 +39,17 @@ public class DrugDaoImpl implements DrugDao {
 	}
 
 	@Override
-	public int getDrugCnt(int userNo) throws SQLException {
+	public int drugCheckNm(String nm) throws SQLException {
 		int cnd = 0;
-		String statement = this.NAMESPACE + DOT + "drugCheckCnt";
+		String statement = this.NAMESPACE + DOT + "drugCheckNm";
 		System.out.println("┌────────────────────────────────────────────────────────┐");
 		System.out.println("│ 1. statement " + statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
-		cnd = this.sqlSessionTemplate.selectOne(statement, userNo);
+		cnd = this.sqlSessionTemplate.selectOne(statement, nm);
 
 		return cnd;
 	}
+	
 
 	@Override
 	public int addDrug(DrugVO vo) throws SQLException {
@@ -58,6 +59,9 @@ public class DrugDaoImpl implements DrugDao {
 		System.out.println("│ 1. statement " + statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
 		flag = this.sqlSessionTemplate.insert(statement, vo);
+		
+		
+		
 		return flag;
 	}
 
@@ -82,4 +86,14 @@ public class DrugDaoImpl implements DrugDao {
 		flag = this.sqlSessionTemplate.insert(statement, no);
 		return flag;
 	}
+
+	@Override
+	public int getDrugCnt(int userNo) throws SQLException {
+		int cnd = 0;
+		String statement = this.NAMESPACE+DOT+"drugCheckCnt";
+		cnd = this.sqlSessionTemplate.selectOne(statement, userNo);
+		return cnd;
+	}
+
+
 }
