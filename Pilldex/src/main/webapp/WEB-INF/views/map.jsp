@@ -81,30 +81,29 @@
 </head>
 <body>
 	<header>
-		<nav class="py-2 bg-light border-bottom">
-			<div class="container d-flex flex-wrap">
-				<ul class="nav me-auto">
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
-						<a href="#" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
-					</a>
-					</li>
-				</ul>
-				<ul class="nav" style="">				
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
+    <nav class="py-2 bg-light border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
+            <a id="logo" href="${path}/pilldex/main.do" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b> </a>
+          </li>
+        </ul>
+        <ul class="nav" style="">       
+          <li id="doMode"class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/mode.do" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+          <li id="doMap"class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/map.do" class="nav-link link-dark px-2"><b>MAP</b></a></li>
                     
-				  <%-- <c:set var="user" value="${User}"/> --%>
+          <%-- <c:set var="user" value="${User}"/> --%>
           <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
             <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+            <li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/logout.do" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
           </c:if>
-          <c:if test="${user eq null }"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="login.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+          <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
+            <li id="doLogin" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/main.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
           </c:if> 
-				</ul>
-			</div>
-		</nav>
-	</header>
+        </ul>
+      </div>  
+    </nav>
+    </header>
 	<main>
 		<div class="container text-center">
 			<!-- 안의 내용을 가운데 정렬하는 container 영역 -->

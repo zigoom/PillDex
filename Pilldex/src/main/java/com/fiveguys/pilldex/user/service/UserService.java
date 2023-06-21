@@ -66,7 +66,7 @@ public interface UserService {
 	/**
 	 * 회원정보 변경
 	 * @param user
-	 * @return 1: 성공 , 0: 실패 
+	 * @return 1: 성공 , -1: 실패 
 	 * @throws SQLException
 	 */
 	public int doChangeInfo(UserVO user) throws SQLException;
