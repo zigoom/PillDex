@@ -21,25 +21,22 @@ public class MembershipServiceImpl implements MembershipService {
 		System.out.println("============================================");
 		System.out.println("MembershipServiceImpl register()");
 		System.out.println("============================================");
-		
-		int regNum = 0;
-		
+			
 		
 		int idCheck = this.membershipDao.idCheck(user);
-		int add = this.membershipDao.add(user);
+		int flag = this.membershipDao.add(user);
+		
+		System.out.println("MembershipServiceImpl idCheck : "+idCheck);
+		System.out.println("MembershipServiceImpl flag : "+flag);
 		
 		// 10 : 가입 성공 / 20 : 가입 실패
-		if(0 == idCheck) {
-			if(1 == add) {
-				regNum = 10;
-			} else {
-				regNum = 20;
-			}
+		if(1 != idCheck) {
+			flag = 10;
 		} else {
-			regNum = 20;
+			flag = 20;
 		}
 		
-		return regNum;
+		return flag;
 	}
 
 	@Override

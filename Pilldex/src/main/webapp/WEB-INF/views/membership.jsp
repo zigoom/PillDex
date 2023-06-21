@@ -19,26 +19,26 @@
               <ul>
                 <li>
                   <label>아이디</label><br/>
-                  <input type="text" name="id" id="id" placeholder="아이디 입력(영어, 숫자포함 6~20자)">
+                  <input type="text" name="id_form" id="id_form" placeholder="아이디 입력(영어, 숫자포함 6~20자)">
                   <input type="button" id="idDulpCheck" value="중복확인">
                 </li>
                 <li>
                   <label>비밀번호</label><br/>
-                  <input type="password" name="pw" id="pw" placeholder="(문자, 숫자, 특수문자[!,@,#,$,%,*]) 포함 8~20자)" onchange="check_pw()">
+                  <input type="password" name="pw_form" id="pw_form" placeholder="(문자, 숫자, 특수문자[!,@,#,$,%,*]) 포함 8~20자)" onchange="check_pw()">
                 </li>
                 <li>
                   <label>비밀번호 확인</label><br/>
-                  <input type="password" name="pw2" id="pw2" placeholder="비밀번호 재입력" onchange="check_pw()"> <br/>
+                  <input type="password" name="pw2_form" id="pw2_form" placeholder="비밀번호 재입력" onchange="check_pw()"> <br/>
                   <label id="pw_check"></label>
                 </li>
                 <li>
                   <label>이름</label><br/>
-                  <input type="text" name="name" id="name" placeholder="이름을 입력해주세요 (한글 3~20글자)" onchange="check_name()">
+                  <input type="text" name="name_form" id="name_form" placeholder="이름을 입력해주세요 (한글 3~20글자)" onchange="check_name()">
                 </li>
                 <li>
                   <label>성별</label>
-                  <input type="radio" name="sex" id="sex" value="m" style="margin-left: 100px;"><label>남자</label>
-                  <input type="radio" name="sex" id="sex" value="f" style="margin-left: 40px;"><label>여자</label>
+                  <input type="radio" name="sex_form" id="sex_form" value="M" style="margin-left: 100px;"><label>남자</label>
+                  <input type="radio" name="sex_form" id="sex_form" value="F" style="margin-left: 40px;"><label>여자</label>
                 </li>
                 <li>
                   <label>전화번호</label><br/>
@@ -50,7 +50,7 @@
                   <label>@</label>
                   <input type="email" name="email_back" list="email_back" placeholder="ex)naver.com">
                   <datalist id="email_back">
-                    <option value="naver.com"></option>
+                    <option value="naver.com">naver.com</option>
                     <option value="daum.net"></option>
                     <option value="gmail.com"></option>
                   </datalist>
@@ -126,9 +126,24 @@
               </ul>
             </fieldset>
           <div>
-           <input type="submit" id="none01" value="가입하기">
-           <input type="button" id="none02" value="취소" onclick="firstForm()">
+           <input type="button" id="register" value="가입하기">
+           <input type="button" id="noneRegister" value="취소" onclick="firstForm()">
           </div>
+        </form>
+        <form method="POST" name="register_form">
+            <input type="hidden" name="grade" id="grade" value="20">
+            <input type="hidden" name="name" id="name">
+            <input type="hidden" name="id" id="id">
+            <input type="hidden" name="pw" id="pw">
+            <input type="hidden" name="tel" id="tel">
+            <input type="hidden" name="birth" id="birth">
+            <input type="hidden" name="sex" id="sex">
+            <input type="hidden" name="post_num" id="post_num">
+            <input type="hidden" name="n_addr" id="n_addr">
+            <input type="hidden" name="o_addr" id="o_addr">
+            <input type="hidden" name="rest_addr" id="rest_addr">
+            <input type="hidden" name="email" id="email">
+            <input type="hidden" name="del" id="del" value="0">
         </form>
       </div>    
     </body>
@@ -140,12 +155,15 @@
           new daum.Postcode({
                 oncomplete: function(data) {
                   let fullAddr = '';
+                  let anotherAddr = '';
                   let extraAddr = '';
                   
                   if(data.userSelectedType === 'R') {
                     fullAddr = data.roadAddress;
+                    anotherAddr = data.jibunAddress;
                   } else {
                     fullAddr = data.jibunAddress;
+                    anotherAddr = data.roadAddress;
                   }
                   
                   if(data.userSelectedType === 'R') {
@@ -157,7 +175,19 @@
                     }
                     fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
                   }
+                  
+                  if(data.userSelectedType === 'J') {
+                    if(data.bname !== '') {
+                      extraAddr += data.bname;
+                    }
+                    if(data. buildingName !== '') {
+                      extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    anotherAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
+                  }
+                  
                   document.membership.address.value = fullAddr;
+                  document.register_form.o_addr.value = anotherAddr;
                   document.membership.post_code.value = data.zonecode;
                   document.membership.rest_address.focus();
                 }
@@ -165,7 +195,7 @@
         });
     
         function check_pw() {
-            var pw = document.getElementById('pw').value;
+            var pw = document.getElementById('pw_form').value;
             var num = pw.search(/[0-9]/g);
             var eng = pw.search(/[a-z]/ig);
             var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -181,16 +211,16 @@
                document.getElementById('pw').value='';
             }           
             
-            if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!='') {
+            if(document.getElementById('pw_form').value !='' && document.getElementById('pw2_form').value!='') {
               
-                if(document.getElementById('pw').value == document.getElementById('pw2').value) {
+                if(document.getElementById('pw_form').value == document.getElementById('pw2_form').value) {
                     document.getElementById('pw_check').innerHTML='비밀번호가 일치합니다.'
                     document.getElementById('pw_check').style.color='blue';
                 } else {
                     document.getElementById('pw_check').innerHTML='비밀번호가 일치하지 않습니다.';
                     document.getElementById('pw_check').style.color='red';
-                    document.getElementById('pw').value='';
-                    document.getElementById('pw2').value='';
+                    document.getElementById('pw_form').value='';
+                    document.getElementById('pw2_form').value='';
                 }
                 
             }
@@ -198,18 +228,18 @@
     
         function check_name() {
           
-          var name_str = document.getElementById('name').value;
+          var name_str = document.getElementById('name_form').value;
           var hangul = /^[가-힣]+$/;
   
-          if(name_str.length() < 3 || name_str.length() > 20) {
+          if(name_str.length < 3 || name_str.length > 20) {
              window.alert('이름은 한글 3글자 이상, 20글자 이하만 가능합니다');
-             document.getElementById('name').value='';
+             document.getElementById('name_form').value='';
           } else if(name_str.search(/\s/) != -1) {
              window.alert('이름은 공백 없이 입력 가능합니다');
-             document.getElementById('name').value='';
+             document.getElementById('name_form').value='';
           } else if(hangul.test(name_str) == false) {
              window.alert('이름은 한글만 입력 가능합니다');
-             document.getElementById('name').value='';
+             document.getElementById('name_form').value='';
           
         }
       
@@ -319,19 +349,91 @@
       $(document).ready(function(){  //모든 화면이 다 로딩이 되면 실행하는 영역
     	    console.log("document ready");
       
-  	    //jquery 이벤트 감지 (#은 id를 감지한는것이다.)
+    	$("#register").on("click", function(){
+    		console.log("register ready");
+    		
+    		let registerName = document.getElementById('name_form').value;
+    		let registerId = document.getElementById('id_form').value;
+    		let registerPw = document.getElementById('pw2_form').value;
+    		let registerTel = document.getElementById('phone_num').value;
+    		let registerBirth = document.getElementById('birth_year').value+document.getElementById('birth_month').value+document.getElementById('birth_day').value;
+    		let registerSex = $('input:radio[name=sex_form]:checked').val();
+    		let registerPostNum = document.getElementById('post_code').value;
+    		let registerNewAddr = document.getElementById('address').value;  		
+    		let registerRestAddr = document.getElementById('rest_address').value;
+    		let registerEmail = document.getElementById('email_front').value+"@"+$('[name="email_back"]').val();
+    		
+    		
+    		document.register_form.name.value = registerName;
+    		document.register_form.id.value = registerId;
+    		document.register_form.pw.value = registerPw;
+    		document.register_form.tel.value = registerTel;
+    		document.register_form.birth.value = registerBirth;
+    		document.register_form.sex.value = registerSex;
+    		document.register_form.post_num.value = registerPostNum;
+    		document.register_form.n_addr.value = registerNewAddr;    		
+    		document.register_form.rest_addr.value = registerRestAddr;
+    		document.register_form.email.value = registerEmail;
+    		
+    		$.ajax({
+                type: "POST",
+              url:"${CP}/register.do",
+                /* asyn:"true", */
+                dataType:"html",
+                data:{
+                	grade: $("#grade").val(),
+                	name: $("#name").val(),
+                    id: $("#id").val(),
+                    pw: $("#pw").val(),
+                    tel: $("#tel").val(),
+                    birth: $("#birth").val(),
+                    sex: $("#sex").val(),
+                    postNum: $("#post_num").val(),
+                    nAddr: $("#n_addr").val(),
+                    oAddr: $("#o_addr").val(),
+                    restAddr: $("#rest_addr").val(),
+                    email: $("#email").val(),
+                    del: $("#del").val()
+                },
+                success:function(data){//통신 성공
+                    //console.log("success data:"+data);
+                    // JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성합니다.
+                    let parsedJSON = JSON.parse(data);
+                    console.log("parsedJSON.msgId:"+parsedJSON.msgId);
+                                     
+                    
+                    if("10" == parsedJSON.msgId){
+                      alert(parsedJSON.msgContents);
+                    } 
+                    
+                    if("20" == parsedJSON.msgId){//로그인 성공
+                      alert(parsedJSON.msgContents);
+                      return;
+                    }
+                    
+                   
+                  },
+                  error:function(data){//실패시 처리
+                    console.log("error:"+data);
+                  }
+            }); //  $.ajax End --------------------------
+    		
+    		
+    	});    // #register END
+    	    
+  	    //jquery 이벤트 감지 (#은 id를 감지하는 것이다.)
   	    $("#idDulpCheck").on("click",function(){
   	    	console.log("idDulpCheck ready");
   	    	
-  	    	 var id_str = document.getElementById('id').value;
+  	    	var id_str = document.getElementById('id_form').value;
   	    	
-  	    	if(""==$('#id').val() || 0==$('#id').val().length){
+  	    	if(""==$('#id_form').val() || 0==$('#id_form').val().length){
   	          alert("아이디를 입력하세요");  // javascript 메시지 다이얼 로그
-  	          $('#id').focus();          // jquery로 포커스를 이동시킨다.
+  	          $('#id_form').focus();          // jquery로 포커스를 이동시킨다.
   	          return;
   	      } else if(id_str.search(/\s/) != -1) {
-              alert('이름은 공백 없이 입력 가능합니다');
-              document.getElementById('name').value='';
+              alert('아이디는 공백 없이 입력 가능합니다');
+              document.getElementById('id_form').value='';
               return;
   	      }
   	    	
@@ -341,22 +443,22 @@
                 /* asyn:"true", */
                 dataType:"html",
                 data:{
-                    id: $("#id").val()
+                    id: $("#id_form").val()
                 },
                 success:function(data){//통신 성공
                     //console.log("success data:"+data);
                     // JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성합니다.
-                    let paredJSON = JSON.parse(data);
-                    console.log("paredJSON.msgId:"+paredJSON.msgId);
+                    let parsedJSON = JSON.parse(data);
+                    console.log("parsedJSON.msgId:"+parsedJSON.msgId);
                                      
                     
-                    if("10" == paredJSON.msgId){
-                      alert(paredJSON.msgContents);  // javascript 메시지 다이얼 로그
-                      $("#id").focus();
+                    if("10" == parsedJSON.msgId){
+                      alert(parsedJSON.msgContents);  // javascript 메시지 다이얼 로그
+                      $("#id_form").focus();
                     } 
                     
-                    if("20" == paredJSON.msgId){//로그인 성공
-                      alert(paredJSON.msgContents);
+                    if("20" == parsedJSON.msgId){//로그인 성공
+                      alert(parsedJSON.msgContents);
                       return;
                     }
                     

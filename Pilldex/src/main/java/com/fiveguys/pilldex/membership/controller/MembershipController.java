@@ -32,7 +32,6 @@ public class MembershipController {
 	public String membershipIdCheck(UserVO user, HttpSession httpSession) throws SQLException {
 		System.out.println("┌────────────────────────────────────────────────────────┐");
         System.out.println("│ membershipIdCheck()                                    │");
-        System.out.println("│ user: "+user);
         System.out.println("└────────────────────────────────────────────────────────┘");
         
         String jsonString = "";
@@ -59,28 +58,29 @@ public class MembershipController {
         return jsonString;
 	}
 	
-//	@RequestMapping(value = "memberhship.do", method = RequestMethod.POST
-//				   ,produces = "application/json;charset=UTF-8")
-//	@ResponseBody
-//	public String membershipRegister(UserVO user, HttpSession httpSession) throws Exception {
-//		String jsonString = "";
-//		System.out.println("==================================================");
-//		System.out.println("user : "+user);
-//		int flag = this.membershipService.register(user);
-//		
-//		String message = "";
-//		if(10 == flag) {
-//			message = "사용가능한 ID입니다";
-//		} else if(20 == flag) {
-//			message = "중복된 ID가 존재합니다";
-//		}
-//				
-//		MessageVO messageVO = new MessageVO(String.valueOf(flag), message);
-//		jsonString = new Gson().toJson(messageVO);
-//		System.out.println("jsonString : "+jsonString);		
-//		System.out.println("==================================================");
-//		
-//		return jsonString;
-//	}
+	@RequestMapping(value = "/register.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String membershipRegister(UserVO user) throws Exception {
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+        System.out.println("│ membershipRegister()                                   │");
+        System.out.println("└────────────────────────────────────────────────────────┘");
+        
+		int flag = this.membershipService.register(user);
+		
+		String jsonString = "";
+		MessageVO message = new MessageVO();
+		
+		if(10 == flag) {
+			message.setMsgId("10");
+			message.setMsgContents("축하합니다, 회원가입에 성공했습니다");
+		} else if(20 == flag){
+			message.setMsgId("20");
+			message.setMsgContents("회원가입에 실패했습니다");
+		}	
+		
+		jsonString = new Gson().toJson(message);
+		
+		return jsonString;
+	}
 	
 }

@@ -47,11 +47,11 @@ public class MembershipDaoImpl implements MembershipDao {
 		
 		int flag = 0;// 등록 건수	
 		
-		String statement = this.NAMESPACE+".add";
+		String statement = this.NAMESPACE+".insertOne";
 		System.out.println("============================================");
 		System.out.println("1. statement : \n"+statement);
-		System.out.println("============================================");
 		System.out.println("2. param : \n"+user.toString());
+		System.out.println("============================================");
 		
 		flag = this.sqlSessionTemplate.insert(statement, user);
 		System.out.println("3. flag : "+flag);						

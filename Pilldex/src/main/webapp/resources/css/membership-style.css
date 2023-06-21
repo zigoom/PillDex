@@ -20,7 +20,7 @@
            margin: 20px 0px;
          }  
          
-         input[id="id"], input[id="pw"], input[id="pw2"], input[id="name"], input[id="phone_num"]
+         input[id="id_form"], input[id="pw_form"], input[id="pw2_form"], input[id="name_form"], input[id="phone_num"]
          ,input[id="address"], input[id="rest_address"] {
            font-size: 12pt;
            width: 400px;
@@ -71,7 +71,7 @@
            text-decoration: underline;
          }
          
-         form > div > input[id="none01"] {
+         #register {
            font-size: 12pt;
            text-align:center;
            width:150px;
@@ -84,7 +84,7 @@
            font-family: 'Noto Sans KR', sans-serif;
          }
          
-         form > div > input[id="none02"] {
+         #noneRegister {
            font-size: 12pt;
            text-align:center;
            width:150px;
