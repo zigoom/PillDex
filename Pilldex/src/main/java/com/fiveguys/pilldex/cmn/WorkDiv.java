@@ -10,7 +10,7 @@ import java.util.List;
  * @param <T>
  */
 public interface WorkDiv<T> {
-	//CRUD : doSave().doDelete(),doUpdate(),doSelectOne(), doRetrueve()
+	//CRUD : doSave().doDelete(),doUpdate(),doSelectOne(), doRetrieve()
 	
 	/**
 	 * 등록

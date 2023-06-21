@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="CP" value="${pageContext.request.contextPath}"></c:set>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,9 @@
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link  href="${CP}/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <script src="${CP}/resources/js/bootstrap/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
+  <link  href="${path}/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="${path}/resources/js/bootstrap/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="${path}/resources/js/jquery-3.7.0.js"></script>
   
   <title>병원 약국 검색 </title>
   <style>
@@ -81,30 +81,27 @@
 </head>
 <body>
 	<header>
-		<nav class="py-2 bg-light border-bottom">
-			<div class="container d-flex flex-wrap">
-				<ul class="nav me-auto">
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
-						<a href="#" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
-					</a>
-					</li>
-				</ul>
-				<ul class="nav" style="">				
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>MAP</b></a></li>
-                    
-				  <%-- <c:set var="user" value="${User}"/> --%>
+    <nav class="py-2 bg-light border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
+            <a id="logo" href="${path}/main.do" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b> </a>
+          </li>
+        </ul>
+        <ul class="nav" style="">       
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/mode.do" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/map.do" class="nav-link link-dark px-2"><b>MAP</b></a></li>    
           <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/mypage.do" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/logout.do" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
           </c:if>
-          <c:if test="${user eq null }"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="login.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+          <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/main.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
           </c:if> 
-				</ul>
-			</div>
-		</nav>
-	</header>
+        </ul>
+      </div>  
+    </nav>
+    </header>
 	<main>
 		<div class="container text-center">
 			<!-- 안의 내용을 가운데 정렬하는 container 영역 -->
@@ -204,10 +201,6 @@
   <script>
   /* 회원 즐겨찾기 추소 리스츠 호출 */
 	function AddressList() {
-	  /* const searchTable = document.getElementById('searchTable');   */
-	  /* const addressTable = document.getElementById('addressTable'); */
-	  //var myJsonObject;
-	  
 	  var radio01 = document.getElementById('inlineRadio1');  
 	  var radio02 = document.getElementById('inlineRadio2');
 	  radio01.checked = false;
@@ -222,17 +215,12 @@
 	  var obj = {"mNo": "${user.no}"};              //session에 있는 회원 정보를 가져간다.
 	  	    
 	    $.ajax({
-	        url: '/pilldex/test.do',
+	        url: '/pilldex/map.do',
 	        type: "post",
 	        data: JSON.stringify(obj),
 	        dataType: "json",
 	        contentType: "application/json; charset=utf-8;",
 	        success: function(data) {
-	        	//let test = JSON.parse(data);
-	        	/* $(data).each(function(){
-	                alert(this.no + " " + this.mNo + " " + this.postNum + " " + this.nAddr + " " 
-                            + this.oAddr + " " + this.restAddr + " " + this.del + " " );
-	            }); */     
 
 	          var listEl = document.getElementById('table_body');
 	          var listE2 = document.getElementById('table_body2'); //리스트를 추가하는 위치
@@ -400,13 +388,6 @@
 
 				// 정상적으로 검색이 완료됐으면  검색 목록과 마커를 표출합니다
 				displayPlaces(data);
-
-				// 페이지 번호를 표출합니다
-				//displayPagination(pagination);
-
-				// 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
-				//displayPlaces2(data);
-
 			} else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 				// 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
 			} else if (status === kakao.maps.services.Status.ERROR) {
@@ -427,10 +408,6 @@
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
 			
-			// 몇번째 카테고리가 선택되어 있는지 얻어옵니다
-			// 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
-			/* var order = document.getElementById(currCategory).getAttribute('data-order'); */
-
 			for (var i = 0; i < places.length; i++) {
 
 				// 마커를 생성하고 지도에 표시합니다
@@ -676,15 +653,6 @@
 			currCategory = id;
 	    changeCategoryClass(this);
 	    searchPlaces(2);
-			/* if (className === 'on') {
-				currCategory = '';
-				changeCategoryClass();
-				removeMarker();
-			} else {
-				currCategory = id;
-				changeCategoryClass(this);
-				searchPlaces(2);
-			} */
 		}
 	</script>
 </body>

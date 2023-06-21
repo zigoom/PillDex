@@ -21,40 +21,41 @@
 	String itemName = request.getParameter("itemName");
 	%>
 	<!--네비게이션 바-->
-	<nav class="py-2 bg-light border-bottom">
-		<div class="container d-flex flex-wrap">
-			<ul class="nav me-auto">
-				<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">
-						<img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
-					</a></li>
-			</ul>
-			<ul class="nav" style="">
-				<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
-						<b>일반</b>
-					</a></li>
-				<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
-						<b>MAP</b>
-					</a></li>
-
-				<%-- <c:set var="user" value="${User}"/> --%>
-				<c:if test="${user ne null }">
-					<!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
-							<b>마이페이지</b>
+	<header>
+		<nav class="py-2 bg-light border-bottom">
+			<div class="container d-flex flex-wrap">
+				<ul class="nav me-auto">
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a id="logo" href="${path}/main.do" class="nav-link link-dark px-2 active" aria-current="page">
+							<img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
 						</a></li>
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
-							<b>로그아웃</b>
+				</ul>
+				<ul class="nav" style="">
+					<li id="doMode" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
+							<b>돋보기</b>
 						</a></li>
-				</c:if>
-				<c:if test="${user eq null }">
-					<!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
-							<b>로그인</b>
+					<li id="doMap" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
+							<b>MAP</b>
 						</a></li>
-				</c:if>
-			</ul>
-		</div>
-	</nav>
+					<%-- <c:set var="user" value="${User}"/> --%>
+					<c:if test="${user ne null }">
+						<!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
+						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
+								<b>마이페이지</b>
+							</a></li>
+						<li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
+								<b>로그아웃</b>
+							</a></li>
+					</c:if>
+					<c:if test="${user eq null}">
+						<!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
+						<li id="doLogin" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+								<b>로그인</b>
+							</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</nav>
+	</header>
 
 	<div id="detail_img_text_box">
 		<div id="detail_img_box">
@@ -68,7 +69,7 @@
 	<c:if test="${user ne null }">
 		<div id="bookmark-drug-box">
 			<!--즐겨찾기 추가/삭제-->
-			<button class="btn btn-primary" id="bookmark-drug">즐겨찾기 추가</button>
+			<button id="bookmark-drug" class="btn btn-primary">즐겨찾기 추가</button>
 		</div>
 	</c:if>
 
@@ -102,8 +103,48 @@
 	</footer>
 </body>
 <script>
-	$("#bookmark-drug").on("click",function(){
-		
-	});
+	document.querySelector("#bookmark-drug").addEventListener("click",
+			function() {
+				$.ajax({
+					type : "POST",
+					url : "${path}/drugCheckNm.do",
+					asyn : "true",
+					dataType : "html",
+					data : {
+						nm : "${modeVO.itemName}"
+					},
+					success : function(data) {//통신 성공
+						console.log("success data:" + data);
+						if (data == 0) {
+							$.ajax({
+								type : "POST",
+								url : "${path}/drugBookmarkAdd.do",
+								asyn : "true",
+								dataType : "html",
+								data : {
+									mNo : "${user.no}",
+									nm : "${modeVO.itemName}"
+								},
+								success : function(data) {//통신 성공
+									console.log("success data:" + data);
+									alert("즐겨찾기 등록 성공");
+
+								},
+								error : function(data) {//실패시 처리
+									console.log("error:" + data);
+								}
+							});
+						}
+						if (data == 1) {
+							alert("이미 등록되어 있습니다.")
+						}
+
+					},
+					error : function(data) {//실패시 처리
+						console.log("error:" + data);
+					}
+				});
+
+			})
 </script>
 </html>

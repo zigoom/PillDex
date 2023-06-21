@@ -111,7 +111,7 @@ public class main1page {
 			keyword_line .equals("")) {
 		  return ""; 
 		 }else{
-		  return   "&keyword="+keyword
+		  return "&keyword="+keyword
 				 +"&keyword_print="+keyword_print
                  +"&keyword_shape="+keyword_shape
                  +"&keyword_color="+keyword_color
@@ -126,8 +126,18 @@ public class main1page {
         private String keyword_color;
         private String keyword_chart;
         private String keyword_line;
-        
-		
+        private String pageid;
+
+		public String getPageid() {
+			return pageid;
+		}
+
+
+		public void setPageid(String pageid) {
+			this.pageid = pageid;
+		}
+
+
 		public void setKeyword(String keyword) {
 		 this.keyword = keyword;  
 		} 

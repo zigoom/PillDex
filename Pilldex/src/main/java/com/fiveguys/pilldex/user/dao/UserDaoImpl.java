@@ -164,4 +164,21 @@ public class UserDaoImpl implements UserDao {
 		
 		return flag;
 	}
+	
+
+	@Override
+	public UserVO selectOneMypage(UserVO inVO) throws SQLException {
+		String statement = this.NAMESPACE+".selectOneMypage";
+		LOG.debug("┌────────────────────────────────────────────────────────┐");
+		LOG.debug("│ statement "+ statement);
+		LOG.debug("└────────────────────────────────────────────────────────┘");
+		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,inVO);		
+		
+		if(outVO!=null) {			
+			System.out.println(outVO.toString());
+		}else {
+			System.out.println("쿼리 결과가 없습니다.");
+		}
+		return outVO;
+	}
 }

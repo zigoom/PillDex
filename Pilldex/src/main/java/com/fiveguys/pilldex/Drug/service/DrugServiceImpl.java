@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fiveguys.pilldex.Drug.dao.DrugDao;
 import com.fiveguys.pilldex.domain.DrugVO;
-
+import com.fiveguys.pilldex.domain.UserVO;
 
 @Service("drugService")
 public class DrugServiceImpl implements DrugService {
@@ -29,12 +29,12 @@ public class DrugServiceImpl implements DrugService {
 		int flag = 11;
 		flag = drugDao.getDrugCnt(vo.getmNo());
 
-		if(flag>=10) { 
+		if (flag >= 10) {
 			flag = -1;
-		}else {
+		} else {
 			flag = drugDao.addDrug(vo);
 		}
-		
+
 		return flag;
 	}
 
@@ -56,6 +56,17 @@ public class DrugServiceImpl implements DrugService {
 		int flag = 0;
 		flag = drugDao.updateDelDrug(no);
 		return flag;
+	}
+
+	@Override
+	public int drugCheckNm(String nm) throws SQLException {
+		return drugDao.drugCheckNm(nm);
+	}
+
+	@Override
+	public int getDrugCnt(DrugVO vo) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

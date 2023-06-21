@@ -29,6 +29,17 @@
     AND del = '0'
 	</select>
 	
+	
+	<select id="selectOneMypage" parameterType="UserVO"  resultMap="UserMap" >
+		SELECT no, grade, name, id, pw, tel, birth, sex, post_NUM, N_ADDR, O_ADDR, REST_ADDR, 
+		SUBSTR(email, 1, INSTR(email, '@')-1)AS emailFront,
+		SUBSTR(email, INSTR(email, '@') + 1) AS emailBack,
+		REG_DT, del
+		FROM member
+		WHERE id = #{id} 
+    AND del = '0'
+	</select>
+	
 	<!-- 아이디 체크 -->
 	<select id="idCheck" parameterType="UserVO" resultType="int">
 	  SELECT COUNT(*) cnt

@@ -158,18 +158,11 @@ public class LoginController {
 	}
 	
 	/* 로그아웃시에 셰션 제거 호출  */
-    @RequestMapping(value = "/loginOut.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public String loginOutButtonEvent(HttpSession session) {
-		session.invalidate();
-		return "login";	
-	}
-
     @GetMapping("/logout.do")
     public String logoutButtonEvent(HttpSession session) {
 		session.invalidate();
 		return "mode";	
 	}
-    
     
     /**
      * 아이디/비밀번호 찾기 화면

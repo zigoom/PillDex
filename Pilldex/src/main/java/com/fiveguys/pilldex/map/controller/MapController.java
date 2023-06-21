@@ -28,10 +28,13 @@ public class MapController {
 	
 	@Autowired
 	UserService userService;
-	
+
+	/**
+	 * 즐겨찾기 누를때 버튼 이벤트
+	 */
 	@ResponseBody
-    @RequestMapping(value = "/test.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public List<AddressVO> init(@RequestBody AddressVO addressVO) throws SQLException {
+    @RequestMapping(value = "/map.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public List<AddressVO> addBookmark(@RequestBody AddressVO addressVO) throws SQLException {
 		System.out.println("init 호출");
 		
 		List<AddressVO> outVO = addressService.getAddressList(String.valueOf(addressVO.getmNo()));
@@ -60,25 +63,22 @@ public class MapController {
 		return "map";
 	}
 	
-	/**
-	 * 즐겨찾기 누를때 버튼 이벤트
-	 */
-	@RequestMapping(value = "/map.do", method = RequestMethod.POST)
-	public String addBookmarkButtonEvent(String userNo, Model model, HttpSession session) throws SQLException {
-		System.out.println("addBookmarkButtonEvent() 호출");
-	    String name = (String) session.getAttribute("UserNo");
-		System.out.println(name);
-//		List<AddressVO> outVO = addressService.getAddressList(userNo);
-		//Integer flag, 
-		
-		// CRUD(Select:1, UPDATE:2, DELETE:3, INSERT:4)
-//		if(1==flag) {
-//			model.addAttribute("AddressVO", outVO);
-//			
-//		}else if(3==flag) {
-//			
-//		}		
-		
-		return "map";
-	}
+//	@RequestMapping(value = "/map.do", method = RequestMethod.POST)
+//	public String addBookmark(String userNo, Model model, HttpSession session) throws SQLException {
+//		System.out.println("addBookmarkButtonEvent() 호출");
+//	    String name = (String) session.getAttribute("UserNo");
+//		System.out.println(name);
+////		List<AddressVO> outVO = addressService.getAddressList(userNo);
+//		//Integer flag, 
+//		
+//		// CRUD(Select:1, UPDATE:2, DELETE:3, INSERT:4)
+////		if(1==flag) {
+////			model.addAttribute("AddressVO", outVO);
+////			
+////		}else if(3==flag) {
+////			
+////		}		
+//		
+//		return "map";
+//	}
 }

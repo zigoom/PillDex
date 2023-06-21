@@ -21,9 +21,19 @@
 
 	<!-- 해당 사용자의 주소 즐겨찾기 갯수 -->
 	<select id="drugCheckCnt" parameterType="int" resultType="int">
-		SELECT COUNT(*) cnt
+		SELECT
+		COUNT(*) cnt
 		FROM book_drug
 		WHERE m_no = #{userNo}
+		AND del = '0'
+	</select>
+
+	<!-- 해당 사용자의 약 목록 중복 여부 -->
+	<select id="drugCheckNm" parameterType="String" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM
+		book_drug
+		WHERE nm = #{nm}
 		AND del = '0'
 	</select>
 
@@ -38,7 +48,7 @@
 		DRUG_NO.NEXTVAL,
 		#{mNo},
 		#{nm},
-		#{del}
+		'0'
 		)
 	</delete>
 
@@ -49,7 +59,8 @@
 	<!-- 주소 즐겨찾기 delete:1로 update -->
 	<update id="updateDel" parameterType="UserVO">
 		UPDATE book_drug
-		SET del = '1'
+		SET del =
+		'1'
 		WHERE no = #{no}
 	</update>
 
