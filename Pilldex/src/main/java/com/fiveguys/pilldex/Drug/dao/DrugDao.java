@@ -12,7 +12,7 @@ public interface DrugDao {
 	 * @param userNo
 	 * @throws SQLException
 	 */
-	public List<DrugVO> doSelectDrugList(String userNo) throws SQLException;
+	public List<DrugVO> doSelectDrugList(int mNo) throws SQLException;
 
 	/**
 	 * 사용자가 가지고 있는 즐겨찾기 주소 갯수 구하기
@@ -21,7 +21,7 @@ public interface DrugDao {
 	 * @return 0 ~ 10
 	 * @throws SQLException
 	 */
-	public int getDrugCnt(int userNo) throws SQLException;
+	public int getDrugCnt(int mNo) throws SQLException;
 
 	public int drugCheckNm(String nm) throws SQLException;
 	
@@ -37,11 +37,11 @@ public interface DrugDao {
 	/**
 	 * 즐겨찾기 주소 삭제
 	 * 
-	 * @param vo
+	 * @param no
 	 * @return 1: 성공, 0: 실패
 	 * @throws SQLException
 	 */
-	public int deleteDrug(DrugVO vo) throws SQLException;
+	public int deleteDrug(String nm) throws SQLException;
 
 	/**
 	 * 즐겨찾기 주소 Del=1 설정을 위한 update

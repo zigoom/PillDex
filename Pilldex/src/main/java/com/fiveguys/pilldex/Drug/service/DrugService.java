@@ -8,8 +8,6 @@ import com.fiveguys.pilldex.domain.DrugVO;
 public interface DrugService {
 	// CRUD 기능의 메소드 구현
 	public int drugCheckNm(String nm)throws SQLException;
-	
-	public int getDrugCnt(DrugVO vo) throws SQLException;
 
 	/**
 	 * 사용자가 가지고 있는 즐겨찾기 주소 리스트로 받기
@@ -17,7 +15,7 @@ public interface DrugService {
 	 * @param userNo
 	 * @throws SQLException
 	 */
-	public List<DrugVO> getDrugList(String userNo) throws SQLException;
+	public List<DrugVO> getDrugList(int mNo) throws SQLException;
 
 	/**
 	 * 사용자가 가지고 있는 즐겨찾기 주소 갯수 구하기
@@ -35,7 +33,7 @@ public interface DrugService {
 	 * @return 1: 성공, 0: 실패
 	 * @throws SQLException
 	 */
-	public int deleteDrug(DrugVO vo) throws SQLException;
+	public int deleteDrug(String nm) throws SQLException;
 
 	/**
 	 * 즐겨찾기 주소 Del=1 설정을 위한 update
@@ -45,5 +43,7 @@ public interface DrugService {
 	 * @throws SQLException
 	 */
 	public int updateDelDrug(int vo) throws SQLException;
+
+	int getDrugCnt(int mNo) throws SQLException;
 
 }

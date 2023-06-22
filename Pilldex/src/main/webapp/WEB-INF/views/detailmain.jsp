@@ -16,11 +16,7 @@
 
 </head>
 <body>
-	<%
-		request.setCharacterEncoding("UTF-8");
-	String itemName = request.getParameter("itemName");
-	%>
-	<!--네비게이션 바-->
+
 	<header>
 		<nav class="py-2 bg-light border-bottom">
 			<div class="container d-flex flex-wrap">
@@ -56,43 +52,46 @@
 			</div>
 		</nav>
 	</header>
-
-	<div id="detail_img_text_box">
-		<div id="detail_img_box">
-			<img id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
+    <c:forEach var="list" items="${list}">
+		<div>
+			<div style= display:inline-block; vertical-align:top;">
+				<img alt="이미지가 없습니다" src="${list.item_image}" style="width:760px; height:420px; ">
+			</div>
+			<div style="display:inline-block; ">
+				<h4>${list.item_name}</h4>
+				<h4>${list.entp_name}</h4>
+			</div>
 		</div>
-		<div id="detail_img_box">
-			<h4>${modeVO.itemName}</h4>
-			<h4>${modeVO.entpName}</h4>
-		</div>
-	</div>
+   
+    
 	<c:if test="${user ne null }">
 		<div id="bookmark-drug-box">
 			<!--즐겨찾기 추가/삭제-->
 			<button id="bookmark-drug" class="btn btn-primary">즐겨찾기 추가</button>
 		</div>
 	</c:if>
-
+  
 	<!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
-	<div id="detail_result_box">
-		<h2>외형정보</h2>
-		<input type="hidden" name="itemName" value="${modeVO.itemName}" id="itemName">
-		<p>${modeVO.chart}</p>
-		<br />
+	
+	<div id="detail_result_box" style="margin-top: 80px;">
+		
 		<h2>저장방법</h2>
-		<p>${modeVO.depositMethodQesitm}</p>
+		<p>${list.deposit_method_qesitm}</p>
 		<br />
 		<h2>효능효과</h2>
-		<p>${modeVO.efcyQesitm}</p>
+		<p>${list.efcy_qesitm}</p>
 		<br />
 		<h2>용법용량</h2>
-		<p>${modeVO.useMethodQesitm}</p>
+		<p>${list.use_method_qesitm}</p>
 		<br />
 		<h2>사용시 주의사항</h2>
-		<p>${modeVO.atpnQesitm}</p>
+		<p>${list.atpn_qesitm}</p>
+		
+		<input type="hidden" id="localname" name="localname" value="${list.item_name}" >
+		<input type="hidden" id="localimage" name="localimage" value="${list.item_image}" >
 	</div>
-	<input type="text" id="drug-delete-text">
-	<button id="drug-delete">지우기</button>
+    </c:forEach>
+
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
 			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -104,112 +103,36 @@
 		</div>
 	</footer>
 </body>
-<script>
-	document.querySelector("#bookmark-drug").addEventListener(
-			"click",
-			function() {
-				$.ajax({
-					type : "POST",
-					url : "${path}/drugCheckNm.do",
-					asyn : "true",
-					dataType : "html",
-					data : {
-						nm : "${modeVO.itemName}"
-					},
-					success : function(data) {//통신 성공
-						console.log("success data:" + data);
-						if (data == 0) {
-							$.ajax({
-								type : "POST",
-								url : "${path}/getDrugCnt.do",
-								asyn : "true",
-								dataType : "html",
-								data : {
-									mNo : "${user.no}",
-								},
-								success : function(data) {//통신 성공
-									console.log("success data:" + data);
-									if (data == 10) {
-										alert("더이상 등록할 수 없습니다.")
-									} else {
-										$.ajax({
-											type : "POST",
-											url : "${path}/drugBookmarkAdd.do",
-											asyn : "true",
-											dataType : "html",
-											data : {
-												mNo : "${user.no}",
-												nm : "${modeVO.itemName}"
-											},
-											success : function(data) {//통신 성공
-												console.log("success data:"
-														+ data);
-												alert("즐겨찾기 등록 성공");
 
-											},
-											error : function(data) {//실패시 처리
-												console.log("error:" + data);
-											}
-										});
-									}
-
-								},
-								error : function(data) {//실패시 처리
-									console.log("error:" + data);
-								}
-							});
-						}
-
-						if (data == 1) {
-							alert("이미 등록되어 있습니다.")
-						}
-
-					},
-					error : function(data) {//실패시 처리
-						console.log("error:" + data);
-					}
-				});
-
-			})
-	/* $("#get-drug-list").on("click",function(){
-		$.ajax({
-			type : "POST",
-			url : "${path}/getDrugList.do",
-			asyn : "true",
-			dataType : "html",
-			data : {
-				mNo : "${user.no}"
-			},
-			success : function(data) {//통신 성공
-				console.log("success data:"
-						+ data);
-				alert(data);
-
-			},
-			error : function(data) {//실패시 처리
-				console.log("error:" + data);
-			}
-		});
-	}) */
-	$("#drug-delete").on("click", function() {
-		$.ajax({
-			type : "POST",
-			url : "${path}/deleteDrugList.do",
-			asyn : "true",
-			dataType : "html",
-			data : {
-				nm : $("#drug-delete-text").val()
-			},
-			
-			success : function(data) {//통신 성공
-				console.log("success data:" + data);
-				alert(data);
-
-			},
-			error : function(data) {//실패시 처리
-				console.log("error:" + data);
-			}
-		});
-	})
-</script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	console.log("$document.ready");
+            /* localStorage */
+            let out = localStorage.getItem('list');
+            let list = JSON.parse(out);
+            if ( list == null) list = [];
+            
+            if(list.length > 9){
+                while(list.length> 9){
+                    list.pop();     
+                }
+            }
+            
+            var localname = $('#localname').val();
+            var localimage = $('#localimage').val();
+            var str = localname+'|'+localimage;
+            
+            let result = [...new Set(list)];
+            
+            
+            if(localname != null) {
+            	result.unshift(str); // 앞에서부터 저장
+                localStorage.setItem('list', JSON.stringify(result));
+            }
+            
+            
+            
+            });
+            </script>
 </html>

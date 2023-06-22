@@ -10,21 +10,22 @@
 		<result column="nm" property="nm" />
 		<result column="del" property="del" />
 	</resultMap>
-	<!-- 해당 사용자의 주소 즐겨찾기 목록 -->
-	<select id="selectDrugList" parameterType="String"
+	<!-- 해당 사용자의 약품 즐겨찾기 목록 -->
+	<select id="selectDrugList" parameterType="int"
 		resultMap="DrugMap">
 		SELECT *
 		FROM book_drug
-		WHERE m_no = #{userNo}
+		WHERE
+		m_no = #{userNo}
 		AND del = '0'
 	</select>
 
-	<!-- 해당 사용자의 주소 즐겨찾기 갯수 -->
+	<!-- 해당 사용자의 약품 즐겨찾기 갯수 -->
 	<select id="drugCheckCnt" parameterType="int" resultType="int">
 		SELECT
 		COUNT(*) cnt
 		FROM book_drug
-		WHERE m_no = #{userNo}
+		WHERE m_no = #{mNo}
 		AND del = '0'
 	</select>
 
@@ -37,7 +38,7 @@
 		AND del = '0'
 	</select>
 
-	<!-- 주소 즐겨찾기 추가 -->
+	<!-- 약품 즐겨찾기 추가 -->
 	<delete id="insertOne" parameterType="DrugVO">
 		INSERT INTO book_drug (
 		no,
@@ -52,16 +53,18 @@
 		)
 	</delete>
 
-	<!-- 주소 즐겨찾기 삭제 -->
-	<!-- <delete id="deleteOne" parameterType="UserVO"> DELETE FROM book_addr 
-		WHERE no = #{no} </delete> -->
+	<!--약품 즐겨찾기 삭제 -->
+	<delete id="deleteDrugList" parameterType="String">
+		DELETE FROM book_drug
+		WHERE nm = #{nm}
+	</delete>
 
-	<!-- 주소 즐겨찾기 delete:1로 update -->
+	<!-- 약품 즐겨찾기 delete:1로 update -->
 	<update id="updateDel" parameterType="UserVO">
 		UPDATE book_drug
 		SET del =
 		'1'
-		WHERE no = #{no}
+		WHERE nm = #{nm}
 	</update>
 
 </mapper>

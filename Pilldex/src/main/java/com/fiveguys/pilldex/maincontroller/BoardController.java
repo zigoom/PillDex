@@ -74,6 +74,20 @@ public class BoardController  {
 	}
 	
 	
+	@RequestMapping(value = "/detailmain.do", method = RequestMethod.GET)
+	public void getdetailmain 
+			(Model model,@RequestParam("keyword") String keyword
+					) throws Exception {
+	
+	List<PillVO2> list = null;
+	list = service.detaillist(keyword);
+	model.addAttribute("list",list);   
+
+
+
+	}
+	
+	
 	
 }
 

@@ -75,6 +75,13 @@ public class MainBoardDaoImpl implements MainBoardDao {
 		  return sqlSessionTemplate.selectOne(namespace + ".searchCountBox", data);
 	}
 
+	@Override
+	public List<PillVO2> detaillist(String keyword) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("keyword", keyword);
+		return sqlSessionTemplate.selectList(namespace +".detaillist", data);
+	}
+
 	
 		 	
 		 

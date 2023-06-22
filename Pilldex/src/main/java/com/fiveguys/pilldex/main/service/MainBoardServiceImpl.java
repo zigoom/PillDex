@@ -57,6 +57,11 @@ public class MainBoardServiceImpl implements MainBoardService {
 				keyword_line);
 	}
 
+	@Override
+	public List<PillVO2> detaillist(String keyword) throws Exception {
+		return mainBoardDao.detaillist(keyword);
+	}
+
 
 
 	

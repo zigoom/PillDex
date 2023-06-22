@@ -74,12 +74,10 @@ public class ModePageController {
 	@RequestMapping(value = "/drugBookmarkAdd.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int drugBookmarkAdd(DrugVO vo, Model model) throws SQLException {
+
 		int outVO = drugService.addDrug(vo);
-		if (outVO > 10) {
-			System.out.println("10건초과");
-		} else {
-			model.addAttribute("drugVO", outVO);
-		}
+
+		model.addAttribute("drugVO", outVO);
 
 		return outVO;
 	}
@@ -91,6 +89,28 @@ public class ModePageController {
 		return cnt;
 
 	}
-	
+
+	@RequestMapping(value = "/getDrugCnt.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int getDrugCnt(int mNo) throws SQLException {
+		int cnd = drugService.getDrugCnt(mNo);
+		System.out.println("******cnd******" + cnd);
+		return cnd;
+	}
+
+	@RequestMapping(value = "/getDrugList.do", method = RequestMethod.POST)
+	@ResponseBody
+	public List<DrugVO> getDrugList(int mNo) throws SQLException {
+		List<DrugVO> outVO = drugService.getDrugList(mNo);
+		return outVO;
+	}
+
+	@RequestMapping(value = "/deleteDrugList.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int deleteDrugList(String nm) throws SQLException {
+		int cnd = drugService.deleteDrug(nm);
+		System.out.println("******cnd******" + cnd);
+		return cnd;
+	}
 
 }

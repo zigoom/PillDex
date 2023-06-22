@@ -4,4 +4,15 @@
   width:900px;
   margin: auto;
 }
- 
+
+.localstry{
+	list-style: none;
+	display: flex;
+}
+.localstry li{
+	float: left;
+	margin: auto;
+	word-break-all;
+} 
+
+

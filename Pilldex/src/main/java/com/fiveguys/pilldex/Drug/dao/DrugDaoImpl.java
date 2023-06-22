@@ -18,14 +18,14 @@ public class DrugDaoImpl implements DrugDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public List<DrugVO> doSelectDrugList(String userNo) throws SQLException {
+	public List<DrugVO> doSelectDrugList(int mNo) throws SQLException {
 		List<DrugVO> outList = new ArrayList<>();
 
 		String statement = this.NAMESPACE + DOT + "selectDrugList";
 		System.out.println("┌────────────────────────────────────────────────────────┐");
 		System.out.println("│ 1. statement " + statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
-		outList = this.sqlSessionTemplate.selectList(statement, userNo);
+		outList = this.sqlSessionTemplate.selectList(statement, mNo);
 
 		if (outList != null) {
 			for (DrugVO vo : outList) {
@@ -49,7 +49,6 @@ public class DrugDaoImpl implements DrugDao {
 
 		return cnd;
 	}
-	
 
 	@Override
 	public int addDrug(DrugVO vo) throws SQLException {
@@ -59,20 +58,18 @@ public class DrugDaoImpl implements DrugDao {
 		System.out.println("│ 1. statement " + statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
 		flag = this.sqlSessionTemplate.insert(statement, vo);
-		
-		
-		
+
 		return flag;
 	}
 
 	@Override
-	public int deleteDrug(DrugVO vo) throws SQLException {
+	public int deleteDrug(String nm) throws SQLException {
 		int flag = 0;
-		String statement = this.NAMESPACE + DOT + "deleteOne";
+		String statement = this.NAMESPACE + DOT + "deleteDrugList";
 		System.out.println("┌────────────────────────────────────────────────────────┐");
 		System.out.println("│ 1. statement " + statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.insert(statement, vo);
+		flag = this.sqlSessionTemplate.delete(statement, nm);
 		return flag;
 	}
 
@@ -88,12 +85,11 @@ public class DrugDaoImpl implements DrugDao {
 	}
 
 	@Override
-	public int getDrugCnt(int userNo) throws SQLException {
+	public int getDrugCnt(int mNo) throws SQLException {
 		int cnd = 0;
-		String statement = this.NAMESPACE+DOT+"drugCheckCnt";
-		cnd = this.sqlSessionTemplate.selectOne(statement, userNo);
+		String statement = this.NAMESPACE + DOT + "drugCheckCnt";
+		cnd = this.sqlSessionTemplate.selectOne(statement, mNo);
 		return cnd;
 	}
-
 
 }
