@@ -15,7 +15,7 @@ public interface DrugService {
 	 * @param userNo
 	 * @throws SQLException
 	 */
-	public List<DrugVO> getDrugList(String userNo) throws SQLException;
+	public List<DrugVO> getDrugList(int mNo) throws SQLException;
 
 	/**
 	 * 사용자가 가지고 있는 즐겨찾기 주소 갯수 구하기
@@ -33,7 +33,7 @@ public interface DrugService {
 	 * @return 1: 성공, 0: 실패
 	 * @throws SQLException
 	 */
-	public int deleteDrug(DrugVO vo) throws SQLException;
+	public int deleteDrug(String nm) throws SQLException;
 
 	/**
 	 * 즐겨찾기 주소 Del=1 설정을 위한 update

@@ -26,16 +26,15 @@
 						</a></li>
 				</ul>
 				<ul class="nav" style="">
-					<li id="doMode" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
 							<b>돋보기</b>
 						</a></li>
-					<li id="doMap" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
 							<b>MAP</b>
 						</a></li>
-					<%-- <c:set var="user" value="${User}"/> --%>
 					<c:if test="${user ne null }">
 						<!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
-						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
+						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mypage.do" class="nav-link link-dark px-2">
 								<b>마이페이지</b>
 							</a></li>
 						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
@@ -57,12 +56,10 @@
 			<div style="width: 260px; float: right; background-color: #FFFFFF; margin-right: 10px; margin-top: 10px; margin-bottom: 30px; height: 100px; background-size: cover">
 				<div style="margin-left: 10px; margin-bottom: 25px;">
 					<form>
-						<input type="checkbox" name="idsave" value="saveOk">
-						<label for="checkId">아이디 저장</label><br>
-						<input type="text" name="id" id="id" placeholder="아이디">
+						<input type="text" name="id" id="id" placeholder="아이디" style="margin-bottom: 5px;">
 						<input type="password" name="pw" id="pw" placeholder="패스워드" style="margin-bottom: 5px;">
 						<input type="button" value="로그인" id="doLogin" class="btn btn-primary">
-						<a href="#" style="text-decoration-line: none;">회원가입</a>
+						<a href="${path}/membership.do" style="text-decoration-line: none;">회원가입</a>
 						<a href="${path}/findIdPw.do" style="text-decoration-line: none;">ID/PW찾기</a>
 					</form>
 				</div>
@@ -199,7 +196,7 @@
 	</form>
 	<form method="post" id="main-form" action="apiload.do">
 		<div id="shape_search_box">
-			<h2>약 모양으로 검색</h2>
+			<h2>약 형태로 검색</h2>
 			<div id="shape-search-box-img">
 				<img src="${path}/resources/img/tylenol.jpg" id="printImg" />
 				<h4>이 약의 경우 식별자에 TYLENOL 또는 500을 입력해주세요.</h4>
@@ -421,7 +418,7 @@
 				<div class="card-form">
 					<form method="post" action="/pilldex/apiloadToNameDetail.do">
 						<div class="card-t">
-							<img src="${pill.itemImage}" class="card-img-top" alt="이미지가 없습니다.">
+							<img src="${pill.itemImage}" class="card-img-top pill-image">
 							<div class="card-body">
 								<input name="itemName" value="${pill.itemName}" class="hidden input-itemName" />
 								<h5 id="card-title" class="card-title">${pill.itemName}</h5>
@@ -516,5 +513,10 @@
 			}
 		});
 	});
+	
+	for (let i = 0; i < document.querySelectorAll('.pill-image').length; i++)
+		if (document.querySelectorAll('.pill-image')[i].src == 'http://localhost:8080/pilldex/null') {
+			document.querySelectorAll('.pill-image')[i].src = "${path}/resources/img/noimg.jpg"
+		}
 </script>
 </html>

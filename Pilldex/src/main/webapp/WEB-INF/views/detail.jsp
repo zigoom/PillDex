@@ -91,6 +91,8 @@
 		<h2>사용시 주의사항</h2>
 		<p>${modeVO.atpnQesitm}</p>
 	</div>
+	<input type="text" id="drug-delete-text">
+	<button id="drug-delete">지우기</button>
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
 			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -169,5 +171,45 @@
 				});
 
 			})
+	/* $("#get-drug-list").on("click",function(){
+		$.ajax({
+			type : "POST",
+			url : "${path}/getDrugList.do",
+			asyn : "true",
+			dataType : "html",
+			data : {
+				mNo : "${user.no}"
+			},
+			success : function(data) {//통신 성공
+				console.log("success data:"
+						+ data);
+				alert(data);
+
+			},
+			error : function(data) {//실패시 처리
+				console.log("error:" + data);
+			}
+		});
+	}) */
+	$("#drug-delete").on("click", function() {
+		$.ajax({
+			type : "POST",
+			url : "${path}/deleteDrugList.do",
+			asyn : "true",
+			dataType : "html",
+			data : {
+				nm : $("#drug-delete-text").val()
+			},
+			
+			success : function(data) {//통신 성공
+				console.log("success data:" + data);
+				alert(data);
+
+			},
+			error : function(data) {//실패시 처리
+				console.log("error:" + data);
+			}
+		});
+	})
 </script>
 </html>

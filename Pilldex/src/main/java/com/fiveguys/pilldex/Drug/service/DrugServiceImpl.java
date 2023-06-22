@@ -17,8 +17,8 @@ public class DrugServiceImpl implements DrugService {
 	private DrugDao drugDao;
 
 	@Override
-	public List<DrugVO> getDrugList(String userNo) throws SQLException {
-		return drugDao.doSelectDrugList(userNo);
+	public List<DrugVO> getDrugList(int mNo) throws SQLException {
+		return drugDao.doSelectDrugList(mNo);
 	}
 
 	@Override
@@ -39,12 +39,12 @@ public class DrugServiceImpl implements DrugService {
 	}
 
 	@Override
-	public int deleteDrug(DrugVO vo) throws SQLException {
+	public int deleteDrug(String nm) throws SQLException {
 		System.out.println("┌────────────────────────────────────────────────────────┐");
 		System.out.println("│ deleteDrug()                                           │");
 		System.out.println("└────────────────────────────────────────────────────────┘");
 		int flag = 0;
-		flag = drugDao.deleteDrug(vo);
+		flag = drugDao.deleteDrug(nm);
 		return flag;
 	}
 
