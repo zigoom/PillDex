@@ -37,28 +37,27 @@
 <body>
 	<div>
 	<header>
-	    <nav class="py-2 bg-light border-bottom">
-	      <div class="container d-flex flex-wrap">
-	        <ul class="nav me-auto">
-	          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
-	            <a id="logo" href="${path}/pilldex/main.do" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b> </a>
-	          </li>
-	        </ul>
-	        <ul class="nav" style="">
-	          <li id="doMode"class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/mode.do" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-	          <li id="doMap"class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/map.do" class="nav-link link-dark px-2"><b>MAP</b></a></li>
-	          <%-- <c:set var="user" value="${User}"/> --%>
-	          <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
-	            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="#" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-	            <li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/logout.do" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
-	          </c:if>
-	          <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
-	            <li id="doLogin" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/pilldex/main.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
-	          </c:if>
-	        </ul>
-	      </div>
-	    </nav>
-	    </header>
+    <nav class="py-2 bg-light border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
+            <a id="logo" href="${path}/main.do" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b> </a>
+          </li>
+        </ul>
+        <ul class="nav" style="">       
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/mode.do" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/map.do" class="nav-link link-dark px-2"><b>MAP</b></a></li>    
+          <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/mypage.do" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/logout.do" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
+          </c:if>
+          <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/main.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
+          </c:if> 
+        </ul>
+      </div>  
+      </nav>
+      </header>
 	</div>
 	<div  class="container" style="width: 1140px">
 		<div
@@ -66,52 +65,9 @@
 			<div
 				style="float: left; margin-top: 10px; height: 100px; width: 560px; background-color: black; margin-left: 10px">
 				<div>
-					<table style="margin-left: 26px">
-						<tr>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-							<td><input type="button" onclick="doaction"
-								style="height: 50px; width: 50px; margin-top: 10px;"></td>
-						</tr>
-						<tr style="text-align: center;">
-							<td><a href="#" id="top1"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top2"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top3"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top4"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top5"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top6"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top7"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top8"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top9"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-							<td><a href="#" id="top10"
-								style="color: white; text-decoration-line: none;">알약</a></td>
-						</tr>
-					</table>
+					<div id= "localBox" name = "localBox">		
+					   
+					</div>
 				</div>
 			</div>
 			<div id = "login-form"
@@ -553,7 +509,7 @@
   <div>
 	<div class="search_list_table" style="text-overflow: ellipsis;">
 		<c:forEach var="list" items="${list}">
-			<button class="search_list" onclick='window.open("/pilldex/detailmain.do?keyword=${list.item_name}")' 
+			<button class="search_list" onclick='window.open("/pilldex/detailmain.do?keyword=${list.item_name}")' name="${list.item_name}"
 			style="overflow-y: scroll;">
 				<img class="search_list_img" src="${list.item_image}">
 				<ul style="list-style: none; 
@@ -605,6 +561,31 @@
 			FiveGuys 4 Team </span>
 	</div>
 </footer>
+
+<script>                 
+    $(document).ready(function(){
+        console.log("$document.ready");
+        var out = localStorage.getItem('list');
+        var list = JSON.parse(out);
+        if ( list == null) list = [];
+        
+        if(list.length != 0){
+            /* history가 있을 경우 .none_noti.hide(), .noti.show(); */
+            // '|' split 하기
+            var tagList = [];
+            for (i in list){
+                
+                var strArray = list[i].split('|');
+                var tag = '<li style=" width:50px; height:86px; float:left; margin-left:2px;">' + '<input type="image" src="'+strArray[1]+'" style="width:50px; height:60px; display:block;">' + '<div style="color:white; width: 50px; height: 50px; overflow:hidden; text-overflow:hidden; white-space: nowrap;">'+ strArray[0]+'</div>'+'</li>';
+                 tagList += tag;
+               
+            }
+            console.log(tagList);
+            $('#localBox').html('<ul style="list-style: none; margin-top:10px;">'+'<button style="background-color:black; border:none;">'+tagList+'</button>'+'</ul>');
+        } 
+      
+    });
+</script> 
 <script> 
   $(document).ready(function(){ //모든 화면이 다 로딩이 되면 실행하는 영역
     console.log("$document.ready");
@@ -667,7 +648,6 @@
     });    
   });
 </script>
-
 
 <script>
 	function newxtscroll() {

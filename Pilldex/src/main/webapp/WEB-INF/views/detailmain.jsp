@@ -53,12 +53,11 @@
 		</nav>
 	</header>
     <c:forEach var="list" items="${list}">
-		<div id="detail_img_text_box" style="justify-content: flex-start;">
-			<div id="detail_img_box" style="width:760px height:420px ;">
-				<img id="item_image" alt="이미지가 없습니다" src="${list.item_image}"
-				style="size: 100% 100%;">
+		<div>
+			<div style= display:inline-block; vertical-align:top;">
+				<img alt="이미지가 없습니다" src="${list.item_image}" style="width:760px; height:420px; ">
 			</div>
-			<div>
+			<div style="display:inline-block; ">
 				<h4>${list.item_name}</h4>
 				<h4>${list.entp_name}</h4>
 			</div>
@@ -75,9 +74,7 @@
 	<!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
 	
 	<div id="detail_result_box" style="margin-top: 80px;">
-		<h2>외형정보</h2>
-		<input type="hidden" name="item_name" value="${list.item_name}" id="item_name">
-		<br />
+		
 		<h2>저장방법</h2>
 		<p>${list.deposit_method_qesitm}</p>
 		<br />
@@ -89,6 +86,9 @@
 		<br />
 		<h2>사용시 주의사항</h2>
 		<p>${list.atpn_qesitm}</p>
+		
+		<input type="hidden" id="localname" name="localname" value="${list.item_name}" >
+		<input type="hidden" id="localimage" name="localimage" value="${list.item_image}" >
 	</div>
     </c:forEach>
 
@@ -104,5 +104,35 @@
 	</footer>
 </body>
 
-
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	console.log("$document.ready");
+            /* localStorage */
+            let out = localStorage.getItem('list');
+            let list = JSON.parse(out);
+            if ( list == null) list = [];
+            
+            if(list.length > 9){
+                while(list.length> 9){
+                    list.pop();     
+                }
+            }
+            
+            var localname = $('#localname').val();
+            var localimage = $('#localimage').val();
+            var str = localname+'|'+localimage;
+            
+            let result = [...new Set(list)];
+            
+            
+            if(localname != null) {
+            	result.unshift(str); // 앞에서부터 저장
+                localStorage.setItem('list', JSON.stringify(result));
+            }
+            
+            
+            
+            });
+            </script>
 </html>
