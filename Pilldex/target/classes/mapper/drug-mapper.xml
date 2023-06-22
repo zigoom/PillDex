@@ -24,7 +24,7 @@
 		SELECT
 		COUNT(*) cnt
 		FROM book_drug
-		WHERE m_no = #{userNo}
+		WHERE m_no = #{mNo}
 		AND del = '0'
 	</select>
 

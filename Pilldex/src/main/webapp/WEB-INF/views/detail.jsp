@@ -103,7 +103,8 @@
 	</footer>
 </body>
 <script>
-	document.querySelector("#bookmark-drug").addEventListener("click",
+	document.querySelector("#bookmark-drug").addEventListener(
+			"click",
 			function() {
 				$.ajax({
 					type : "POST",
@@ -118,16 +119,37 @@
 						if (data == 0) {
 							$.ajax({
 								type : "POST",
-								url : "${path}/drugBookmarkAdd.do",
+								url : "${path}/getDrugCnt.do",
 								asyn : "true",
 								dataType : "html",
 								data : {
 									mNo : "${user.no}",
-									nm : "${modeVO.itemName}"
 								},
 								success : function(data) {//통신 성공
 									console.log("success data:" + data);
-									alert("즐겨찾기 등록 성공");
+									if (data == 10) {
+										alert("더이상 등록할 수 없습니다.")
+									} else {
+										$.ajax({
+											type : "POST",
+											url : "${path}/drugBookmarkAdd.do",
+											asyn : "true",
+											dataType : "html",
+											data : {
+												mNo : "${user.no}",
+												nm : "${modeVO.itemName}"
+											},
+											success : function(data) {//통신 성공
+												console.log("success data:"
+														+ data);
+												alert("즐겨찾기 등록 성공");
+
+											},
+											error : function(data) {//실패시 처리
+												console.log("error:" + data);
+											}
+										});
+									}
 
 								},
 								error : function(data) {//실패시 처리
@@ -135,6 +157,7 @@
 								}
 							});
 						}
+
 						if (data == 1) {
 							alert("이미 등록되어 있습니다.")
 						}
