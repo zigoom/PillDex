@@ -137,10 +137,6 @@
     UPDATE member         
     SET pw      = #{pw},  
         tel     = #{tel},
-        post_num  = #{postNum}, 
-        n_addr  = #{nAddr}, 
-        o_addr  = #{oAddr}, 
-        rest_addr = #{restAddr},
         email   = #{email}
     WHERE no = #{no}
   </update>

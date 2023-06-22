@@ -17,17 +17,17 @@ input[type="tel"], input[type="password"] {
   padding: 1px;
 }
 #user_id {
-  width: 300px;
+  width: 400px;
   height: 40px;
-  margin: 10px;
+  margin: 7px;
   padding: 1px;
 }
 
 input[type="email"] {
   font-size: 12pt;
-  width: 185px;
-  height: 35px;
-  margin: 3px;
+  width: 190px;
+  height: 28px;
+  margin: 7px;
   padding: 1px;
 }
 

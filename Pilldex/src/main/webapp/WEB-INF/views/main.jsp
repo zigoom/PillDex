@@ -29,7 +29,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
- history.replaceState({}, null, location.pathname); 
+// history.replaceState({}, null, location.pathname); 
 </script>          
 <title>Main</title>
 </head>
@@ -553,7 +553,8 @@
   <div>
 	<div class="search_list_table" style="text-overflow: ellipsis;">
 		<c:forEach var="list" items="${list}">
-			<button class="search_list" onclick="window.open('#')" style="overflow-y: scroll;">
+			<button class="search_list" onclick='window.open("/pilldex/detailmain.do?keyword=${list.item_name}")' 
+			style="overflow-y: scroll;">
 				<img class="search_list_img" src="${list.item_image}">
 				<ul style="list-style: none; 
 					 text-align: left; padding-left: 0; margin-top: 10px; height: 100%">

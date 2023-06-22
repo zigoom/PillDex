@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.main1-paging-mapper">
+    <select id="detaillist" parameterType="hashMap" resultType="com.fiveguys.pilldex.domain.PillVO2">
+            SELECT item_name,
+                    entp_name,
+                    efcy_qesitm,
+                    use_method_qesitm,
+                    atpn_qesitm,
+                    deposit_method_qesitm,
+                    item_image
+      FROM(
+          SELECT B.* 
+          FROM( 
+                SELECT ROWNUM, A.* 
+                FROM DATANAME  A
+                WHERE (item_name) IN(
+                       SELECT  item_name 
+                       FROM DATASHAPE
+                       WHERE item_name = #{keyword}    
+                         ))B
+                       )ORDER BY item_name
+    </select>
+    
     <select id="list" resultType="com.fiveguys.pilldex.domain.PillVO2">
 			SELECT item_name,
                     entp_name,

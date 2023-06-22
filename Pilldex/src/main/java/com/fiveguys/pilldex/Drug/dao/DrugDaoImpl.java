@@ -88,10 +88,10 @@ public class DrugDaoImpl implements DrugDao {
 	}
 
 	@Override
-	public int getDrugCnt(int userNo) throws SQLException {
+	public int getDrugCnt(int mNo) throws SQLException {
 		int cnd = 0;
 		String statement = this.NAMESPACE+DOT+"drugCheckCnt";
-		cnd = this.sqlSessionTemplate.selectOne(statement, userNo);
+		cnd = this.sqlSessionTemplate.selectOne(statement, mNo);
 		return cnd;
 	}
 

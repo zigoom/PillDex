@@ -21,7 +21,7 @@ public interface DrugDao {
 	 * @return 0 ~ 10
 	 * @throws SQLException
 	 */
-	public int getDrugCnt(int userNo) throws SQLException;
+	public int getDrugCnt(int mNo) throws SQLException;
 
 	public int drugCheckNm(String nm) throws SQLException;
 	

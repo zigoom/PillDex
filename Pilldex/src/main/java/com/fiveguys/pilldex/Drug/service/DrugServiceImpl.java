@@ -64,9 +64,9 @@ public class DrugServiceImpl implements DrugService {
 	}
 
 	@Override
-	public int getDrugCnt(DrugVO vo) throws SQLException {
+	public int getDrugCnt(int mNo) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		return drugDao.getDrugCnt(mNo);
 	}
 
 }

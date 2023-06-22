@@ -2,7 +2,7 @@ package com.fiveguys.pilldex.domain;
 
 //VO(Value Object)
 public class AddressVO {
-	private int no;				// 주소 즐겨찾기 번호(addressNo)
+	private int no;				// 약 즐겨찾기 번호(addressNo)
 	private int mNo;			// 회원번호(userNo)
 	private int postNum;		// 우편번호
 	private String nAddr;		// 신주소
