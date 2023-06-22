@@ -19,164 +19,156 @@ import com.fiveguys.pilldex.domain.UserVO;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
-	final String NAMESPACE ="com.fiveguys.pilldex.user";
-	final String DOT ="."; 
-	
+	final String NAMESPACE = "com.fiveguys.pilldex.user";
+	final String DOT = ".";
+
 	@Autowired
-	SqlSessionTemplate sqlSessionTemplate; 
-	
+	SqlSessionTemplate sqlSessionTemplate;
+
 	private final static Logger LOG = LogManager.getLogger(UserDaoImpl.class);
-	
+
 	// default 생성
-	public UserDaoImpl() {	}
-	
-	
+	public UserDaoImpl() {
+	}
+
 	@Override
 	public UserVO selectOne(UserVO inVO) throws SQLException {
-		String statement = this.NAMESPACE+".selectOne";
+		String statement = this.NAMESPACE + ".selectOne";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,inVO);		
-		
-		if(outVO!=null) {			
+		UserVO outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+
+		if (outVO != null) {
 			System.out.println(outVO.toString());
-		}else {
+		} else {
 			System.out.println("쿼리 결과가 없습니다.");
 		}
 		return outVO;
 	}
 
-
 	@Override
 	public int idCheck(UserVO user) throws SQLException {
-		int flag =0;
-		String statement = this.NAMESPACE+DOT+"idCheck";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "idCheck";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ 1. statement "+ statement);
-		LOG.debug("│ 2. param=\n"+ user.toString());
+		LOG.debug("│ 1. statement " + statement);
+		LOG.debug("│ 2. param=\n" + user.toString());
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.selectOne(statement,user);		
-		
+		flag = this.sqlSessionTemplate.selectOne(statement, user);
+
 		return flag;
 	}
 
 	@Override
 	public int passCheck(UserVO user) throws SQLException {
-		int flag =0;
-		String statement = this.NAMESPACE+DOT+"passCheck";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "passCheck";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ 1. statement "+ statement);
-		LOG.debug("│ 2. param=\n"+ user.toString());
+		LOG.debug("│ 1. statement " + statement);
+		LOG.debug("│ 2. param=\n" + user.toString());
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.selectOne(statement,user);	
-		
+		flag = this.sqlSessionTemplate.selectOne(statement, user);
+
 		return flag;
 	}
-
 
 	@Override
 	public int addUser(UserVO user) throws SQLException {
-		int flag =0;
-		String statement = this.NAMESPACE+DOT+"insertOne";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "insertOne";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ 1. statement "+ statement);
-		LOG.debug("│ 2. param=\n"+ user.toString());
+		LOG.debug("│ 1. statement " + statement);
+		LOG.debug("│ 2. param=\n" + user.toString());
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.insert(statement,user);	
-		
+		flag = this.sqlSessionTemplate.insert(statement, user);
+
 		return flag;
 	}
-
 
 	@Override
 	public int deleteOne(UserVO user) throws SQLException {
-		int flag =0;			
-		String statement = this.NAMESPACE+DOT+"deleteOne";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "deleteOne";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.delete(statement,user);		
-		
+		flag = this.sqlSessionTemplate.delete(statement, user);
+
 		return flag;
 	}
-
 
 	@Override
 	public UserVO searchId(UserVO user) throws SQLException {
-		String statement = this.NAMESPACE+DOT+"searchId";
+		String statement = this.NAMESPACE + DOT + "searchId";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,user);		
-		
+		UserVO outVO = this.sqlSessionTemplate.selectOne(statement, user);
+
 		return outVO;
 	}
 
-
 	@Override
 	public int searchIdCheck(UserVO user) throws SQLException {
-		int flag =0;			
-		String statement = this.NAMESPACE+DOT+"searchIdCheck";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "searchIdCheck";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.selectOne(statement,user);	
-		
+		flag = this.sqlSessionTemplate.selectOne(statement, user);
+
 		return flag;
 	}
-
 
 	@Override
 	public int searchPwCheck(UserVO user) throws SQLException {
-		int flag =0;			
-		String statement = this.NAMESPACE+DOT+"searchPwCheck";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "searchPwCheck";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.selectOne(statement,user);	
-		
+		flag = this.sqlSessionTemplate.selectOne(statement, user);
+
 		return flag;
 	}
-
 
 	@Override
 	public int updatePw(UserVO user) throws SQLException {
-		int flag =0;			
-		String statement = this.NAMESPACE+DOT+"updatePw";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "updatePw";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.update(statement,user);	
-		
+		flag = this.sqlSessionTemplate.update(statement, user);
+
 		return flag;
 	}
-
 
 	@Override
 	public int updateUser(UserVO user) throws SQLException {
-		int flag =0;			
-		String statement = this.NAMESPACE+DOT+"updateUser";
+		int flag = 0;
+		String statement = this.NAMESPACE + DOT + "updateUser";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.update(statement,user);	
-		
+		flag = this.sqlSessionTemplate.update(statement, user);
+		LOG.debug("flag: " + flag);
+
 		return flag;
 	}
-	
 
 	@Override
 	public UserVO selectOneMypage(UserVO inVO) throws SQLException {
-		String statement = this.NAMESPACE+".selectOneMypage";
+		String statement = this.NAMESPACE + ".selectOneMypage";
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
-		LOG.debug("│ statement "+ statement);
+		LOG.debug("│ statement " + statement);
 		LOG.debug("└────────────────────────────────────────────────────────┘");
-		UserVO outVO = this.sqlSessionTemplate.selectOne(statement,inVO);		
-		
-		if(outVO!=null) {			
+		UserVO outVO = this.sqlSessionTemplate.selectOne(statement, inVO);
+
+		if (outVO != null) {
 			System.out.println(outVO.toString());
-		}else {
+		} else {
 			System.out.println("쿼리 결과가 없습니다.");
 		}
 		return outVO;

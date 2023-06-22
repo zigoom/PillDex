@@ -116,10 +116,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int doChangeInfo(UserVO user) throws SQLException {
 		int checkStatus = -1;
+		
         checkStatus = this.userDao.updateUser(user);
         if(0==checkStatus) {
             checkStatus = -1; // 회원정보가 변경되지 않음
         } 
+        LOG.debug("checkStatus: " + checkStatus);
         return checkStatus;
 	}
 	
