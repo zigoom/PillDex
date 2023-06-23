@@ -302,12 +302,18 @@
                   let unSelectAddr = '';
                   let extraAddr = '';
                   
+                  let reg_NewAddr = '';
+                  
                   if(data.userSelectedType === 'R') {
                 	  selectAddr = data.roadAddress;
+                	  
+                	  reg_NewAddr = data.roadAddress;
                 	  unSelectAddr = data.jibunAddress;
                   } else {
                 	  selectAddr = data.jibunAddress;
-                	  unSelectAddr = data.roadAddress;
+                	  
+                	  reg_NewAddr = data.roadAddress;
+                	  unSelectAddr = data.jibunAddress;
                   }
                   
                   if(data.userSelectedType === 'R') {
@@ -318,6 +324,7 @@
                       extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
                     selectAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
+                    reg_NewAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
                   }
                   
                   if(data.userSelectedType === 'J') {
@@ -327,11 +334,23 @@
                     if(data. buildingName !== '') {
                       extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    unSelectAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
-                  }                 
+                    reg_NewAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
+                  }  
+                  
+                  
+                  if(data.userSelectedType === 'R') {
                 	  
-                  document.membership.address.value = selectAddr;
-                  document.register_form.o_addr.value = unSelectAddr;           
+	                  document.membership.address.value = selectAddr;
+	                  document.register_form.o_addr.value = unSelectAddr;           
+                	  document.register_form.n_addr.value = reg_NewAddr;
+                	  
+                  } else {
+                	  
+                	  document.membership.address.value = selectAddr;
+                      document.register_form.o_addr.value = unSelectAddr;           
+                      document.register_form.n_addr.value = reg_NewAddr;
+                  }
+                	  
                   document.membership.post_code.value = data.zonecode;
                   document.membership.rest_address.focus();
                   
@@ -446,8 +465,7 @@
     		let registerTel = document.getElementById('phone_num').value;
     		let registerBirth = document.getElementById('birth_year').value+document.getElementById('birth_month').value+document.getElementById('birth_day').value;
     		let registerSex = $('input:radio[name=sex_form]:checked').val();
-    		let registerPostNum = document.getElementById('post_code').value;
-    		let registerSelectAddr = document.getElementById('address').value;  		
+    		let registerPostNum = document.getElementById('post_code').value;		
     		let registerRestAddr = document.getElementById('rest_address').value;
     		let registerEmail = document.getElementById('email_front').value+"@"+$('[name="email_back"]').val();
     		
@@ -458,8 +476,7 @@
     		document.register_form.tel.value = registerTel;
     		document.register_form.birth.value = registerBirth;
     		document.register_form.sex.value = registerSex;
-    		document.register_form.post_num.value = registerPostNum;
-    		document.register_form.n_addr.value = registerSelectAddr;    		
+    		document.register_form.post_num.value = registerPostNum;   		
     		document.register_form.rest_addr.value = registerRestAddr;
     		document.register_form.email.value = registerEmail;
     		
