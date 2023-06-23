@@ -368,13 +368,13 @@
  
             if(pw.length<8 || pw.length>20) {
                window.alert('비밀번호는 8글자 이상, 20글자 이하만 이용 가능합니다.');
-               document.getElementById('pw').value='';
+               document.getElementById('pw_form').value='';
             } else if(pw.search(/\s/) != -1) {
                window.alert('비밀번호는 공백 없이 이용 가능합니다');
-               document.getElementById('pw').value='';
+               document.getElementById('pw_form').value='';
             } else if(num < 0 || eng < 0 || spe < 0) {
                window.alert('영문, 숫자, 특수문자를 최소 1글자 이상씩 사용하여 입력해주세요');
-               document.getElementById('pw').value='';
+               document.getElementById('pw_form').value='';
             }           
             
             if(document.getElementById('pw_form').value !='' && document.getElementById('pw2_form').value!='') {
