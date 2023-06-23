@@ -248,12 +248,14 @@
 	/* 회원 즐겨찾기 주소 리스트 만들고, 클릭시 찾기 */
   function addressListItem(addressVO) {
 
-	    
+      var addressType = addressVO.restAddr.substr(0, 1);
+      var addressRestAddr = addressVO.restAddr.substr(2, addressVO.restAddr.length);   
+		
 	  var el = document.createElement('tr');
 	  var itemStr = '<td class="info" style="vertical-align:middle;">'+ '<h5 style="margin:0px;">'+ addressVO.postNum + '</h5></td>';
 	  itemStr += '<td class="info" style="text-align:left;"><span>'+addressVO.nAddr+'</span></td>';
 	  itemStr += '<td class="info">  <span class="tel">'+ addressVO.oAddr + '</span></td>';
-	  itemStr += '<td class="info">  <span class="tel">'+ addressVO.restAddr + '</span></td>';
+	  itemStr += '<td class="info">  <span class="tel">'+ addressRestAddr + '</span></td>';
 	  
 	  el.innerHTML = itemStr;
 	  el.className = 'item';

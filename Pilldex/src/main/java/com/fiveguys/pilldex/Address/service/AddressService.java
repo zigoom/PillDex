@@ -7,7 +7,12 @@ import com.fiveguys.pilldex.domain.AddressVO;
 
 public interface AddressService {
 	// CRUD 기능의 메소드 구현
-	
+	/**
+	 * 사용자가 선택한 즐겨찾기 주소 리스트로 받기
+	 * @param userNo
+	 * @throws SQLException
+	 */
+	public List<AddressVO> getAddressListOne(String userNo) throws SQLException;
 	/**
 	 * 사용자가 가지고 있는 즐겨찾기 주소 리스트로 받기
 	 * @param userNo

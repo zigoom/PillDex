@@ -13,6 +13,14 @@
     <result column="rest_addr"  property="restAddr" />
     <result column="del"        property="del"      />
   </resultMap>
+  <!-- 해당 주소 번호로 즐겨찾기 받기 -->
+  <select id="selectAddressListOne"  parameterType="String"  resultMap="AddressMap" >
+    SELECT *
+    FROM book_addr
+    WHERE no = #{No} 
+    AND del = '0'
+  </select>
+  
   <!-- 해당 사용자의 주소 즐겨찾기 목록 -->
   <select id="selectAddressList"  parameterType="String"  resultMap="AddressMap" >
     SELECT *
@@ -46,7 +54,7 @@
         #{nAddr},       
         #{oAddr},       
         #{restAddr}, 
-        #{del}
+        '0'
      )     
   </delete>
   

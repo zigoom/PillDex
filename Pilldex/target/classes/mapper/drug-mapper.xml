@@ -60,11 +60,10 @@
 	</delete>
 
 	<!-- 약품 즐겨찾기 delete:1로 update -->
-	<update id="updateDel" parameterType="UserVO">
+	<update id="updateDel" parameterType="int">
 		UPDATE book_drug
-		SET del =
-		'1'
-		WHERE nm = #{nm}
+		SET del = '1'
+    WHERE no = #{no}
 	</update>
 
 </mapper>

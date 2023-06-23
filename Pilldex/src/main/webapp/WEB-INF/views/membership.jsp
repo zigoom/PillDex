@@ -288,8 +288,11 @@
             <input type="hidden" name="rest_addr" id="rest_addr">
             <input type="hidden" name="email" id="email">
             <input type="hidden" name="del" id="del" value="0">
+            
+            <input type="hidden" id="addressType"> <!-- 주소 구분 -->
         </form>
       </div>    
+      
     </body>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${CP}/resources/js/jquery-3.7.0.js"></script>
@@ -341,15 +344,17 @@
                   if(data.userSelectedType === 'R') {
                 	  
 	                  document.membership.address.value = selectAddr;
-	                  document.register_form.o_addr.value = unSelectAddr;           
-                	  document.register_form.n_addr.value = reg_NewAddr;
+	                  document.register_form.o_addr.value = data.jibunAddress;           
+                	  document.register_form.n_addr.value = data.roadAddress;
                 	  
                   } else {
                 	  
                 	  document.membership.address.value = selectAddr;
-                      document.register_form.o_addr.value = unSelectAddr;           
-                      document.register_form.n_addr.value = reg_NewAddr;
+                      document.register_form.o_addr.value = data.jibunAddress;           
+                      document.register_form.n_addr.value = data.roadAddress;
                   }
+
+                  document.register_form.addressType.value = data.userSelectedType; //추가  
                 	  
                   document.membership.post_code.value = data.zonecode;
                   document.membership.rest_address.focus();
@@ -469,6 +474,8 @@
     		let registerRestAddr = document.getElementById('rest_address').value;
     		let registerEmail = document.getElementById('email_front').value+"@"+$('[name="email_back"]').val();
     		
+    		let addressType_let = document.getElementById("addressType").value;    //추가  
+            
     		
     		document.register_form.name.value = registerName;
     		document.register_form.id.value = registerId;
@@ -479,6 +486,8 @@
     		document.register_form.post_num.value = registerPostNum;   		
     		document.register_form.rest_addr.value = registerRestAddr;
     		document.register_form.email.value = registerEmail;
+
+        document.register_form.addressType.value = addressType_let; //추가  
     		
     		if("" == document.getElementById('name_form').value) {
     			alert("이름을 입력하세요");
@@ -542,7 +551,7 @@
                     postNum: $("#post_num").val(),
                     nAddr: $("#n_addr").val(),
                     oAddr: $("#o_addr").val(),
-                    restAddr: $("#rest_addr").val(),
+                    restAddr: $("#addressType").val()+"_"+$("#rest_addr").val(),
                     email: $("#email").val(),
                     del: $("#del").val()
                 },

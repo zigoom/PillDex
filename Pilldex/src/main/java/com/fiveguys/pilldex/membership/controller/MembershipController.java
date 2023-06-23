@@ -64,6 +64,8 @@ public class MembershipController {
 		System.out.println("┌────────────────────────────────────────────────────────┐");
         System.out.println("│ membershipRegister()                                   │");
         System.out.println("└────────────────────────────────────────────────────────┘");
+        System.out.println("│ user : "+ user.toString());
+
         
 		int flag = this.membershipService.register(user);
 		
