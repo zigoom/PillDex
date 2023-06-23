@@ -58,4 +58,9 @@ public class AddressServiceImpl implements AddressService {
 		return flag;
 	}
 
+	@Override
+	public List<AddressVO> getAddressListOne(String userNo) throws SQLException {
+		return addressDao.doSelectAddressListOne(userNo);
+	}
+
 }

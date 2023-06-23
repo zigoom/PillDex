@@ -7,6 +7,12 @@ import com.fiveguys.pilldex.domain.AddressVO;
 
 public interface AddressDao {
 	/**
+	 * 사용자가 선택한 즐겨찾기 주소 리스트로 받기
+	 * @param userNo
+	 * @throws SQLException
+	 */
+	public List<AddressVO> doSelectAddressListOne(String userNo) throws SQLException;
+	/**
 	 * 사용자가 가지고 있는 즐겨찾기 주소 리스트로 받기
 	 * @param userNo
 	 * @throws SQLException

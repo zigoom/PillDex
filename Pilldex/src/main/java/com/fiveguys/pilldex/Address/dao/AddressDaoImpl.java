@@ -16,7 +16,27 @@ public class AddressDaoImpl implements AddressDao {
 	String DOT = ".";
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate; 
-	
+
+	@Override
+	public List<AddressVO> doSelectAddressListOne(String userNo) throws SQLException {
+		List<AddressVO> outList = new ArrayList<>();	
+
+		String statement = this.NAMESPACE+DOT+"selectAddressListOne";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement "+ statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		outList = this.sqlSessionTemplate.selectList(statement,userNo);
+				
+		if(outList!=null) {
+			for(AddressVO vo : outList) {
+				System.out.println(vo.toString());
+			}
+		}else {
+			System.out.println("쿼리 결과가 없습니다.");
+		}
+		
+		return outList;
+	}	
 	@Override
 	public List<AddressVO> doSelectAddressList(String userNo) throws SQLException {
 		List<AddressVO> outList = new ArrayList<>();	
@@ -82,4 +102,5 @@ public class AddressDaoImpl implements AddressDao {
 		flag = this.sqlSessionTemplate.insert(statement,no);
 		return flag;
 	}
+
 }

@@ -69,7 +69,7 @@ public class DrugDaoImpl implements DrugDao {
 		System.out.println("┌────────────────────────────────────────────────────────┐");
 		System.out.println("│ 1. statement " + statement);
 		System.out.println("└────────────────────────────────────────────────────────┘");
-		flag = this.sqlSessionTemplate.delete(statement, nm);
+		flag = this.sqlSessionTemplate.delete(statement, Integer.valueOf(nm));
 		return flag;
 	}
 
