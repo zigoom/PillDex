@@ -35,6 +35,7 @@ public class DurgTest {
 	DrugService drugDao;
 	
 	@Test
+	@Ignore
 	public void getDrugCnt() throws SQLException{
 		int cnt = drugDao.getDrugCnt(1);
 		LOG.debug("===============cnt=============="+cnt);
@@ -44,7 +45,7 @@ public class DurgTest {
 	@Test
 	@Ignore
 	public void seleteListDrug() throws SQLException {
-		List<DrugVO> list = drugDao.getDrugList("1");
+		List<DrugVO> list = drugDao.getDrugList(1);
 
 		for (DrugVO vo : list) {
 			LOG.debug(vo.toString());
@@ -72,19 +73,18 @@ public class DurgTest {
 
 	/* 약품 즐겨찾기 삭제 테스트 입니다. */
 	@Test
-	@Ignore
 	public void deleteDrug() throws SQLException {
 		DrugVO drugVO = new DrugVO();
-		drugVO.setNo(21);
+		drugVO.setNo(298);
 
-		List<DrugVO> list = drugDao.getDrugList("1");
+		List<DrugVO> list = drugDao.getDrugList(1);
 		// 즐겨찾기 번호
 		int result = drugDao.updateDelDrug(list.get(0).getNo());// **** 약품 즐겨찾기 추가 서비스 호출 ****//
 		LOG.debug("┌────────────────────────────────────────────────────────┐");
 		LOG.debug("│ 약품 추가 : " + result); // 1: del=true, 0:del변경안됨
 		LOG.debug("└────────────────────────────────────────────────────────┘");
 
-		List<DrugVO> list2 = drugDao.getDrugList("1");
+		List<DrugVO> list2 = drugDao.getDrugList(1);
 
 		for (DrugVO vo : list2) {
 			LOG.debug(vo.toString());

@@ -434,17 +434,17 @@
 
 
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-		<div class="col-md-4 d-flex align-items-center">
+		<div class="col-md-16 d-flex align-items-center">
 			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
 				<svg class="bi" width="30" height="24">
                         <use xlink:href="#bootstrap" />
                     </svg>
 			</a>
 			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
-			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
+			<a style="margin-left: 10px; class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
 				<span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span>
 			</a>
-			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
+			<a style="margin-left: 10px; class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
 				<span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
 			</a>
 

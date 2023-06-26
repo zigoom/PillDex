@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="${path}/resources/css/detail-style.css" />
 <script src="${path}/resources/js/jquery-3.7.0.js"></script>
 
+
 </head>
 <body>
 	<%
@@ -61,8 +62,9 @@
 
 	<div id="detail_img_text_box">
 		<div id="detail_img_box">
-			<img id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
+			<img class="pill-image" id="itemImage" alt="이미지가 없습니다" src="${modeVO.itemImage}">
 		</div>
+		
 		<div id="detail_img_box">
 			<h4>${modeVO.itemName}</h4>
 			<h4>${modeVO.entpName}</h4>
@@ -96,17 +98,17 @@
 	<!-- 	<input type="text" id="drug-delete-text">
 	<button id="drug-delete">지우기</button> -->
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-		<div class="col-md-4 d-flex align-items-center">
+		<div class="col-md-16 d-flex align-items-center">
 			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
 				<svg class="bi" width="30" height="24">
                         <use xlink:href="#bootstrap" />
                     </svg>
 			</a>
 			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
-			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
+			<a style="margin-left: 10px;" class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
 				<span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span>
 			</a>
-			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
+			<a style="margin-left: 10px;" copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
 				<span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
 			</a>
 
@@ -180,7 +182,12 @@
 				});
 
 			})
-	/* $("#get-drug-list").on("click",function(){
+	if (document.querySelector('.pill-image').src == "http://localhost:8080/pilldex/null") {
+		document.querySelector('.pill-image').src = "${path}/resources/img/noimg.jpg";
+	}
+</script>
+
+<%-- 	 $("#get-drug-list").on("click",function(){
 		$.ajax({
 			type : "POST",
 			url : "${path}/getDrugList.do",
@@ -219,6 +226,6 @@
 	 console.log("error:" + data);
 	 }
 	 });
-	 }) */
+	 })  --%>
 </script>
 </html>

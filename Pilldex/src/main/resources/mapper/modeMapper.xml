@@ -26,6 +26,7 @@
 		SELECT *
 		FROM DATANAME
 		WHERE item_name LIKE '%' || #{itemName} || '%'
+		ORDER BY item_name
 	</select>
 
 	<select id="searchPillsToShape"
@@ -62,7 +63,7 @@
 			print_back LIKE '%'
 			|| #{printBack} || '%')
 		</if>
-		)
+		)ORDER BY item_name
 
 	</select>
 
