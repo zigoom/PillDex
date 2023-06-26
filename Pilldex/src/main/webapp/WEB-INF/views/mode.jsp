@@ -43,7 +43,7 @@
 					</c:if>
 					<c:if test="${user eq null}">
 						<!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
-						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
 								<b>로그인</b>
 							</a></li>
 					</c:if>
@@ -51,22 +51,29 @@
 			</div>
 		</nav>
 	</header>
-	<c:if test="${user eq null }">
-		<div id="login-containor">
-			<div style="width: 260px; float: right; background-color: #FFFFFF; margin-right: 10px; margin-top: 10px; margin-bottom: 30px; height: 100px; background-size: cover">
-				<div style="margin-left: 10px; margin-bottom: 25px;">
-					<form>
-						<input type="text" name="id" id="id" placeholder="아이디" style="margin-bottom: 5px;">
-						<input type="password" name="pw" id="pw" placeholder="패스워드" style="margin-bottom: 5px;">
-						<input type="button" value="로그인" id="doLogin" class="btn btn-primary">
-						<a href="${path}/membership.do" style="text-decoration-line: none;">회원가입</a>
-						<a href="${path}/findIdPw.do" style="text-decoration-line: none;">ID/PW찾기</a>
-					</form>
-				</div>
+	<div style="display: table; width: 100%; height: 120px; background-image: url(resources/img/main-png/BG.png); background-size: cover; background-position: center;">
+		<c:if test="${user eq null}">
+			<div id="login-form" style="width: 260px; padding-top: 5px; padding-right: 10px; float: right; background-color: #ffffff; margin-right: 10px; margin-top: 10px; height: 100px; background-size: cove; padding-left: 10px">
+
+				<!-- 유저 정보가 없을 경우 로그인 박스. -->
+				<form method="post">
+					<table>
+						<tr>
+							<td><input type="text" name="id" id="id" placeholder="아이디"></td>
+							<td rowspan="2"><input type="button" id="doLogin" value="로그인" style="height: 52px; padding-right: 5px;"></td>
+						</tr>
+						<tr>
+							<td><input type="password" name="pw" id="pw" placeholder="패스워드"></td>
+						</tr>
+					</table>
+				</form>
+				&nbsp;
+				<a href="${path}/membership.do" style="text-decoration-line: none;">회원가입</a>
+				&nbsp;
+				<a href="${path}/findIdPw.do" style="text-decoration-line: none;">ID/비번 찾기</a>
 			</div>
-		</div>
-	</c:if>
-	<img src="${path}/resources/img/main_img.png" alt="메인이미지" width="100%" />
+		</c:if>
+	</div>
 
 	<div id="search_list_box">
 		<!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->
@@ -441,10 +448,10 @@
                     </svg>
 			</a>
 			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
-			<a style="margin-left: 10px; class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
+			<a style="margin-left: 10px;" copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
 				<span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span>
 			</a>
-			<a style="margin-left: 10px; class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
+			<a style="margin-left: 10px;" copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
 				<span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
 			</a>
 
@@ -461,18 +468,18 @@
 	$("#doLogin").on("click", function() {
 		console.log("doLogin");
 
-		if (confirm('Are you sure you want to log in?') == false)
+		if (confirm('정말 로그인 하시겠습니까?') == false)
 			return;
 		console.log("userId: " + $("#id").val());
 		console.log("passwd: " + $("#pw").val());
 
 		if ("" == $("#id").val() || 0 == $("#id").val().length) {
-			alert("Please enter your ID"); // javascript message dialog
+			alert("아이디를 입력해주세요"); // javascript message dialog
 			$("#id").focus(); // Move focus to jQuery.
 			return;
 		}
 		if ("" == $("#pw").val() || 0 == $("#pw").val().length) {
-			alert("Please enter your password"); // javascript message dialog
+			alert("비밀번호를 입력해주세요"); // javascript message dialog
 			$("#pw").focus();
 			return;
 		}
