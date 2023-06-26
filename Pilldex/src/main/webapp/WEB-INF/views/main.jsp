@@ -70,6 +70,8 @@ history.replaceState({}, null, location.pathname);
         </nav>
     </header>
 	<div style="display: table; width: 100%; height: 120px; background-image: url(resources/img/main-png/BG.png); background-size: cover; background-position: center;">
+        <div id = "localBox" style="display: inline-block; width:624px;">
+        </div>
         <c:if test="${user eq null}">
             <div id="login-form" style="width: 260px; padding-top: 5px; padding-right: 10px; float: right; background-color: #ffffff; margin-right: 10px; margin-top: 10px; height: 100px; background-size: cove; padding-left: 10px">
 
