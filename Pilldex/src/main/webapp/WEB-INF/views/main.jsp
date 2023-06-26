@@ -77,7 +77,7 @@
 			style="display: table; width: 100%; height: 120px; background-image: url(resources/img/main-png/BG.png); background-size: cover; background-position: center;">
 			<div
 				style="float: left; margin-top: 10px; height: 100px; width: 560px; background-color: black; margin-left: 10px">
-				<div>
+				<div>  <!-- 로컬 -->
 					<div id= "localBox" name = "localBox">		
 					   
 					</div>
@@ -105,9 +105,7 @@
              </c:if>
               <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 박스. -->
                 <form method="post">
-                        <input type="checkbox" name="idS" value="saveOk"> <label
-                            for="checkId">아이디 저장</label><br>
-                        <table>
+                        <table style="margin-top: 20px;">
                             <tr>
                                 <td><input type="text" name="id" id="id" placeholder="아이디"></td>
                                 <td rowspan="2"><input type="button" id="doLogin" value="로그인"
@@ -119,7 +117,7 @@
                         </table>
                     </form>
                     &nbsp;<a href="${CP}/membership.do" style="text-decoration-line: none;">회원가입</a>
-                    &nbsp; <a href="${CP}/findIdPw.do" style="text-decoration-line: none;">비번 찾기</a>
+                    &nbsp; <a href="${CP}/findIdPw.do" style="text-decoration-line: none;">ID/PW 찾기</a>
               </c:if>
 					
 					
@@ -564,7 +562,7 @@
 </body>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
+        <div class="col-md-16 d-flex align-items-center">
             <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                 <svg class="bi" width="30" height="24">
                         <use xlink:href="#bootstrap" />
