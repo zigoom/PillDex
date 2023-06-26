@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="CP" value="${pageContext.request.contextPath}"></c:set>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
   <head>                 
@@ -11,7 +12,7 @@
     <link  href="${CP}/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="${CP}/resources/js/bootstrap/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     
-    <nav class="py-2 bg-light border-bottom">
+    <%-- <nav class="py-2 bg-light border-bottom">
       <div class="container d-flex flex-wrap">
 	        <ul class="nav me-auto">
 	          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
@@ -30,11 +31,48 @@
 	          </c:if> 
             </ul>
         </div>  
-      </nav>
+      </nav> --%>
     
     <title>회원가입</title>
   </head>
     <body>
+      <header>
+    <nav class="py-2 bg-light border-bottom">
+      <div class="container d-flex flex-wrap">
+        <ul class="nav me-auto">
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a id="logo" href="${path}/main.do" class="nav-link link-dark px-2 active" aria-current="page">
+              <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
+            </a></li>
+        </ul>
+        <ul class="nav" style="">
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+              <b>일반모드</b>
+            </a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
+              <b>돋보기모드</b>
+            </a></li>
+          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
+              <b>MAP</b>
+            </a></li>
+          <c:if test="${user ne null }">
+            <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mypage.do" class="nav-link link-dark px-2">
+                <b>마이페이지</b>
+              </a></li>
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
+                <b>로그아웃</b>
+              </a></li>
+          </c:if>
+          <c:if test="${user eq null}">
+            <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
+            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+                <b>로그인</b>
+              </a></li>
+          </c:if>
+        </ul>
+      </div>
+    </nav>
+  </header>
       <div id="container">
         <h1>회원가입</h1>
         회원이 되어 다양한 혜택을 경험해 보세요
