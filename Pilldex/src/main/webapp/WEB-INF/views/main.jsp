@@ -37,27 +37,40 @@
 <body>
 	<div>
 	<header>
-    <nav class="py-2 bg-light border-bottom">
-      <div class="container d-flex flex-wrap">
-        <ul class="nav me-auto">
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px">
-            <a id="logo" href="${path}/main.do" class="nav-link link-dark px-2 active" aria-current="page"> <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b> </a>
-          </li>
-        </ul>
-        <ul class="nav" style="">       
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/mode.do" class="nav-link link-dark px-2"><b>돋보기</b></a></li>
-          <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/map.do" class="nav-link link-dark px-2"><b>MAP</b></a></li>    
-          <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. --> 
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/mypage.do" class="nav-link link-dark px-2"><b>마이페이지</b></a></li>
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/logout.do" class="nav-link link-dark px-2"><b>로그아웃</b></a></li>
-          </c:if>
-          <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. --> 
-            <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top:4px"><a href="${path}/main.do" class="nav-link link-dark px-2"><b>로그인</b></a></li>
-          </c:if> 
-        </ul>
-      </div>  
-      </nav>
-      </header>
+    <header>
+        <nav class="py-2 bg-light border-bottom">
+            <div class="container d-flex flex-wrap">
+                <ul class="nav me-auto">
+                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px"><a id="logo" href="${CP}/main.do" class="nav-link link-dark px-2 active" aria-current="page">
+                            <img src="resources/img/Pill_32px.png" alt="Pill"> &nbsp; <b>PillDex</b>
+                        </a></li>
+                </ul>
+                <ul class="nav" style="">
+                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/main.do" class="nav-link link-dark px-2">
+                            <b>일반모드</b>
+                        </a></li>
+                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/map.do" class="nav-link link-dark px-2">
+                            <b>MAP</b>
+                        </a></li>
+                    <c:if test="${user ne null }">
+                        <!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/mypage.do" class="nav-link link-dark px-2">
+                                <b>마이페이지</b>
+                            </a></li>
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/logout.do" class="nav-link link-dark px-2">
+                                <b>로그아웃</b>
+                            </a></li>
+                    </c:if>
+                    <c:if test="${user eq null}">
+                        <!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/main.do" class="nav-link link-dark px-2">
+                                <b>로그인</b>
+                            </a></li>
+                    </c:if>
+                </ul>
+            </div>
+        </nav>
+    </header>
 	</div>
 	<div  class="container" style="width: 1140px">
 		<div
@@ -105,8 +118,8 @@
                             </tr>
                         </table>
                     </form>
-                    &nbsp;<a href="#" style="text-decoration-line: none;">회원가입</a>
-                    &nbsp; <a href="#" style="text-decoration-line: none;">비번 찾기</a>
+                    &nbsp;<a href="${CP}/membership.do" style="text-decoration-line: none;">회원가입</a>
+                    &nbsp; <a href="${CP}/findIdPw.do" style="text-decoration-line: none;">비번 찾기</a>
               </c:if>
 					
 					
@@ -550,17 +563,23 @@
     </div>
 </body>
 
-<footer
-	class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-	<div class="col-md-4 d-flex align-items-center">
-		<a href="/"
-			class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1"> <svg
-				class="bi" width="30" height="24">
-				<use xlink:href="#bootstrap" /></svg>
-		</a> <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023
-			FiveGuys 4 Team </span>
-	</div>
-</footer>
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
+            <a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
+                <span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span>
+            </a>
+            <a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
+                <span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
+            </a>
+
+        </div>
+    </footer>
 
 <script>                 
     $(document).ready(function(){

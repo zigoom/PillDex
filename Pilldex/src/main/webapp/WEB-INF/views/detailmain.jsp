@@ -16,7 +16,10 @@
 
 </head>
 <body>
-
+    <%
+        request.setCharacterEncoding("UTF-8");
+    String item_name = request.getParameter("item_name");
+    %>
 	<header>
 		<nav class="py-2 bg-light border-bottom">
 			<div class="container d-flex flex-wrap">
@@ -26,9 +29,6 @@
 						</a></li>
 				</ul>
 				<ul class="nav" style="">
-					<li id="doMode" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
-							<b>돋보기</b>
-						</a></li>
 					<li id="doMap" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
 							<b>MAP</b>
 						</a></li>
@@ -74,7 +74,7 @@
 	<!-- detail_result_box안에 있는 값은 나중에 api데이터로 바꿀것-->
 	
 	<div id="detail_result_box" style="margin-top: 80px;">
-		
+	<input type="hidden" name="item_name" value="${list.item_name}" id="item_name">	
 		<h2>저장방법</h2>
 		<p>${list.deposit_method_qesitm}</p>
 		<br />
@@ -94,13 +94,20 @@
 
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
-			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-				<svg class="bi" width="30" height="24">
-            <use xlink:href="#bootstrap" />
-          </svg>
-			</a>
-			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
-		</div>
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
+            <a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
+                <span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span>
+            </a>
+            <a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
+                <span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
+            </a>
+
+        </div>
 	</footer>
 </body>
 
@@ -135,4 +142,112 @@
             
             });
             </script>
+<script>
+    document.querySelector("#bookmark-drug").addEventListener(
+            "click",
+            function() {
+                $.ajax({
+                    type : "GET",
+                    url : "${path}/drugCheckNm.do",
+                    asyn : "true",
+                    dataType : "html",
+                    data : {
+                        nm : "${list.item_name}"
+                    },
+                    success : function(data) {//통신 성공
+                        console.log("success data:" + data);
+                        if (data == 0) {
+                            $.ajax({
+                                type : "POST",
+                                url : "${path}/getDrugCnt.do",
+                                asyn : "true",
+                                dataType : "html",
+                                data : {
+                                    mNo : "${user.no}",
+                                },
+                                success : function(data) {//통신 성공
+                                    console.log("success data:" + data);
+                                    if (data == 10) {
+                                        alert("더이상 등록할 수 없습니다.")
+                                    } else {
+                                        $.ajax({
+                                            type : "POST",
+                                            url : "${path}/drugBookmarkAdd.do",
+                                            asyn : "true",
+                                            dataType : "html",
+                                            data : {
+                                                mNo : "${user.no}",
+                                                nm : "${list.item_name}"
+                                            },
+                                            success : function(data) {//통신 성공
+                                                console.log("success data:"
+                                                        + data);
+                                                alert("즐겨찾기 등록 성공");
+
+                                            },
+                                            error : function(data) {//실패시 처리
+                                                console.log("error:" + data);
+                                            }
+                                        });
+                                    }
+
+                                },
+                                error : function(data) {//실패시 처리
+                                    console.log("error:" + data);
+                                }
+                            });
+                        }
+
+                        if (data == 1) {
+                            alert("이미 등록되어 있습니다.")
+                        }
+
+                    },
+                    error : function(data) {//실패시 처리
+                        console.log("error:" + data);
+                    }
+                });
+
+            })
+    /* $("#get-drug-list").on("click",function(){
+        $.ajax({
+            type : "POST",
+            url : "${path}/getDrugList.do",
+            asyn : "true",
+            dataType : "html",
+            data : {
+                mNo : "${user.no}"
+            },
+            success : function(data) {//통신 성공
+                console.log("success data:"
+                        + data);
+                alert(data);
+
+            },
+            error : function(data) {//실패시 처리
+                console.log("error:" + data);
+            }
+        });
+    }) */
+    /*  $("#drug-delete").on("click", function() {
+     $.ajax({
+     type : "POST",
+     url : "${path}/deleteDrugList.do",
+     asyn : "true",
+     dataType : "html",
+     data : {
+     nm : $("#drug-delete-text").val()
+     },
+    
+     success : function(data) {//통신 성공
+     console.log("success data:" + data);
+     alert(data);
+
+     },
+     error : function(data) {//실패시 처리
+     console.log("error:" + data);
+     }
+     });
+     }) */
+</script>
 </html>
