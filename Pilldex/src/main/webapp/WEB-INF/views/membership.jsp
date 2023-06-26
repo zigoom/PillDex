@@ -43,7 +43,7 @@
               <ul>
                 <li>
                   <label>아이디</label><br/>
-                  <input type="text" name="id_form" id="id_form" onkeyup="id_form_check(event)" placeholder="아이디 입력(영어, 숫자포함 6~20자)">
+                  <input type="text" name="id_form" id="id_form" onkeyup="id_form_check(event)" onchange="id_length_check()" placeholder="아이디 입력(영어, 숫자포함 6~20자)">
                   <input type="button" id="idDulpCheck" value="중복확인">
                 </li>
                 <li>
@@ -406,6 +406,16 @@
             }
             
           }
+        
+        function id_length_check() {
+        	const registerId = document.getElementById('id_form').value;
+        	
+        	if(registerId.length < 6 || registerId.length > 20) {
+                alert("아이디는 6~20글자로 구성되어야 합니다");
+                document.getElementById('id_form').value='';
+           }
+        	
+        }
 
     
         function check_name() {
@@ -499,10 +509,6 @@
                 return false;
             }
     		
-    		if(registerId.length < 6 || registerId.length > 20) {
-    			 alert("아이디는 6~20글자로 구성되어야 합니다");
-    			 return false;
-    		}
     		
     		if("" == document.getElementById('pw_form').value || "" == document.getElementById('pw2_form').value) {
                 alert("비밀번호를 입력하세요");
