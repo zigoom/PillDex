@@ -164,6 +164,12 @@ public class LoginController {
 		return "mode";	
 	}
     
+    @GetMapping("/logout2.do")
+    public String logoutButtonEvent2(HttpSession session) {
+		session.invalidate();
+		return "main";	
+	}
+    
     /**
      * 아이디/비밀번호 찾기 화면
      * @return

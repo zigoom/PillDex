@@ -29,15 +29,13 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
-// history.replaceState({}, null, location.pathname); 
+history.replaceState({}, null, location.pathname); 
 </script>          
 <title>Main</title>
 </head>
 
 <body>
-	<div>
-	<header>
-    <header>
+<header>
         <nav class="py-2 bg-light border-bottom">
             <div class="container d-flex flex-wrap">
                 <ul class="nav me-auto">
@@ -46,8 +44,8 @@
                         </a></li>
                 </ul>
                 <ul class="nav" style="">
-                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/main.do" class="nav-link link-dark px-2">
-                            <b>일반모드</b>
+                    <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/mode.do" class="nav-link link-dark px-2">
+                            <b>돋보기 모드</b>
                         </a></li>
                     <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/map.do" class="nav-link link-dark px-2">
                             <b>MAP</b>
@@ -57,7 +55,7 @@
                         <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/mypage.do" class="nav-link link-dark px-2">
                                 <b>마이페이지</b>
                             </a></li>
-                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/logout.do" class="nav-link link-dark px-2">
+                        <li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${CP}/logout2.do" class="nav-link link-dark px-2">
                                 <b>로그아웃</b>
                             </a></li>
                     </c:if>
@@ -71,60 +69,33 @@
             </div>
         </nav>
     </header>
-	</div>
-	<div  class="container" style="width: 1140px">
-		<div
-			style="display: table; width: 100%; height: 120px; background-image: url(resources/img/main-png/BG.png); background-size: cover; background-position: center;">
-			<div
-				style="float: left; margin-top: 10px; height: 100px; width: 560px; background-color: black; margin-left: 10px">
-				<div>  <!-- 로컬 -->
-					<div id= "localBox" name = "localBox">		
-					   
-					</div>
-				</div>
-			</div>
-			<div id = "login-form"
-				style="width: 260px; float: right; background-color: #ffffff; margin-right: 10px; margin-top: 10px; 
-				height: 100px; background-size: cove; padding-left: 10px">
-					
-			 <c:if test="${user ne null }"> <!-- 유저 정보가 있을 경우 로그인박스. -->
-                <div style="padding-top: 24px;">
-                <table>
-	                  <tr>  
-	                      <td rowspan="2" style="height: 52px; width:124px; ">
-	                        <span>님 환영합니다</span>
-	                      </td>
-	                      <td>dㅏㄴ녕하세요</td>    
-	                  </tr>
-	                  <tr>
-	            
-	                      <td>안녕하세요</td>
-	                  </tr>
-                </table>
-                </div>
-             </c:if>
-              <c:if test="${user eq null}"> <!-- 유저 정보가 없을 경우 로그인 박스. -->
+	<div style="display: table; width: 100%; height: 120px; background-image: url(resources/img/main-png/BG.png); background-size: cover; background-position: center;">
+        <div id = "localBox" style="display: inline-block; width:624px;">
+        </div>
+        <c:if test="${user eq null}">
+            <div id="login-form" style="width: 260px; padding-top: 5px; padding-right: 10px; float: right; background-color: #ffffff; margin-right: 10px; margin-top: 10px; height: 100px; background-size: cove; padding-left: 10px">
+
+                <!-- 유저 정보가 없을 경우 로그인 박스. -->
                 <form method="post">
-                        <table style="margin-top: 20px;">
-                            <tr>
-                                <td><input type="text" name="id" id="id" placeholder="아이디"></td>
-                                <td rowspan="2"><input type="button" id="doLogin" value="로그인"
-                                    style="height: 52px;"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="password" name="pw" id="pw" placeholder="패스워드"></td>
-                            </tr>
-                        </table>
-                    </form>
-                    &nbsp;<a href="${CP}/membership.do" style="text-decoration-line: none;">회원가입</a>
-                    &nbsp; <a href="${CP}/findIdPw.do" style="text-decoration-line: none;">ID/PW 찾기</a>
-              </c:if>
-					
-					
-					
-					
-			</div>
-		</div>
+                    <table style="margin-top: 13px; margin-left: 2px;">
+                        <tr>
+                            <td><input type="text" name="id" id="id" placeholder="아이디"></td>
+                            <td rowspan="2"><input type="button" id="doLogin" value="로그인" style="height: 52px; padding-right: 5px;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" name="pw" id="pw" placeholder="패스워드"></td>
+                        </tr>
+                    </table>
+                </form>
+                &nbsp;
+                <a href="${CP}/membership.do" style="text-decoration-line: none;">회원가입</a>
+                &nbsp;
+                <a href="${CP}/findIdPw.do" style="text-decoration-line: none;">ID/비번 찾기</a>
+            </div>
+        </c:if>
+    </div>
+	<div  class="container" style="width: 1140px">
+		
 		<fieldset
 			style="width: 800px; margin:auto; margin-top:15px; border: 1px solid black;">
 			<div style="margin-top: 10px">
@@ -299,7 +270,7 @@
 
 						<div>
 							<input type="radio" id="med_coclor4" name="med_coclor"
-								value="주황" <c:if test="${page.keyword_color eq '주황'}"></c:if> > <label for="med_coclor4"
+								value="주황" <c:if test="${page.keyword_color eq '주황'}">checked</c:if> > <label for="med_coclor4"
 								style="background-image: url('resources/img/main-png/색깔/4.PNG'); background-position: top; background-repeat: no-repeat; background-size: 70px 70px">
 							</label>
 							<p style="text-align: center; font-weight: 800">주황</p>
