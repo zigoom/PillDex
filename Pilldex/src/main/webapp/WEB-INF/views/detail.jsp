@@ -30,25 +30,27 @@
 						</a></li>
 				</ul>
 				<ul class="nav" style="">
-					<li id="doMode" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
-							<b>돋보기</b>
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+							<b>일반모드</b>
 						</a></li>
-					<li id="doMap" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
+							<b>돋보기모드</b>
+						</a></li>
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
 							<b>MAP</b>
 						</a></li>
-					<%-- <c:set var="user" value="${User}"/> --%>
 					<c:if test="${user ne null }">
 						<!-- 유저 정보가 있을 경우 마이페이지/로그아웃 버튼 활성화. -->
-						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
+						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mypage.do" class="nav-link link-dark px-2">
 								<b>마이페이지</b>
 							</a></li>
-						<li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
+						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
 								<b>로그아웃</b>
 							</a></li>
 					</c:if>
 					<c:if test="${user eq null}">
 						<!-- 유저 정보가 없을 경우 로그인 버튼 활성화. -->
-						<li id="doLogin" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
 								<b>로그인</b>
 							</a></li>
 					</c:if>
@@ -91,16 +93,23 @@
 		<h2>사용시 주의사항</h2>
 		<p>${modeVO.atpnQesitm}</p>
 	</div>
-	<input type="text" id="drug-delete-text">
-	<button id="drug-delete">지우기</button>
+	<!-- 	<input type="text" id="drug-delete-text">
+	<button id="drug-delete">지우기</button> -->
 	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 		<div class="col-md-4 d-flex align-items-center">
 			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
 				<svg class="bi" width="30" height="24">
-            <use xlink:href="#bootstrap" />
-          </svg>
+                        <use xlink:href="#bootstrap" />
+                    </svg>
 			</a>
 			<span class="mb-3 mb-md-0 text-muted">&copy; Make, 2023 FiveGuys 4 Team </span>
+			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15075057" target="blank">
+				<span>출처 : 식품의약품안전처_의약품개요정보(e약은요)</span>
+			</a>
+			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
+				<span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
+			</a>
+
 		</div>
 	</footer>
 </body>
@@ -191,25 +200,25 @@
 			}
 		});
 	}) */
-	$("#drug-delete").on("click", function() {
-		$.ajax({
-			type : "POST",
-			url : "${path}/deleteDrugList.do",
-			asyn : "true",
-			dataType : "html",
-			data : {
-				nm : $("#drug-delete-text").val()
-			},
-			
-			success : function(data) {//통신 성공
-				console.log("success data:" + data);
-				alert(data);
+	/* 	$("#drug-delete").on("click", function() {
+	 $.ajax({
+	 type : "POST",
+	 url : "${path}/deleteDrugList.do",
+	 asyn : "true",
+	 dataType : "html",
+	 data : {
+	 nm : $("#drug-delete-text").val()
+	 },
+	
+	 success : function(data) {//통신 성공
+	 console.log("success data:" + data);
+	 alert(data);
 
-			},
-			error : function(data) {//실패시 처리
-				console.log("error:" + data);
-			}
-		});
-	})
+	 },
+	 error : function(data) {//실패시 처리
+	 console.log("error:" + data);
+	 }
+	 });
+	 }) */
 </script>
 </html>

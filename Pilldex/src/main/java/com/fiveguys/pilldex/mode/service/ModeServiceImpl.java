@@ -37,4 +37,10 @@ public class ModeServiceImpl implements ModeService {
 		return modeDao.parseDataFromDbToShape(vo);
 	}
 
+
+	@Override
+	public int searchPillsCount(PillVO vo) throws SQLException {
+		return modeDao.searchPillsCount(vo);
+	}
+
 }

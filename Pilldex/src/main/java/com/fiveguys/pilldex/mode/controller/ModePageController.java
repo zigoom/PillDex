@@ -112,5 +112,14 @@ public class ModePageController {
 		System.out.println("******cnd******" + cnd);
 		return cnd;
 	}
+	
+	@RequestMapping(value = "/searchPillsCount.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int searchPillsCount(PillVO vo, Model model) throws SQLException {
+		int cnd = modeService.searchPillsCount(vo);
+		System.out.println("******cnd******" + cnd);
+		return cnd;
+	}
+	
 
 }

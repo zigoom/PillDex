@@ -25,29 +25,42 @@ public class ModeDaoImpl implements ModeDao {
 
 	@Override
 	public List<PillVO> parseDataFromDb(PillVO inVO) throws SQLException {
-	    String statement = NAMESPACE + ".searchPills";
-	    System.out.println(inVO.toString());
-	    List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
-	    System.out.println("outVO: " + outVO.toString());
-	    return outVO;
+		String statement = NAMESPACE + ".searchPills";
+		System.out.println(inVO.toString());
+		List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
+		System.out.println("outVO: " + outVO.toString());
+		return outVO;
 	}
+
 	@Override
 	public List<PillVO> parseDataFromDbToName(PillVO inVO) throws SQLException {
-	    String statement = NAMESPACE + ".searchPillsToName";
-	    System.out.println(inVO.toString());
-	    List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
-	    System.out.println("outVO: " + outVO.toString());
-	    return outVO;
+		String statement = NAMESPACE + ".searchPillsToName";
+		System.out.println(inVO.toString());
+		List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
+		System.out.println("outVO: " + outVO.toString());
+		return outVO;
 	}
 
 	@Override
 	public List<PillVO> parseDataFromDbToShape(PillVO inVO) throws SQLException {
 		String statement = NAMESPACE + ".searchPillsToShape";
-	    System.out.println(inVO.toString());
-	    List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
-	    System.out.println("outVO: " + outVO.toString());
-	    return outVO;
+		System.out.println(inVO.toString());
+		List<PillVO> outVO = sqlSessionTemplate.selectList(statement, inVO);
+		System.out.println("outVO: " + outVO.toString());
+		return outVO;
 	}
 
+	@Override
+	public int searchPillsCount(PillVO inVO) throws SQLException {
+		int cnd = 0;
+		String statement = NAMESPACE + ".searchPillsCount";
+		System.out.println("┌────────────────────────────────────────────────────────┐");
+		System.out.println("│ 1. statement " + statement);
+		System.out.println("└────────────────────────────────────────────────────────┘");
+		System.out.println("!!cnd!!"+cnd);
+		cnd = this.sqlSessionTemplate.selectOne(statement, inVO);
+
+		return cnd;
+	}
 
 }

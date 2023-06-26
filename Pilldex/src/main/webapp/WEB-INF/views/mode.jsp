@@ -26,8 +26,8 @@
 						</a></li>
 				</ul>
 				<ul class="nav" style="">
-					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/mode.do" class="nav-link link-dark px-2">
-							<b>돋보기</b>
+					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/main.do" class="nav-link link-dark px-2">
+							<b>일반모드</b>
 						</a></li>
 					<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/map.do" class="nav-link link-dark px-2">
 							<b>MAP</b>
@@ -67,6 +67,7 @@
 		</div>
 	</c:if>
 	<img src="${path}/resources/img/main_img.png" alt="메인이미지" width="100%" />
+
 	<div id="search_list_box">
 		<!--밑에 내용은 나중에 api연결하고나서 localStorage로 기능추가-->
 		<ul>
@@ -205,29 +206,29 @@
 				<div id="med_char_input">
 					<div class="select-box shape">
 						<i class="fa-solid fa-solid fa-shapes fa-2xl"></i>
-						<input type="text" class="selected-data-input hidden" name="drugShape" value="" />
+						<input type="text" class="selected-data-input hidden" id="drugShape" name="drugShape" value="" />
 						<p>모양</p>
 					</div>
 					<div class="select-box color">
 						<i class="fa-solid fa-droplet fa-2xl"></i>
-						<input type="text" class="selected-data-input hidden" name="colorClass" value="" />
+						<input type="text" class="selected-data-input hidden" id="colorClass" name="colorClass" value="" />
 						<p>색상</p>
 					</div>
 					<div class="select-box chart">
 						<i class="fa-solid fa-capsules fa-2xl"></i>
-						<input type="text" class="selected-data-input hidden" name="chart" value="" />
+						<input type="text" class="selected-data-input hidden" id="chart" name="chart" value="" />
 						<p>제형</p>
 					</div>
 					<div class="select-box line">
 						<i class="fa-solid fa-light fa-tablets fa-2xl"></i>
-						<input type="text" class="selected-data-input hidden" name="lineFront" value="" />
+						<input type="text" class="selected-data-input hidden" id="lineFront" name="lineFront" value="" />
 						<h3>분할선</h3>
-						<input type="text" class="selected-data-input hidden" name="lineBack" value="" />
-						<input type="text" class="selected-data-input hidden" name="printFront" value="" />
-						<input type="text" class="selected-data-input hidden" name="printBack" value="" />
+						<input type="text" class="selected-data-input hidden" id="lineBack" name="lineBack" value="" />
+						<input type="text" class="selected-data-input hidden" id="printFront" name="printFront" value="" />
+						<input type="text" class="selected-data-input hidden" id="printBack" name="printBack" value="" />
 					</div>
 					<input type="text" class="selected-data-input printFB" placeholder="식별자" name="printFB" value="" />
-					<input type="submit" id="submit-btn" class="btn btn-primary" />
+					<input type="submit" id="submit-btn" class="btn btn-primary" value="검색하기" />
 				</div>
 				<div class="detail-view-box hidden">
 					<div class="select-box-shape">
@@ -408,7 +409,6 @@
 			</div>
 		</div>
 		<p>${shape}</p>
-
 	</form>
 
 
@@ -447,8 +447,10 @@
 			<a class="copyright" href="https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15057639" target="blank">
 				<span>출처 : 식품의약품안전처_의약품 낱알식별 정보</span>
 			</a>
+
 		</div>
 	</footer>
+	<input type="hidden" value="${modeVO.size()}" id="modeVO-size">
 </body>
 
 <script src="${path}/resources/js/mode-page.js">
@@ -459,18 +461,18 @@
 	$("#doLogin").on("click", function() {
 		console.log("doLogin");
 
-		if (confirm('로그인 하시겠습니까?') == false)
+		if (confirm('Are you sure you want to log in?') == false)
 			return;
-		console.log("userId : " + $("#id").val());
-		console.log("passwd : " + $("#pw").val());
+		console.log("userId: " + $("#id").val());
+		console.log("passwd: " + $("#pw").val());
 
 		if ("" == $("#id").val() || 0 == $("#id").val().length) {
-			alert("아이디를 입력하세요"); // javascript 메시지 다이얼 로그
-			$("#id").focus(); // jquery로 포커스를 이동시킨다.
+			alert("Please enter your ID"); // javascript message dialog
+			$("#id").focus(); // Move focus to jQuery.
 			return;
 		}
-		if ("" == $("#pd").val() || 0 == $("#pw").val().length) {
-			alert("비밀번호를 입력하세요"); // javascript 메시지 다이얼 로그
+		if ("" == $("#pw").val() || 0 == $("#pw").val().length) {
+			alert("Please enter your password"); // javascript message dialog
 			$("#pw").focus();
 			return;
 		}
@@ -484,39 +486,40 @@
 				id : $("#id").val(),
 				pw : $("#pw").val()
 			},
-			success : function(data) {// 통신 성공
-				// console.log("success data:"+data);
-				// JSON.parse() 메서드는 JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를
-				// 생성합니다.
-				let paredJSON = JSON.parse(data);
-				console.log("paredJSON.msgId:" + paredJSON.msgId);
+			success : function(data) { // Successful communication
+				// console.log("success data:" + data);
+				// The JSON.parse() method parses a JSON string and returns a JavaScript value or object from the result.
+				// create.
+				let parsedJSON = JSON.parse(data);
+				console.log("parsedJSON.msgId: " + parsedJSON.msgId);
 
-				if ("1" == paredJSON.msgId || "10" == paredJSON.msgId) {
-					alert(paredJSON.msgContents); // javascript 메시지 다이얼 로그
-					$("#userId").focus(); // jquery로 포커스를 이동시킨다.
+				if ("1" == parsedJSON.msgId || "10" == parsedJSON.msgId) {
+					alert(parsedJSON.msgContents); // javascript message dialog
+					$("#userId").focus(); // Move focus to jQuery.
 					return;
 				}
-				if ("2" == paredJSON.msgId || "20" == paredJSON.msgId) {
-					alert(paredJSON.msgContents);
+				if ("2" == parsedJSON.msgId || "20" == parsedJSON.msgId) {
+					alert(parsedJSON.msgContents);
 					$("#passwd").focus();
 					return;
 				}
-				if ("30" == paredJSON.msgId) {// 로그인 성공
-					alert(paredJSON.msgContents);
+				if ("30" == parsedJSON.msgId) { // login successful
+					alert(parsedJSON.msgContents);
 
-					// javascript 내장객체 : url
+					// javascript built-in object: url
 					window.location.href = "${path}/mode.do";
 				}
 			},
-			error : function(data) {// 실패시 처리
+			error : function(data) { // handle on failure
 				console.log("error:" + data);
 			}
 		});
 	});
-	
-	for (let i = 0; i < document.querySelectorAll('.pill-image').length; i++)
+
+	for (let i = 0; i < document.querySelectorAll('.pill-image').length; i++) {
 		if (document.querySelectorAll('.pill-image')[i].src == 'http://localhost:8080/pilldex/null') {
-			document.querySelectorAll('.pill-image')[i].src = "${path}/resources/img/noimg.jpg"
+			document.querySelectorAll('.pill-image')[i].src = "${path}/resources/img/noimg.jpg";
 		}
+	}
 </script>
 </html>

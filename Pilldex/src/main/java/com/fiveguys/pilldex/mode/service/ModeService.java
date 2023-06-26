@@ -12,5 +12,7 @@ public interface ModeService {
 	List<PillVO> parseDataFromDbToName(PillVO vo) throws SQLException;
 
 	List<PillVO> parseDataFromDbToShape(PillVO vo) throws SQLException;
+	
+	int searchPillsCount(PillVO vo) throws SQLException;
 
 }
