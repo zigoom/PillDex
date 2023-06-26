@@ -38,7 +38,7 @@
 						<li class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="#" class="nav-link link-dark px-2">
 								<b>마이페이지</b>
 							</a></li>
-						<li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout.do" class="nav-link link-dark px-2">
+						<li id="doLogout" class="nav-item" style="margin-top: 0px; margin-bottom: 0px; padding-top: 4px"><a href="${path}/logout2.do" class="nav-link link-dark px-2">
 								<b>로그아웃</b>
 							</a></li>
 					</c:if>
