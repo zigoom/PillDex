@@ -8,10 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
     <meta name="fiveguys" content="mypage" />
+    
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
+	<link
+	    rel="stylesheet"
+	    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	    crossorigin="anonymous">	
     <link rel="stylesheet"  href="${path}/resources/css/main-css/mypage-style.css" />
+    
+    <%-- 
     <link  href="${path}/resources/css/bootstrap/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="${path}/resources/js/bootstrap/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="${path}/resources/js/jquery-3.7.0.js"></script>
+    <script src="${path}/resources/js/jquery-3.7.0.js"></script> --%>
     
   <title>PillDex 마이페이지</title>
   </head>
@@ -53,126 +66,128 @@
       </div>
     </nav>
   </header>
-  <main>
-    <div id="main_box">
-      <h3>마이페이지</h3>
-      <form id="box2" action="#" method="get">
-        <label for="user_id"><b>아이디</b></label><br />
-        <div>
-          <input  type="text" id="user_id" name="user_id" min="6" maxlength="20" placeholder="아이디 입력(영어, 숫자포함 6~20자)" readonly="readonly" value="${user.id}"/>
-        </div><br/>
-        <label for="pw"><b>비밀번호</b></label><br/>
-        <input type="password" id="pw" name="pw" min="8" maxlength="20" placeholder="(문자,숫자,특수문자[!,@,#,$,%,*])포함 8~20자" value="${user.pw}"/><br/>
-        <label for="pw_check"><b>비밀번호 확인</b></label><br/>
-        <input type="password" id="pw_check" name="pw_check" min="8" maxlength="20" placeholder="비밀번호 재입력" value="${user.pw}"/><br/>
-        <label for="user_name"><b>이름</b></label><br/>
-        <input class="input-text" type="text" id="user_name" name="user_name" min="2" maxlength="5" placeholder="이름" value="${user.name}"/><br/>
-        <label for="phone_number"><b>휴대폰번호</b></label><br/>
-        <input type="tel" width="700px" id="phone_number" name="phone_number" size="13" maxlength="13" value="${user.tel}" /> <br/>
-        
-        <label "for="email"><b>이메일 주소</b></label><br/>
-        &nbsp<input style="width: 180px; height: 38px;" type="text" width="300px" id="emailFront" name="emailFront" placeholder="이메일 주소" value=""/>
-        &nbsp<label><b>@</b></label>
-        <input style="width: 180px; height: 38px;"  id="emailBack"type="email" list="emailBack" name="emailBack" placeholder="ex)naver.com" value=""/>          
-        <input type="hidden" id="emailTmp" value="${user.email}" /><br/>
-        
-        <label for="address"><b>기본 주소</b></label><br/>
-        <input style="width: 198px;" class="input-text" type="text" id="sample6_postcode" placeholder="우편번호" />
-        <input style="width: 177px; padding-top:5px; padding-bottom:5px;" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"/>
-
-        <br/>
-        <input type="text" class="input-text" id="address" placeholder="주소"/><br />
-        <input type="hidden" id="anotherAddr">
-        <input type="hidden" id="newAddress"> <!-- 신주소(도로명) -->
-        <input type="hidden" id="oldAddress"> <!-- 구주소(지번) -->
-        <input type="hidden" id="addressType"> <!-- 주소 구분 -->
-        <input type="text" class="input-text" id="rest_address" placeholder="상세주소"/>        
-<!-- 주소 ---------------------------------------------------------------------------------------------------------------->
-        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-        <script>
-          function sample6_execDaumPostcode() {
-            new daum.Postcode({
-              oncomplete: function (data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var fullAddr = ""; // 주소 변수
-                var extraAddr = ""; // 참고항목 변수
-                var anotherAddr = "";
-
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === "R") {
-                  // 사용자가 도로명 주소를 선택했을 경우
-                  fullAddr = data.roadAddress;
-                  anotherAddr = data.jibunAddress;                  
-                } else {
-                  // 사용자가 지번 주소를 선택했을 경우(J)
-                  fullAddr = data.jibunAddress;
-                  anotherAddr = data.roadAddress;
-                }
-
-                if (data.userSelectedType === "R") {
-                  fullAddr = data.roadAddress;
-                } else {
-                  fullAddr = data.jibunAddress;
-                }
-
-                if (data.userSelectedType === "R") {
-                  if (data.bname !== "") {
-                    extraAddr += data.bname;
-                  }
-                  if (data.buildingName !== "") {
-                    extraAddr +=
-                      extraAddr !== ""
-                        ? ", " + data.buildingName
-                        : data.buildingName;
-                  }
-                  fullAddr += extraAddr !== "" ? " (" + extraAddr + ") " : "";
-                }
-                
-                if(data.userSelectedType === 'J') {
-                    if(data.bname !== '') {
-                      extraAddr += data.bname;
-                    }
-                    if(data. buildingName !== '') {
-                      extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    anotherAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
-                  }
-
-                document.getElementById("newAddress").value = data.roadAddress;
-                document.getElementById("oldAddress").value = data.jibunAddress;     
-                document.getElementById("addressType").value = data.userSelectedType;     
-                
-                document.getElementById("sample6_postcode").value = data.zonecode;
-                document.getElementById("address").value = fullAddr;
-                document.getElementById("anotherAddr").value = anotherAddr;
-                document.getElementById("rest_address").focus();
-                
-              },
-            }).open();
-          }
-        </script>
-        <br/>
-        <input id="addAddressBtn" type="button" class="btn btn-navy navbar-btn find-btn1" style="width:400px; padding-top:5px; padding-bottom:5px; margin-bottom:10px;" value="주소지 즐겨찾기 추가"/>
-        <br/>
-        <label for="bookmark_address_list" style="margin-bottom:5px;"><b>즐겨 찾기 주소지 목록</b></label><br/> 
-        <div class="dropdown">
-          <button id="dropdown_button1" style="width:400px;" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 주소지 목록 </button>
-          <ul class="dropdown-menu " style="width:400px;" id="il_01"></ul>
-        </div>
-        <br/>
-        <label for="bookmark_med_list" style="margin-bottom:5px;"><b>약품 즐겨 찾기 목록</b></label ><br /> 
-        <div class="dropdown">
-          <button id="dropdown_button2" style="width:400px;" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 약품 목록 </button>
-          <ul class="dropdown-menu " style="width:400px;" id="il_02"></ul>
-        </div>
-        <br/>
-        <input type="button" class="btn btn-navy navbar-btn find-btn1" onclick="doSave();" value="수정"/>
-        <input type="button"class="btn btn-grey navbar-btn find-btn1" onclick="window.location.href='${path}/main.do';" value="취소"/>
-      </form>
-    </div>    
+  <main>  
+	<div class="container text-center">
+	    <div id="main_box">
+	      <h3>마이페이지</h3>
+	      <form id="box2" action="#" method="get">
+	        <label for="user_id"><b>아이디</b></label><br />
+	        <div>
+	          <input  type="text" id="user_id" name="user_id" min="6" maxlength="20" placeholder="아이디 입력(영어, 숫자포함 6~20자)" readonly="readonly" value="${user.id}"/>
+	        </div><br/>
+	        <label for="pw"><b>비밀번호</b></label><br/>
+	        <input type="password" id="pw" name="pw" min="8" maxlength="20" placeholder="(문자,숫자,특수문자[!,@,#,$,%,*])포함 8~20자" value="${user.pw}"/><br/>
+	        <label for="pw_check"><b>비밀번호 확인</b></label><br/>
+	        <input type="password" id="pw_check" name="pw_check" min="8" maxlength="20" placeholder="비밀번호 재입력" value="${user.pw}"/><br/>
+	        <label for="user_name"><b>이름</b></label><br/>
+	        <input class="input-text" type="text" id="user_name" name="user_name" min="2" maxlength="5" placeholder="이름" value="${user.name}"/><br/>
+	        <label for="phone_number"><b>휴대폰번호</b></label><br/>
+	        <input type="tel" width="700px" id="phone_number" name="phone_number" size="13" maxlength="13" value="${user.tel}" /> <br/>
+	        
+	        <label "for="email"><b>이메일 주소</b></label><br/>
+	        &nbsp<input style="width: 180px; height: 38px;" type="text" width="300px" id="emailFront" name="emailFront" placeholder="이메일 주소" value=""/>
+	        &nbsp<label><b>@</b></label>
+	        <input style="width: 180px; height: 38px;"  id="emailBack"type="email" list="emailBack" name="emailBack" placeholder="ex)naver.com" value=""/>          
+	        <input type="hidden" id="emailTmp" value="${user.email}" /><br/>
+	        
+	        <label for="address"><b>기본 주소</b></label><br/>
+	        <input style="width: 198px;" class="input-text" type="text" id="sample6_postcode" placeholder="우편번호" />
+	        <input style="width: 177px; padding-top:5px; padding-bottom:5px;" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"/>
+	
+	        <br/>
+	        <input type="text" class="input-text" id="address" placeholder="주소"/><br />
+	        <input type="hidden" id="anotherAddr">
+	        <input type="hidden" id="newAddress"> <!-- 신주소(도로명) -->
+	        <input type="hidden" id="oldAddress"> <!-- 구주소(지번) -->
+	        <input type="hidden" id="addressType"> <!-- 주소 구분 -->
+	        <input type="text" class="input-text" id="rest_address" placeholder="상세주소"/>        
+	<!-- 주소 ---------------------------------------------------------------------------------------------------------------->
+	        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	        <script>
+	          function sample6_execDaumPostcode() {
+	            new daum.Postcode({
+	              oncomplete: function (data) {
+	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var fullAddr = ""; // 주소 변수
+	                var extraAddr = ""; // 참고항목 변수
+	                var anotherAddr = "";
+	
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === "R") {
+	                  // 사용자가 도로명 주소를 선택했을 경우
+	                  fullAddr = data.roadAddress;
+	                  anotherAddr = data.jibunAddress;                  
+	                } else {
+	                  // 사용자가 지번 주소를 선택했을 경우(J)
+	                  fullAddr = data.jibunAddress;
+	                  anotherAddr = data.roadAddress;
+	                }
+	
+	                if (data.userSelectedType === "R") {
+	                  fullAddr = data.roadAddress;
+	                } else {
+	                  fullAddr = data.jibunAddress;
+	                }
+	
+	                if (data.userSelectedType === "R") {
+	                  if (data.bname !== "") {
+	                    extraAddr += data.bname;
+	                  }
+	                  if (data.buildingName !== "") {
+	                    extraAddr +=
+	                      extraAddr !== ""
+	                        ? ", " + data.buildingName
+	                        : data.buildingName;
+	                  }
+	                  fullAddr += extraAddr !== "" ? " (" + extraAddr + ") " : "";
+	                }
+	                
+	                if(data.userSelectedType === 'J') {
+	                    if(data.bname !== '') {
+	                      extraAddr += data.bname;
+	                    }
+	                    if(data. buildingName !== '') {
+	                      extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    anotherAddr += (extraAddr !== '' ? ' (' + extraAddr + ') ' : '');
+	                  }
+	
+	                document.getElementById("newAddress").value = data.roadAddress;
+	                document.getElementById("oldAddress").value = data.jibunAddress;     
+	                document.getElementById("addressType").value = data.userSelectedType;     
+	                
+	                document.getElementById("sample6_postcode").value = data.zonecode;
+	                document.getElementById("address").value = fullAddr;
+	                document.getElementById("anotherAddr").value = anotherAddr;
+	                document.getElementById("rest_address").focus();
+	                
+	              },
+	            }).open();
+	          }
+	        </script>
+	        <br/>
+	        <input id="addAddressBtn" type="button" class="btn btn-navy navbar-btn find-btn1" style="width:400px; padding-top:5px; padding-bottom:5px; margin-bottom:10px;" value="주소지 즐겨찾기 추가"/>
+	        <br/>
+	        <label for="bookmark_address_list" style="margin-bottom:5px;"><b>즐겨 찾기 주소지 목록</b></label><br/> 
+	        <div class="dropdown">
+	          <button id="dropdown_button1" style="width:400px;" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 주소지 목록 </button>
+	          <ul class="dropdown-menu " style="width:400px;" id="il_01"></ul>
+	        </div>
+	        <br/>
+	        <label for="bookmark_med_list" style="margin-bottom:5px;"><b>약품 즐겨 찾기 목록</b></label ><br /> 
+	        <div class="dropdown">
+	          <button id="dropdown_button2" style="width:400px;" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"> 약품 목록 </button>
+	          <ul class="dropdown-menu " style="width:400px;" id="il_02"></ul>
+	        </div>
+	        <br/>
+	        <input type="button" class="btn btn-navy navbar-btn find-btn1" onclick="doSave();" value="수정"/>
+	        <input type="button"class="btn btn-grey navbar-btn find-btn1" onclick="window.location.href='${path}/main.do';" value="취소"/>
+	      </form>
+	    </div>    
+  	</div>
   </main>
   
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
